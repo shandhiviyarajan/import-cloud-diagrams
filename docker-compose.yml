@@ -1,0 +1,13 @@
+version: "2"
+services:
+  hava-viewer:
+    build: .
+    volumes:
+      - "./dist:/hava-viewer/dist"
+    environment:
+      - CI
+      - BUILDKITE_AGENT_ACCESS_TOKEN
+      - BUILDKITE_JOB_ID
+      - BUILDKITE_BUILD_ID
+      - BUILDKITE_BUILD_NUMBER
+      - BUILDKITE_BRANCH

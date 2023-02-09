@@ -1,0 +1,161 @@
+<!-- ATTRIBUTES -->
+<div class="row title">
+  <div class="s12 col">
+    <h4>{{resource.protocol}}: {{resource.port}}</h4>
+  </div>
+</div>
+
+<div class="row">
+  <div class="s12 col end">
+    <h5>Description</h5>
+  </div>
+</div>
+
+<div class="row">
+  <div class="s5 col"><strong>SSL Policy</strong></div>
+  <div class="s7 col">
+    <span class="octicon octicon-check good" ng-show="resource.ssl_policy"></span>
+    <span class="octicon octicon-x bad" ng-show="!resource.ssl_policy"></span>
+  </div>
+</div>
+
+<div class="row">
+  <div class="s5 col"><strong>Certificates</strong></div>
+  <div class="s7 col">
+    <span class="octicon octicon-check good" ng-show="resource.certificates.length"></span>
+    <span class="octicon octicon-x bad" ng-show="!resource.certificates.length"></span>
+  </div>
+</div>
+
+<div ng-repeat="rule in info.rules | orderBy:'priority' track by $index" class="sub-title">
+  <div ng-show="$index==0" class="s10 col end">
+    <h5>Rules</h5>
+  </div>
+  <div ng-repeat="action in rule.actions track by $index">
+    <div class="row">
+      <div ng-show="rule.conditions.length">
+        <div class="s12 col">
+          <div class="left">
+            <strong>IF</strong>
+          </div>
+          <span class="right success label round">{{rule.priority}}</span>
+        </div>
+        <div class="attributes-list">
+          <div ng-repeat="condition in rule.conditions track by $index">
+            <div ng-switch="condition['field']">
+              <div ng-switch-when="host-header">
+                <div class="s12 col">Host header is
+                  {{condition['host_header_config']['values'].join(", ")}}</div>
+              </div>
+              <div ng-switch-when="path-pattern">
+                <div class="s12 col">Path is
+                  {{condition['path_pattern_config']['values'].join(", ")}}</div>
+              </div>
+              <div ng-switch-when="http-header">
+                <div class="s12 col">Http header
+                  {{condition['http_header_config']['http_header_name']}} is
+                  {{condition['http_header_config']['values'].join(", ")}}</div>
+              </div>
+              <div ng-switch-when="query-string">
+                <div ng-repeat="val in condition['query_string_config']['values'] track by $index">
+                  <div class="s12 col">Query string is {{val["key"]}}:{{val["value"]}}</div>
+                </div>
+              </div>
+              <div ng-switch-when="http-request-method">
+                <div class="s12 col">Http request is
+                  {{condition['http_request_method_config']['values'].join(", ")}}</div>
+              </div>
+              <div ng-switch-when="source-ip">
+                <div class="s12 col">Source IP is
+                  {{condition['source_ip_config']['values'].join(", ")}}</div>
+              </div>
+              <div ng-switch-default>
+                <div class="s12 col">Field is {{condition['field']}}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div ng-show="rule.is_default">
+        <div class="s12 col">
+          <div class="left">
+            <strong>IF</strong>
+          </div>
+          <span class="right success label round">{{rule.priority}}</span>
+        </div>
+        <div class="attributes-list">
+          <div class="s10 col">Requests otherwise not routed</div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="s12 col"><strong>THEN</strong></div>
+      <div class="attributes-list">
+        <div ng-show="action.type=='forward'">
+          <div class="s12 col">
+            <strong>Forward to: </strong><a
+            ng-click="selectResource(rule.target_group)">{{rule.target_group.name}}</a>
+          </div>
+          <div class="s12 col">
+            <div ng-show="action.config['target_group_stickiness_config']['enabled']">
+              Group-level stickiness enabled <span class="octicon octicon-check good"></span><br />
+              Duration in seconds: {{action.config['target_group_stickiness_config']['duration_seconds']}}
+            </div>
+            <div ng-show="!action.config['target_group_stickiness_config']['enabled']">
+              Group-level stickiness enabled: <span class="octicon octicon-x bad"></span>
+            </div>
+          </div>
+        </div>
+        <div ng-show="action.type=='redirect'">
+          <div class="s12 col">
+            <strong>Redirect to:</strong> {{action.description}}
+          </div>
+          <div class="s12 col">
+            Status code: {{action.config["status_code"]}}
+          </div>
+        </div>
+        <div ng-show="action.type=='fixed-response'">
+          <div class="s12 col">
+            <strong>Return fixed response:</strong> {{action.config["status_code"]}}
+          </div>
+          <div class="s12 col">
+            Content-Type: {{action.config["content_type"]}}
+          </div>
+          <div class="s12 col" ng-show="action.config['message_body'].length">
+            Response body: <pre>{{action.config["message_body"]}}</pre>
+          </div>
+        </div>
+        <div ng-show="action.type=='authenticate-cognito'">
+          <div class="s12 col">
+            <strong>Authenticate Cognito:</strong> {{action.description}}
+          </div>
+          <div class="s12 col">
+            Scope: {{action.config["scope"]}}
+          </div>
+        </div>
+        <div ng-show="action.type=='authenticate-oidc'">
+          <div class="s12 col">
+            <strong>Authenticate OIDC:</strong> {{action.description}}
+          </div>
+          <div class="s12 col">
+            Scope: {{action.config["scope"]}}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div ng-show="info.load_balancers.length > 0">
+  <div class="row">
+    <div class="s10 col end">
+      <h5>Load Balancer</h5>
+    </div>
+  </div>
+  <div class="row">
+    <div class="s10 col end attributes-name" ng-repeat="lb in info.load_balancers | orderBy: 'name'">
+      <svg><use xlink:href="{{lb.image}}" /></svg>
+      <a ng-click="selectResource(lb)">{{lb.name}}</a>
+    </div>
+  </div>
+</div>

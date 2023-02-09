@@ -1,0 +1,17 @@
+<div id="paper3d">
+   <div class="paper-controls" ng-if="Designer.show_controls">
+      <!-- TODO - setting up events in angular way -->
+      <button ng-click="switchTopDown()" title="Toggle topdown view" id="htoggle"><span
+         class="octicon octicon-device-camera-video"></i></button>
+      <button ng-click="rotateScene()" title="Rotate" id="hrotate"><span
+         class="octicon octicon-sync"></button>
+      <button title="Switch to 2D view" ng-click="switchToJointJsCanvas()"><span
+         class="octicon octicon-file-media"></button>
+      <button title="Snap to Center" ng-click="snapToCenter()"><span
+         class="octicon octicon-diff-modified"></button>
+   </div>
+   <canvas id="pape3dcanvas"></canvas>
+   <p ng-show="!WEBGL" style="margin: auto; text-align: center;">Sorry, WebGL is not supported in this
+      browser.
+   </p>
+</div>

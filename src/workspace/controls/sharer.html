@@ -1,0 +1,73 @@
+<div class="share-controls" id="share-options">
+  <button ng-click="toggleShareOptions()" class="button btn waves-effect waves-light exporter"><i class="material-icons">share</i> Share</button>
+
+  <div id="sharer-dropdown" class="hava-dropdown-content" ng-show="show_share">
+    <div ng-show="!allow_embed">
+      <div class="row">
+        <div class="s12 col">
+          <h5>Share Environment</h5>
+        </div>
+      </div>
+      <div class="row">
+        <div class="s12 col">
+          <p>
+            Want to be able to share this environment? Sign up now!
+          </p>
+          <p>
+            <a class="button btn waves-effect waves-light" ng-click="upgradeAccount()">Sign Up</a>
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div ng-show="allow_embed">
+      <div class="row">
+        <div class="s12 col">
+          <h5>Share Environment</h5>
+        </div>
+      </div>
+      <div class="row">
+        <div class="s12 col">
+          <button ng-click="loadEmbedCode()" ng-disabled="embed_code || loading_embed" class="button btn waves-effect waves-light">
+            <i class="material-icons">code</i> Embed
+          </button>
+        </div>
+      </div>
+
+      <div class="row" ng-show="loading_embed">
+        <div class="s12 col">
+          <span class="alert-box secondary radius">
+            Loading embed code ... <span loader class="right"></span>
+          </span>
+        </div>
+      </div>
+
+      <div class="row" ng-show="embed_error">
+        <div class="s12 col">
+          <span class="alert-box warning radius">
+            <i class="material-icons">error</i> Failed to load embed code! We've been notified - please try again soon.
+          </span>
+        </div>
+      </div>
+
+      <div class="row" ng-show="embed_code">
+        <div class="s12 col">
+          <div id="embed-code-display" class="panel">
+            &lt;iframe width="1200" height="600" src="{{embeddable_host}}?id={{embed_code}}&type={{Designer.environment.current_view.type}}" frameborder="0"&gt;&lt;/iframe&gt;
+          </div>
+
+          <p>
+            <small>This iframe will give read access to your diagram and all contained resources, please be careful who you share it with!</small>
+          </p>
+
+          <button ng-click="copyEmbedCode()" class="button btn waves-effect waves-light">
+            <i class="material-icons">content_copy</i> Copy
+          </button>
+          <span ng-show="copy_state.result === true">&nbsp;&nbsp;<i class="material-icons">check</i> Copied</span>
+          <span ng-show="copy_state.result === false">&nbsp;&nbsp;Failed to copy :(</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

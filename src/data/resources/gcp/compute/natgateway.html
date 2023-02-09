@@ -1,0 +1,154 @@
+<div class="row sub-title">
+  <div class="s12 col">
+    <small ng-if="resource.project">
+      <strong>Project</strong><br />
+      <span ng-bind="resource.project"></span>
+    </small>
+  </div>
+</div>
+
+<div class="row" ng-show="resource.nat_ip_allocate_option">
+  <div class="s12 col"><strong>NAT IP Allocate Option</strong></div>
+  <div class="s12 col" ng-bind="resource.nat_ip_allocate_option"></div>
+</div>
+<div class="row" ng-show="resource.min_ports_per_vm">
+  <div class="s12 col"><strong>Minimum Ports Per Instance</strong></div>
+  <div class="s12 col" ng-bind="resource.min_ports_per_vm"></div>
+</div>
+<div class="row">
+  <div class="s12 col"><strong>IP Ranges to NAT</strong></div>
+  <div class="s12 col" ng-bind="resource.source_subnetwork_ip_ranges_to_nat"></div>
+</div>
+
+<div ng-show="resource.nat_ips.length">
+  <div class="row">
+    <div class="s12 col"><h5>NAT IPs</h5></div>
+  </div>
+
+  <div ng-repeat="ip_link in resource.nat_ips" ng-if="info.address_map[ip_link]">
+    <div class="row">
+      <div class="s12 col">
+        <svg><use xlink:href="{{info.address_map[ip_link].image}}" /></svg>
+        <a ng-click="selectResource(info.address_map[ip_link])">{{info.address_map[ip_link].name}}</a><br />
+        ∟ {{info.address_map[ip_link].address}}
+      </div>
+    </div>
+  </div>
+</div>
+
+<div ng-show="resource.drain_nat_ips.length">
+  <div class="row">
+    <div class="s12 col"><h5>Drain NAT IPs</h5></div>
+  </div>
+
+  <div ng-repeat="ip_link in resource.drain_nat_ips" ng-if="info.address_map[ip_link]">
+    <div class="row">
+      <div class="s12 col">
+        <svg><use xlink:href="{{info.address_map[ip_link].image}}" /></svg>
+        <a ng-click="selectResource(info.address_map[ip_link])">{{info.address_map[ip_link].name}}</a><br />
+        ∟ {{info.address_map[ip_link].address}}
+      </div>
+    </div>
+  </div>
+</div>
+
+<div ng-show="resource.log_config">
+  <div class="row">
+    <div class="s12 col"><h5>Log Config</h5></div>
+  </div>
+  <div class="row">
+    <div class="s12 col">
+      <strong>Enabled</strong>&nbsp;&nbsp;&nbsp;
+
+      <span class="octicon octicon-check good" ng-show="resource.log_config.enabled"></span>
+      <span class="octicon octicon-x bad" ng-show="!resource.log_config.enabled"></span>
+    </div>
+  </div>
+  <div class="row">
+    <div class="s5 col"><strong>Filter</strong></div>
+    <div class="s7 col" ng-bind="resource.log_config.filter"></div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="s12 col"><h5>Timeout for Protocol Connections</h5></div>
+</div>
+<div class="row">
+  <div class="s6 col"><strong>ICMP</strong></div>
+  <div class="s6 col" ng-bind="resource.icmp_idle_timeout_sec" ng-show="resource.icmp_idle_timeout_sec"></div>
+  <div class="s6 col" ng-show="!resource.icmp_idle_timeout_sec">Default (30s)</div>
+</div>
+<div class="row">
+  <div class="s6 col"><strong>TCP Transitory</strong></div>
+  <div class="s6 col" ng-bind="resource.tcp_transitory_idle_timeout_sec" ng-show="resource.tcp_transitory_idle_timeout_sec"></div>
+  <div class="s6 col" ng-show="!resource.tcp_transitory_idle_timeout_sec">Default (30s)</div>
+</div>
+<div class="row">
+  <div class="s6 col"><strong>TCP Established</strong></div>
+  <div class="s6 col" ng-bind="resource.tcp_established_idle_timeout_sec" ng-show="resource.tcp_established_idle_timeout_sec"></div>
+  <div class="s6 col" ng-show="!resource.tcp_established_idle_timeout_sec">Default (1200s)</div>
+</div>
+<div class="row">
+  <div class="s6 col"><strong>UDP</strong></div>
+  <div class="s6 col" ng-bind="resource.udp_idle_timeout_sec" ng-show="resource.udp_idle_timeout_sec"></div>
+  <div class="s6 col" ng-show="!resource.udp_idle_timeout_sec">Default (30s)</div>
+</div>
+
+<div ng-show="resource.subnetworks.length">
+  <div class="row">
+    <div class="s12 col">
+      <h5>Subnetworks</h5>
+    </div>
+  </div>
+
+  <div ng-repeat="sn in resource.subnetworks" class="attributes-sublist">
+    <div class="row">
+      <div class="s12 col">
+        <svg><use xlink:href="{{info.subnetwork_map[sn.name].image}}" /></svg>
+        <a ng-click="selectResource(info.subnetwork_map[sn.name])">{{info.subnetwork_map[sn.name].name}}</a>
+      </div>
+    </div>
+
+    <div ng-show="sn.source_ip_ranges_to_nat.length">
+      <div class="row">
+        <div class="s12 col">
+          <strong>IP Ranges To NAT</strong>
+        </div>
+      </div>
+
+      <div class="row" ng-repeat="source_ip_ranges_to_nat in sn.source_ip_ranges_to_nat">
+        <div class="s12 col" ng-bind="source_ip_ranges_to_nat"></div>
+      </div>
+    </div>
+
+    <div ng-show="sn.secondary_ip_range_names.length">
+      <div class="row">
+        <div class="s12 col">
+          <strong>Secondary IP Range Names</strong>
+        </div>
+      </div>
+
+      <div class="row" ng-repeat="name in sn.secondary_ip_range_names">
+        <div class="s5 col">
+          <p>{{name}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- If we don't have specific subnets we may link to everything  -->
+<div ng-show="!resource.subnetworks.length && info.subnetworks.length">
+  <div class="row">
+    <div class="s12 col">
+      <h5>Subnetworks</h5>
+    </div>
+  </div>
+
+  <div class="row" ng-repeat="sn in info.subnetworks | orderBy:'name'">
+    <div class="s12 col">
+      <svg><use xlink:href="{{sn.image}}" /></svg>
+      <a ng-click="selectResource(sn)">{{sn.name}}</a>
+    </div>
+  </div>
+</div>

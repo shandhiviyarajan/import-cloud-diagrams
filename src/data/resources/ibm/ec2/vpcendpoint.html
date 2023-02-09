@@ -1,0 +1,23 @@
+<!-- ATTRIBUTES!!! -->
+<div class="row">
+  <div class="s5 col"><strong>State</strong></div>
+  <div class="s7 col" ng-bind="resource.status"></div>
+</div>
+<div class="row">
+  <div class="s12 col"><strong>Service Name</strong></div>
+  <div class="s12 col" ng-bind="resource.service_name"></div>
+</div>
+<div class="row">
+  <div class="s12 col"><strong>Policy Document</strong></div>
+  <div class="s12 col">
+    <pre ng-bind="info.policy_document" style="overflow: scroll"></pre>
+  </div>
+</div>
+
+<div class="row" ng-show="info.s3_buckets.length > 0">
+  <div class="s10 col end"><h4>S3 Buckets</h4></div>
+  <div class="s10 col end attributes-name" ng-repeat="s3_bucket in info.s3_buckets track by $index">
+    <svg><use xlink:href="{{s3_bucket.image}}" /></svg>
+    <a ng-click="selectResource(s3_bucket)">{{s3_bucket.name}}</a>
+  </div>
+</div>

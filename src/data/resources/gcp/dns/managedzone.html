@@ -1,0 +1,86 @@
+<div class="row sub-title">
+    <div class="s12 col">
+    <small ng-if="resource.project">
+      <strong>Project</strong><br />
+      <span ng-bind="resource.project"></span>
+    </small>
+  </div>
+</div>
+
+<!-- ATTRIBUTES!!! -->
+<div class="row">
+  <div class="s12 col"><strong>Visibility</strong></div>
+  <div class="s12 col"><span ng-bind="resource.visibility"></span></div>
+</div>
+<div class="row" ng-if="resource.description">
+  <div class="s12 col"><strong>Description</strong></div>
+  <div class="s12 col"><span ng-bind="resource.description"></span></div>
+</div>
+<div class="row">
+  <div class="s12 col"><strong>DNS Name</strong></div>
+  <div class="s12 col"><span ng-bind="resource.dns_name"></span></div>
+</div>
+<div class="row" ng-if="resource.name_server_set">
+  <div class="s12 col"><strong>Name Server Set</strong></div>
+  <div class="s12 col"><span ng-bind="resource.name_server_set"></span></div>
+</div>
+<div class="row">
+  <div class="s12 col"><strong>Name Servers</strong></div>
+  <div class="s12 col" ng-repeat="ns in resource.name_servers"><span ng-bind="ns"></span></div>
+</div>
+<div class="row">
+  <div class="s12 col"><strong>Create Timestamp</strong></div>
+  <div class="s12 col" ng-bind="resource.creation_time | date:'yyyy-MM-dd HH:mm:ss'"></div>
+</div>
+
+<div ng-if="resource.forwarding_config">
+  <div class="row">
+    <div class="s12 col"><h5>Forwarding</h5></div>
+  </div>
+  <div class="row attributes">
+    <div class="s12 col"><strong>Target Name Servers</strong></div>
+    <div class="s12 col" ng-repeat="ns in resource.forwarding_config.target_name_servers"><span ng-bind="ns.ipv4_address"></span></div>
+  </div>
+</div>
+
+<div ng-if="resource.private_visibility_config">
+  <div class="row">
+    <div class="s12 col"><h5>Private Visibility</h5></div>
+  </div>
+  <div class="row attributes">
+    <div class="s12 col"><strong>Networks</strong></div>
+    <div class="s12 col" ng-repeat="network in info.networks">
+      <svg><use xlink:href="{{network.image}}" /></svg>
+      <a ng-click="selectResource(network)">{{network.name}}</a>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="s12 col">
+    <h5>Record Sets</h5>
+  </div>
+</div>
+<div class="sub-title" ng-repeat="rrs in resource.resource_record_sets">
+  <div class="row">
+    <div class="s12 col"><strong ng-bind="rrs.name"></strong></div>
+  </div>
+  <div class="row">
+    <div class="s5 col"><strong>Type</strong></div>
+    <div class="s7 col" ng-bind="rrs.type"></div>
+  </div>
+  <div class="row">
+    <div class="s5 col"><strong>TTL</strong></div>
+    <div class="s7 col" ng-bind="rrs.ttl"></div>
+  </div>
+  <div class="row" ng-if="rrs.rrdatas.length > 0">
+    <div class="s12 col"><strong>Data</strong></div>
+    <div class="s12 col" ng-repeat="data in rrs.rrdatas" ng-bind="data"></div>
+  </div>
+  <div class="row" ng-if="rrs.signature_rrdatas.length > 0">
+    <div class="s12 col"><strong>Signature Data</strong></div>
+    <div class="s12 col" ng-repeat="data in rrs.signature_rrdatas" ng-bind="data"></div>
+  </div>
+</div>
+
+<!-- Add managed_zone.dnssec_config when we can find one setup -->

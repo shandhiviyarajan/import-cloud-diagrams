@@ -1,0 +1,15 @@
+<div class="row">
+  <div class="s12 col">
+    <h5>Subnets</h5>
+  </div>
+</div>
+<div class="row" ng-repeat="subnet in info.subnets track by $index">
+  <div class="s12 col attributes-name">
+    <svg><use xlink:href="{{subnet.image}}" /></svg>
+    <a ng-click="selectResource(subnet)" highlight-resources="subnet">{{subnet.name}}</a>
+  </div>
+</div>
+<div class="row" ng-show="info.subnets.length === 0">
+  <div class="s12 col"><em>No subnets</em></div>
+</div>
+

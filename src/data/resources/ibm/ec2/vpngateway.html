@@ -1,0 +1,42 @@
+<!-- ATTRIBUTES!!! -->
+<div class="row">
+  <div class="s5 col"><strong>State</strong></div>
+  <div class="s7 col" ng-bind="resource.status"></div>
+</div>
+<div class="row">
+  <div class="s5 col"><strong>Type</strong></div>
+  <div class="s7 col" ng-bind="resource.gateway_type"></div>
+</div>
+
+<div ng-show="info.vpn_connections.length">
+  <div class="row">
+    <div class="s12 col"><h5>VPN Connections</h5></div>
+  </div>
+  <div ng-repeat="vpn_connection in info.vpn_connections track by $index">
+    <div class="row">
+      <div class="s12 col attributes-name"><svg><use xlink:href="{{vpn_connection.image}}" /></svg><a ng-click="selectResource(vpn_connection)">{{vpn_connection.name}}</a></div>
+    </div>
+  </div>
+</div>
+
+<div ng-show="info.gateway_associations.length">
+  <div class="row">
+    <div class="s12 col"><h5>Direct Connect Gateway Associations</h5></div>
+  </div>
+  <div ng-repeat="association in info.gateway_associations track by $index">
+    <div class="row">
+      <div class="s12 col end attributes-name">
+        <a ng-click="selectResource(association)">{{association.name}}</a>
+      </div>
+    </div>
+    <div class="row" ng-if="association.dc_gateway">
+      <div class="s12 col">
+        <small>
+          ∟
+          <a ng-click="selectResource(association.dc_gateway)">{{association.dc_gateway.name}}</a>
+        </small>
+      </div>
+    </div>
+  </div>
+</div>
+

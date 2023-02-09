@@ -1,0 +1,10 @@
+<div ng-show="!resourceSelected" ng-if="Designer.environment">
+  <environment-attributes></environment-attributes>
+</div>
+
+<div ng-show="!resourceSelected" ng-if="!Designer.environment" class="attributes-list">
+  <div class="panel">Select a resource in the list to view it's information.</div>
+  <!-- TODO: help link here with some more info once live  -->
+</div>
+
+<resource-attributes></resource-attributes>

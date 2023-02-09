@@ -1,0 +1,62 @@
+<div class="row" ng-if="resource.status">
+  <div class="s12 col"><strong>Status</strong></div>
+  <div class="s12 col" ng-bind="resource.status"></div>
+</div>
+<div class="row" ng-if="resource.state_change_error">
+  <div class="s12 col"><strong>State Change Error</strong></div>
+  <div class="s12 col" ng-bind="resource.state_change_error"></div>
+</div>
+
+<div class="row">
+  <div class="s12 col"><h5>Direct Connect Gateway</h5></div>
+</div>
+<div ng-show="info.direct_connect_gateway">
+  <div class="row">
+    <div class="s12 col end attributes-name">
+      <svg><use xlink:href="{{info.direct_connect_gateway.image}}" /></svg>
+      <a ng-click="selectResource(info.direct_connect_gateway)">{{info.direct_connect_gateway.name}}</a>
+    </div>
+  </div>
+</div>
+<div ng-hide="info.direct_connect_gateway">
+  <div class="row">
+    <div class="s5 col"><strong>Gateway ID</strong></div>
+    <div class="s7 col" ng-bind="resource.direct_connect_gateway_id"></div>
+  </div>
+  <div class="row">
+    <div class="s5 col"><strong>Owner Account</strong></div>
+    <div class="s7 col" ng-bind="resource.direct_connect_gateway_owner_account"></div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="s12 col"><h5>VPN Gateway</h5></div>
+</div>
+<div ng-show="info.vpn_gateway">
+  <div class="row">
+    <div class="s12 col end attributes-name">
+      <svg><use xlink:href="{{info.vpn_gateway.image}}" /></svg>
+      <a ng-click="selectResource(info.vpn_gateway)">{{info.vpn_gateway.name}}</a>
+    </div>
+  </div>
+</div>
+<div ng-hide="info.vpn_gateway">
+  <div class="row">
+    <div class="s5 col"><strong>Gateway ID</strong></div>
+    <div class="s7 col" ng-bind="resource.virtual_gateway_id"></div>
+  </div>
+  <div class="row">
+    <div class="s5 col"><strong>Owner Account</strong></div>
+    <div class="s7 col" ng-bind="resource.virtual_gateway_owner_account"></div>
+  </div>
+  <div class="row">
+    <div class="s5 col"><strong>Region</strong></div>
+    <div class="s7 col" ng-bind="resource.virtual_gateway_region"></div>
+  </div>
+</div>
+<div ng-show="resource.allowed_prefixes_to_direct_connect_gateway_cidrs.length">
+  <div class="s12 col"><strong>Allowed Prefixes</strong></div>
+  <div class="row" ng-repeat="allowed_prefix in resource.allowed_prefixes_to_direct_connect_gateway_cidrs track by $index">
+    <div class="s12 col" ng-bind="allowed_prefix"></div>
+  </div>
+</div>

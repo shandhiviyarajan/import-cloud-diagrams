@@ -1,0 +1,25 @@
+<div class="row">
+  <div class="s4 col"><strong>Public IP</strong></div>
+  <div class="s8 col attributes-name">{{resource.public_ip}}</div>
+</div>
+<div class="row">
+  <div class="s4 col"><strong>Private IP</strong></div>
+  <div class="s8 col attributes-name">{{resource.private_ip_address}}</div>
+</div>
+<div class="row">
+  <div class="s4 col"><strong>Domain</strong></div>
+  <div class="s8 col attributes-name">{{resource.domain}}</div>
+</div>
+<div class="row" ng-show="info.vpc">
+  <div class="s12 col"><strong>VPC</strong></div>
+  <div class="s12 col attributes-name"><a ng-click="selectResource(info.vpc)">{{info.vpc.name}}</a></div>
+</div>
+<div class="row" ng-show="info.instance">
+  <div class="s12 col"><strong>Instance</strong></div>
+  <div class="s12 col attributes-name"><a ng-click="selectResource(info.instance)">{{info.instance.name}}</a></div>
+</div>
+
+<div class="row" ng-show="info.network_interface">
+  <div class="s12 col"><strong>Network Interface</strong></div>
+  <div class="s12 col attributes-name"><a ng-click="selectResource(info.network_interface)">{{info.network_interface.name}}</a></div>
+</div>

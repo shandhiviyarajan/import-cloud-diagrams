@@ -1,0 +1,17 @@
+<div class="row">
+  <div class="s5 col"><strong>IP address</strong></div>
+  <div class="s7 col" ng-bind="(resource.ip_address || '-')"></div>
+</div>
+
+<div class="row">
+  <div class="s5 col"><strong>Location Method</strong></div>
+  <div class="s7 col" ng-bind="resource.public_ipallocation_method"></div>
+</div>
+
+<div class="row">
+  <div class="s5 col"><strong>DNS name</strong></div>
+  <div class="s7 col" ng-bind="(resource.dns_settings.domain_name_label || '-')"></div>
+</div>
+
+
+

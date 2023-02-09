@@ -1,0 +1,39 @@
+<div class="row">
+  <div class="col-sm-12">
+    <div class="report-map">
+      <img class="report-dot-map" ng-src="{{path}}/world-dots-map.png"/>
+      <div class="sheet">
+        <div class="report-map-pin" ng-repeat="(region,coor) in regions track by $index" ng-style="{ top: coor.m.x, left: coor.m.y }">
+          <img ng-src="{{path}}/blue-pin.png" title="{{region}}"/>
+        </div>
+      </div>
+      <div class="display-mobile">
+        <div class="report-map-pin" ng-repeat="(region,coor) in regions track by $index" ng-style="{ top: coor.s.x, left: coor.s.y }">
+          <img ng-src="{{path}}/blue-pin.png" title="{{region}}"/>
+        </div>
+      </div>
+    </div> 
+  </div>  
+  &nbsp;
+  <div class="col-sm-6">
+    <table style="width: 50%">
+      <thead class="text-left">
+      <tr>
+        <th>Region</th>
+        <th>Region Name</th>
+        <th>In Use</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr ng-repeat="(region, details) in region_location track by $index">
+        <td>{{region}}</td>
+        <td>{{details.name}}</td>
+        <td>
+          <span class="print-check" ng-show="data[region]==='Y'">&check;</span>
+          <span class="print-x" ng-show="data[region]!=='Y'">	&#10005;</span>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

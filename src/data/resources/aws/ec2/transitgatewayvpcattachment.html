@@ -1,0 +1,42 @@
+<!-- Attributes -->
+<div class="row">
+  <div class="s12 col"><strong>Transit Gateway</strong></div>
+  <div class="s12 col"><a ng-click="selectResource(info.transit_gateway)">{{info.transit_gateway.name}}</a></div>
+</div>
+<div class="row">
+  <div class="s12 col"><strong>State</strong></div>
+  <div class="s12 col" ng-bind="resource.status" ng-class="resource.status_list[resource.status]"></div>
+</div>
+<div class="row">
+  <div class="s12 col"><strong>Creation Time</strong></div>
+  <div class="s12 col" ng-bind="resource.creation_time"></div>
+</div>
+
+<div class="row">
+  <div class="s12 col"><h5>VPC</h5></div>
+</div>
+<div class="row" ng-if="info.vpc">
+  <div class="s12 col">
+    <svg><use xlink:href="{{info.vpc.image}}" /></svg>
+    <a ng-click="selectResource(info.vpc)">{{info.vpc.name}}</a>
+  </div>
+</div>
+<div class="row" ng-if="!info.vpc">
+  <div class="s5 col"><strong>ID</strong></div>
+  <div class="s7 col" ng-bind="resource.vpc_id"></div>
+</div>
+<div class="row">
+  <div class="s12 col"><strong>VPC Owner ID</strong></div>
+  <div class="s12 col" ng-bind="resource.vpc_owner_id"></div>
+</div>
+
+<div ng-if="info.subnets.length">
+  <div class="row">
+    <div class="s12 col"><h5>Subnets</h5></div>
+  </div>
+  <div ng-repeat="subnet in info.subnets">
+    <div class="row">
+      <div class="s12 col attributes-name truncate"><a ng-click="selectResource(subnet)">{{subnet.name}}</a></div>
+    </div>
+  </div>
+</div>

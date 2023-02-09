@@ -1,0 +1,11 @@
+<div>
+  <div class="attribute-map">
+    <img class="attribute-small-dot-map" ng-src="{{path}}/world-map-small-dots.png"/>
+    <div class="attribute-map-dot" ng-repeat="(region,coor) in mapped_regions track by $index" ng-style="{ top: coor.s.y, left: coor.s.x }">
+      <div class="ring-container" title="{{coor.name}}">
+        <div class="ringring" ng-class="coor.color"></div>
+        <div class="circle" ng-class="coor.color"></div>
+      </div>
+    </div>
+  </div>
+</div>

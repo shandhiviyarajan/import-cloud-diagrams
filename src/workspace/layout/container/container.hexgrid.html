@@ -1,0 +1,6 @@
+<div class="positionable container-hexgrid" id="{{container.id}}" ng-style="{ width: container.w, height: container.h }">
+  <div class="positionable container-hex" id="{{cell.id}}" ng-repeat="cell in container.cells"
+       ng-style="{ top:cell.y,left:cell.x,width:cell.w,height:cell.h }">cell</div>
+
+  <div class="clearfix" style="border-spacing:0;"></div>
+</div>

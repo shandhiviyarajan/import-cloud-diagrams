@@ -1,0 +1,17 @@
+<div ng-show="display">
+  <div class="row">
+    <div class="s12 col"><h4>{{title}}</h4></div>
+  </div>
+
+  <!-- List existing -->
+  <div class="row resource-item" ng-repeat="resource in connected_resources"
+       ng-click="select(resource)"
+       highlight-connected-resources
+       ng-class="{selected: resource === selected}">
+    <div class="s12 col">{{resource.name}}</div>
+  </div>
+
+  <div class="row resource-item" ng-show="connected_resources.length === 0">
+    <div class="s10 col end">None.</div>
+  </div>
+</div>

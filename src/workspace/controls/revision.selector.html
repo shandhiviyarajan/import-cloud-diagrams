@@ -1,0 +1,62 @@
+<div class="content revision-list">
+  <div ng-show="Designer.environment.current_revision !== loading">
+    <div id="revision.id" class="list-resource"
+         ng-repeat="revision in revisions | orderBy:'-from'"
+         ng-class="{ selected: Designer.environment.current_revision.id === revision.id }"
+         ng-click="selectRevision(revision)">
+      <div class="row">
+        <div class="s9 col">
+          <div>
+            <span style="font-weight: bold">{{revision.id.substring(0, 8)}}</span>
+          </div>
+          <div ng-hide="revision.to">
+            <div class="row">
+              <div class="s2 col">
+                <strong><small>Since</small></strong>
+              </div>
+              <div class="s10 col">
+                <small>{{revision.from | date :  "medium"}}</small>
+              </div>
+            </div>
+          </div>
+          <div ng-show="revision.to">
+            <div class="row">
+              <div class="s2 col">
+                <strong><small>From</small></strong>
+              </div>
+              <div class="s10 col">
+                <small>{{revision.from | date :  "medium"}}</small>
+              </div>
+            </div>
+            <div class="row">
+              <div class="s2 col">
+                <strong><small>To</small></strong>
+              </div>
+              <div class="s10 col">
+                <small>{{revision.to | date :  "medium"}}</small>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="s3 col">
+          <span class="mega-octicon octicon-check right good" ng-show="Designer.environment.current_revision.id === revision.id"></span>
+          <span loader class="right" ng-show="revision === loading"></span>
+        </div>
+      </div>   
+    </div>
+    <div ng-show="page_token && !loading_next">
+    <a ng-click="showNextRevisions()">
+      <div class="text-center">
+        <span>
+          Show more...
+        </span>
+      </div>
+    </a>
+    </div>
+  </div>
+  <div class="row">
+    <div class="s12 col text-center" ng-show="Designer.environment.current_revision === loading || loading_next">
+      <span loader class="text-center"></span>
+    </div>
+  </div>
+</div>

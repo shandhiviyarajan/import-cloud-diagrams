@@ -1,0 +1,31 @@
+<div class="row">
+  <div class="s5 col"><strong>Connection Type</strong></div>
+  <div class="s7 col" ng-bind="(resource.connection_type || '-')"></div>
+</div>
+
+<div class="row">
+  <div class="s12 col"><h5>Virtual Network Gateways</h5></div>
+</div>
+<div class="row" ng-show="!info.virtual_network_gateways.length">
+  <div class="s12 col">None</div>
+</div>
+<div class="row" ng-repeat="vng in info.virtual_network_gateways">
+  <div class="s12 col end attributes-name">
+    <svg><use xlink:href="{{vng.image}}" /></svg>
+    <a ng-click="selectResource(vng)">{{vng.name}} ({{vng.gateway_ip_address}})</a>
+  </div>
+</div>
+
+<div class="row">
+  <div class="s12 col"><h5>Local Network Gateway</h5></div>
+</div>
+<div class="row">
+  <div class="s12 col end attributes-name">
+    <svg><use xlink:href="{{info.local_network_gateway.image}}" /></svg>
+    <a ng-click="selectResource(info.local_network_gateway)">{{info.local_network_gateway.name}} ({{info.local_network_gateway.gateway_ip_address}})</a>
+  </div>
+</div>
+
+</div>
+
+

@@ -1,0 +1,67 @@
+<div class="row">
+  <div class="s12 col"><strong>ARN</strong></div>
+  <div class="s12 col attributes-name">{{resource.arn}}</div>
+</div>
+
+<div class="row">
+  <div class="s12 col"><strong>Comment</strong></div>
+  <div class="s12 col attributes-name" ng-bind="resource.comment || ' - '"></div>
+</div>
+
+<div class="row">
+  <div class="s12 col"><strong>Domain Name</strong></div>
+  <div class="s12 col attributes-name">{{resource.domain_name}}</div>
+</div>
+
+<div class="row">
+  <div class="s12 col">
+    <strong>Enabled</strong>&nbsp;&nbsp;&nbsp;&nbsp;
+    <span class="octicon octicon-check good" ng-if="resource.enabled"></span>
+    <span class="octicon octicon-x bad" ng-if="!resource.enabled"></span>
+  </div>
+</div>
+
+<div class="row">
+  <div class="s12 col"><strong>Last Modified Time</strong></div>
+  <div class="s12 col attributes-name">{{resource.last_modified_time}}</div>
+</div>
+
+<div class="row">
+  <div class="s12 col"><strong>Price Class</strong></div>
+  <div class="s12 col attributes-name">{{resource.price_class}}</div>
+</div>
+
+<div class="row">
+  <div class="s12 col"><strong>Status</strong></div>
+  <div class="s12 col attributes-name">{{resource.status}}</div>
+</div>
+
+<div class="row">
+  <div class="s12 col"><strong>Aliases</strong></div>
+  <div class="s12 col attributes-name" ng-if="resource.aliases.items.length == 0">None</div>
+  <div class="s12 col attributes-name" ng-repeat="alias in resource.aliases.items">∟ {{alias}}</div>
+</div>
+
+<div class="row">
+  <div class="s12 col">
+    <strong>Trusted Signers</strong>&nbsp;&nbsp;&nbsp;&nbsp;
+    <span class="octicon octicon-check good" ng-if="resource.trusted_signers.enabled"></span>
+    <span class="octicon octicon-x bad" ng-if="!resource.trusted_signers.enabled"></span>
+  </div>
+  <div class="s12 col attributes-name" ng-repeat="signer in resource.trusted_signers.items">∟ {{signer}}</div>
+</div>
+
+<div class="row">
+  <div class="s12 col"><strong>S3 Origin Domain Name</strong></div>
+  <div class="s12 col" ng-if="info.bucket">
+    <svg><use xlink:href="{{info.bucket.image}}" /></svg>
+    <a ng-click="selectResource(info.bucket)">{{resource.s3_origin.domain_name}}</a>
+  </div>
+  <div class="s12 col" ng-bind="resource.s3_origin.domain_name" ng-if="!info.bucket"></div>
+</div>
+
+<div class="row">
+  <div class="s12 col"><strong>S3 Origin Access Identity</strong></div>
+  <div class="s12 col word-wrap" ng-bind="resource.s3_origin.origin_access_identity || ' - '"></div>
+</div>
+

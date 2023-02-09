@@ -1,0 +1,45 @@
+<div class="row">
+  <div class="s12 col"><strong>Provisioning State</strong></div>
+  <div class="s12 col" ng-bind="resource.provisioning_state"></div>
+</div>
+
+<div class="row">
+  <div class="s12 col"><h5>Network Security Groups</h5></div>
+</div>
+<div class="row" ng-show="!info.rule_nsgs">
+  <div class="s12 col">None</div>
+</div>
+<div class="row" style="margin-bottom: 8px" ng-repeat="security_rule in info.rule_nsgs">
+  <div class="s12 col end attributes-name">
+    <svg><use xlink:href="{{security_rule.nsg.image}}" /></svg><a ng-show="security_rule.nsg" ng-click="selectResource(security_rule.nsg)">{{security_rule.nsg.name}}</a>
+  </div>
+  <div class="s12 col attributes-name">
+    <span class="octicon octicon-check good" ng-show="security_rule.action=='Allow'"></span><span class="octicon octicon-x bad" ng-show="security_rule.action=='Deny'"></span>
+    <strong ng-bind="security_rule.action"></strong>
+    <i>from</i>
+      <strong ng-bind="security_rule.source"></strong>
+      <a ng-show="security_rule.app_sg_source" ng-click="selectResource(security_rule.app_sg_source)">{{security_rule.app_sg_source.name}}</a>
+    <i>to</i>
+      <strong ng-bind="security_rule.destination"></strong>
+      <a ng-show="security_rule.app_sg_destination" ng-click="selectResource(security_rule.app_sg_destination)">{{security_rule.app_sg_destination.name}}</a> <i>on</i> <strong ng-bind="security_rule.service"></strong>
+  </div>
+</div>
+
+
+<div class="row">
+    <div class="s12 col"><h5>Network Interfaces</h5></div>
+  </div>
+  <div class="row" ng-show="!info.ip_configurations">
+    <div class="s12 col">None</div>
+  </div>
+  <div class="row" ng-repeat="ip_conf in info.ip_configurations">
+    <div class="s12 col end attributes-name">
+        <svg><use xlink:href="{{ip_conf.nic.image}}" /></svg><a ng-show="ip_conf.nic" ng-click="selectResource(ip_conf.nic)">{{ip_conf.nic.name}}</a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <em>({{ip_conf.private_ipaddress}})</em><br />
+    </div>
+    <div class="s12 col" ng-show="ip_conf.vm">
+      <small>
+        ∟ Virtual Machine:
+        <a ng-click="selectResource(ip_conf.vm)">{{ip_conf.vm.name}}</a>
+      </small>
+    </div>
+  </div>

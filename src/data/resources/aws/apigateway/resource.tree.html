@@ -1,0 +1,12 @@
+<div>
+  <div class="row">
+    <div class="s12 col attributes-name" ng-if="resource !== parent">∟ <a ng-click="selectResource(resource)">/{{resource.path_part}}</a></div>
+    <div class="s12 col attributes-name" ng-if="resource === parent">∟ /{{resource.path_part}}</div>
+  </div>
+
+  <div class="attributes-list">
+    <div ng-repeat="child in resource.children | orderBy:'name' track by $index">
+      <div api-resource-tree resource="child" parent="parent"></div>
+    </div>
+  </div> 
+</div>

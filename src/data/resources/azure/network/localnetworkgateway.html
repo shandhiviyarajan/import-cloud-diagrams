@@ -1,0 +1,23 @@
+<div class="row">
+  <div class="s5 col"><strong>IP Address</strong></div>
+  <div class="s7 col" ng-bind="(resource.gateway_ip_address || '-')"></div>
+</div>
+
+<div class="row">
+  <div class="s12 col"><strong>Address Space</strong></div>
+  <div class="s12 col" ng-repeat="address in resource.local_network_address_space track by $index"  ng-bind="address"></div>
+</div>
+
+<div class="row">
+  <div class="s12 col"><h5>VNet Gateway Connections</h5></div>
+</div>
+<div class="row" ng-show="!info.vng_connections.length">
+  <div class="s12 col">None</div>
+</div>
+<div class="row" ng-repeat="vng_connect in info.vng_connections">
+  <div class="s12 col end attributes-name">
+    <svg><use xlink:href="{{vng_connect.image}}" /></svg>
+    <a ng-click="selectResource(vng_connect)" highlight-connected-resources="vng_connect">{{vng_connect.name}}</a>
+  </div>
+</div>
+

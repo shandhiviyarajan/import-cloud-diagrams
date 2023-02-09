@@ -1,0 +1,9 @@
+<div>
+  <div class="paper-controls" ng-if="Designer.show_controls && HtmlCanvas.view.zoomable">
+    <button ng-click="HtmlCanvas.zoom_handler.zoomIn()"><span class="octicon octicon-plus"></span></button>
+    <button ng-click="HtmlCanvas.zoom_handler.zoomOut()"><span class="octicon octicon-dash"></span></button>
+  </div>
+  <div class="designer-scroller" id="html-scroller">
+    <div class="designer-canvas" id="html-canvas"></div>
+  </div>
+</div>

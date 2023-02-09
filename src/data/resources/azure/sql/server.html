@@ -1,0 +1,23 @@
+<div class="row">
+  <div class="s12 col"><h5><strong><small>Version</small></strong> &nbsp;&nbsp;&nbsp; <span ng-bind="resource.version"></span></h5></div>
+</div>
+
+<div class="row">
+  <div class="s12 col"><a ng-href="https://{{resource.fully_qualified_domain_name}}" target="_blank" ng-bind="resource.fully_qualified_domain_name"></a></div>
+  <div class="s12 col">&nbsp;</div>
+</div>
+
+<div class="row">
+  <div class="s12 col"><h5>Databases</h5></div>
+</div>
+<div class="row" ng-show="!info.data_bases.length">
+  <div class="s12 col">None</div>
+</div>
+<div class="row" ng-repeat="db in info.data_bases">
+  <div class="s12 col end attributes-name">
+    <svg><use xlink:href="{{db.image}}" /></svg>
+    <a ng-click="selectResource(db)">{{db.name}}</a>
+  </div>
+</div>
+
+

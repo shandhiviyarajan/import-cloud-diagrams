@@ -1,0 +1,96 @@
+<div>
+  <div class="report" ng-class="mode">
+    <div class="row">
+      <div class="col-sm-4 hava-logo"><img ng-src="{{path}}/hava-icon-reports.png"/></div>
+      <div class="col-sm-8 head title text-right">
+        <div class="s12 col attributes-name"><h4>Compliance Report</h4></div>
+      </div>
+    </div>
+    <hr>
+      
+    <div class="row">
+      <div class="col-sm-12">
+        <h3>Contents</h3>
+        <ul>
+          <li><a href="#account-summary">Account Summary</a>
+          <li><a href="#region-usage">Region Usage</a>
+          <li><a href="#graph-summary">Graphs Summary</a>
+          <li><a href="#findings">Findings</a>
+        </ul>
+      </div>
+    </div>
+
+    <div class="row"> 
+      <h3><a href="#account-summary" id="account-summary">Account Summary</a></h3>
+      
+      <div class="col-sm-6">
+        <table style="width: 50%">
+          <thead class="text-left">
+          <tr>
+            <th>Account name</th>
+            <th>Collection date</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr ng-repeat="account in report.data.table.accounts track by $index">
+            <td>{{report.name}}</td>
+            <td>{{account.table.collection_date}}</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="row">  
+      <h3><a id="region-usage">Region Usage</a></h3>
+      <report-map data="report.data.table.region_stats.table[account_name].table"></report-map>
+    </div>
+
+    <div class="row sheet">  
+      <h3><a id="graph-summary">Graph Summary</a></h3>
+      <column-chart data="region_resource_stats"></column-chart>
+      <column-chart data="resource_stats"></column-chart>
+      <bar-chart data="iam_data"></bar-chart> 
+      <combo-chart data="findings"></combo-chart> 
+    </div>
+    
+    <div class="row">
+      <h3><a id="findings">Findings</a></h3>
+      <div ng-repeat="(type,values) in report.data.table.findings.table track by $index" ng-show="type !== 'ERROR'">
+        <div class="col-sm-12"><h4>{{type}}</h4></div>
+        <div class="col-sm-12">
+          <ul>
+          <div ng-repeat="(subtype, values) in values.table track by $index">
+            <div class="row">
+              <div class="s10 col"><h6><li>{{values.table.title}}</li></h6></div>
+              <div class="s2 col text-right"><span class="round pending label" ng-style="{backgroundColor: severity_color[values.table.severity]}">{{values.table.severity}}</span></div>
+            </div>
+            <div class="row">
+              <div class="s12 col">{{values.table.description}}</div>
+            </div>
+            <div class="row" ng-show="mode!=='reporter-export'">
+              <div class="s12 col" ng-show="!extended.list[subtype]"><a ng-click="set_extended_list(subtype)"><small>more...</small></a></div>
+              <div class="s12 col" ng-show="extended.list[subtype]"><a ng-click="set_extended_list(subtype)"><small>less...</small></a></div>
+            </div>
+            <div class="row panel" ng-show="extended.list[subtype]">
+              <div ng-repeat="(region,values) in values.table.accounts.table[account_id].table.regions.table track by $index">
+                <div class="s12 col">{{region}}</div>
+                <div ng-repeat="info in values.table.hits track by $index">
+                  <div ng-if="info.table.details !== 'null'">
+                    <div class="s12 col">{{info.table.resource}}</div>
+                    <div class="s12 col"><pre>{{info.table.details}}</pre></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            &nbsp;
+          </div>
+        </ul>
+        </div>
+        <hr>
+      </div>
+    </div>
+  </div>
+</div>
+
+

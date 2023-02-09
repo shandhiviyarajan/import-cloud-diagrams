@@ -1,0 +1,70 @@
+<div class="row sub-title">
+  <div class="s12 col">
+    <small ng-if="resource.project">
+      <strong>Project</strong><br />
+      <span ng-bind="resource.project"></span>
+    </small>
+  </div>
+</div>
+
+<div class="row" ng-show="resource.policy_type">
+  <div class="s12 col"><strong>Policy Type</strong></div>
+  <div class="s12 col" ng-bind="resource.policy_type"></div>
+</div>
+<div class="row" ng-show="resource.description.length">
+  <div class="s12 col"><strong>Description</strong></div>
+  <div class="s12 col" ng-bind="resource.description"></div>
+</div>
+<div class="row" ng-show="resource.creation_timestamp">
+  <div class="s12 col"><strong>Creation Timestamp</strong></div>
+  <div class="s12 col" ng-bind="resource.creation_timestamp"></div>
+</div>
+
+<div class="row">
+  <div class="s12 col"><h5>Rules</h5></div>
+</div>
+<div class="row" ng-if="resource.rules.length === 0">
+  <div class="s12 col">None</div>
+</div>
+<div ng-repeat="rule in resource.rules | orderBy:'priority'" class="attributes-sublist">
+  <div class="row">
+    <div class="s12 col">
+      <div class="left">
+        <strong ng-bind="rule.action"></strong>
+      </div>
+      <span class="right success label round">{{rule.priority}}</span>
+    </div>
+  </div>
+
+  <div class="row" ng-if="rule.description.length">
+    <div class="s12 col">
+      <small ng-bind="rule.description"></small>
+    </div>
+  </div>
+  <div class="row">
+    <div class="s7 col"><strong>Preview</strong></div>
+    <span class="s5 octicon octicon-check good" ng-show="rule.preview"></span>
+    <span class="s5 octicon octicon-x bad" ng-show="!rule.preview"></span>
+  </div>
+  <div class="row" ng-if="rule.match.config.src_ip_ranges">
+    <div class="s12 col"><strong>Source IP Ranges</strong></div>
+    <span class="s12 col"><small ng-bind="rule.match.config.src_ip_ranges.join(', ')"></small></span>
+  </div>
+  <div class="row" ng-if="rule.match.expr.expression">
+    <div class="s12 col"><strong>Match Expression</strong></div>
+    <span class="s12 col"><small ng-bind="rule.match.expr.expression"></small></span>
+  </div>
+</div>
+
+<div ng-show="info.backends.length">
+  <div class="row" >
+    <div class="s12 col"><h5>Backend Services</h5></div>
+  </div>
+  <div ng-repeat="be in info.backends | orderBy:'name' track by $index">
+    <div class="row">
+      <div class="s12 col attributes-name">
+        <svg><use xlink:href="{{be.image}}" /></svg><a ng-click="selectResource(be)">{{be.name}}</a>
+      </div>
+    </div>
+  </div>
+</div>

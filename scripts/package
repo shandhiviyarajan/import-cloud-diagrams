@@ -1,0 +1,42 @@
+#!/bin/bash
+set -eo pipefail
+
+dir="$(dirname "$0")"
+
+if [[ ! -z $VERSION ]]; then
+  echo "+++ Version provided by environment"
+  export VERSION=$VERSION
+  export BRANCH=$branch
+  export REVISION=$revision
+else
+  echo "+++ Determining version"
+  # shellcheck source=version
+  source "${dir}/version"
+fi
+
+echo "Version: ${VERSION}"
+
+echo "+++ Setting version in package.json"
+temp=$(mktemp)
+old_package=$(mktemp)
+cp package.json $old_package
+cat package.json | jq ".version = \"${VERSION}\"" | jq ".branch = \"${BRANCH}\"" | jq ".revision = \"${REVISION}\"" > $temp
+mv $temp package.json
+
+if [[ ! -z $CI ]]; then
+  echo "+++ Setting version in metadata"
+  buildkite-agent meta-data set "version" ${VERSION}
+
+  echo "+++ Downloading artifacts"
+  buildkite-agent artifact download "dist/*" .
+fi
+
+echo "+++ :ruby: :package: Packaging ${PACKAGE}"
+yarn pack
+
+if [[ ! -z $CI ]]; then
+  echo "--- :buildkite: :arrow_up: Uploading ${PACKAGE} artifact"
+  buildkite-agent artifact upload "*.tgz"
+fi
+
+mv $old_package package.json

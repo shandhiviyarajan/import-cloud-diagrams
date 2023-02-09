@@ -1,0 +1,39 @@
+<!-- ATTRIBUTES!!! -->
+<div class="row">
+  <div class="s12 col"><strong>Cluster</strong></div>
+  <div class="s12 col"><a ng-click="selectResource(info.cluster)">{{info.cluster.name}}</a></div>
+</div>
+<div class="row">
+  <div class="s12 col"><strong>Task</strong></div>
+  <div class="s12 col"><a ng-click="selectResource(info.task)">{{info.task.name}}</a></div>
+</div>
+<div class="row">
+  <div class="s5 col"><strong>Last Status</strong></div>
+  <div class="s7 col" ng-bind="resource.status" ng-class="resource.status_list[resource.status.toLowerCase()]"></div>
+</div>
+<div class="row" ng-if="resource.exit_code">
+  <div class="s5 col"><strong>Exit Code</strong></div>
+  <div class="s7 col" ng-bind="resource.exit_code"></div>
+</div>
+<div class="row" ng-if="resource.reason">
+  <div class="s5 col"><strong>Reason</strong></div>
+  <div class="s7 col" ng-bind="resource.reason"></div>
+</div>
+
+<div ng-show="resource.network_bindings.length > 0">
+  <div class="row">
+    <div class="s12 col"><h5>Network Bindings</h5></div>
+  </div>
+  <div class="row">
+    <div class="s5 col"><strong>IP</strong></div>
+    <div class="s7 col"><strong>host - container</strong></div>
+  </div>
+  <div ng-repeat="binding in resource.network_bindings">
+    <div class="row">
+      <div class="s5 col" ng-bind="binding.bind_ip"></div>
+      <div class="s7 col">
+        {{binding.host_port}} - {{binding.container_port}} ({{binding.protocol}})
+      </div>
+    </div>
+  </div>
+</div>

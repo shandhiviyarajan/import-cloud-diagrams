@@ -1,0 +1,59 @@
+<div class="row sub-title">
+  <div class="s12 col">
+    <input class="small" ng-value="resource.provider_id" disabled />
+  </div>
+</div>
+
+<!-- ATTRIBUTES!!! -->
+<div class="row">
+  <div class="s5 col"><strong>Address space</strong></div>
+  <div class="s7 col" ng-repeat="address in resource.address_space_prefix">
+    {{address}}
+  </div>
+</div>
+
+<div ng-show="info.subnets.length > 0">
+  <div class="row">
+    <div class="s10 col"><h5 class="clickable" ng-click="extended.sg = !extended.sg">Subnets</h5></div>
+    <div class="s2 col">
+      <a ng-click="extended.sg = !extended.sg" ng-show="!extended.sg"><span class="mega-octicon octicon-chevron-down"></span></a>
+      <a ng-click="extended.sg = !extended.sg" ng-show="extended.sg"><span class="mega-octicon octicon-chevron-up"></span></a>
+    </div>
+  </div>
+  <div class="row" ng-show="!extended.sg">
+    <div class="s12 col"><small ng-bind="info.subnets.length + ' subnets(s)'"></small></div>
+  </div>
+  <div ng-show="extended.sg">
+    <div ng-repeat="sb in info.subnets track by $index">
+      <div class="row">
+        <div class="s12 col attributes-name">
+          <a ng-click="selectResource(sb)" highlight-connected-resources="sb">{{sb.name}}</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div ng-show="info.application_security_groups.length > 0">
+    <div class="row">
+      <div class="s10 col"><h5 class="clickable" ng-click="extended.app_sg = !extended.app_sg">Application Security Groups</h5></div>
+      <div class="s2 col">
+        <a ng-click="extended.app_sg = !extended.app_sg" ng-show="!extended.app_sg"><span class="mega-octicon octicon-chevron-down"></span></a>
+        <a ng-click="extended.app_sg = !extended.app_sg" ng-show="extended.app_sg"><span class="mega-octicon octicon-chevron-up"></span></a>
+      </div>
+    </div>
+    <div class="row" ng-show="!extended.app_sg">
+      <div class="s12 col"><small ng-bind="info.application_security_groups.length + ' App SG(s)'"></small></div>
+    </div>
+    <div ng-show="extended.app_sg">
+      <div ng-repeat="app_sg in info.application_security_groups | orderBy:'name' track by $index">
+        <div class="row">
+          <div class="s12 col attributes-name">
+            <a ng-click="selectResource(app_sg)" highlight-connected-resources="app_sg">{{app_sg.name}}</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+

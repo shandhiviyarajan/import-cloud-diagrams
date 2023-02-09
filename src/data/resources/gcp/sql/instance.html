@@ -1,0 +1,174 @@
+<div class="row sub-title">
+    <div class="s12 col">
+    <small ng-if="resource.project">
+      <strong>Project</strong><br />
+      <span ng-bind="resource.project"></span>
+    </small>
+  </div>
+</div>
+
+<!-- ATTRIBUTES!!! -->
+<div class="row">
+  <div class="s5 col"><strong>Region</strong></div>
+  <div class="s7 col" ng-bind="resource.region"></div>
+</div>
+<div class="row">
+  <div class="s5 col"><strong>Zone</strong></div>
+  <div class="s7 col" ng-bind="resource.zone"></div>
+</div>
+<div class="row">
+  <div class="s5 col"><strong>Status</strong></div>
+  <div class="s7 col" ng-bind="resource.status"></div>
+</div>
+<div class="row">
+  <div class="s12 col"><strong>Database Version</strong></div>
+  <div class="s12 col" ng-bind="resource.database_version"></div>
+</div>
+<div class="row">
+  <div class="s12 col"><strong>Connection Name</strong></div>
+  <div class="s12 col" ng-bind="resource.connection_name"></div>
+</div>
+<div class="row">
+  <div class="s12 col"><strong>Service Account</strong></div>
+  <div class="s12 col" ng-bind="resource.service_account_email_address"></div>
+</div>
+
+<div class="row">
+  <div class="s12 col">
+    <h5>IP Addresses</h5>
+  </div>
+  <div class="s12 col" ng-hide="resource.ip_addresses.length > 0">
+    None.
+  </div>
+</div>
+<div class="row" ng-repeat="ip_address in resource.ip_addresses">
+  <div class="s7 col">
+    {{ip_address.ip_address}}
+  </div>
+  <div class="s5 col">
+    <strong ng-bind="ip_address.type"></strong>
+  </div>
+</div>
+
+<div class="row">
+  <div class="s12 col">
+    <h5>Settings</h5>
+  </div>
+</div>
+
+<div class="attributes-list">
+  <div class="row">
+    <div class="s5 col"><strong>Tier</strong></div>
+    <div class="s7 col" ng-bind="resource.settings.tier"></div>
+  </div>
+  <div class="row">
+    <div class="s5 col"><strong>Availability</strong></div>
+    <div class="s7 col" ng-bind="resource.settings.availability_type"></div>
+  </div>
+  <div class="row">
+    <div class="s5 col"><strong>Disk Type</strong></div>
+    <div class="s7 col" ng-bind="resource.settings.data_disk_type"></div>
+  </div>
+  <div class="row">
+    <div class="s5 col"><strong>Pricing Plan</strong></div>
+    <div class="s7 col" ng-bind="resource.settings.pricing_plan"></div>
+  </div>
+  <div class="row">
+    <div class="s12 col">
+      <strong>Automated Backups</strong>&nbsp;&nbsp;&nbsp;
+
+      <span class="octicon octicon-check good" ng-show="resource.settings.backup_configuration.enabled"></span>
+      <span class="octicon octicon-x bad" ng-show="!resource.settings.backup_configuration.enabled"></span>
+    </div>
+  </div>
+  <div class="row">
+    <div class="s12 col">
+      <strong>Auto Storage Increase</strong>&nbsp;&nbsp;&nbsp;
+
+      <span class="octicon octicon-check good" ng-show="resource.settings.storage_auto_resize"></span>
+      <span class="octicon octicon-x bad" ng-show="!resource.settings.storage_auto_resize"></span>
+    </div>
+  </div>
+  <div class="row">
+    <div class="s12 col">
+      <strong>Database Replication</strong>&nbsp;&nbsp;&nbsp;
+
+      <span class="octicon octicon-check good" ng-show="resource.settings.database_replication_enabled"></span>
+      <span class="octicon octicon-x bad" ng-show="!resource.settings.database_replication_enabled"></span>
+    </div>
+  </div>
+  <div class="row">
+    <div class="s12 col">
+      <strong>Crash Safe Replication</strong>&nbsp;&nbsp;&nbsp;
+
+      <span class="octicon octicon-check good" ng-show="resource.settings.crash_safe_replication_enabled"></span>
+      <span class="octicon octicon-x bad" ng-show="!resource.settings.crash_safe_replication_enabled"></span>
+    </div>
+  </div>
+  <div class="row" ng-show="resource.settings.storage_auto_resize">
+    <div class="s12 col"><strong>Storage Resize Limit</strong></div>
+    <div class="s12 col" ng-bind="resource.settings.storage_auto_resize_limit"></div>
+  </div>
+  <div class="row">
+    <div class="s12 col"><strong>Data Disk Size</strong></div>
+    <div class="s12 col"><span ng-bind="resource.settings.data_disk_size_gb"></span>Gb</div>
+  </div>
+
+  <div class="row" ng-show="resource.settings.ip_configuration">
+    <div class="s12 col">
+      <h5>IP Configuration</h5>
+    </div>
+  </div>
+  <div class="row" ng-if="info.network">
+    <div class="s5 col"><strong>Network</strong></div>
+    <div class="s7 col"><a ng-click="selectResource(info.network)">{{info.network.name}}</a></div>
+  </div>
+  <div class="row">
+    <div class="s12 col">
+      <strong>Require SSL</strong>&nbsp;&nbsp;&nbsp;
+
+      <span class="octicon octicon-check good" ng-show="resource.settings.ip_configuration.require_ssl"></span>
+      <span class="octicon octicon-x bad" ng-show="!resource.settings.ip_configuration.require_ssl"></span>
+    </div>
+  </div>
+  <div class="row">
+    <div class="s12 col">
+      <strong>IPv4</strong>&nbsp;&nbsp;&nbsp;
+
+      <span class="octicon octicon-check good" ng-show="resource.settings.ip_configuration.ipv4_enabled"></span>
+      <span class="octicon octicon-x bad" ng-show="!resource.settings.ip_configuration.ipv4_enabled"></span>
+    </div>
+  </div>
+  <div class="row" ng-show="resource.settings.ip_configuration.authorized_networks.length">
+    <div class="s12 col">
+      <strong>Authorized Networks</strong>
+    </div>
+    <div class="s12 col" ng-repeat="auth in resource.settings.ip_configuration.authorized_networks">
+      ∟ <strong ng-bind="auth['name']"></strong>: <span ng-bind="auth['value']"></span>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="s12 col">
+      <h5>Database Flags</h5>
+    </div>
+    <div class="s12 col" ng-repeat="flag in resource.settings.database_flags">
+      <strong ng-bind="flag['name']"></strong>:
+      <span ng-bind="flag['value']"></span>
+    </div>
+    <div class="s12 col" ng-hide="resource.settings.database_flags.length > 0">
+      None.
+    </div>
+  </div>
+
+  <div class="row" ng-if="Object.keys(resource.settings.user_labels).length">
+    <div class="s12 col">
+      <h5>Labels</h5>
+    </div>
+    <div class="s12 col" ng-repeat="(key, value) in resource.settings.user_labels">
+      <strong ng-bind="key"></strong>:
+      <span ng-bind="value"></span>
+    </div>
+  </div>
+
+</div>

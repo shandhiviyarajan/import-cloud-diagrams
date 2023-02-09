@@ -1,0 +1,65 @@
+<!-- ATTRIBUTES!!! -->
+<div class="row">
+  <div class="s12 col"><strong>ARN</strong></div>
+  <div class="s12 col" ng-bind="resource.queue_arn"></div>
+</div>
+<div class="row">
+  <div class="s12 col"><strong>Created</strong></div>
+  <div class="s12 col" ng-bind="info.created"></div>
+</div>
+<div class="row">
+  <div class="s12 col"><strong>Last Modified</strong></div>
+  <div class="s12 col" ng-bind="info.modified"></div>
+</div>
+<div class="row">
+  <div class="s12 col"><strong>Maximum Message Size</strong></div>
+  <div class="s12 col" ng-bind="resource.maximum_message_size + ' bytes'"></div>
+</div>
+<div class="row">
+  <div class="s12 col"><strong>Retention Period</strong></div>
+  <div class="s12 col" ng-bind="info.retention"></div>
+</div>
+<div class="row">
+  <div class="s12 col"><strong>Visibility Timeout</strong></div>
+  <div class="s12 col" ng-bind="resource.visibility_timeout + ' seconds'"></div>
+</div>
+<div class="row">
+  <div class="s12 col"><strong>Delay</strong></div>
+  <div class="s12 col" ng-bind="resource.delay_seconds + ' seconds'"></div>
+</div>
+<div class="row">
+  <div class="s12 col"><strong>Receive Message Wait Time</strong></div>
+  <div class="s12 col" ng-bind="resource.receive_message_wait_time_seconds + ' seconds'"></div>
+</div>
+<div class="row" ng-if="resource.fifo_queue === 'true'">
+  <div class="s12 col">
+    <strong>FIFO Queue</strong> &nbsp;&nbsp;&nbsp;
+    <span class="octicon octicon-check good"></span>
+  </div>
+</div>
+<div class="row" ng-if="resource.content_based_deduplication === 'true'">
+  <div class="s12 col"> &nbsp;&nbsp;&nbsp;
+    <strong>Content Based De-duplication</strong>
+    <span class="octicon octicon-check good"></span>
+  </div>
+</div>
+
+<div class="row">
+  <div class="s12 col"><h5>Redrive Policy</h5></div>
+</div>
+<div class="row" ng-show="resource.redrive_policy">
+  <div class="s12 col"><strong>Maximum Receives</strong></div>
+  <div class="s12 col" ng-bind="resource.redrive_policy.max_receive_count"></div>
+</div>
+<div class="row">
+  <div class="s12 col"><strong>Dead Letter Queue</strong></div>
+  <div class="s12 col" ng-show="info.queue">
+    <svg><use xlink:href="{{info.queue.image}}" /></svg>
+    <a ng-click="selectResource(info.queue)">{{info.queue.name}}</a>
+  </div>
+  <div class="s12 col attributes-name" ng-show="!info.queue">None</a></div>
+</div>
+
+<!-- TODO: support these - the queues should link to other SQS queues, find a user that has them -->
+<!--//   "dead_letter_source_queues"=>[],-->
+<!--//   "redrive_policy"=>[],-->

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="92px" height="92px" viewBox="0 0 92 92" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 43.2 (39069) - http://www.bohemiancoding.com/sketch -->
+    <title>resources.aws.ec2.vpc</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="resources.aws.ec2.vpc" transform="translate(1.000000, 1.000000)" fill-rule="nonzero">
+            <circle id="Oval-1" stroke="#979797" fill="#FFFFFF" cx="45" cy="45" r="45"></circle>
+            <g id="SecurityIdentityCompliance_AWSDirectoryService" transform="translate(11.000000, 4.000000)">
+                <polygon id="Shape" fill="#4B612C" points="0.06 16.97 4.39 14.81 12.7 31.6 4.39 46.22 0.06 45.78"></polygon>
+                <polygon id="Shape" fill="#759C3E" points="12.7 16.74 4.39 14.81 4.39 46.22 12.7 45.9"></polygon>
+                <polygon id="Shape" fill="#4B612C" points="9.63 12.19 15.89 9.05 25.27 29.23 15.89 47.38 9.63 46.75"></polygon>
+                <polygon id="Shape" fill="#B7CA9D" points="67.94 55.46 34 51.14 0.06 55.46 34 82"></polygon>
+                <polygon id="Shape" fill="#4B612C" points="42.31 37.67 54.91 36.68 52.11 47.38 42.31 46.81"></polygon>
+                <polygon id="Shape" fill="#4B612C" points="56.89 38.03 66.69 38.03 63.61 46.24 56.89 45.9"></polygon>
+                <polygon id="Shape" fill="#759C3E" points="28.08 12.98 15.89 9.05 15.89 47.38 28.08 46.58"></polygon>
+                <polygon id="Shape" fill="#759C3E" points="67.94 55.46 34 65.6 34 82 67.94 65.03"></polygon>
+                <polygon id="Shape" fill="#4B612C" points="23.86 5.07 34 0 56.49 18.51 34 49.2 23.86 48.17"></polygon>
+                <polygon id="Shape" fill="#4B612C" points="0.06 55.46 34 65.6 34 82 0.06 65.03"></polygon>
+                <polygon id="Shape" fill="#759C3E" points="44.14 5.13 34 0 34 49.2 44.14 48.17"></polygon>
+                <polygon id="Shape" fill="#759C3E" points="63.61 22.55 67.94 24.03 67.94 45.78 63.61 46.24"></polygon>
+                <polygon id="Shape" fill="#759C3E" points="58.37 35.19 52.11 34.62 52.11 47.38 58.37 46.81"></polygon>
+                <polygon id="Shape" fill="#759C3E" points="34 0 67.94 16.97 67.94 41 34 41"></polygon>
+            </g>
+        </g>
+    </g>
+</svg>

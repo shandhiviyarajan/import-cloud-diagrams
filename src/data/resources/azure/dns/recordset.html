@@ -1,0 +1,75 @@
+<div class="row" ng-show="info.zone">
+  <div class="s12 col"><strong>Zone</strong></div>
+  <div class="s12 col attributes-name">
+    <a ng-click="selectResource(info.zone)">{{info.zone.name}}</a>
+  </div>
+</div>
+<div class="row">
+  <div class="s12 col"><strong>Record Type</strong></div>
+  <div class="s12 col" ng-bind="resource.formatted_type"></div>
+</div>
+<div class="row">
+  <div class="s12 col"><strong>FQDN</strong></div>
+  <div class="s12 col" ng-bind="resource.fqdn"></div>
+</div>
+<div class="row">
+  <div class="s12 col"><strong>TTL</strong></div>
+  <div class="s12 col" ng-bind="resource.ttl"></div>
+</div>
+
+<div ng-repeat="(type, records) in info.records" ng-show="records.length">
+  <div class="row">
+    <div class="s12 col"><h5 ng-bind="type"></h5></div>
+  </div>
+  <div class="row" ng-repeat="record in records" ng-if="records.length">
+    <div class="s12 col">
+      <span ng-bind="record.ipv4address" ng-if="record.ipv4address"></span>
+      <span ng-bind="record.ipv6address" ng-if="record.ipv6address"></span>
+      <span ng-bind="record.nsdname" ng-if="record.nsdname"></span>
+      <span ng-bind="record.cname" ng-if="record.cname"></span>
+      <span ng-bind="record.ptrdname" ng-if="record.ptrdname"></span>
+      <span ng-bind="record.value" ng-if="record.value"></span>
+      <span ng-if="record.flags">
+        {{record.flags}}
+        {{record.tag}}
+        {{record.value}}
+      </span>
+      <span ng-if="record.exchange">
+        {{record.preference}} -
+        {{record.exchange}}
+      </span>
+      <span ng-if="record.target">
+        {{record.priority}}
+        {{record.weight}}
+        {{record.port}}
+        {{record.target}}
+      </span>
+    </div>
+  </div>
+</div>
+
+<div class="row" ng-show="resource.soa_record">
+  <div class="s12 col"><h5>SOA Record</h5></div>
+</div>
+<div class="row" ng-show="resource.soa_record">
+  <div class="s12 col"><strong>Host</strong></div><div class="s12 col" ng-bind="resource.soa_record.host"></div>
+  <div class="s12 col"><strong>Email</strong></div><div class="s12 col" ng-bind="resource.soa_record.email"></div>
+  <div class="s6 col"><strong>Serial No</strong></div><div class="s6 col" ng-bind="resource.soa_record.serial_number"></div>
+  <div class="s6 col"><strong>Refresh Time</strong></div><div class="s6 col" ng-bind="resource.soa_record.refresh_time"></div>
+  <div class="s6 col"><strong>Retry Time</strong></div><div class="s6 col" ng-bind="resource.soa_record.retry_time"></div>
+  <div class="s6 col"><strong>Expire Time</strong></div><div class="s6 col" ng-bind="resource.soa_record.expire_time"></div>
+  <div class="s6 col"><strong>Min TTL</strong></div><div class="s6 col" ng-bind="resource.soa_record.minimum_ttl"></div>
+</div>
+
+<div class="row">
+  <div class="s12 col"><h5>Resource Group</h5></div>
+</div>
+<div class="row" ng-show="!info.resource_group">
+  <div class="s12 col">None</div>
+</div>
+<div class="row" ng-show="info.resource_group">
+  <div class="s12 col end attributes-name">
+    <svg><use xlink:href="{{info.resource_group.image}}" /></svg>
+    <a ng-click="selectResource(info.resource_group)">{{info.resource_group.name}}</a>
+  </div>
+</div>

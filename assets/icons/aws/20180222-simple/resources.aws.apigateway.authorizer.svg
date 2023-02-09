@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="92px" height="92px" viewBox="0 0 92 92" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 43.2 (39069) - http://www.bohemiancoding.com/sketch -->
+    <title>resources.aws.ec2.address</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="resources.aws.ec2.address" transform="translate(1.000000, 1.000000)" fill-rule="nonzero">
+            <circle id="Oval-1" stroke="#979797" fill="#FFFFFF" cx="45" cy="45" r="45"></circle>
+            <g id="resources.aws.apigateway.apikey" transform="translate(15.000000, 9.000000)">
+                <polygon id="Shape" fill="#FAD791" points="59.2285714 40.4142857 45.0342857 39.8314286 35.8371429 40.4142857 51.0171429 61.0542857"></polygon>
+                <polygon id="Shape" fill="#624A1E" points="59.2285714 31.8685714 45.0342857 32.4514286 35.8371429 31.8685714 51.0171429 11.2285714"></polygon>
+                <polygon id="Shape" fill="#624A1E" points="0.771428571 31.8428571 14.9657143 32.4514286 24.1628571 31.8685714 8.98285714 11.3314286"></polygon>
+                <polygon id="Shape" fill="#FAD791" points="0.771428571 40.4142857 14.9657143 39.8314286 24.1628571 40.4142857 8.98285714 61.0714286"></polygon>
+                <polygon id="Shape" fill="#D9A741" points="51.0171429 31.0457143 59.2285714 31.8685714 59.2285714 15.3342857 51.0171429 11.2285714"></polygon>
+                <polygon id="Shape" fill="#876929" points="35.8371429 15.3257143 51.0171429 11.2285714 51.0171429 31.0457143 35.8371429 31.8685714"></polygon>
+                <polygon id="Shape" fill="#D9A741" points="30 12.9257143 46.44 18.3 46.44 26.4771429 30 23.58"></polygon>
+                <polygon id="Shape" fill="#624A1E" points="22.5942857 24.9257143 30.12 23.5971429 46.44 26.4771429 39.1457143 27.2742857"></polygon>
+                <polygon id="Shape" fill="#876929" points="8.98285714 31.0457143 0.771428571 31.8428571 0.771428571 15.2571429 8.98285714 11.2114286"></polygon>
+                <polygon id="Shape" fill="#D9A741" points="24.1628571 15.3257143 8.98285714 11.2114286 8.98285714 31.0457143 24.1628571 31.8685714"></polygon>
+                <polygon id="Shape" fill="#876929" points="30 12.9257143 13.56 18.3 13.56 26.4771429 30 23.58"></polygon>
+                <polygon id="Shape" fill="#624A1E" points="37.4057143 24.9257143 29.88 23.5971429 13.56 26.4771429 20.8542857 27.2742857"></polygon>
+                <polygon id="Shape" fill="#D9A741" points="51.0171429 41.2371429 59.2285714 40.4142857 59.2285714 56.9485714 51.0171429 61.0542857"></polygon>
+                <polygon id="Shape" fill="#876929" points="35.8371429 56.9571429 51.0171429 61.0542857 51.0171429 41.2371429 35.8371429 40.4142857"></polygon>
+                <polygon id="Shape" fill="#D9A741" points="30 59.3571429 46.44 53.9828571 46.44 45.8057143 30 48.7028571"></polygon>
+                <polygon id="Shape" fill="#FAD791" points="22.5942857 47.3571429 30.12 48.6771429 46.44 45.8057143 39.1457143 45.0085714"></polygon>
+                <polygon id="Shape" fill="#876929" points="8.98285714 41.2371429 0.771428571 40.4142857 0.771428571 56.9485714 8.98285714 61.0714286"></polygon>
+                <polygon id="Shape" fill="#D9A741" points="24.1628571 56.9571429 8.98285714 61.0714286 8.98285714 41.2371429 24.1628571 40.4142857"></polygon>
+                <polygon id="Shape" fill="#876929" points="30 59.3571429 13.56 53.9828571 13.56 45.8057143 30 48.7028571"></polygon>
+                <polygon id="Shape" fill="#FAD791" points="37.4057143 47.3571429 29.88 48.6771429 13.56 45.8057143 20.8542857 45.0085714"></polygon>
+                <polygon id="Shape" fill="#876929" points="21.2571429 66.9085714 30 71.28 34.8514286 68.8542857 38.7428571 5.09142857 30 0.72 21.2571429 5.09142857"></polygon>
+                <polygon id="Shape" fill="#D9A741" points="38.7428571 66.9085714 30 71.28 30 0.72 38.7428571 5.09142857"></polygon>
+            </g>
+        </g>
+    </g>
+</svg>

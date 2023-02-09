@@ -1,0 +1,102 @@
+<div class="row" ng-if="resource.virtual_interface_type">
+  <div class="s5 col"><strong>Type</strong></div>
+  <div class="s7 col" ng-bind="resource.virtual_interface_type"></div>
+</div>
+<div class="row" ng-if="resource.status">
+  <div class="s5 col"><strong>Status</strong></div>
+  <div class="s7 col" ng-bind="resource.status"></div>
+</div>
+<div class="row" ng-if="resource.vlan">
+  <div class="s5 col"><strong>VLAN</strong></div>
+  <div class="s7 col" ng-bind="resource.vlan"></div>
+</div>
+<div class="row" ng-if="resource.owner_account">
+  <div class="s5 col"><strong>Owner Account</strong></div>
+  <div class="s7 col" ng-bind="resource.owner_account"></div>
+</div>
+<div class="row" ng-if="resource.amazon_address">
+  <div class="s12 col"><strong>Amazon Address</strong></div>
+  <div class="s12 col" ng-bind="resource.amazon_address"></div>
+</div>
+<div class="row" ng-if="resource.customer_address">
+  <div class="s12 col"><strong>Customer Address</strong></div>
+  <div class="s12 col" ng-bind="resource.customer_address"></div>
+</div>
+<div class="row" ng-if="resource.address_family">
+  <div class="s12 col"><strong>Address Family</strong></div>
+  <div class="s12 col" ng-bind="resource.address_family"></div>
+</div>
+
+<!-- TODO: make this hideable I think -->
+<div ng-show="resource.bgp_peers.length">
+  <div class="row">
+    <div class="s12 col"><h5>BGP Peers</h5></div>
+  </div>
+  <div ng-repeat="peer in resource.bgp_peers track by $index" style="margin-bottom: 0.5rem">
+    <div class="row">
+      <div class="s12 col attributes-name"><strong ng-bind="peer.bgp_peer_id" style="border-bottom: 1px solid grey"></strong></div>
+    </div>
+    <div class="row">
+      <div class="s4 col"><strong>BGP ASN</strong></div>
+      <div class="s8 col" ng-bind="peer.asn"></div>
+    </div>
+    <div class="row">
+      <div class="s4 col"><strong>Family</strong></div>
+      <div class="s8 col" ng-bind="peer.address_family"></div>
+    </div>
+    <div class="row">
+      <div class="s12 col"><strong>Your Router Peer ID</strong></div>
+      <div class="s12 col" ng-bind="peer.customer_address"></div>
+      <div class="s12 col"><strong>Amazon Router Peer ID</strong></div>
+      <div class="s12 col" ng-bind="peer.amazon_address"></div>
+    </div>
+    <div class="row">
+      <div class="s12 col"><strong>AWS Device</strong></div>
+      <div class="s12 col" ng-bind="peer.aws_device_v2"></div>
+    </div>
+    <div class="row">
+      <div class="s4 col"><strong>State</strong></div>
+      <div class="s8 col" ng-bind="peer.bgp_peer_state"></div>
+    </div>
+    <div class="row">
+      <div class="s4 col"><strong>BGP Status</strong></div>
+      <div class="s8 col" ng-bind="peer.bgp_status"></div>
+    </div>
+  </div>
+</div>
+
+<div ng-show="info.vpn_gateways.length">
+  <div class="row">
+    <div class="s12 col"><h5>VPN Gateways</h5></div>
+  </div>
+  <div class="row" ng-repeat="vpn_gateway in info.vpn_gateways track by $index">
+    <div class="s12 col end attributes-name">
+      <svg><use xlink:href="{{vpn_gateway.image}}" /></svg>
+      <a ng-click="selectResource(vpn_gateway)">{{vpn_gateway.name}}</a>
+    </div>
+  </div>
+</div>
+
+<div ng-show="info.connection">
+  <div class="row">
+    <div class="s12 col"><h5>Connection</h5></div>
+  </div>
+  <div class="row">
+    <div class="s12 col end attributes-name">
+      <svg><use xlink:href="{{info.connection.image}}" /></svg>
+      <a ng-click="selectResource(info.connection)">{{info.connection.name}}</a>
+    </div>
+  </div>
+</div>
+
+<div ng-show="info.lag">
+  <div class="row">
+    <div class="s12 col"><h5>Link Aggregation Group</h5></div>
+  </div>
+  <div class="row">
+    <div class="s12 col end attributes-name">
+      <svg><use xlink:href="{{info.lag.image}}" /></svg>
+      <a ng-click="selectResource(info.lag)">{{info.lag.name}}</a>
+    </div>
+  </div>
+</div>

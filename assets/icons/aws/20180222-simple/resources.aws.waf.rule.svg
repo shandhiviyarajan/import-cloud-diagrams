@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="92px" height="92px" viewBox="0 0 92 92" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 43.2 (39069) - http://www.bohemiancoding.com/sketch -->
+    <title>blank</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="blank" transform="translate(0.000000, 1.000000)">
+            <g id="Page-1" transform="translate(1.000000, 0.000000)" stroke="#979797">
+                <g id="blank">
+                    <g id="Page-1">
+                        <g id="Compute-&amp;-Networking-copy_Amazon-EC2-Instance">
+                            <g id="Layer_1">
+                                <circle id="Oval-1" cx="45" cy="45" r="45"></circle>
+                            </g>
+                        </g>
+                    </g>
+                </g>
+            </g>
+            <g id="SecurityIdentityCompliance_AWSWAF_filteringrule" fill-rule="nonzero">
+                <ellipse id="Oval" fill="#4B612C" cx="46" cy="47.2773438" rx="45.1541935" ry="43.2676563"></ellipse>
+                <ellipse id="Oval" fill="#759C3E" cx="46" cy="43.7226563" rx="45.1541935" ry="43.2676563"></ellipse>
+                <polygon id="Shape" fill="#FFFFFF" points="79.2090323 25.7217188 12.8058065 25.7217188 39.2483871 51.0595312 39.2483871 77.4921875 52.7516129 64.3398437 52.7516129 51.0595312"></polygon>
+            </g>
+        </g>
+    </g>
+</svg>

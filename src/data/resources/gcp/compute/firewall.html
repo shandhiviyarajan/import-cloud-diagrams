@@ -1,0 +1,273 @@
+<div class="row sub-title">
+  <div class="s12 col">
+    <small ng-if="resource.project">
+      <strong>Project</strong><br />
+      <span ng-bind="resource.project"></span>
+    </small>
+  </div>
+</div>
+
+<div class="row" ng-show="resource.priority">
+  <div class="s5 col">
+    <strong>Priority</strong>
+  </div>
+
+  <div class="s7 col" ng-bind="resource.priority">
+  </div>
+</div>
+
+<div class="row" ng-show="resource.direction">
+  <div class="s5 col">
+    <strong>Direction</strong>
+  </div>
+
+  <div class="s7 col" ng-bind="resource.direction">
+  </div>
+</div>
+
+<div class="row" ng-show="resource.direction">
+  <div class="s12 col">
+    <strong>Action on Match</strong>
+  </div>
+
+  <div class="s12 col">
+    <span ng-if="resource.allowed.length">Allow</span>
+    <span ng-if="!resource.allowed.length">Deny</span>
+  </div>
+</div>
+
+<div class="row" ng-show="resource.log_config">
+  <div class="s10 col">
+    <strong>Log Config Enable</strong>
+  </div>
+
+  <div class="s1 octicon octicon-check good" ng-show="resource.log_config.enable">
+  </div>
+
+  <div class="s1 octicon octicon-x bad" ng-show="!resource.log_config.enable">
+  </div>
+</div>
+
+<div class="row" ng-show="resource.disabled">
+  <div class="s7 col">
+    <strong>Disabled</strong>
+  </div>
+
+  <div class="s5 octicon octicon-check good" ng-show="resource.disabled"></div>
+
+  <div class="s5 octicon octicon-x bad" ng-show="!resource.disabled"></div>
+</div>
+
+
+<div class="row" ng-show="resource.description">
+  <div class="s12 col">
+    <strong>Description</strong>
+  </div>
+
+  <div class="s12 col" ng-bind="resource.description">
+  </div>
+</div>
+
+<div class="row" ng-show="resource.creation_timestamp">
+  <div class="s12 col">
+    <strong>Creation Timestamp</strong>
+  </div>
+
+  <div class="s12 col" ng-bind=
+  "resource.creation_timestamp | date:'yyyy-MM-dd HH:mm:ss'">
+  </div>
+</div>
+
+<div ng-show="resource.denied.length">
+  <div class="row">
+    <div class="s12 col">
+      <h5>Denied</h5>
+    </div>
+  </div>
+
+  <div ng-repeat="denied in resource.denied">
+    <div class="row" ng-show="denied.ip_protocol">
+      <div class="s5 col">
+        <strong>Protocol</strong>
+      </div>
+
+      <div class="s7 col" ng-bind="denied.ip_protocol">
+      </div>
+
+      <div class="s12 col">
+        <div class="s5 col">
+          ∟ Ports:
+        </div>
+
+        <div class="s7 col" ng-repeat="ports in denied.ports">
+          <p><small>{{ports}}</small></p>
+        </div>
+
+        <div class="s7 col" ng-hide="denied.ports">
+          All
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div ng-show="resource.allowed.length">
+  <div class="row">
+    <div class="s12 col">
+      <h5>Allowed</h5>
+    </div>
+  </div>
+
+  <div ng-repeat="allowed in resource.allowed">
+    <div class="row" ng-show="allowed.ip_protocol">
+      <div class="s5 col">
+        <strong>Protocol</strong>
+      </div>
+
+      <div class="s7 col" ng-bind="allowed.ip_protocol">
+      </div>
+
+      <div class="s12 col">
+        <div class="s5 col">
+          ∟ Ports:
+        </div>
+
+        <div class="s7 col" ng-repeat="ports in allowed.ports">
+          <p><small>{{ports}}</small></p>
+        </div>
+
+        <div class="s7 col" ng-hide="allowed.ports">
+          All
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="row" ng-show="resource.target_tags.length || resource.source_tags.length || resource.source_ranges.length || destination_ranges.length">
+  <div class="s12 col">
+    <h5>TAGS</h5>
+  </div>
+</div>
+
+<div class="row">
+  <div class="s12 col">
+    <strong>Target Tags</strong>
+  </div>
+
+  <div class="s12 col" ng-show="resource.target_tags.length">
+    <div ng-repeat="res in resource.target_tags">{{res}}</div>
+  </div>
+
+  <div class="s12 col" ng-hide="resource.target_tags.length">
+    None
+  </div>
+</div>
+
+<div class="row" ng-show="resource.target_service_accounts.length">
+  <div class="s12 col">
+    <strong>Target Service Accounts</strong>
+  </div>
+
+  <div class="s12 col">
+    <div ng-repeat="res in resource.target_service_accounts">{{res}}</div>
+  </div>
+</div>
+
+<div class="row" ng-show="resource.source_tags.length">
+  <div class="s12 col">
+    <strong>Source Tags</strong>
+  </div>
+
+  <div class="s12 col">
+    <div ng-repeat="res in resource.source_tags">{{res}}</div>
+  </div>
+</div>
+
+<div class="row" ng-show="resource.source_service_accounts.length">
+  <div class="s12 col">
+    <strong>Source Service Accounts</strong>
+  </div>
+
+  <div class="s12 col">
+    <div ng-repeat="res in resource.source_service_accounts">{{res}}</div>
+  </div>
+</div>
+
+<div class="row" ng-show="resource.source_ranges.length">
+  <div class="s12 col">
+    <strong>Source Ranges</strong>
+  </div>
+
+  <div class="s12 col">
+    <div ng-repeat="res in resource.source_ranges">{{res}}</div>
+  </div>
+</div>
+
+<div class="row" ng-show="resource.destination_ranges.length">
+  <div class="s12 col">
+    <strong>Destination Range</strong>
+  </div>
+
+  <div class="s12 col">
+    <div ng-repeat="res in resource.destination_ranges">{{res}}</div>
+  </div>
+</div>
+
+<div>
+  <div class="row">
+    <div class="s12 col">
+      <h5>Targets</h5>
+    </div>
+  </div>
+
+  <div ng-repeat="instance in info.connections track by $index" ng-show="info.connections.length">
+    <div class="row">
+      <div class="s12 col attributes-name">
+        <svg><use xlink:href="{{instance.image}}" /></svg><a ng-click="selectResource(instance)" highlight-resources="instance">{{instance.name}}</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="row" ng-hide="info.connections.length">
+    <div class="s12 col">
+      None.
+    </div>
+  </div>
+</div>
+
+<div>
+  <div class="row">
+    <div class="s12 col">
+      <h5 ng-if="resource.direction === 'EGRESS'">Destinations</h5>
+      <h5 ng-if="resource.direction === 'INGRESS'">Sources</h5>
+    </div>
+  </div>
+
+  <div ng-repeat="instance in info.remote_connections track by $index" ng-show="info.remote_connections.length">
+    <div class="row">
+      <div class="s12 col attributes-name">
+        <svg><use xlink:href="{{instance.image}}" /></svg><a ng-click="selectResource(instance)" highlight-resources="instance">{{instance.name}}</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="row" ng-hide="info.remote_connections.length">
+    <div class="s12 col">
+      None.
+    </div>
+  </div>
+</div>
+
+<div class="row" ng-show="info.network">
+  <div class="s12 col">
+    <h5>Network</h5>
+  </div>
+
+  <div class="s12 col attributes-name">
+    <svg><use xlink:href="{{info.network.image}}" /></svg><a ng-click=
+    "selectResource(info.network)">{{info.network.name}}</a>
+  </div>
+</div>
+

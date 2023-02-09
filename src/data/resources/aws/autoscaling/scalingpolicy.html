@@ -1,0 +1,20 @@
+<div class="row" ng-if="resource.scaling_adjustment">
+  <div class="s5 col"><strong>Scaling Adjustment</strong></div>
+  <div class="s7 col" ng-bind="resource.scaling_adjustment"></div>
+</div>
+<div class="row" ng-if="resource.adjustment_type">
+  <div class="s5 col"><strong>Adjustment Type</strong></div>
+  <div class="s7 col" ng-bind="resource.adjustment_type"></div>
+</div>
+<div class="row" ng-if="resource.cooldown">
+  <div class="s5 col"><strong>Cooldown</strong></div>
+  <div class="s7 col" ng-bind="resource.cooldown"></div>
+</div>
+<div class="row" ng-if="resource.min_adjustment_step">
+  <div class="s5 col"><strong>Min Adjustment Step</strong></div>
+  <div class="s7 col" ng-bind="resource.min_adjustment_step"></div>
+</div>
+<div class="row" ng-if="resource.policy_arn">
+  <div class="s12 col"><strong>Policy ARN</strong></div>
+  <div class="s12 col" ng-bind="resource.policy_arn"></div>
+</div>

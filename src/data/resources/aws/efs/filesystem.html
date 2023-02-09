@@ -1,0 +1,76 @@
+<!-- ATTRIBUTES -->
+<div class="row">
+  <div class="s12 col"><strong>Creation Time</strong></div>
+  <div class="s12 col" ng-bind="resource.creation_time"></div>
+</div>
+<div class="row">
+  <div class="s12 col"><strong>Lifecycle State</strong></div>
+  <div class="s12 col" ng-bind="resource.life_cycle_state"></div>
+</div>
+<div class="row">
+  <div class="s12 col"><strong>Mount Targets</strong></div>
+  <div class="s12 col" ng-bind="resource.number_of_mount_targets"></div>
+</div>
+<div class="row">
+  <div class="s12 col"><strong>Owner ID</strong></div>
+  <div class="s12 col" ng-bind="resource.owner_id"></div>
+</div>
+<div class="row">
+  <div class="s12 col"><strong>Performance Mode</strong></div>
+  <div class="s12 col" ng-bind="resource.performance_mode"></div>
+</div>
+<div class="row">
+  <div class="s12 col"><strong>Size (bytes)</strong></div>
+  <div class="s12 col" ng-bind="resource.size_in_bytes"></div>
+</div>
+<div class="row">
+  <div class="s12 col"><strong>Throughput Mode</strong></div>
+  <div class="s12 col" ng-bind="resource.throughput_mode"></div>
+</div>
+<div class="row" ng-if="resource.provisioned_throughput_in_mibps">
+  <div class="s12 col"><strong>Provisioned Throughput</strong></div>
+  <div class="s12 col" ng-bind="resource.provisioned_throughput_in_mibps"></div>
+</div>
+<div class="row">
+  <div class="s12 col">
+    <strong>Encrypted</strong>
+    <span class="octicon octicon-check good" ng-show="resource.encrypted"></span>
+    <span class="octicon octicon-x bad" ng-show="!resource.encrypted"></span>
+  </div>
+</div>
+
+<hr />
+
+<div ng-show="info.mount_targets">
+  <div class="row">
+    <div class="s12 col"><h5>Mount Targets</h5></div>
+  </div>
+  <div class="row" ng-repeat="data in info.mount_targets | orderBy: 'name'">
+    <div class="s12 col">
+      <strong ng-bind="data.target.name"></strong> &nbsp;&nbsp;
+      (<span ng-bind="data.target.ip_address"></span>)
+    </div>
+    <div class="s12 col" ng-show="data.nic">
+      <small>
+        ∟ Network Interface:
+        <a ng-click="selectResource(data.nic)">{{data.nic.name}}</a>
+      </small>
+    </div>
+    <div class="s12 col" ng-show="data.subnet">
+      <small>
+        ∟ Subnet:
+        <a ng-click="selectResource(data.subnet)">{{data.subnet.name}}</a>
+      </small>
+    </div>
+    <div class="s12 col" ng-show="data.security_groups.length > 0">
+      <small>
+        ∟ Security Groups
+      </small>
+      <div ng-repeat="security_group in data.security_groups">
+        <small>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <a ng-click="selectResource(security_group)">{{security_group.name}}</a></small>
+      </div>
+    </div>
+  </div>
+</div>
+

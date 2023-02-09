@@ -1,0 +1,27 @@
+<div class="export-controls" id="export-options">
+  <button ng-click="toggleExports()" class="button btn waves-effect waves-light exporter"><i class="material-icons">cloud_download</i> Export</button>
+
+  <div id="exporter-dropdown" class="hava-dropdown-content" ng-show="show_export">
+    <div ng-show="formats.length === 0">
+      <div class="row">
+        <div class="s12 col">
+          <h5>Export Environment</h5>
+        </div>
+      </div>
+      <div class="row">
+        <div class="s12 col">
+          <p>
+            Want to be able to export this environment? Sign up now and you'll be able to
+            export your environments to PDF or PNG!
+          </p>
+          <p>
+            <a class="button btn waves-effect waves-light" ng-click="upgradeAccount()">Sign Up</a>
+          </p>
+        </div>
+      </div>
+    </div>
+    <div ng-show="formats.length > 0 && !Designer.environment.searching">
+      <div export-options></div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,129 @@
+<div class="options-controls" id="view-options">
+  <button ng-click="toggleOptions()" class="button btn waves-effect waves-light" ng-disabled="Designer.environment.current_view.canvas !== 'jointjs' && Designer.environment.current_view.canvas !== '3d'">
+    <i class="material-icons">settings</i> View Options
+  </button>
+
+  <div id="options-dropdown" class="hava-dropdown-content" ng-show="show_options">
+    <div class="toggle row">
+      <div class="col s8">
+        Display Names
+      </div>
+      <div class="col s4 switch">
+        <label>
+          <input type="checkbox" ng-model="show_labels">
+          <span class="lever"></span>
+        </label>
+      </div>
+    </div>
+
+    <div class="toggle row">
+      <div class="col s8">
+        Display Connections
+      </div>
+      <div class="col s4 switch">
+        <label>
+          <input type="checkbox" ng-model="show_connections">
+          <span class="lever"></span>
+        </label>
+      </div>
+    </div>
+
+    <div class="toggle row" ng-if="Designer.environment.current_view.type === 'Views::Security'">
+      <div class="col s8">
+        <div>Hide Egress All</div>
+      </div>
+      <div class="col s4 switch">
+        <label>
+          <input type="checkbox" ng-model="hide_all" ng-change="toggleArrowsAll()">
+          <span class="lever"></span>
+        </label>
+      </div>
+    </div>
+
+    <div class="icons-row row" ng-show="show_icons && !display3DView">
+      <div class="s2 col">
+        <div>Icons</div>
+      </div>
+      <div class="s5 col text-center" ng-repeat="(icon_set, values) in icon_sets">
+        <button ng-disabled="selected_icon_set === icon_set" class="tiny icon_set" ng-click="selectIconSet(icon_set)">
+          <svg><use xlink:href="{{defaultIconPath(icon_set, values)}}" /></svg>
+        </button>
+      </div>
+    </div>
+
+    <div ng-if="Designer.environment.current_view.type === 'Views::Infrastructure' || Designer.environment.current_view.type === 'Views::Infrastructure::Extended'">
+      <div class="row">
+        <div class="s12 col">
+          <h5>Layout</h5>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="s6 col">
+          &nbsp;&nbsp;
+          Resource width
+        </div>
+        <div class="s4 col end">
+          <ul class="button-group radius even-2">
+            <li><a class="button btn waves-effect waves-light tiny" ng-click="changeLayout('resource_width', -5, 0, 150)">-</a></li>
+            <li><a class="button btn waves-effect waves-light tiny" ng-click="changeLayout('resource_width',5, 0, 150)">+</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="s6 col">
+          &nbsp;&nbsp;
+          Resource height
+        </div>
+        <div class="s4 col end">
+          <ul class="button-group radius even-2">
+            <li><a class="button btn waves-effect waves-light tiny" ng-click="changeLayout('resource_height', -5, 0, 150)">-</a></li>
+            <li><a class="button btn waves-effect waves-light tiny" ng-click="changeLayout('resource_height', 5, 0, 150)">+</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="s6 col">
+          &nbsp;&nbsp;
+          Subnet columns
+        </div>
+        <div class="s4 col end">
+          <ul class="button-group radius even-2">
+            <li><a class="button btn waves-effect waves-light tiny" ng-click="changeLayout('subnet_width',-1, -8, 20)">-</a></li>
+            <li><a class="button btn waves-effect waves-light tiny" ng-click="changeLayout('subnet_width',1, -8, 20)">+</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="s12 col">
+          &nbsp;&nbsp;<a class="button btn waves-effect waves-light tiny" ng-click="resetLayout()">Reset layout</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- TODO: can we determine if it's kubernetes?  -->
+    <div ng-if="Designer.environment.current_view.type === 'Views::Container'">
+      <div class="row">
+        <div class="s12 col">
+          <h5>Layout</h5>
+        </div>
+      </div>
+
+      <div class="toggle row">
+        <div class="col s8">
+          Hide System Namespaces
+        </div>
+        <div class="col s4 switch">
+          <label>
+            <input type="checkbox" ng-model="$parent.hide_namespaces">
+            <span class="lever"></span>
+          </label>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

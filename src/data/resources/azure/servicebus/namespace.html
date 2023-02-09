@@ -1,0 +1,46 @@
+<div class="row">
+  <div class="s7 col"><strong>Tier</strong></div>
+  <div class="s5 col" ng-bind="resource.sku.tier"></div>
+</div>
+<div class="row">
+  <div class="s12 col"><strong>Created</strong></div>
+  <div class="s12 col" ng-bind="resource.created_at"></div>
+</div>
+<div class="row">
+  <div class="s12 col"><strong>Updated</strong></div>
+  <div class="s12 col" ng-bind="resource.updated_at"></div>
+</div>
+<div class="row">
+  <div class="s12 col"><strong>Metric ID</strong></div>
+  <div class="s12 col" ng-bind="resource.metric_id"></div>
+</div>
+<div class="row">
+  <div class="s12 col"><strong>Service Bus Endpoint</strong></div>
+  <div class="s12 col word-wrap" ng-bind="resource.service_bus_endpoint"></div>
+</div>
+
+<div class="row">
+  <div class="s12 col"><h5>Topics</h5></div>
+</div>
+<div class="row" ng-show="info.topics.length === 0">
+  <div class="s12 col">None</div>
+</div>
+<div class="row" ng-repeat="topic in info.topics | orderBy:'name' track by $index">
+  <div class="s12 col end attributes-name">
+    <svg><use xlink:href="{{topic.image}}" /></svg>
+    <a ng-click="selectResource(topic)">{{topic.name}}</a>
+  </div>
+</div>
+
+<div class="row">
+  <div class="s12 col"><h5>Queues</h5></div>
+</div>
+<div class="row" ng-show="info.queues.length === 0">
+  <div class="s12 col">None</div>
+</div>
+<div class="row" ng-repeat="queue in info.queues | orderBy:'name' track by $index">
+  <div class="s12 col end attributes-name">
+    <svg><use xlink:href="{{queue.image}}" /></svg>
+    <a ng-click="selectResource(queue)">{{queue.name}}</a>
+  </div>
+</div>

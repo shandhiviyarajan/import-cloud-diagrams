@@ -1,0 +1,100 @@
+<!-- ATTRIBUTES!!!!11!1-->
+<div class="row" ng-show="resource.availability_zones">
+  <div class="s12 col"><strong>Availability Zones</strong></div>
+  <div class="s12 col">
+    <ul>
+      <li ng-repeat="az in resource.availability_zones">{{az}}</li>
+    </ul>
+  </div>
+</div>
+<div class="row" ng-show="resource.dns_name">
+  <div class="s12 col"><strong>DNS Name</strong></div>
+  <div class="s12 col"><a ng-href="http://{{resource.dns_name}}" ng-bind="resource.dns_name" target="_blank"></a></div>
+</div>
+
+<!-- Autoscaling Group -->
+<div ng-show="info.autoscaling_groups.length > 0">
+  <div class="row">
+    <div class="s10 col end"><h5>Autoscaling Group</h5></div>
+  </div>
+  <div ng-repeat="autoscaling_group in info.autoscaling_groups track by $index">
+    <div class="s12 col end">
+      <svg><use xlink:href="{{autoscaling_group.image}}" /></svg>
+      <a ng-click="selectResource(autoscaling_group)">{{autoscaling_group.name}}</a>
+      <div class="row" ng-repeat="instance in autoscaling_group.instances track by $index">
+        <div class="s12 col end">
+          <small>∟ </small><svg><use xlink:href="{{instance.image}}" /></svg><a ng-click="selectResource(instance)">{{instance.name}}</a>
+          <small>({{instance.provider_id}})</small>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div ng-show="info.instances.length > 0">
+  <div class="row">
+    <div class="s10 col end"><h5>Instances</h5></div>
+  </div>
+  <div class="row">
+    <div class="s10 col end attributes-name" ng-repeat="instance in info.instances track by $index">
+      <svg><use xlink:href="{{instance.image}}" /></svg>
+      <a ng-click="selectResource(instance)">{{instance.name}}</a>
+    </div>
+  </div>
+</div>
+
+<div ng-show="info.services.length > 0">
+  <div class="row">
+    <div class="s10 col end"><h5>ECS Services</h5></div>
+  </div>
+  <div class="row">
+    <div class="s10 col end attributes-name" ng-repeat="service in info.services track by $index">
+      <svg><use xlink:href="{{service.image}}" /></svg>
+      <a ng-click="selectResource(service)">{{service.name}}</a>
+    </div>
+  </div>
+</div>
+
+<div ng-show="info.security_groups.length > 0">
+  <div class="row">
+    <div class="s12 col"><h5>Security Groups</h5></div>
+  </div>
+  <div ng-repeat="sg in info.security_groups track by $index">
+    <div class="row">
+      <div class="s12 col"><a ng-click="selectResource(sg)">{{sg.name}}</a></div>
+    </div>
+  </div>
+</div>
+
+<div ng-show="info.subnets.length > 0">
+  <div class="row">
+    <div class="s12 col"><h5>Subnet Associations</h5></div>
+  </div>
+  <div ng-repeat="subnet in info.subnets track by $index">
+    <div class="row">
+      <div class="s12 col"><a ng-click="selectResource(subnet)">{{subnet.name}}</a></div>
+    </div>
+  </div>
+</div>
+
+<div ng-show="info.cloudfront_distributions.length">
+  <div class="row">
+    <div class="s12 col"><h5>CloudFront Distributions</h5></div>
+  </div>
+  <div ng-repeat="cloudfront_distribution in info.cloudfront_distributions track by $index">
+    <div class="row">
+      <div class="s12 col attributes-name"><svg><use xlink:href="{{cloudfront_distribution.image}}" /></svg><a ng-click="selectResource(cloudfront_distribution)">{{cloudfront_distribution.name}}</a></div>
+    </div>
+  </div>
+</div>
+
+<elb-listeners></elb-listeners>
+
+<elb-healthcheck></elb-healthcheck>
+
+<div class="row" ng-show="info.beanstalk_environment">
+  <div class="s12 col"><h5>ElasticBeanstalk Environment</h5></div>
+  <div class="s12 col attributes-name">
+    <a ng-click="selectResource(info.beanstalk_environment)">{{info.beanstalk_environment.name}}</a>
+  </div>
+</div>

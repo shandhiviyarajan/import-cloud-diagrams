@@ -1,0 +1,123 @@
+<div class="row">
+  <div class="s12 col"><strong>Namespace</strong></div>
+  <div class="s12 col"><a ng-click="selectResource(info.namespace)">{{info.namespace.name}}</a></div>
+</div>
+<div class="row">
+  <div class="s12 col"><strong>Service Account</strong></div>
+  <div class="s12 col"><a ng-click="selectResource(info.service_account)">{{info.service_account.name}}</a></div>
+</div>
+<div class="row">
+  <div class="s12 col"><strong>Generate Name</strong></div>
+  <div class="s12 col" ng-bind="resource.generate_name"></div>
+</div>
+<div class="row">
+  <div class="s12 col"><strong>Creation Time</strong></div>
+  <div class="s12 col" ng-bind="resource.start_time"></div>
+</div>
+<div class="row">
+  <div class="s12 col"><strong>Resource Version</strong></div>
+  <div class="s12 col" ng-bind="resource.resource_version"></div>
+</div>
+<div class="row" ng-if="resource.hostname">
+  <div class="s12 col"><strong>Hostname</strong></div>
+  <div class="s12 col" ng-bind="resource.hostname"></div>
+</div>
+<div class="row" ng-if="resource.subdomain">
+  <div class="s12 col"><strong>Subdomain</strong></div>
+  <div class="s12 col" ng-bind="resource.subdomain"></div>
+</div>
+<div class="row" ng-if="resource.pod_ip">
+  <div class="s12 col"><strong>Pod IP</strong></div>
+  <div class="s12 col" ng-bind="resource.pod_ip"></div>
+</div>
+<div class="row" ng-if="resource.host_ip">
+  <div class="s12 col"><strong>Host IP</strong></div>
+  <div class="s12 col" ng-bind="resource.host_ip"></div>
+</div>
+<div class="row">
+  <div class="s12 col"><strong>Status</strong></div>
+  <div class="s12 col" ng-bind="resource.status" ng-class="resource.status_list[resource.status]"></div>
+</div>
+
+<div class="row">
+  <div class="s12 col"><h5>Containers</h5></div>
+</div>
+<div ng-repeat="container in info.containers" class="attributes-sublist">
+  <div class="row">
+    <div class="s12 col"><strong ng-bind="container.name"></strong></div>
+    <div class="s12 col word-wrap" ng-bind="container.image"></div>
+  </div>
+  <div class="subinfo">
+    <div class="row">
+      <div class="s12 col"><strong>Image Pull Policy</strong></div>
+      <div class="s12 col" ng-bind="container.image_pull_policy"></div>
+    </div>
+    <div class="row">
+      <div class="s12 col"><strong>State</strong></div>
+      <div class="s12 col">
+        <span ng-bind="container.container_status.state_name" ng-class="resource.status_list[container.container_status.state_name]"></span>,
+        <span ng-bind="container.container_status.restartCount + ' restarts'"></span>
+      </div>
+    </div>
+    <div class="row" ng-if="container.resources.requests">
+      <div class="s12 col"><strong>Resource Requests</strong></div>
+      <div class="s12 col" ng-repeat="(key,val) in container.resources.requests">
+        ∟ <small><strong ng-bind="key"></strong>: <span ng-bind="val"></span></small>
+      </div>
+    </div>
+    <div class="row" ng-if="container.resources.limits">
+      <div class="s12 col"><strong>Resource Limits</strong></div>
+      <div class="s12 col" ng-repeat="(key,val) in container.resources.limits">
+        ∟ <small><strong ng-bind="key"></strong>: <span ng-bind="val"></span></small>
+      </div>
+    </div>
+    <div class="row">
+      <div class="s12 col">
+        <strong>Ready</strong>
+        <span class="octicon octicon-check good" ng-show="container.container_status.ready"></span>
+        <span class="octicon octicon-x bad" ng-show="!container.container_status.ready"></span>
+      </div>
+    </div>
+    <div class="row">
+      <div class="s12 col">
+        <strong>Started</strong>
+        <span class="octicon octicon-check good" ng-show="container.container_status.started"></span>
+        <span class="octicon octicon-x bad" ng-show="!container.container_status.started"></span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div ng-show="info.claims.length > 0">
+  <div class="row">
+    <div class="s12 col"><h5>Persistent Volume Claims</h5></div>
+  </div>
+  <div class="row" ng-repeat="claim in info.claims">
+    <div class="s12 col attributes-name"><strong><a ng-click="selectResource(claim)">{{claim.name}}</a></strong></div>
+    <div class="s12 col" ng-if="claim.volume">
+      ∟ <strong>Volume</strong>: <a ng-click="selectResource(claim.volume)">{{claim.volume.name}}</a>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="s12 col"><h5>Node</h5></div>
+  <div class="s12 col" ng-hide="info.node">None</div>
+  <div class="s12 col"><a ng-click="selectResource(info.node)">{{info.node.name}}</a></div>
+</div>
+<div class="row">
+  <div class="s12 col"><h5>Cluster</h5></div>
+  <div class="s12 col"><a ng-click="selectResource(info.cluster)">{{info.cluster.name}}</a></div>
+</div>
+<div class="row" ng-show="info.deployment">
+  <div class="s12 col"><h5>Deployment</h5></div>
+  <div class="s12 col"><a ng-click="selectResource(info.deployment)">{{info.deployment.name}}</a></div>
+</div>
+<div class="row" ng-show="info.replica_set">
+  <div class="s12 col"><h5>Replica Set</h5></div>
+  <div class="s12 col"><a ng-click="selectResource(info.replica_set)">{{info.replica_set.name}}</a></div>
+</div>
+<div class="row" ng-show="info.stateful_set">
+  <div class="s12 col"><h5>Stateful Set</h5></div>
+  <div class="s12 col"><a ng-click="selectResource(info.stateful_set)">{{info.stateful_set.name}}</a></div>
+</div>

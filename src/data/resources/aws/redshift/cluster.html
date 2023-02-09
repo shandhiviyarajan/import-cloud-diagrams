@@ -1,0 +1,117 @@
+<!-- Attributes -->
+<div class="row">
+  <div class="s6 col"><strong>Cluster Version</strong></div>
+  <div class="s6 col" ng-bind="resource.cluster_version || '-'"></div>
+</div>
+<div class="row">
+  <div class="s6 col"><strong>Database</strong></div>
+  <div class="s6 col" ng-bind="resource.db_name || '-'"></div>
+</div>
+<div class="row">
+  <div class="s6 col"><strong>Allow Upgrade</strong></div>
+  <div class="s6 col" ng-bind="resource.allow_version_upgrade"></div>
+</div>
+<div class="row">
+  <div class="s6 col"><strong>Snapshot</strong></div>
+  <div class="s6 col" ng-bind="resource.automated_snapshot_retention_period">(Ret. Period)</div>
+</div>
+<div class="row" ng-show="resource.elastic_ip_status">
+  <div class="s6 col"><strong>Elastic IP Status</strong></div>
+  <div class="s6 col" ng-bind="resource.elastic_ip_status"></div>
+</div>
+<div class="row">
+  <div class="s6 col"><strong>Encrypted</strong></div>
+  <div class="s6 col" ng-bind="resource.encrypted"></div>
+</div>
+<div class="row">
+  <div class="s6 col"><strong>Endpoint Port</strong></div>
+  <div class="s6 col" ng-bind="resource.endpoint.port"></div>
+</div>
+<div class="row">
+  <div class="s6 col"><strong>Availability Zone</strong></div>
+  <div class="s6 col" ng-bind="resource.availability_zone"></div>
+</div>
+<div class="row" ng-show="resource.vpc_id">
+  <div class="s6 col"><strong>VPC ID</strong></div>
+  <div class="s6 col" ng-bind="resource.vpc_id"></div>
+</div>
+<div class="row" ng-show="resource.restore_status">
+  <div class="s6 col"><strong>Restore Status</strong></div>
+  <div class="s6 col" ng-bind="resource.restore_status"></div>
+</div>
+<div class="row" ng-show="resource.preferred_maintenance_window">
+  <div class="s6 col"><strong>Maintenance Window</strong></div>
+  <div class="s6 col" ng-bind="resource.preferred_maintenance_window"></div>
+</div>
+
+<div ng-show="info.address">
+  <div class="row">
+    <div class="s12 col"><h5>Nodes</h5></div>
+  </div>
+  <div class="row">
+    <div class="s5 col"><strong>Type</strong></div>
+    <div class="s7 col" ng-bind="resource.node_type"></div>
+  </div>
+  <div class="row">
+    <div class="s5 col"><strong>Nodes</strong></div>
+    <div class="s7 col" ng-bind="resource.number_of_nodes"></div>
+  </div>
+  <div ng-show="info.cluster_nodes.length > 0">
+    <div class="row">
+      <div class="s12 col"><strong>Nodes List</strong></div>
+    </div>
+    <div ng-repeat="node in info.cluster_nodes">
+      <div class="row">
+        <div class="s5 offset-s1 col"><strong>Role</strong></div>
+        <div class="s6 col"><strong ng-bind="node.node_role" style="text-decoration: underline"></strong></div>
+      </div>
+      <div class="row">
+        <div class="s5 offset-s1 col"><strong>Public IP Address</strong></div>
+        <div class="s6 col" ng-bind="node.public_ip_address"></div>
+      </div>
+      <div class="row">
+        <div class="s5 offset-s1 col"><strong>Private IP Address</strong></div>
+        <div class="s6 col" ng-bind="node.private_ip_address"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row" ng-show="info.nodes.length > 0">
+  <div class="s12 col"><h5>Nodes</h5></div>
+  <div class="s10 col end attributes-name" ng-repeat="nd in info.nodes">
+    <svg><use xlink:href="{{nd.image}}" /></svg>
+    <a ng-click="selectResource(nd)">{{nd.name}}</a>
+  </div>
+</div>
+
+<div class="row" ng-show="info.subnet_group.length > 0">
+  <div class="s12 col"><h5>Subnet Group</h5></div>
+  <div class="s10 col end attributes-name" ng-repeat="sb in info.subnet_group">
+    <svg><use xlink:href="{{sb.image}}" /></svg>
+    <a ng-click="selectResource(sb)">{{sb.name}}</a>
+  </div>
+</div>
+
+
+<div ng-show="info.security_groups.length > 0">
+  <div class="row">
+    <div class="s12 col"><h5>Security Groups</h5></div>
+  </div>
+  <div ng-repeat="sg in info.security_groups track by $index">
+    <div class="row">
+      <div class="s12 col attributes-name"><a ng-click="selectResource(sg)">{{sg.name}}</a></div>
+    </div>
+  </div>
+</div>
+
+<div ng-show="info.parameter_groups.length > 0">
+  <div class="row">
+    <div class="s12 col"><h5>Parameter Groups</h5></div>
+  </div>
+  <div ng-repeat="pg in info.parameter_groups track by $index">
+    <div class="row">
+      <div class="s12 col attributes-name"><a ng-click="selectResource(pg)">{{pg.name}}</a></div>
+    </div>
+  </div>
+</div>

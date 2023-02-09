@@ -1,0 +1,15 @@
+<div class="segment">
+  <div class="row">
+    <div class="s12 col"><h5>Listeners</h5></div>
+  </div>
+  <div ng-repeat="listener_description in listeners">
+    <div class="row">
+      <div class="s6 col"><strong>Instance</strong></div>
+      <div class="s6 col"><strong>LB</strong></div>
+    </div>
+    <div class="row">
+      <div class="s6 col">Port {{listener_description.listener.instance_port}} - {{listener_description.listener.instance_protocol}}</div>
+      <div class="s6 col">Port {{listener_description.listener.load_balancer_port}} - {{listener_description.listener.protocol}}</div>
+    </div>
+  </div>
+</div>

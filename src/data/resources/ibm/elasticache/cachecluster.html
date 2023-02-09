@@ -1,0 +1,65 @@
+<!-- Attributes -->
+<div class="row" ng-if="resource.client_download_landing_page">
+  <div class="s12 col"><strong>Client Download Landing Page</strong></div>
+  <div class="s12 col superlong">
+    <a ng-href="{{resource.client_download_landing_page}}">{{resource.client_download_landing_page}}</a>
+  </div>
+</div>
+<div class="row" ng-if="resource.configuration_endpoint">
+  <div class="s5 col"><strong>Configuration Endpoint</strong></div>
+  <div class="s7 col" ng-bind="resource.configuration_endpoint"></div>
+</div>
+<div class="row" ng-if="resource.cache_node_type">
+  <div class="s12 col"><strong>Cache Node Type</strong></div>
+  <div class="s12 col" ng-bind="resource.cache_node_type"></div>
+</div>
+<div class="row" ng-if="resource.num_cache_nodes">
+  <div class="s12 col"><strong>Num Cache Nodes</strong></div>
+  <div class="s12 col" ng-bind="resource.num_cache_nodes"></div>
+</div>
+<div class="row" ng-if="resource.engine">
+  <div class="s5 col"><strong>Engine</strong></div>
+  <div class="s7 col" ng-bind="resource.engine"></div>
+</div>
+<div class="row" ng-if="resource.engine_version">
+  <div class="s5 col"><strong>Engine Version</strong></div>
+  <div class="s7 col" ng-bind="resource.engine_version"></div>
+</div>
+<div class="row" ng-if="resource.cache_cluster_status">
+  <div class="s5 col"><strong>Status</strong></div>
+  <div class="s7 col" ng-bind="resource.cache_cluster_status"></div>
+</div>
+<div class="row" ng-if="resource.snapshot_retention_limit">
+  <div class="s5 col"><strong>Snapshot Retention Limit</strong></div>
+  <div class="s7 col" ng-bind="resource.snapshot_retention_limit"></div>
+</div>
+<div class="row" ng-if="resource.snapshot_window">
+  <div class="s12 col"><strong>Snapshot Window</strong></div>
+  <div class="s12 col" ng-bind="resource.snapshot_window"></div>
+</div>
+<div class="row" ng-if="resource.preferred_availability_zone">
+  <div class="s12 col"><strong>Preferred Availability Zones</strong></div>
+  <div class="s12 col" ng-bind="resource.preferred_availability_zone"></div>
+</div>
+<div class="row" ng-if="resource.preferred_maintenance_window">
+  <div class="s12 col"><strong>Preferred Maintenance Window</strong></div>
+  <div class="s12 col" ng-bind="resource.preferred_maintenance_window"></div>
+</div>
+<div class="row" ng-if="resource.cache_cluster_create_time">
+  <div class="s12 col"><strong>Create Time</strong></div>
+  <div class="s12 col" ng-bind="resource.cache_cluster_create_time"></div>
+</div>
+<div class="row" ng-if="resource.auto_minor_version_upgrade">
+  <div class="s12 col"><strong>Auto Minor Version Upgrade</strong> <span class="octicon octicon-check good"></span></div>
+</div>
+
+<div ng-show="info.nodes.length > 0">
+  <div class="row">
+    <div class="s12 col"><h5>Nodes</h5></div>
+  </div>
+  <div ng-repeat="node in info.nodes track by $index">
+    <div class="row">
+      <div class="s12 col attributes-name"><a ng-click="selectResource(node)">{{node.name}}</a></div>
+    </div>
+  </div>
+</div>

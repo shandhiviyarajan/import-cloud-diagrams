@@ -1,0 +1,20 @@
+<!-- Attributes -->
+<div class="row" ng-if="resource.node_role">
+  <div class="s5 col"><strong>Node Role</strong></div>
+  <div class="s7 col" ng-bind="resource.node_role"></div>
+</div>
+<div class="row" ng-if="resource.public_ip_address">
+  <div class="s5 col"><strong>Public IP Address</strong></div>
+  <div class="s7 col" ng-bind="resource.public_ip_address"></div>
+</div>
+<div class="row" ng-if="resource.private_ip_address">
+  <div class="s5 col"><strong>Private IP Address</strong></div>
+  <div class="s7 col" ng-bind="resource.private_ip_address"></div>
+</div>
+<div class="row" ng-if="info.cluster">
+  <div class="s112 col"><h5>Cluster</h5></div>
+  <div class="s12 col attributes-name">
+    <svg><use xlink:href="{{info.cluster.image}}" /></svg>
+    <a ng-click="selectResource(info.cluster)">{{info.cluster.name}}</a>
+  </div>
+</div>

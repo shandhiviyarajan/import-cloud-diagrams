@@ -1,0 +1,12 @@
+<div class="designer-workspace" ng-class="{apex: Designer.watermarked}">
+  <div class="designer-canvas" ng-style="{'z-index': Designer.environment.current_view.canvas == 'jointjs' ? '502': '499'}" joint-js-canvas ng-show="Designer.environment.current_view.canvas == 'jointjs' || Designer.environment.current_view.canvas == '3d'">&nbsp;</div>
+  <div class="designer-canvas" html-canvas ng-show="Designer.environment.current_view.canvas == 'html'">&nbsp;</div>
+  <div class="designer-canvas" ng-style="{'z-index': Designer.environment.current_view.canvas == '3d' ? '500': '499'}" three-js-canvas ng-show="Designer.environment.current_view.canvas == '3d' || Designer.environment.current_view.canvas == 'jointjs'"></div>
+  <div class="paper-empty text-center" ng-show="!Designer.environment.facet.resources.length">
+  	<div class="hava-logo">
+  		<img src="assets/images/hava-icon-reports.png">
+  	</div>
+    <div><h3>Nothing to show</h3></div>
+  </div>
+</div>
+

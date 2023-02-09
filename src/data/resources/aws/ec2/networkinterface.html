@@ -1,0 +1,86 @@
+<!-- ATTRIBUTES!!! -->
+<div class="row">
+  <div class="s12 col"><strong>Status</strong></div>
+  <div class="s12 col" ng-bind="resource.status"></div>
+</div>
+<div class="row">
+  <div class="s12 col"><strong>Interface Type</strong></div>
+  <div class="s12 col" ng-bind="resource.interface_type"></div>
+</div>
+<div class="row">
+  <div class="s12 col"><strong>MAC Address</strong></div>
+  <div class="s12 col" ng-bind="resource.mac_address"></div>
+</div>
+<div class="row">
+  <div class="s12 col"><strong>Primary private IPv4 IP</strong></div>
+  <div class="s12 col" ng-bind="info.primary_ip_address.private_ip_address"></div>
+</div>
+<div class="row">
+  <div class="s12 col"><strong>Secondary private IPv4 IPs</strong></div>
+  <div class="s12 col" ng-show="info.secondary_ip_addresses.length">
+    <ul>
+      <li ng-repeat="ip in info.secondary_ip_addresses" ng-bind="ip.private_ip_address"></li>
+    </ul>
+  </div>
+  <div class="s12 col" ng-show="info.secondary_ip_addresses.length == 0">
+    None.
+  </div>
+</div>
+
+<!-- Connected resources! -->
+<div ng-show="info.address">
+  <div class="row">
+    <div class="s12 col"><h5>Elastic IP</h5></div>
+  </div>
+  <div class="row" ng-show="info.address.public_ip">
+    <div class="s5 col"><strong>Public IP</strong></div>
+    <div class="s7 col" ng-bind="info.address.public_ip"></div>
+  </div>
+  <div class="row" ng-show="info.address.private_ip_address">
+    <div class="s5 col"><strong>Private IP</strong></div>
+    <div class="s7 col" ng-bind="info.address.private_ip_address"></div>
+  </div>
+  <div class="breaker"></div>
+</div>
+
+<div class="row" ng-show="info.subnet">
+  <div class="s12 col"><h5>Subnet</h5></div>
+  <div class="s12 col attributes-name">
+    <a ng-click="selectResource(info.subnet)">{{info.subnet.name}}</a>
+  </div>
+</div>
+<div class="row" ng-show="info.instance">
+  <div class="s12 col"><h5>Instance</h5></div>
+  <div class="s12 col attributes-name">
+    <a ng-click="selectResource(info.instance)">{{info.instance.name}}</a>
+  </div>
+</div>
+<div class="row" ng-show="info.nat_gateway">
+  <div class="s12 col"><h5>NAT Gateway</h5></div>
+  <div class="s12 col attributes-name">
+    <a ng-click="selectResource(info.nat_gateway)">{{info.nat_gateway.name}}</a>
+  </div>
+</div>
+
+<div ng-show="info.security_groups.length > 0">
+  <div class="row">
+    <div class="s12 col"><h5>Security Groups</h5></div>
+  </div>
+  <div ng-repeat="sg in info.security_groups track by $index">
+    <div class="row">
+      <div class="s12 col attributes-name"><a ng-click="selectResource(sg)">{{sg.name}}</a></div>
+    </div>
+  </div>
+</div>
+
+<div ng-show="info.route_tables.length > 0">
+  <div class="row">
+    <div class="s12 col"><h5>Route Tables</h5></div>
+  </div>
+  <div ng-repeat="rt in info.route_tables track by $index">
+    <div class="row">
+      <div class="s12 col attributes-name"><a ng-click="selectResource(rt)">{{rt.name}}</a></div>
+    </div>
+  </div>
+</div>
+

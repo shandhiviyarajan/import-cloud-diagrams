@@ -1,0 +1,82 @@
+// Table of Contents
+@import "functions";
+$base-font-size: 95%;
+
+// We use this to control whether or not CSS classes come through in the gem files.
+$include-html-classes: true;
+$include-print-styles: false;
+$include-html-global-classes: $include-html-classes;
+
+$body-bg: #FAFAFA;
+$body-font-color: #343434;
+$app-bg: #F2F2F2;
+$designer-font-color: #EAEAEA;
+
+// Default colours
+$primary-color: #222222;
+$secondary-color: #a0d3e8;
+$alert-color: #f04124;
+$success-color: #43AC6A;
+$warning-color: #f08a24;
+$info-color: #a0d3e8;
+$jet         : #222222;
+
+$header-font-color: darken($body-font-color, 20%);
+$topbar-bg-color: $body-bg;
+$topbar-bg: $topbar-bg-color;
+$row-width: rem-calc(1152);
+$column-gutter: rem-calc(32);
+
+// We use these to define default font stacks
+$font-family-nunito: 'Nunito', "HavaStandardFont", "Lato", "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
+$font-family-sans-serif: 'Nunito', "HavaStandardFont", "Lato", "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
+$font-family-hava-header: 'Nunito', "HavaHeaderFont", "Lato", "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
+$font-family-serif: 'Nunito', Georgia, Cambria, "Times New Roman", Times, serif;
+$font-family-monospace: 'Nunito', Consolas, "Liberation Mono", Courier, monospace;
+$font-family-public: 'Nunito', Raleway, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+
+$white       : #FFFFFF;
+$aluminum    : #999999;
+$black       : #000000;
+$global-radius: 4px;
+
+// We use these to control header font styles
+$header-font-family: $font-family-hava-header;
+$header-font-weight: 200;
+$header-font-color: $primary-color;
+$header-bottom-margin: 1rem;
+
+// A general <small> styling
+$small-font-size: 80%;
+$button-margin-bottom: 0;
+
+$button-radius: $global-radius;
+$input-font-size: rem-calc(14);
+$input-border-radius: 5px;
+
+$panel-padding: rem-calc(32);
+$sub-nav-list-margin: 0;
+
+// Style the top bar dropdown elements
+$topbar-dropdown-bg: $white;
+$topbar-dropdown-link-color: $black;
+$topbar-dropdown-link-bg: $white;
+$topbar-dropdown-link-bg-hover: $white;
+$topbar-dropdown-toggle-color: $black;
+
+// Set the link colors and styles for top-level nav
+$topbar-link-color: $black;
+$topbar-link-color-hover: $black;
+$topbar-link-color-active: $black;
+$topbar-link-color-active-hover: $black;
+$topbar-link-bg-color-hover: $body-bg;
+$topbar-link-bg-hover: $white;
+$topbar-link-bg-active: $body-bg;
+$topbar-link-bg-active-hover: $white;
+$topbar-link-font-family: $font-family-public;
+
+// Screen cut off sizes for different devices
+$desktop: 1200px;
+$tablet-cutoff-width: 992px;
+$mobile-max-width: 800px;
+$mobile: 480px;

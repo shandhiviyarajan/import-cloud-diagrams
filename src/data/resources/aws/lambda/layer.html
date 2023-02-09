@@ -1,0 +1,25 @@
+<!-- ATTRIBUTES!!! -->
+<div class="row">
+  <div class="s5 col"><strong>Latest Matching Version ARN</strong></div>
+  <div class="s7 col" ng-bind="resource.latest_matching_version_arn"></div>
+</div>
+
+<div ng-show="info.layer_versions.length>0">
+  <div class="row">
+    <div class="s12 col"><h5>Layer Versions</h5></div>
+  </div>
+  <div ng-repeat="layer_version in info.layer_versions track by $index">
+    <div class="row">
+      <div class="s12 col attributes-name"><svg><use xlink:href="{{layer_version.image}}" /></svg><a ng-click="selectResource(layer_version)">{{layer_version.version}}</a></div>
+    </div>
+  </div>
+</div>
+
+<div ng-show="info.function">
+  <div class="row">
+    <div class="s12 col"><h5>Function</h5></div>
+  </div>
+  <div class="row">
+    <div class="s12 col attributes-name"><svg><use xlink:href="{{info.function.image}}" /></svg><a ng-click="selectResource(info.function)">{{info.function.name}}</a></div>
+  </div>
+</div>

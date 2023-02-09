@@ -1,0 +1,174 @@
+<div class="row sub-title">
+  <div class="s12 col">
+    <small ng-if="resource.project">
+      <strong>Project</strong><br />
+      <span ng-bind="resource.project"></span>
+    </small>
+  </div>
+
+</div>
+
+<div class="row" ng-show="resource.region">
+  <div class="s5 col">
+    <strong>Region</strong>
+  </div>
+
+  <div class="s7 col" ng-bind="resource.region">
+  </div>
+</div>
+
+<div class="row" ng-show="resource.peer_ip">
+  <div class="s12 col">
+    <strong>Peer IP</strong>
+  </div>
+
+  <div class="s12 col" ng-bind="resource.peer_ip">
+  </div>
+</div>
+
+<div class="row" ng-show="resource.ike_version">
+  <div class="s12 col">
+    <strong>IKE Version</strong>
+  </div>
+
+  <div class="s12 col" ng-bind="resource.ike_version">
+  </div>
+</div>
+
+<div class="row" ng-show="resource.status">
+  <div class="s12 col">
+    <strong>Status</strong>
+  </div>
+
+  <div class="s12 col" ng-bind="resource.status">
+  </div>
+</div>
+
+<div class="row" ng-show="resource.detailed_status">
+  <div class="s12 col">
+    <strong>Detailed Status</strong>
+  </div>
+
+  <div class="s12 col" ng-bind="resource.detailed_status">
+  </div>
+</div>
+
+<div class="row" ng-show="resource.description">
+  <div class="s12 col">
+    <strong>Description</strong>
+  </div>
+
+  <div class="s12 col" ng-bind="resource.description">
+  </div>
+</div>
+
+<div class="row" ng-show="resource.creation_timestamp">
+  <div class="s12 col">
+    <strong>Creation Timestamp</strong>
+  </div>
+
+  <div class="s12 col" ng-bind="resource.creation_timestamp | date:'yyyy-MM-dd HH:mm:ss'">
+  </div>
+</div>
+
+<div ng-show="resource.local_traffic_selector.length">
+  <div class="row">
+    <div class="s12 col">
+      <h5>Local Traffic Selector</h5>
+    </div>
+  </div>
+
+  <div ng-repeat=
+  "local_traffic_selector in resource.local_traffic_selector">
+    <div class="row" ng-show=
+    "local_traffic_selector.local_traffic_selector">
+      <div class="s12 col">
+        <strong>Local Traffic Selector</strong>
+      </div>
+
+      <div class="s12 col" ng-bind=
+      "local_traffic_selector.local_traffic_selector">
+      </div>
+    </div>
+
+    <div class="row" ng-hide=
+    "local_traffic_selector.local_traffic_selector">
+      <div class="s5 col">
+        <p>{{local_traffic_selector}}</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div ng-show="resource.remote_traffic_selector.length">
+  <div class="row">
+    <div class="s12 col">
+      <h5>Remote Traffic Selector</h5>
+    </div>
+  </div>
+
+  <div ng-repeat=
+  "remote_traffic_selector in resource.remote_traffic_selector">
+    <div class="row" ng-show=
+    "remote_traffic_selector.remote_traffic_selector">
+      <div class="s12 col">
+        <strong>Remote Traffic Selector</strong>
+      </div>
+
+      <div class="s12 col" ng-bind=
+      "remote_traffic_selector.remote_traffic_selector">
+      </div>
+    </div>
+
+    <div class="row" ng-hide=
+    "remote_traffic_selector.remote_traffic_selector">
+      <div class="s5 col">
+        <p>{{remote_traffic_selector}}</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row" ng-show="info.router">
+  <div class="s12 col">
+    <h5>Router</h5>
+  </div>
+
+  <div class="s12 col attributes-name">
+    <svg><use xlink:href="{{info.router.image}}" /></svg>
+    <a ng-click="selectResource(info.router)" highlight-resources="info.router">{{info.router.name}}</a>
+  </div>
+</div>
+
+<div class="row" ng-show="info.target_vpn_gateway">
+  <div class="s12 col">
+    <h5>Target VPN Gateway</h5>
+  </div>
+
+  <div class="s12 col attributes-name">
+    <svg><use xlink:href="{{info.target_vpn_gateway.image}}" /></svg>
+    <a ng-click="selectResource(info.target_vpn_gateway)" highlight-resources="info.target_vpn_gateway">{{info.target_vpn_gateway.name}}</a>
+  </div>
+</div>
+
+<div class="row" ng-show="info.vpn_gateway">
+  <div class="s12 col">
+    <h5>VPN Gateway</h5>
+  </div>
+
+  <div class="s12 col attributes-name">
+    <svg><use xlink:href="{{info.vpn_gateway.image}}" /></svg>
+    <a ng-click="selectResource(info.vpn_gateway)" highlight-resources="info.vpn_gateway">{{info.vpn_gateway.name}}</a>
+  </div>
+</div>
+
+<div class="row" ng-show="info.peer_external_gateway">
+  <div class="s12 col">
+    <h5>Peer External Gateway Interface</h5>
+  </div>
+
+  <div class="s12 col attributes-name">
+    <svg><use xlink:href="{{info.peer_external_gateway.image}}" /></svg>
+    <a ng-click="selectResource(info.peer_external_gateway)" highlight-resources="info.peer_external_gateway">{{info.peer_external_gateway.name}}</a>
+  </div>
+</div>

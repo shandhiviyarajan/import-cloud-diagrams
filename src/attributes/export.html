@@ -1,0 +1,41 @@
+<div>
+  <div class="row">
+    <div class="s12 col">
+      <h5>Export</h5>
+    </div>
+  </div>
+  <div class="row">
+    <div class="s12 col">
+      <ul class="button-group radius">
+        <li ng-repeat="format in formats" ng-if="Designer.environment.current_view.supported_exports[format]">
+          <button ng-disabled="exporting && exporting.state !== 'finished'" class="button btn waves-effect waves-light tiny" ng-click="export_view(format)">
+            {{format | uppercase}}
+          </button>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="row" ng-show="exporting && exporting.state !== 'pending'">
+    <div class="s12 col">
+      <span class="alert-box secondary radius" ng-show="exporting.state === 'queued'">
+        Waiting to export ...
+        <span loader class="right" ng-show="exporting.state !== 'finished'"></span>
+      </span>
+      <span class="alert-box secondary radius" ng-show="exporting.state === 'exporting'">
+        Exporting to <strong>{{exporting.format | uppercase}}</strong>
+        <span loader class="right" ng-show="exporting.state !== 'finished'"></span>
+      </span>
+      <span class="alert-box secondary radius" ng-show="exporting.state === 'finished'">
+        Export complete!
+        <a class="label small radius right success" target="_blank" ng-href="{{exporting.download_path}}" download>Download {{exporting.format | uppercase}}</a>
+      </span>
+    </div>
+  </div>
+
+  <div class="row" ng-show="error.length > 0">
+    <div class="s12 col">
+      <span class="alert-box alert radius" ng-bind="error"></span>
+    </div>
+  </div>
+</div>

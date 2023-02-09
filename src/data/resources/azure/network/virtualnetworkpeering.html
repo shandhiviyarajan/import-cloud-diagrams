@@ -1,0 +1,90 @@
+<div class="row">
+  <div class="s7 col"><strong>Peering State</strong></div>
+  <div class="s5 col" ng-bind="(resource.peering_state || '-')"></div>
+</div>
+
+<div class="row">
+  <div class="s7 col"><strong>Provisioning State</strong></div>
+  <div class="s5 col" ng-bind="(resource.provisioning_state || '-')"></div>
+</div>
+
+<div class="row">
+  <div class="s7 col"><strong>Allow Forwarded Traffic</strong></div>
+  <div class="s5 col">
+    <span ng-show="resource.allow_forwarded_traffic" class="octicon octicon-check good"></span>
+    <span ng-hide="resource.allow_forwarded_traffic" class="octicon octicon-x bad"></span>
+  </div>
+</div>
+
+<div class="row">
+  <div class="s7 col"><strong>Allow Gateway Transit</strong></div> 
+  <div class="s5 col">
+    <span ng-show="resource.allow_gateway_transit" class="octicon octicon-check good"></span>
+    <span ng-hide="resource.allow_gateway_transit" class="octicon octicon-x bad"></span>
+  </div>
+</div>
+
+<div class="row">
+  <div class="s7 col">
+    <strong>Allow VN Access</strong></div>
+  <div class="s5 col">
+    <span ng-show="resource.allow_virtual_network_access" class="octicon octicon-check good"></span>
+    <span ng-hide="resource.allow_virtual_network_access" class="octicon octicon-x bad"></span>
+  </div>
+</div>
+
+<div class="row">
+  <div class="s7 col"><strong>Use Remote Gateways</strong></div>
+  <div class="s5 col">
+    <span ng-show="resource.use_remote_gateways" class="octicon octicon-check good"></span>
+    <span ng-hide="resource.use_remote_gateways" class="octicon octicon-x bad"></span></div>
+  </div>
+</div>
+
+<div class="row" ng-show="resource.etag">
+  <div class="s2 col">
+    <strong>Etag</strong>
+  </div>
+
+  <div class="s10 col" ng-bind="resource.etag">
+  </div>
+</div>
+
+<div class="row">
+  <div class="s12 col"><h5>Virtual Network</h5></div>
+</div>
+<div class="row" ng-show="!info.virtual_network">
+  <div class="s12 col word-wrap" ng-bind="resource.virtual_network_id"></div>
+</div>
+<div class="row" ng-show="info.virtual_network">
+  <div class="s12 col end attributes-name">
+    <svg><use xlink:href="{{info.virtual_network.image}}" /></svg>
+    <a ng-click="selectResource(info.virtual_network)">{{info.virtual_network.name}}</a>
+  </div>
+</div>
+
+<div class="row">
+  <div class="s12 col"><h5>Remote Virtual Network</h5></div>
+</div>
+<div class="row" ng-show="!info.remote_virtual_network">
+  <div class="s12 col word-wrap" ng-bind="resource.remote_virtual_network_id"></div>
+</div>
+<div class="row" ng-show="info.remote_virtual_network">
+  <div class="s12 col end attributes-name">
+    <svg><use xlink:href="{{info.remote_virtual_network.image}}" /></svg>
+    <a ng-click="selectResource(info.remote_virtual_network)">{{info.remote_virtual_network.name}}</a>
+  </div>
+</div>
+
+<div class="row">
+  <div class="s12 col"><h5>Resource Group</h5></div>
+</div>
+<div class="row" ng-show="!info.resource_group">
+  <div class="s12 col">None</div>
+</div>
+<div class="row" ng-show="info.resource_group">
+  <div class="s12 col end attributes-name">
+    <svg><use xlink:href="{{info.resource_group.image}}" /></svg>
+    <a ng-click="selectResource(info.resource_group)">{{info.resource_group.name}}</a>
+  </div>
+</div>

@@ -1,0 +1,24 @@
+<div class="export-controls" id="export-options">
+  <button ng-click="toggleExports()" class="button btn waves-effect waves-light exporter">Export</button>
+
+  <div id="exporter-dropdown" class="hava-dropdown-content" ng-show="show_export">
+    <div ng-show="Reporter.formats.length === 0">
+      <div class="row">
+        <div class="s12 col">
+          <h5>Export Report</h5>
+        </div>
+      </div>
+      <div class="row">
+        <div class="s12 col">
+          <p>
+            Want to be able to export this report? <a ng-click="upgradeAccount()">Upgrade</a> now and you'll be able to
+            export your reports in PDF!
+          </p>
+        </div>
+      </div>
+    </div>
+    <div ng-show="Reporter.formats.length > 0">
+      <div report-export-options></div>
+    </div>
+  </div>
+</div>

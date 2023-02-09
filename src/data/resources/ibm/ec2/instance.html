@@ -1,0 +1,218 @@
+<!-- ATTRIBUTES!!! -->
+<div class="row">
+  <div class="s5 col"><strong>AMI</strong></div>
+  <div class="s7 col" ng-bind="resource.ami"></div>
+</div>
+<div class="row">
+  <div class="s5 col"><strong>Instance Type</strong></div>
+  <div class="s7 col" ng-bind="resource.instance_type"></div>
+</div>
+<div class="row">
+  <div class="s5 col"><strong>Architecture</strong></div>
+  <div class="s7 col" ng-bind="resource.architecture"></div>
+</div>
+<div class="row">
+  <div class="s5 col"><strong>Key Name</strong></div>
+  <div class="s7 col" ng-bind="resource.key_name"></div>
+</div>
+<div class="row" ng-show="resource.public_ip_address">
+  <div class="s5 col"><strong>Public IP</strong></div>
+  <div class="s7 col" ng-bind="resource.public_ip_address"></div>
+</div>
+<div class="row" ng-show="resource.ami_launch_index">
+  <div class="s5 col"><strong>AMI Launch Index</strong></div>
+  <div class="s7 col" ng-bind="resource.ami_launch_index"></div>
+</div>
+<div class="row" ng-show="resource.hypervisor">
+  <div class="s5 col"><strong>Hypervisor</strong></div>
+  <div class="s7 col" ng-bind="resource.hypervisor"></div>
+</div>
+<div class="row" ng-show="resource.instance_lifecycle">
+  <div class="s5 col"><strong>Instance Lifecycle</strong></div>
+  <div class="s7 col" ng-bind="resource.instance_lifecycle"></div>
+</div>
+<div class="row" ng-show="resource.platform">
+  <div class="s5 col"><strong>Platform</strong></div>
+  <div class="s7 col" ng-bind="resource.platform"></div>
+</div>
+<div class="row" ng-show="resource.status">
+  <div class="s5 col"><strong>Status</strong></div>
+  <div class="s7 col" ng-bind="resource.status"></div>
+</div>
+
+<hr />
+
+<div class="row">
+  <div class="s12 col"><strong>Availability Zone</strong></div>
+  <div class="s12 col" ng-bind="resource.availability_zone"></div>
+</div>
+<div class="row" ng-show="resource.client_token">
+  <div class="s12 col"><strong>Client Token</strong></div>
+  <div class="s12 col" ng-bind="resource.client_token"></div>
+</div>
+<div class="row" ng-show="resource.launch_time">
+  <div class="s12 col"><strong>Launch Time</strong></div>
+  <div class="s12 col" ng-bind="resource.launch_time"></div>
+</div>
+<div class="row" ng-show="resource.virtualization_type">
+  <div class="s12 col"><strong>Virtualization Type</strong></div>
+  <div class="s12 col" ng-bind="resource.virtualization_type"></div>
+</div>
+<div class="row" ng-show="resource.sriov_net_support">
+  <div class="s5 col"><strong>SRIOV Net Support</strong></div>
+  <div class="s7 col" ng-bind="resource.sriov_net_support"></div>
+</div>
+<hr />
+<div class="row" ng-show="resource.private_dns_name">
+  <div class="s12 col"><strong>Private DNS Name</strong></div>
+  <div class="s12 col">
+    <a ng-href="http://{{resource.private_dns_name}}" ng-bind="resource.private_dns_name"></a>
+  </div>
+</div>
+<div class="row" ng-show="resource.public_dns_name">
+  <div class="s12 col"><strong>Public DNS Name</strong></div>
+  <div class="s12 col">
+    <a ng-href="http://{{resource.public_dns_name}}" ng-bind="resource.public_dns_name"></a>
+  </div>
+</div>
+<hr />
+<div class="row" ng-show="resource.ebs_optimized">
+  <div class="s12 col"><strong>EBS Optimized</strong> <span class="octicon octicon-check good"></span></div>
+</div>
+<div class="row" ng-show="resource.associate_public_ip_address">
+  <div class="s12 col"><strong>Associate Public IP</strong> <span class="octicon octicon-check good"></span></div>
+</div>
+<div class="row" ng-show="resource.source_dest_check">
+  <div class="s12 col"><strong>Source Destination Check</strong> <span class="octicon octicon-check good"></span></div>
+</div>
+
+<hr />
+
+<div ng-show="info.primary_private_ips.length">
+  <div class="row">
+    <div class="s12 col"><h5>Private IPs</h5></div>
+  </div>
+  <div class="row" ng-repeat="data in info.primary_private_ips | orderBy: 'ip'">
+    <div class="s12 col"><strong ng-bind="data.ip"></strong></div>
+    <div class="s12 col" ng-show="data.nic">
+      <small>
+        ∟ Network Interface:
+        <a ng-click="selectResource(data.nic)">{{data.nic.name}}</a>
+      </small>
+    </div>
+    <div class="s12 col" ng-show="data.subnet">
+      <small>
+        ∟ Subnet:
+        <a ng-click="selectResource(data.subnet)">{{data.subnet.name}}</a>
+      </small>
+    </div>
+  </div>
+</div>
+
+<div ng-show="info.secondary_private_ips.length">
+  <div class="row">
+    <div class="s12 col"><h5>Secondary Private IPs</h5></div>
+  </div>
+  <div class="row" ng-repeat="data in info.secondary_private_ips | orderBy: 'ip'">
+    <div class="s12 col"><strong ng-bind="data.ip"></strong></div>
+    <div class="s12 col" ng-show="data.nic">
+      <small>
+        ∟ Network Interface:
+        <a ng-click="selectResource(data.nic)">{{data.nic.name}}</a>
+      </small>
+    </div>
+    <div class="s12 col" ng-show="data.subnet">
+      <small>
+        ∟ Subnet:
+        <a ng-click="selectResource(data.subnet)">{{data.subnet.name}}</a>
+      </small>
+    </div>
+  </div>
+</div>
+
+<div ng-show="info.addresses.length">
+  <div class="row">
+    <div class="s12 col"><h5>Elastic IP</h5></div>
+  </div>
+  <div ng-repeat="ip in info.addresses">
+    <div class="row">
+      <div class="s12 col" ng-bind="ip.provider_id"></div>
+    </div>
+    <div class="row" ng-show="ip.public_ip">
+      <div class="s5 col"><strong>Public IP</strong></div>
+      <div class="s7 col" ng-bind="ip.public_ip"></div>
+    </div>
+    <div class="row" ng-show="ip.private_ip_address">
+      <div class="s5 col"><strong>Private IP</strong></div>
+      <div class="s7 col" ng-bind="ip.private_ip_address"></div>
+    </div>
+    <br />
+  </div>
+</div>
+
+<div class="row" ng-show="info.subnet">
+  <div class="s12 col"><h5>Launch Subnet</h5></div>
+  <div class="s12 col attributes-name">
+    <a ng-click="selectResource(info.subnet)">{{info.subnet.name}}</a>
+  </div>
+</div>
+<div class="row" ng-show="info.autoscaling_group">
+  <div class="s12 col"><h5>Autoscaling Group</h5></div>
+  <div class="s12 col attributes-name"><a ng-click="selectResource(info.autoscaling_group)">{{info.autoscaling_group.name}}</a></div>
+</div>
+<div class="row" ng-show="info.placement_group">
+  <div class="s12 col"><h5>Placement Group</h5></div>
+  <div class="s12 col attributes-name"><a ng-click="selectResource(info.placement_group)">{{info.placement_group.name}}</a></div>
+</div>
+
+<div ng-show="info.security_groups.length > 0">
+  <div class="row">
+    <div class="s12 col"><h5>Security Groups</h5></div>
+  </div>
+  <div ng-repeat="sg in info.security_groups track by $index">
+    <div class="row">
+      <div class="s12 col attributes-name"><a ng-click="selectResource(sg)">{{sg.name}}</a></div>
+    </div>
+  </div>
+</div>
+
+<div ng-show="info.network_interfaces.length > 0">
+  <div class="row">
+    <div class="s12 col"><h5>Network Interfaces</h5></div>
+  </div>
+  <div ng-repeat="nic in info.network_interfaces track by $index">
+    <div class="row">
+      <div class="s12 col attributes-name"><a ng-click="selectResource(nic)">{{nic.name}}</a></div>
+    </div>
+  </div>
+</div>
+
+<div ng-show="info.volumes.length > 0">
+  <div class="row">
+    <div class="s12 col"><h5><span class="octicon octicon-database"></span> Volumes</h5></div>
+  </div>
+  <div ng-repeat="volume in info.volumes track by $index">
+    <div class="row">
+      <div class="s6 col attributes-name"><strong><a ng-click="selectResource(volume)">{{volume.name}}</a></strong></div>
+      <div class="s6 col">{{volume.size}}GB</div>
+    </div>
+  </div>
+</div>
+
+<div ng-show="info.ecs_clusters.length > 0">
+  <div class="row">
+    <div class="s12 col"><h5>ECS Cluster</h5></div>
+  </div>
+  <div ng-repeat="cluster in info.ecs_clusters">
+    <div class="row">
+      <div class="s12 col attributes-name"><strong><a ng-click="selectResource(cluster)">{{cluster.name}}</a></strong></div>
+    </div>
+  </div>
+</div>
+
+<div class="row" ng-show="info.beanstalk_environment">
+  <div class="s12 col"><h5>ElasticBeanstalk Environment</h5></div>
+  <div class="s12 col attributes-name">
+    <a ng-click="selectResource(info.beanstalk_environment)">{{info.beanstalk_environment.name}}</a>
+  </div>
+</div>

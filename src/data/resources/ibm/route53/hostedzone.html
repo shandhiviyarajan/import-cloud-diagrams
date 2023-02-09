@@ -1,0 +1,25 @@
+<div class="row">
+  <div class="s12 col"><h5>Record Set</h5></div>
+</div>
+<div class="row" ng-show="!info.resource_record_sets.length">
+  <div class="s12 col">None</div>
+</div>
+<div ng-repeat="rs in info.resource_record_sets">
+  <div class="row">
+    <div class="s5 col"><strong>Name</strong></div>
+    <div class="s3 col"><strong>Type</strong></div>
+    <div class="s4 col"><strong>TTL</strong></div>
+  </div>
+  <div class="row">
+    <div class="s5 col word-wrap" ng-bind="rs.name"></div>
+    <div class="s3 col" ng-bind="rs.record_type"></div>
+    <div class="s4 col" ng-bind="rs.ttl"></div>
+  </div>
+  <div class="row">
+    <div class="s12 col" ng-show="rs.resource_records.length"><strong>Value</strong></div>
+    <div ng-repeat="(key, value) in rs.resource_records">
+      <div class="s12 col" ng-bind="value"></div>
+    </div>
+  </div>
+  <br>
+</div>

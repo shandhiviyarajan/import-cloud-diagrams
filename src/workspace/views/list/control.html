@@ -1,0 +1,63 @@
+<div>
+  <div class="list-control">
+
+    <div class="list-control-sort">
+      <div style="font-size:10px">Sort by</div>
+      <select ng-model="ListControl.options.sort_by" class="browser-default">
+        <option ng-repeat="sort_option in ListControl.sort_options" value="{{sort_option}}">{{sort_option}}</option>
+      </select>
+
+      <button class="button btn waves-effect waves-light" ng-click="ListControl.toggleSortDirection()">
+        <span class="octicon octicon-arrow-down" ng-show="ListControl.options.sort_dir == 'asc'"></span>
+        <span class="octicon octicon-arrow-up" ng-show="ListControl.options.sort_dir == 'desc'"></span>
+      </button>
+    </div>
+
+    <div class="list-control-types">
+      <div style="font-size:10px">Filter by Type</div>
+      <div class="type-select-dropdown" ng-click="ListControl.toggleServiceSelect()">
+        <span ng-bind="ListControl.types_readable"></span>
+        <span class="octicon octicon-triangle-down" style="float: right; font-size: 9px; margin-top: 6px"></span>
+      </div>
+
+      <div class="type-select-panel" ng-show="ListControl.options.show_service_select">
+        <div class="type-select-panel-option" ng-click="ListControl.toggleTypeDisplay()">
+          <span>Show All</span>
+        </div>
+
+        <div ng-repeat="(provider, types) in ListControl.types" ng-show="ListControl.types[provider].length">
+          <div class="type-select-panel-header" ng-bind="provider"></div>
+
+          <div class="type-select-panel-option" ng-repeat="type in types" ng-click="ListControl.toggleTypeDisplay(provider, type)">
+            <span ng-bind="type"></span>
+            <span class="octicon octicon-check right" ng-show="ListControl.isToggled(provider, type)"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="list-resources">
+
+    <div id="{{resource.id}}" class="list-resource"
+         ng-click="ListControl.selectResource(resource)"
+         ng-repeat="resource in ListControl.resources"
+         ng-class="{ selected: resource === ListControl.selected_resource }">
+      <div class="list-image">
+        <svg><use xlink:href="{{resource.image}}" /></svg>
+      </div>
+      <div class="list-info">
+        <div class="list-title">{{resource.name}}</div>
+        <div class="list-subtitle truncate" ng-class="{rtl: resource.provider_id.length > 50}">{{resource.provider_id}}</div>
+        <div><strong>{{resource.display_type}}</strong></div>
+      </div>
+      <div class="list-summary">
+        <div ng-repeat="(key, value) in resource.summary" ng-show="value"><strong>{{key}}</strong>: {{value}}</div>
+      </div>
+      <div class="list-price"><span class="price" ng-bind="(resource.price || 0) | currency:'$':0"></span>/m USD</div>
+      <br clear="both" />
+    </div>
+
+  </div>
+</div>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="92px" height="92px" viewBox="0 0 92 92" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 41.2 (35397) - http://www.bohemiancoding.com/sketch -->
+    <title>Compute-&amp;-Networking-copy_Amazon-EC2-Instance</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="blank" transform="translate(1.000000, 1.000000)">
+            <g id="Page-1">
+                <g id="blank">
+                    <g id="Page-1">
+                        <g id="Compute-&amp;-Networking-copy_Amazon-EC2-Instance">
+                            <g id="Layer_1" stroke="#979797" fill="#FFFFFF">
+                                <circle id="Oval-1" cx="45" cy="45" r="45"></circle>
+                            </g>
+                            <g id="Database_AmazonRedshift" transform="translate(15.000000, 12.000000)">
+                                <g id="Layer_1">
+                                    <polygon id="Shape" fill="#5294CF" points="55 9.3 60 11.7 60 54.1 55 56.6 47.1 33"></polygon>
+                                    <polygon id="Shape" fill="#205B99" points="5 9.3 0 11.7 0 54.1 5 56.6 17.5 33"></polygon>
+                                    <polygon id="Shape" fill="#205B99" points="30 50.5 55 56.6 55 9.3 30 15.4"></polygon>
+                                    <polygon id="Shape" fill="#5294CF" points="30 50.5 5 56.6 5 9.3 30 15.4"></polygon>
+                                    <polygon id="Shape" fill="#5294CF" points="36 66 45.6 61.2 45.6 4.8 36 0 26.5 31.4"></polygon>
+                                    <polygon id="Shape" fill="#205B99" points="24 66 14.4 61.2 14.4 4.8 24 0 32.5 33"></polygon>
+                                    <rect id="Rectangle-path" fill="#2E73B8" x="24" y="0" width="12" height="66"></rect>
+                                </g>
+                            </g>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

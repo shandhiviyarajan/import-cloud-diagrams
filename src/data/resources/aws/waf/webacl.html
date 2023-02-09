@@ -1,0 +1,47 @@
+<!-- ATTRIBUTES -->
+<div class="row">
+  <div class="s6 col">
+    <strong>Default Action</strong>
+  </div>
+  <div class="s6 col">
+    <span ng-bind="resource.default_action"></span>
+  </div>
+</div>
+<hr />
+<div ng-show="info.rules.length">
+  <div class="row">
+    <div class="s12 col"><h5>Rules</h5></div>
+  </div>
+  <div class="row">
+    <div class="s6 col">&nbsp;</div>
+    <div class="s3 col text-right"><strong><small>Type</small></strong></div>
+    <div class="s3 col text-right"><strong><small>Action</small></strong></div>
+  </div>
+  <div class="row" ng-repeat="data in info.rules | orderBy: 'priority'" ng-show="data.rule">
+    <div class="s6 col" ng-bind="data.rule.name"></div>
+    <div class="s3 col text-right">
+      <small ng-if="data.type === 'RATE_BASED'">Rate-based</small>
+      <small ng-if="data.type === 'REGULAR'">Regular</small>
+      <small ng-if="data.type === 'GROUP'">Group</small>
+    </div>
+    <div class="s3 col text-right" ng-if="data.override_action.type !== 'COUNT'">
+      <small ng-if="data.action.type === 'BLOCK'">Block</small>
+      <small ng-if="data.action.type === 'ALLOW'">Allow</small>
+      <small ng-if="data.action.type === 'COUNT'">Count</small>
+    </div>
+    <div class="s3 col text-right" ng-if="data.override_action.type === 'COUNT'">
+      <small>Count (override)</small>
+    </div>
+  </div>
+</div>
+
+<div ng-show="info.load_balancers.length > 0">
+  <div class="row">
+    <div class="s12 col"><h5>Load Balancers</h5></div>
+  </div>
+  <div ng-repeat="lb in info.load_balancers track by $index">
+    <div class="row">
+      <div class="s12 col attributes-name"><svg><use xlink:href="{{lb.image}}" /></svg><a ng-click="selectResource(lb)">{{lb.name}}</a></div>
+    </div>
+  </div>
+</div>

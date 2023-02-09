@@ -1,0 +1,134 @@
+<div class="row">
+  <div class="s6 col"><strong>SKU</strong></div>
+  <div class="s6 col" ng-bind="resource.sku.name"></div>
+</div>
+<div class="row">
+  <div class="s6 col"><strong>Large file share</strong></div>
+  <div class="s6 col" ng-bind="resource.large_file_shares_state || 'Disabled'"></div>
+</div>
+<div class="row">
+  <div class="s7 col"><strong>Hierarchical namespace</strong></div>
+  <span class="s5 octicon octicon-check good" ng-show="resource.is_hns_enabled"></span>
+  <span class="s5 octicon octicon-x bad" ng-show="!resource.is_hns_enabled"></span>
+</div>
+
+<div class="row">
+  <div class="s12 col"><h5>Security</h5></div>
+</div>
+<div class="row">
+  <div class="s7 col"><strong>HTTPS only</strong></div>
+  <span class="s5 octicon octicon-check good" ng-show="resource.enable_https_traffic_only"></span>
+  <span class="s5 octicon octicon-x bad" ng-show="!resource.enable_https_traffic_only"></span>
+</div>
+<div class="row">
+  <div class="s7 col"><strong>Blob public access</strong></div>
+  <span class="s5 octicon octicon-check good" ng-show="resource.allow_blob_public_access"></span>
+  <span class="s5 octicon octicon-x bad" ng-show="!resource.allow_blob_public_access"></span>
+</div>
+<div class="row">
+  <div class="s7 col"><strong>Shared key access</strong></div>
+  <span class="s5 octicon octicon-check good" ng-show="resource.allow_shared_key_access"></span>
+  <span class="s5 octicon octicon-x bad" ng-show="!resource.allow_shared_key_access"></span>
+</div>
+<div class="row">
+  <div class="s12 col"><strong>Minimum TLS version</strong></div>
+  <div class="s12 col" ng-bind="resource.minimum_tls_version || 'None'"></div>
+</div>
+
+<div ng-show="resource.primary_location">
+  <div class="row">
+    <div class="s12 col"><h4>Primary</h4></div>
+  </div>
+  <div class="row">
+    <div class="s5 col"><strong>Status</strong></div>
+    <div class="s7 col" ng-bind="resource.status_of_primary"></div>
+  </div>
+  <div class="row">
+    <div class="s5 col"><strong>Location</strong></div>
+    <div class="s7 col" ng-bind="resource.primary_location"></div>
+  </div>
+  <div class="row">
+    <div class="s12 col"><h5>Services</h5></div>
+  </div>
+  <div class="row">
+    <div class="s6 col"><strong>Blob</strong></div>
+    <div class="s6 col success">
+      <span class="success round label right" ng-show="resource.encryption.services.blob.enabled">Encrypted</span>
+    </div>
+    <div class="s12 col word-wrap"><a ng-href="{{resource.primary_endpoints.blob}}" ng-bind="resource.primary_endpoints.blob" target="_blank"></a></div>
+    <div class="s12 col">&nbsp;</div>
+  </div>
+  <div class="row">
+    <div class="s6 col"><strong>File</strong></div>
+    <div class="s6 col success">
+      <span class="success round label right" ng-show="resource.encryption.services.file.enabled">Encrypted</span>
+    </div>
+    <div class="s12 col word-wrap"><a ng-href="{{resource.primary_endpoints.file}}" ng-bind="resource.primary_endpoints.file" target="_blank"></a></div>
+    <div class="s12 col">&nbsp;</div>
+  </div>
+  <div class="row">
+    <div class="s6 col"><strong>Queue</strong></div>
+    <div class="s6 col success">
+      <span class="success round label right" ng-show="resource.encryption.services.queue.enabled">Encrypted</span>
+    </div>
+    <div class="s12 col word-wrap"><a ng-href="{{resource.primary_endpoints.queue}}" ng-bind="resource.primary_endpoints.queue" target="_blank"></a></div>
+    <div class="s12 col">&nbsp;</div>
+  </div>
+  <div class="row">
+    <div class="s6 col"><strong>Table</strong></div>
+    <div class="s6 col success">
+      <span class="success round label right" ng-show="resource.encryption.services.table.enabled">Encrypted</span>
+    </div>
+    <div class="s12 col word-wrap"><a ng-href="{{resource.primary_endpoints.table}}" ng-bind="resource.primary_endpoints.table" target="_blank"></a></div>
+    <div class="s12 col">&nbsp;</div>
+  </div>
+</div>
+
+<div ng-show="resource.secondary_location">
+  <div class="row">
+    <div class="s12 col"><h4>Secondary</h4></div>
+  </div>
+  <div class="row">
+    <div class="s5 col"><strong>Status</strong></div>
+    <div class="s7 col" ng-bind="resource.status_of_secondary"></div>
+  </div>
+  <div class="row">
+    <div class="s5 col"><strong>Location</strong></div>
+    <div class="s7 col" ng-bind="resource.primary_secondary"></div>
+  </div>
+  <div class="row">
+    <div class="s12 col"><h5>Services</h5></div>
+  </div>
+  <div class="row">
+    <div class="s6 col"><strong>Blob</strong></div>
+    <div class="s6 col success">
+      <span class="success round label right" ng-show="resource.encryption.services.blob.enabled">Encrypted</span>
+    </div>
+    <div class="s12 col word-wrap"><a ng-href="{{resource.secondary_endpoints.blob}}" ng-bind="resource.secondary_endpoints.blob" target="_blank"></a></div>
+    <div class="s12 col">&nbsp;</div>
+  </div>
+  <div class="row">
+    <div class="s6 col"><strong>File</strong></div>
+    <div class="s6 col success">
+      <span class="success round label right" ng-show="resource.encryption.services.file.enabled">Encrypted</span>
+    </div>
+    <div class="s12 col word-wrap"><a ng-href="{{resource.secondary_endpoints.file}}" ng-bind="resource.secondary_endpoints.file" target="_blank"></a></div>
+    <div class="s12 col">&nbsp;</div>
+  </div>
+  <div class="row">
+    <div class="s6 col"><strong>Queue</strong></div>
+    <div class="s6 col success">
+      <span class="success round label right" ng-show="resource.encryption.services.queue.enabled">Encrypted</span>
+    </div>
+    <div class="s12 col word-wrap"><a ng-href="{{resource.secondary_endpoints.queue}}" ng-bind="resource.secondary_endpoints.queue" target="_blank"></a></div>
+    <div class="s12 col">&nbsp;</div>
+  </div>
+  <div class="row">
+    <div class="s6 col"><strong>Table</strong></div>
+    <div class="s6 col success">
+      <span class="success round label right" ng-show="resource.encryption.services.table.enabled">Encrypted</span>
+    </div>
+    <div class="s12 col word-wrap"><a ng-href="{{resource.secondary_endpoints.table}}" ng-bind="resource.secondary_endpoints.table" target="_blank"></a></div>
+    <div class="s12 col">&nbsp;</div>
+  </div>
+</div>

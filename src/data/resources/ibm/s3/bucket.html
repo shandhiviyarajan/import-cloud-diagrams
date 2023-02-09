@@ -1,0 +1,165 @@
+<!-- ATTRIBUTES!!! -->
+<div class="row">
+  <div class="s12 col"><strong>Creation Date</strong></div>
+  <div class="s12 col" ng-bind="resource.creation_date"></div>
+</div>
+
+<div class="row" ng-show="resource.versioning">
+  <div class="s5 col"><strong>Versioning</strong></div>
+  <div class="s7 col" ng-bind="(resource.versioning.status || 'Disabled')"></div>
+</div>
+<div class="row" ng-show="resource.accelerate_configuration">
+  <div class="s5 col"><strong>Acceleration</strong></div>
+  <div class="s7 col" ng-bind="resource.accelerate_configuration"></div>
+</div>
+<div class="row" ng-show="resource.request_payment">
+  <div class="s5 col"><strong>Payer</strong></div>
+  <div class="s7 col" ng-bind="resource.request_payment"></div>
+</div>
+
+<div ng-show="resource.logging">
+  <div class="row">
+    <div class="s12 col"><h5>Logging</h5></div>
+  </div>
+  <div class="row" ng-show="resource.logging.target_bucket">
+    <div class="s5 col"><strong>Target bucket</strong></div>
+    <div class="s7 col" ng-bind="resource.logging.target_bucket"></div>
+  </div>
+  <div class="row" ng-show="resource.logging.target_bucket">
+    <div class="s5 col"><strong>Target prefix</strong></div>
+    <div class="s7 col" ng-bind="resource.logging.target_prefix"></div>
+  </div>
+</div>
+
+<div ng-show="resource.website">
+  <div class="row">
+    <div class="s12 col"><h5>Bucket website hosting</h5></div>
+  </div>
+  <div class="row" ng-show="resource.website.redirect_all_requests_to">
+    <div class="s12 col"><strong>Redirect requests</strong></div>
+    <div class="s6 col" ng-bind="resource.website.redirect_all_requests_to.host_name"></div>
+    <div class="s6 col" ng-bind="resource.website.redirect_all_requests_to.protocol"></div>
+  </div>
+  <div class="row" ng-show="resource.website.index_document">
+    <div class="s12 col"><strong>Index Document</strong></div>
+    <div class="s12 col" ng-bind="resource.website.index_document.suffix"></div>
+  </div>
+  <div class="row" ng-show="resource.website.error_document">
+    <div class="s12 col"><strong>Error Document</strong></div>
+    <div class="s12 col" ng-bind="resource.website.error_document.key"></div>
+  </div>
+  <!-- RoutingRule -->
+  <div ng-show="resource.website.routing_rules.length > 0">
+    <div class="row">
+      <div class="s10 col"><strong class="clickable" ng-click="extended.wrule = !extended.wrule">Routing rules</strong></div>
+      <div class="s2 col">
+        <a ng-click="extended.wrule = !extended.wrule" ng-show="!extended.wrule"><span class="octicon octicon-chevron-down"></span></a>
+        <a ng-click="extended.wrule = !extended.wrule" ng-show="extended.wrule"><span class="octicon octicon-chevron-up"></span></a>
+      </div>
+    </div>
+    <div class="row" ng-show="!extended.wrule">
+      <div class="s12 col"><small ng-bind="resource.website.routing_rules.length + ' rule(s)'"></small></div>
+    </div>
+    <div ng-show="extended.wrule">
+      <div class="attributes-list" ng-repeat="rule in resource.website.routing_rules">
+        <!-- Condition -->
+        <div ng-show="rule.condition">
+          <div class="row">
+            <div class="s12 col"><strong>Condition</strong></div>
+          </div>
+          <div class="row" ng-show="rule.condition.http_error_code_returned_equals">
+            <div class="s6 col">Http Error Code:</div>
+            <div class="s6 col" ng-bind="rule.condition.http_error_code_returned_equals"></div>
+          </div>
+          <div class="row" ng-show="rule.condition.key_prefix_equals">
+            <div class="s6 col">Key Prefix:</div>
+            <div class="s6 col" ng-bind="rule.condition.key_prefix_equals"></div>
+          </div>
+        </div>
+        <!-- Redirect -->
+        <div ng-show="rule.redirect">
+          <div class="row">
+            <div class="s12 col"><strong>Redirect</strong></div>
+          </div>
+          <div class="row" ng-show="rule.redirect.host_name">
+            <div class="s12 col" ng-bind="rule.redirect.host_name"></div>
+          </div>
+          <div class="row" ng-show="rule.redirect.protocol">
+            <div class="s6 col">Protocol:</div>
+            <div class="s6 col" ng-bind="rule.redirect.protocol"></div>
+          </div>
+          <div class="row" ng-show="rule.redirect.http_redirect_code">
+            <div class="s6 col">Http Redirect Code:</div>
+            <div class="s6 col" ng-bind="rule.redirect.http_redirect_code"></div>
+          </div>
+          <div class="row" ng-show="rule.redirect.replace_key_prefix_with">
+            <div class="s6 col">Replace Key Prefix:</div>
+            <div class="s6 col" ng-bind="rule.redirect.replace_key_prefix_with"></div>
+          </div>
+          <div class="row" ng-show="rule.redirect.replace_key_with">
+            <div class="s6 col">Replace Key With:</div>
+            <div class="s6 col" ng-bind="rule.redirect.replace_key_with"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div ng-show="resource.replication">
+  <div class="row">
+    <div class="s12 col"><h5>Replication</h5></div>
+  </div>
+  <div class="row" ng-show="resource.replication.role">
+    <div class="s12 col"><strong>Role</strong></div>
+    <div class="s12 col" ng-bind="resource.replication.role"></div>
+  </div>
+  <div class="row" ng-show="resource.replication.rules">
+    <div class="s12 col"><strong>Destination Bucket</strong></div>
+    <div class="s12 col" ng-bind="resource.replication.rules[0].destination.bucket"></div>
+  </div>
+  <!-- Rules -->
+  <div ng-show="resource.replication.rules.length > 0">
+    <div class="row">
+      <div class="s10 col"><strong class="clickable" ng-click="extended.rpa = !extended.rpa">Current prefixes</strong></div>
+      <div class="s2 col">
+        <a ng-click="extended.rpa = !extended.rpa" ng-show="!extended.rpa"><span class="octicon octicon-chevron-down"></span></a>
+        <a ng-click="extended.rpa = !extended.rpa" ng-show="extended.rpa"><span class="octicon octicon-chevron-up"></span></a>
+      </div>
+    </div>
+    <div class="row" ng-show="!extended.rpa">
+      <div class="s12 col"><small ng-bind="resource.replication.rules.length + ' prefix(es)'"></small></div>
+    </div>
+    <div class="attributes-list" ng-show="extended.rpa">
+      <div class="row">
+        <div class="s4 col"><strong>Prefix</strong></div>
+        <div class="s8 col"><strong>Storage Class</strong></div>
+      </div>
+      <div ng-repeat="rule in resource.replication.rules">
+        <div class="row">
+          <div class="s4 col attributes-name" ng-bind="rule.prefix"></div>
+          <div class="s8 col attributes-name" ng-bind="(rule.destination.storage_class || 'Default')"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="s12 col"><h5>Policy Document</h5></div>
+  <div class="s12 col">
+    <pre ng-bind="info.policy_document" style="overflow: scroll"></pre>
+  </div>
+</div>
+
+<div ng-show="info.cloudfront_distributions.length">
+  <div class="row">
+    <div class="s12 col"><h5>CloudFront Distributions</h5></div>
+  </div>
+  <div ng-repeat="cloudfront_distribution in info.cloudfront_distributions track by $index">
+    <div class="row">
+      <div class="s12 col attributes-name"><svg><use xlink:href="{{cloudfront_distribution.image}}" /></svg><a ng-click="selectResource(cloudfront_distribution)">{{cloudfront_distribution.name}}</a></div>
+    </div>
+  </div>
+</div>
+

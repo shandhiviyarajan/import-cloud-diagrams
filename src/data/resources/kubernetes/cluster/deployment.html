@@ -1,0 +1,36 @@
+<div class="row">
+  <div class="s12 col"><strong>Namespace</strong></div>
+  <div class="s12 col" ng-bind="resource.namespace"></div>
+</div>
+<div class="row">
+  <div class="s12 col"><strong>Creation Time</strong></div>
+  <div class="s12 col" ng-bind="resource.start_time"></div>
+</div>
+<div class="row">
+  <div class="s12 col"><strong>Generation</strong></div>
+  <div class="s12 col" ng-bind="resource.generation"></div>
+</div>
+<div class="row">
+  <div class="s12 col"><strong>Resource Version</strong></div>
+  <div class="s12 col" ng-bind="resource.resource_version"></div>
+</div>
+<div class="row" ng-show="info.primary_replica_set">
+  <div class="s12 col"><h5>Replica Set</h5></div>
+  <div class="s12 col"><a ng-click="selectResource(info.primary_replica_set)">{{info.primary_replica_set.name}}</a></div>
+  <div class="attributes-list">
+    <div class="row">
+      <div class="s12 col"><strong>Pods</strong></div>
+    </div>
+    <div class="row" ng-show="!info.replica_set_pods[info.primary_replica_set.name].length">
+      <div class="s12 col">None</div>
+    </div>
+    <div ng-repeat="pod in info.replica_set_pods[info.primary_replica_set.name] | orderBy:'name' track by $index">
+      <div class="row">
+        <div class="s12 col attributes-name"><strong><a ng-click="selectResource(pod)">{{pod.name}}</a></strong></div>
+        <div class="s12 col">
+          ∟ <span class="label" ng-bind="pod.status" ng-class="{success: pod.status === 'running'}"></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

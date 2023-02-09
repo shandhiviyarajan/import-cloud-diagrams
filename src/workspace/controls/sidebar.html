@@ -1,0 +1,17 @@
+<div class="sidebar">
+  <div class="tab">
+    <button class="tablinks" ng-class="{ active: selected_tab === 'attributes' }" ng-click="selected_tab = 'attributes'">Attributes</button>
+    <button class="tablinks" ng-class="{ active: selected_tab === 'versions' }" ng-click="selected_tab = 'versions'" ng-show="show_revisions">Versions</button>
+  </div>
+
+  <!-- Tab content -->
+  <div class="tab-content" ng-show="selected_tab === 'attributes'">
+    <attributes></attributes>
+  </div>
+
+  <div class="tab-content" ng-show="selected_tab === 'versions'">
+    <revision-selector></revision-selector>
+  </div>
+  <div class="view-selector" views-picker>
+  </div>
+</div>

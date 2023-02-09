@@ -1,0 +1,36 @@
+<div class="row sub-title">
+  <div class="s12 col">
+    <input class="small" ng-value="resource.provider_id" disabled />
+  </div>
+</div>
+
+<div class="row">
+<div class="s5 col"><strong>Address Range</strong></div>
+<div class="s7 col" ng-bind="resource.address_prefix"></div>
+</div>
+
+<div class="row">
+  <div class="s12 col"><h5>Network Security Groups</h5></div>
+</div>
+<div class="row" ng-show="!info.security_groups.length">
+  <div class="s12 col">None</div>
+</div>
+<div class="row" ng-repeat="sg in info.security_groups">
+  <div class="s12 col end attributes-name">
+    <svg><use xlink:href="{{sg.image}}" /></svg>
+    <a ng-click="selectResource(sg)">{{sg.name}}</a>
+  </div>
+</div>
+
+<div class="row">
+  <div class="s12 col"><h5>Route Tables</h5></div>
+</div>
+<div class="row" ng-show="!info.route_tables.length">
+  <div class="s12 col">None</div>
+</div>
+<div class="row" ng-repeat="rt in info.route_tables">
+  <div class="s12 col end attributes-name">
+    <svg><use xlink:href="{{rt.image}}" /></svg>
+    <a ng-click="selectResource(rt)">{{rt.name}}</a>
+  </div>
+</div>

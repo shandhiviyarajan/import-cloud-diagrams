@@ -1,0 +1,91 @@
+<div class="row">
+  <div class="s12 col"><strong>Creation Time</strong></div>
+  <div class="s12 col" ng-bind="resource.start_time"></div>
+</div>
+<div class="row">
+  <div class="s12 col"><strong>Resource Version</strong></div>
+  <div class="s12 col" ng-bind="resource.resource_version"></div>
+</div>
+
+<div class="row">
+  <div class="s12 col"><h5>Capacity</h5></div>
+</div>
+<div class="row">
+  <div class="s4 col"><strong>CPU</strong></div>
+  <div class="s8 col" ng-bind="resource.capacity.cpu"></div>
+</div>
+<div class="row">
+  <div class="s4 col"><strong>Memory</strong></div>
+  <div class="s8 col" ng-bind="resource.capacity.memory"></div>
+</div>
+<div class="row">
+  <div class="s4 col"><strong>Pods</strong></div>
+  <div class="s8 col" ng-bind="resource.capacity.pods"></div>
+</div>
+<div class="row" ng-if="resource.capacity['attachable-volumes-gce-pd']">
+  <div class="s12 col"><strong>Attachable Volumes</strong></div>
+  <div class="s12 col" ng-bind="resource.capacity['attachable-volumes-gce-pd']"></div>
+</div>
+<div class="row">
+  <div class="s12 col"><strong>Ephemeral Storage</strong></div>
+  <div class="s12 col" ng-bind="resource.capacity['ephemeral-storage']"></div>
+</div>
+
+<div class="row">
+  <div class="s12 col"><h5>Node Info</h5></div>
+</div>
+<div class="row">
+  <div class="s4 col"><strong>Architecture</strong></div>
+  <div class="s8 col" ng-bind="resource.node_info.architecture"></div>
+</div>
+<div class="row">
+  <div class="s4 col"><strong>OS</strong></div>
+  <div class="s8 col" ng-bind="resource.node_info['operatingSystem']"></div>
+</div>
+<div class="row">
+  <div class="s12 col"><strong>OS Image</strong></div>
+  <div class="s12 col" ng-bind="resource.node_info['osImage']"></div>
+</div>
+<div class="row">
+  <div class="s12 col"><strong>Kernal Version</strong></div>
+  <div class="s12 col" ng-bind="resource.node_info['kernelVersion']"></div>
+</div>
+<div class="row">
+  <div class="s12 col"><strong>Kubelet Version</strong></div>
+  <div class="s12 col" ng-bind="resource.node_info['kubeletVersion']"></div>
+</div>
+<div class="row">
+  <div class="s12 col"><strong>Kube Proxy Version</strong></div>
+  <div class="s12 col" ng-bind="resource.node_info['kubeProxyVersion']"></div>
+</div>
+<div class="row">
+  <div class="s12 col"><strong>Container Runtime Version</strong></div>
+  <div class="s12 col" ng-bind="resource.node_info['containerRuntimeVersion']"></div>
+</div>
+
+<div class="row">
+  <div class="s12 col"><h5>Addresses</h5></div>
+</div>
+<div class="row" ng-if="resource.addresses.length == 0">
+  <div class="s12 col">None</div>
+</div>
+<div class="row" ng-repeat="address in resource.addresses | orderBy:'type'">
+  <div class="s12 col"><strong ng-bind="address.type"></strong></div>
+  <div class="s12 col" ng-bind="address.address"></div>
+</div>
+
+<div class="row">
+  <div class="s12 col"><h5>Pods</h5></div>
+</div>
+<div class="row" ng-show="!info.pods.length">
+  <div class="s12 col">None</div>
+</div>
+<div ng-repeat="pod in info.pods | orderBy:'name' track by $index">
+  <div class="row">
+    <div class="s12 col attributes-name"><strong><a ng-click="selectResource(pod)">{{pod.name}}</a></strong></div>
+    <div class="s12 col">
+      ∟ <span class="label" ng-bind="pod.status" ng-class="{success: pod.status === 'running'}"></span>
+    </div>
+  </div>
+</div>
+

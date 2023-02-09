@@ -1,0 +1,28 @@
+<!-- ATTRIBUTES -->
+<div class="row" ng-show="resource.code_size">
+  <div class="s5 col"><strong>Code Size</strong></div>
+  <div class="s7 col" ng-bind="resource.code_size"></div>
+</div>
+<div class="row">
+  <div class="s5 col"><strong>Memory Size</strong></div>
+  <div class="s7 col" ng-bind="resource.memory_size"></div>
+</div>
+<div class="row" ng-show="resource.version">
+  <div class="s5 col"><strong>Version</strong></div>
+  <div class="s7 col" ng-bind="resource.version"></div>
+</div>
+<div class="row">
+  <div class="s12 col"><strong>Role</strong></div>
+  <div class="s12 col" ng-bind="resource.role"></div>
+</div>
+<div class="row" ng-show="resource.description">
+  <div class="s12 col"><strong>Description</strong></div>
+  <div class="s12 col" ng-bind="resource.description"></div>
+</div>
+
+<div ng-show="info.function">
+  <div class="row">
+    <div class="s12 col"><h5>Function</h5></div>
+    <div class="s12 col attributes-name"><svg><use xlink:href="{{info.function.image}}" /></svg><a ng-click="selectResource(info.function)">{{info.function.name}}</a></div>
+  </div>
+</div>

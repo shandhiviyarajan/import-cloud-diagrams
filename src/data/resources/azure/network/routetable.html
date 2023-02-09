@@ -1,0 +1,44 @@
+<!-- ATTRIBUTES!!! -->
+<div class="row">
+  <div class="s12 col"><h5>Routes</h5></div>
+</div>
+<div ng-show="info.routes.length > 0">
+  <div ng-repeat="route in info.routes track by $index">
+    <div class="row">
+      <div class="s12 col end attributes-name">
+        <svg><use xlink:href="{{route.image}}" /></svg>
+        <span>{{route.name}} ({{route.address_prefix}})</span>
+      </div>
+    </div>
+    <div class="row">
+      <div class="s6 col"><strong>Next hop IP Address</strong></div>
+      <div class="s6 col" ng-bind="(route.next_hop_ip_address || '-')"></div>
+    </div>
+    <div class="row">
+      <div class="s6 col"><strong>Next hop Type</strong></div>
+      <div class="s6 col" ng-bind="route.next_hop_type"></div>
+    </div>
+  </div>
+</div>
+<div ng-show="info.nics.length == 0">
+  <div class="row">
+    <div class="s12 col attributes-name">
+      None
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="s12 col"><h5>Subnet</h5></div>
+</div>
+<div class="row" ng-show="!info.subnets.length">
+  <div class="s12 col">None</div>
+</div>
+<div class="row" ng-repeat="subnet in info.subnets">
+  <div class="s12 col end attributes-name">
+    <svg><use xlink:href="{{subnet.image}}" /></svg>
+    <a ng-click="selectResource(subnet)">{{subnet.name}} ({{subnet.address_prefix}})</a>
+  </div>
+</div>
+
+

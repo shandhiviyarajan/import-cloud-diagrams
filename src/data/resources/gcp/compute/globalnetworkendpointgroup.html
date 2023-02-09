@@ -1,0 +1,144 @@
+<div class="row sub-title">
+  <div class="s12 col">
+    <small ng-if="resource.project">
+      <strong>Project</strong><br />
+      <span ng-bind="resource.project"></span>
+    </small>
+  </div>
+
+</div>
+
+<div class="row" ng-show="resource.zone">
+  <div class="s5 col"><strong>Zone</strong></div>
+  <div class="s7 col" ng-bind="resource.zone"></div>
+</div>
+<div class="row">
+  <div class="s5 col"><strong>Size</strong></div>
+  <div class="s7 col" ng-bind="resource.size || '-'"></div>
+</div>
+<div class="row" ng-show="resource.default_port">
+  <div class="s5 col"><strong>Default Port</strong></div>
+  <div class="s7 col" ng-bind="resource.default_port"></div>
+</div>
+<div class="row" ng-show="resource.description">
+  <div class="s12 col"><strong>Description</strong></div>
+  <div class="s12 col word-wrap" ng-bind="resource.description"></div>
+</div>
+<div class="row" ng-show="resource.network_endpoint_type">
+  <div class="s12 col"><strong>Network Endpoint Type</strong></div>
+  <div class="s12 col" ng-bind="resource.network_endpoint_type"></div>
+</div>
+<div class="row" ng-show="resource.creation_timestamp">
+  <div class="s12 col"><strong>Creation Timestamp</strong></div>
+  <div class="s12 col" ng-bind="resource.creation_timestamp | date:'yyyy-MM-dd HH:mm:ss'"></div>
+</div>
+
+<div ng-show="resource.network_endpoints.length">
+  <div class="row">
+    <div class="s12 col">
+      <h5>Network Endpoints</h5>
+    </div>
+  </div>
+
+  <div class="attributes-list" ng-repeat="network_endpoint in resource.network_endpoints">
+    <div ng-show="network_endpoint['network_endpoint']">
+      <div class="row" ng-show="network_endpoint['network_endpoint']['port']">
+        <div class="s5 col"><strong>Port</strong></div>
+        <div class="s7 col" ng-bind="network_endpoint['network_endpoint']['port']"></div>
+      </div>
+      <div class="row" ng-show="network_endpoint['network_endpoint']['instance']">
+        <div class="s5 col"><strong>Instance</strong></div>
+        <div class="s7 col"><a ng-click="selectResource(info.instance_map[network_endpoint['network_endpoint']['instance']])">{{network_endpoint['network_endpoint']['instance']}}</a></div>
+      </div>
+      <div class="row" ng-show="network_endpoint['network_endpoint']['ip_address']">
+        <div class="s5 col"><strong>IP Address</strong></div>
+        <div class="s7 col" ng-bind="network_endpoint['network_endpoint']['ip_address']"></div>
+      </div>
+    </div>
+    <div class="row" ng-show="network_endpoint['healths'].length">
+      <div class="s5 col"><strong>Healths</strong></div>
+      <div class="row" ng-show="network_endpoint['healths']['health_state']">
+        <div class="s5 col"><strong>State</strong></div>
+        <div class="s7 col" ng-bind="network_endpoint['healths']['health_state']"></div>
+      </div>
+      <div class="row" ng-show="network_endpoint['healths']['forwarding_rule']">
+        <div class="s5 col"><strong>Forwarding Rule</strong></div>
+        <div class="s7 col"><a ng-click="selectResource(info.forwarding_rule_map[network_endpoint['healths']['forwarding_rule']])">{{info.forwarding_rule_map[network_endpoint['healths']['forwarding_rule']]}}</a></div>
+      </div>
+      <div class="row" ng-show="network_endpoint['healths']['backend_service']">
+        <div class="s5 col"><strong>Backend Service</strong></div>
+        <div class="s7 col"><a ng-click="selectResource(info.backend_service_map[network_endpoint['healths']['backend_service']])">{{info.backend_service_map[network_endpoint['healths']['backend_service']]}}</a></div>
+      </div>
+      <div class="row" ng-show="network_endpoint['healths']['health_check']">
+        <div class="s5 col"><strong>Forwarding Rule</strong></div>
+        <div class="s7 col"><a ng-click="selectResource(info.health_check_map[network_endpoint['healths']['health_check']])">{{info.health_check_map[network_endpoint['healths']['health_check']]}}</a></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div ng-show="resource.app_engine.service">
+  <div class="row">
+    <div class="s12 col"><h5>App Engine</h5></div>
+  </div>
+  <div class="row" ng-show="resource.app_engine.service">
+    <div class="s12 col"><strong>Service</strong></div>
+    <div class="s12 col word-wrap" ng-bind="resource.app_engine.service"></div>
+  </div>
+  <div class="row" ng-show="resource.app_engine.url_mask">
+    <div class="s12 col"><strong>URL Mask</strong></div>
+    <div class="s12 col word-wrap" ng-bind="resource.app_engine.url_mask"></div>
+  </div>
+  <div class="row" ng-show="resource.app_engine.version">
+    <div class="s12 col"><strong>Version</strong></div>
+    <div class="s12 col word-wrap" ng-bind="resource.app_engine.version"></div>
+  </div>
+</div>
+
+<div ng-show="resource.cloud_function.function">
+  <div class="row">
+    <div class="s12 col"><h5>Cloud Function</h5></div>
+  </div>
+  <div class="row" ng-show="resource.cloud_function.function">
+    <div class="s12 col"><strong>Function</strong></div>
+    <div class="s12 col word-wrap" ng-bind="resource.cloud_function.function"></div>
+  </div>
+  <div class="row" ng-show="resource.cloud_function.url_mask">
+    <div class="s12 col"><strong>URL Mask</strong></div>
+    <div class="s12 col word-wrap" ng-bind="resource.app_engine.url_mask"></div>
+  </div>
+</div>
+
+<div ng-show="resource.cloud_run.service">
+  <div class="row">
+    <div class="s12 col"><h5>Cloud Run</h5></div>
+  </div>
+  <div class="row" ng-show="resource.cloud_run.service">
+    <div class="s12 col"><strong>Service</strong></div>
+    <div class="s12 col word-wrap" ng-bind="resource.cloud_run.service"></div>
+  </div>
+  <div class="row" ng-show="resource.cloud_run.url_mask">
+    <div class="s12 col"><strong>URL Mask</strong></div>
+    <div class="s12 col word-wrap" ng-bind="resource.cloud_run.url_mask"></div>
+  </div>
+  <div class="row" ng-show="resource.cloud_run.tag">
+    <div class="s12 col"><strong>Tag</strong></div>
+    <div class="s12 col word-wrap" ng-bind="resource.cloud_run.tag"></div>
+  </div>
+</div>
+
+<div class="row" ng-show="info.network">
+  <div class="s12 col"><h5>Network</h5></div>
+  <div class="s12 col attributes-name">
+    <svg><use xlink:href="{{info.network.image}}" /></svg><a ng-click="selectResource(info.network)">{{info.network.name}}</a>
+  </div>
+</div>
+
+<div class="row" ng-show="info.subnetwork">
+  <div class="s12 col">
+    <h5>Subnetwork</h5>
+  </div>
+  <div class="s12 col attributes-name">
+    <svg><use xlink:href="{{info.subnetwork.image}}" /></svg><a ng-click="selectResource(info.subnetwork)">{{info.subnetwork.name}}</a>
+  </div>
+</div>

@@ -1,0 +1,56 @@
+<!-- ATTRIBUTES!!! -->
+<div class="row">
+  <div class="s12 col"><strong>Cluster</strong></div>
+  <div class="s12 col"><a ng-click="selectResource(info.cluster)">{{info.cluster.name}}</a></div>
+</div>
+<div class="row">
+  <div class="s12 col"><strong>Instance</strong></div>
+  <div class="s12 col"><a ng-click="selectResource(info.instance)">{{info.instance.name}}</a></div>
+</div>
+<div class="row">
+  <div class="s5 col"><strong>Status</strong></div>
+  <div class="s7 col" ng-bind="resource.status"></div>
+</div>
+<div class="row">
+  <div class="s5 col"><strong>Pending Tasks</strong></div>
+  <div class="s7 col" ng-bind="resource.pending_tasks_count"></div>
+</div>
+<div class="row">
+  <div class="s5 col"><strong>Running Tasks</strong></div>
+  <div class="s7 col" ng-bind="resource.running_tasks_count"></div>
+</div>
+<div class="row">
+  <div class="s12 col"><strong>Docker Version</strong></div>
+  <div class="s12 col" ng-bind="resource.version_info.docker_version"></div>
+</div>
+<div class="row">
+  <div class="s5 col"><strong>Agent Version</strong></div>
+  <div class="s7 col" ng-bind="resource.version_info.agent_version"></div>
+</div>
+<div class="row">
+  <div class="s7 col"><strong>Agent Connected</strong></div>
+  <div class="s5 col">
+    <span class="octicon octicon-check good" ng-if="resource.agent_connected"></span>
+    <span class="octicon octicon-x bad" ng-if="!resource.agent_connected"></span>
+  </div>
+</div>
+<div class="row" ng-if="resource.agent_update_status">
+  <div class="s12 col"><strong>Agent Update Status</strong></div>
+  <div class="s12 col" ng-bind="resource.agent_update_status" ng-class="resource.agent_status_list[resource.agent_update_status]"></div>
+</div>
+<!-- TODO: display resources available!! DERP -->
+
+<div ng-show="info.tasks.length > 0">
+  <div class="row">
+    <div class="s12 col"><h5>Tasks</h5></div>
+  </div>
+  <div ng-repeat="task in info.tasks">
+    <div class="row">
+      <div class="s4 col attributes-name truncate"><strong><a ng-click="selectResource(task)">{{task.name}}</a></strong></div>
+      <div class="s8 col attributes-name truncate" ng-bind="task.task_definition"></div>
+      <div class="s12 col">
+        ∟ <span class="label" ng-bind="task.desired_status" ng-class="{success: task.desired_status === 'RUNNING'}"></span>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,67 @@
+<!-- ATTRIBUTES!!! -->
+<div class="row">
+  <div class="s12 col"><strong>Family</strong></div>
+  <div class="s12 col word-wrap" ng-bind="resource.family"></div>
+</div>
+<div class="row">
+  <div class="s12 col"><strong>IAM Role</strong></div>
+  <div class="s12 col word-wrap" ng-bind="resource.task_role_arn"></div>
+</div>
+<div class="row">
+  <div class="s4 col"><strong>Status</strong></div>
+  <div class="s8 col word-wrap" ng-bind="resource.status" ng-class="resource.status_list[resource.status.toLowerCase()]"></div>
+</div>
+<div class="row">
+  <div class="s4 col"><strong>Revision</strong></div>
+  <div class="s8 col word-wrap" ng-bind="resource.task_revision"></div>
+</div>
+
+<!-- Container Definitions -->
+<div ng-show="resource.container_definitions.length > 0">
+  <div class="row">
+    <div class="s12 col"><h5>Container Definitions</h5></div>
+  </div>
+  <div ng-repeat="container_definition in resource.container_definitions | orderBy:'name' track by $index" style="margin-bottom: 0.5rem">
+    <div class="row">
+      <div class="s12 col attributes-name"><strong ng-bind="container_definition.name" style="border-bottom: 1px solid grey"></strong></div>
+      <div class="s12 col word-wrap" ng-bind="container_definition.image"></div>
+    </div>
+    <div class="row">
+      <div class="s4 col"><strong>CPU</strong></div>
+      <div class="s8 col" ng-bind="container_definition.cpu"></div>
+    </div>
+    <div class="row">
+      <div class="s4 col"><strong>Memory</strong></div>
+      <div class="s8 col" ng-bind="container_definition.memory"></div>
+    </div>
+  </div>
+</div>
+
+<!-- TODO: Volumes! -->
+
+<!-- Connections -->
+<div ng-show="info.services.length > 0">
+  <div class="row">
+    <div class="s12 col"><h5>Services</h5></div>
+  </div>
+  <div ng-repeat="service in info.services | orderBy:'name' track by $index">
+    <div class="row">
+      <div class="s12 col attributes-name"><strong><a ng-click="selectResource(service)">{{service.name}}</a></strong></div>
+    </div>
+  </div>
+</div>
+
+<div ng-show="info.tasks.length > 0">
+  <div class="row">
+    <div class="s12 col"><h5>Tasks</h5></div>
+  </div>
+  <div ng-repeat="task in info.tasks | orderBy:'name'">
+    <div class="row">
+      <div class="s4 col attributes-name truncate"><strong><a ng-click="selectResource(task)">{{task.name}}</a></strong></div>
+      <div class="s8 col attributes-name truncate" ng-bind="task.task_definition"></div>
+      <div class="s12 col">
+        ∟ <span class="label" ng-bind="task.desired_status" ng-class="{success: task.desired_status === 'RUNNING'}"></span>
+      </div>
+    </div>
+  </div>
+</div>

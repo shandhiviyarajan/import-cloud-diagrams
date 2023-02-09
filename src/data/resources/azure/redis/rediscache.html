@@ -1,0 +1,36 @@
+<div class="row">
+  <div class="s12 col"><a ng-href="redis://{{resource.host_name}}" target="_blank" ng-bind="resource.host_name"></a></div>
+  <div class="s12 col">&nbsp;</div>
+</div>
+
+<!-- ATTRIBUTES!!! -->
+<div class="row">
+  <div class="s5 col"><strong>Pricing Tier</strong></div>
+  <div class="s7 col">
+    {{resource.sku.name}} {{resource.sku.family}}{{resource.sku.capacity}}
+  </div>
+</div>
+<div class="row">
+  <div class="s5 col"><strong>Port</strong></div>
+  <div class="s7 col" ng-bind="resource.port"></div>
+</div>
+<div class="row">
+  <div class="s5 col"><strong>SSL Port</strong></div>
+  <div class="s7 col" ng-bind="resource.ssl_port"></div>
+</div>
+<div class="row" ng-show="resource.enable_non_ssl_port">
+  <div class="s12 col"><strong>Non SSL Port</strong> <span class="octicon octicon-check good right"></span></div>
+</div>
+<div class="row">
+  <div class="s5 col"><strong>Redis Version</strong></div>
+  <div class="s7 col" ng-bind="resource.redis_version"></div>
+</div>
+
+<div class="row">
+  <div class="s12 col"><h5>Redis Configuration</h5></div>
+</div>
+<div class="row">
+  <div class="s12 col" ng-repeat="(key, val) in resource.redis_configuration">
+    <strong ng-bind="key"></strong>: <span ng-bind="val"></span>
+  </div>
+</div>

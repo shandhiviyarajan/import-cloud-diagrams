@@ -1,0 +1,95 @@
+<div class="row" ng-show="info.subnet">
+  <div class="s12 col"><strong>Subnet</strong></div>
+  <div class="s12 col attributes-name">
+    <a ng-click="selectResource(info.subnet)">{{info.subnet.name}}</a>
+  </div>
+</div>
+
+<div ng-if="resource.custom_dns_configs.length" class="row">
+  <div class="s12 col"><strong>Custom DNS Configs</strong></div>
+  <div class="s12 col">
+    <ul>
+      <li ng-repeat="config in resource.custom_dns_configs">
+        {{config.fqdn}}<br />
+        <span ng-if="config.ip_addresses.length">
+          <small>∟ </small> {{config.ip_addresses.join(', ')}}
+        </span>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<div class="row" ng-show="info.network_interfaces.length > 0">
+  <div class="s10 col end"><h5>Network Interfaces</h5></div>
+  <div class="s10 col end attributes-name" ng-repeat="nic in info.network_interfaces | orderBy:['name'] track by $index">
+    <svg><use xlink:href="{{nic.image}}" /></svg>
+    <a ng-click="selectResource(nic)">{{nic.name}}</a>
+  </div>
+</div>
+
+
+<div class="row">
+  <div class="s12 col"><h5>Private Link Connections</h5></div>
+</div>
+<div class="row" ng-if="info.private_link_service_connections.length === 0">
+  <div class="s12 col">None</div>
+</div>
+<div class="row" ng-repeat="connection in info.private_link_service_connections">
+  <div class="s12 col">
+    <div class="row">
+      <div class="s12 col word-wrap">
+        <strong>{{connection.name}}</strong>
+      </div>
+    </div>
+    <div class="row">
+      <div class="s12 col" ng-if="connection.connected_resource">
+        <svg><use xlink:href="{{connection.connected_resource.image}}" /></svg>
+        <a ng-click="selectResource(connection.connected_resource)">{{connection.connected_resource.name}}</a> <br />
+      </div>
+      <div class="s12 col word-wrap" ng-if="!connection.connected_resource">
+        <svg><use xlink:href="#generic-circle" /></svg>
+        <small ng-bind="connection.private_link_service_id"></small> <br />
+      </div>
+    </div>
+<!--  TODO: group IDs?   -->
+    <div class="row">
+      <div class="s12 col">
+        <small>∟ </small><small ng-bind="connection.private_link_service_connection_state.status"></small>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="row">
+  <div class="s12 col"><h5>Manual Private Link Connections</h5></div>
+</div>
+<div class="row" ng-if="info.manual_private_link_service_connections.length === 0">
+  <div class="s12 col">None</div>
+</div>
+<div class="row" ng-repeat="connection in info.manual_private_link_service_connections">
+  <div class="s12 col">
+    <div class="row">
+      <div class="s12 col word-wrap">
+        <strong>{{connection.name}}</strong>
+      </div>
+    </div>
+    <div class="row">
+      <div class="s12 col" ng-if="connection.connected_resource">
+        <svg><use xlink:href="{{connection.connected_resource.image}}" /></svg>
+        <a ng-click="selectResource(connection.connected_resource)">{{connection.connected_resource.name}}</a> <br />
+      </div>
+      <div class="s12 col word-wrap" ng-if="!connection.connected_resource">
+        <svg><use xlink:href="#generic-circle" /></svg>
+        <small ng-bind="connection.private_link_service_id"></small> <br />
+      </div>
+    </div>
+<!--  TODO: group IDs?   -->
+    <div class="row">
+      <div class="s12 col">
+        <small>∟ </small><small ng-bind="connection.private_link_service_connection_state.status"></small>
+      </div>
+    </div>
+
+  </div>
+</div>

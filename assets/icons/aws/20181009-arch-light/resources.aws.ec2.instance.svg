@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="48px" height="48px" viewBox="0 0 48 48" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 43.2 (39069) - http://www.bohemiancoding.com/sketch -->
+    <title>resources.aws.ec2.instance</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="resources.aws.ec2.instance">
+            <rect id="Rectangle" fill="#FFFFFF" x="4.69000006" y="4.69000006" width="38.6199989" height="38.6199989"></rect>
+            <path d="M43.31,43.31 L4.69,43.31 L4.69,4.69 L43.31,4.69 L43.31,43.31 Z M6.69,41.31 L41.31,41.31 L41.31,6.69 L6.69,6.69 L6.69,41.31 Z" id="Shape" fill="#D86613" fill-rule="nonzero"></path>
+            <rect id="Rectangle-path" fill="#D86613" fill-rule="nonzero" x="10.21" y="0" width="2" height="5.69"></rect>
+            <rect id="Rectangle-path" fill="#D86613" fill-rule="nonzero" x="16.48" y="0" width="2" height="5.69"></rect>
+            <rect id="Rectangle-path" fill="#D86613" fill-rule="nonzero" x="22.76" y="0" width="2" height="5.69"></rect>
+            <rect id="Rectangle-path" fill="#D86613" fill-rule="nonzero" x="29.04" y="0" width="2" height="5.69"></rect>
+            <rect id="Rectangle-path" fill="#D86613" fill-rule="nonzero" x="35.32" y="0" width="2" height="5.69"></rect>
+            <rect id="Rectangle-path" fill="#D86613" fill-rule="nonzero" x="10.21" y="42.31" width="2" height="5.69"></rect>
+            <rect id="Rectangle-path" fill="#D86613" fill-rule="nonzero" x="16.48" y="42.31" width="2" height="5.69"></rect>
+            <rect id="Rectangle-path" fill="#D86613" fill-rule="nonzero" x="22.76" y="42.31" width="2" height="5.69"></rect>
+            <rect id="Rectangle-path" fill="#D86613" fill-rule="nonzero" x="29.04" y="42.31" width="2" height="5.69"></rect>
+            <rect id="Rectangle-path" fill="#D86613" fill-rule="nonzero" x="35.32" y="42.31" width="2" height="5.69"></rect>
+            <rect id="Rectangle-path" fill="#D86613" fill-rule="nonzero" x="42.31" y="10.45" width="5.69" height="2"></rect>
+            <rect id="Rectangle-path" fill="#D86613" fill-rule="nonzero" x="42.31" y="16.72" width="5.69" height="2"></rect>
+            <rect id="Rectangle-path" fill="#D86613" fill-rule="nonzero" x="42.31" y="23" width="5.69" height="2"></rect>
+            <rect id="Rectangle-path" fill="#D86613" fill-rule="nonzero" x="42.31" y="29.28" width="5.69" height="2"></rect>
+            <rect id="Rectangle-path" fill="#D86613" fill-rule="nonzero" x="42.31" y="35.55" width="5.69" height="2"></rect>
+            <rect id="Rectangle-path" fill="#D86613" fill-rule="nonzero" x="0" y="10.45" width="5.69" height="2"></rect>
+            <rect id="Rectangle-path" fill="#D86613" fill-rule="nonzero" x="0" y="16.72" width="5.69" height="2"></rect>
+            <rect id="Rectangle-path" fill="#D86613" fill-rule="nonzero" x="0" y="23" width="5.69" height="2"></rect>
+            <rect id="Rectangle-path" fill="#D86613" fill-rule="nonzero" x="0" y="29.28" width="5.69" height="2"></rect>
+            <rect id="Rectangle-path" fill="#D86613" fill-rule="nonzero" x="0" y="35.55" width="5.69" height="2"></rect>
+        </g>
+    </g>
+</svg>

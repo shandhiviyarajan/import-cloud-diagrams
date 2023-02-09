@@ -1,0 +1,44 @@
+<div class="row">
+  <div class="s5 col"><strong>Status</strong></div>
+  <div class="s7 col" ng-bind="resource.status"></div>
+</div>
+<div class="row">
+  <div class="s5 col"><strong>Capacity</strong></div>
+  <div class="s7 col" ng-bind="resource.capacity.storage"></div>
+</div>
+<div class="row">
+  <div class="s5 col"><strong>Mode</strong></div>
+  <div class="s7 col" ng-bind="resource.volume_mode"></div>
+</div>
+<div class="row">
+  <div class="s5 col"><strong>Storage Class</strong></div>
+  <div class="s7 col" ng-bind="resource.storage_class_name"></div>
+</div>
+<div class="row">
+  <div class="s5 col"><strong>Reclaim Policy</strong></div>
+  <div class="s7 col" ng-bind="resource.persistent_volume_reclaim_policy"></div>
+</div>
+<div class="row">
+  <div class="s12 col"><strong>Access Modes</strong></div>
+  <div class="s12 col" ng-bind="resource.access_modes.join(', ')"></div>
+</div>
+<div class="row">
+  <div class="s12 col"><strong>Resource Version</strong></div>
+  <div class="s12 col" ng-bind="resource.resource_version"></div>
+</div>
+<div class="row">
+  <div class="s12 col"><strong>Start Time</strong></div>
+  <div class="s12 col" ng-bind="resource.start_time"></div>
+</div>
+
+<div ng-show="info.claim">
+  <div class="row">
+    <div class="s12 col"><h5>Persistent Volume Claim</h5></div>
+  </div>
+  <div class="row">
+    <div class="s12 col attributes-name"><strong><a ng-click="selectResource(info.claim)">{{info.claim.name}}</a></strong></div>
+    <div class="s12 col" ng-if="info.claim.pod">
+      ∟ <strong>Pod</strong>: <a ng-click="selectResource(info.claim.pod)">{{info.claim.pod.name}}</a>
+    </div>
+  </div>
+</div>

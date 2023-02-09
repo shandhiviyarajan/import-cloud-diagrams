@@ -1,0 +1,127 @@
+<div class="row">
+  <div class="s5 col"><strong>Provisioning State</strong></div>
+  <div class="s7 col" ng-bind="resource.provisioning_state"></div>
+</div>
+
+<div ng-show="info.rules.inbound.length > 0">
+  <div class="row">
+    <div class="s10 col"><strong><h5 class="clickable" ng-click="extended.sg = !extended.sg">Inbound Rules</h5></strong></div>
+    <div class="s2 col">
+      <a ng-click="extended.sg = !extended.sg" ng-show="!extended.sg"><span class="mega-octicon octicon-chevron-down"></span></a>
+      <a ng-click="extended.sg = !extended.sg" ng-show="extended.sg"><span class="mega-octicon octicon-chevron-up"></span></a>
+    </div>
+  </div>
+  <div class="row" ng-show="!extended.sg">
+    <div class="s12 col"><small ng-bind="info.rules.inbound.length + ' rules(s)'"></small></div>
+  </div>
+  <div ng-show="extended.sg">
+    <div ng-repeat="rule in info.rules.inbound | orderBy:'priority' track by $index">
+        <div class="row">
+          <div class="s12 col attributes-name">
+            <strong>{{rule.name}}</strong>
+            <span class="right label radius">{{rule.priority}}</span>
+          </div>
+          <div class="s12 col attributes-name">
+            <span class="octicon octicon-check good" ng-show="rule.action=='Allow'"></span><span class="octicon octicon-x bad" ng-show="rule.action=='Deny'"></span>
+            <strong ng-bind="rule.action"></strong>
+            <i>from</i>
+              <strong ng-bind="rule.source"></strong>
+              <a ng-show="rule.app_sg_source" ng-click="selectResource(rule.app_sg_source)">{{rule.app_sg_source.name}}</a>
+            <i>to</i>
+              <strong ng-bind="rule.destination"></strong>
+              <a ng-show="rule.app_sg_destination" ng-click="selectResource(rule.app_sg_destination)">{{rule.app_sg_destination.name}}</a> <i>on</i> <strong ng-bind="rule.service"></strong>
+          </div>
+        </div>
+        <br>
+    </div>
+  </div>
+</div>
+
+<div ng-show="info.rules.inbound.length > 0">
+  <div class="row">
+    <div class="s10 col"><strong><h5 class="clickable" ng-click="extendeding.sg = !extendeding.sg">Outbound Rules</h5></strong></div>
+    <div class="s2 col">
+      <a ng-click="extendeding.sg = !extendeding.sg" ng-show="!extendeding.sg"><span class="mega-octicon octicon-chevron-down"></span></a>
+      <a ng-click="extendeding.sg = !extendeding.sg" ng-show="extendeding.sg"><span class="mega-octicon octicon-chevron-up"></span></a>
+    </div>
+  </div>
+  <div class="row" ng-show="!extendeding.sg">
+    <div class="s12 col"><small ng-bind="info.rules.outbound.length + ' rules(s)'"></small></div>
+  </div>
+  <div ng-show="extendeding.sg">
+    <div ng-show="info.rules.outbound.length > 0">
+      <div ng-repeat="rule in info.rules.outbound | orderBy:'priority' track by $index">
+        <div class="row">
+          <div class="s12 col attributes-name">
+            <strong>{{rule.name}}</strong>
+            <span class="right label radius">{{rule.priority}}</span>
+          </div>
+          <div class="s12 col attributes-name">
+            <span class="octicon octicon-check good" ng-show="rule.action=='Allow'"></span><span class="octicon octicon-x bad" ng-show="rule.action=='Deny'"></span>
+            <strong ng-bind="rule.action"></strong>
+            <i>from</i>
+              <strong ng-bind="rule.source"></strong>
+              <a ng-show="rule.app_sg_source" ng-click="selectResource(rule.app_sg_source)">{{rule.app_sg_source.name}}</a>
+            <i>to</i>
+              <strong ng-bind="rule.destination"></strong>
+              <a ng-show="rule.app_sg_destination" ng-click="selectResource(rule.app_sg_destination)">{{rule.app_sg_destination.name}}</a> <i>on</i> <strong ng-bind="rule.service"></strong>
+          </div>
+        </div>
+        <br>
+      </div>
+    </div>
+  </div>
+</div>
+<div ng-show="info.rules.outbound.length == 0">
+  <div class="row">
+    <div class="s12 col attributes-name">
+      <small>None</small>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="s12 col"><h5>Network Interfaces</h5></div>
+</div>
+<div ng-show="info.nics.length > 0">
+  <div ng-repeat="nic in info.nics track by $index">
+    <div class="row" style="margin-bottom: 8px">
+      <div class="s12 col attributes-name" >
+        <svg><use xlink:href="{{nic.image}}" /></svg><a ng-show="nic" ng-click="selectResource(nic)">{{nic.name}}</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <em>({{nic.ip_config[0].private_ipaddress}})</em><br />
+      </div>
+      <div class="s12 col" ng-show="nic.vm">
+        <small>
+          ∟ Virtual Machine:
+          <a ng-click="selectResource(nic.vm)">{{nic.vm.name}}</a>
+        </small>
+      </div>
+    </div>
+  </div>
+</div>
+<div ng-show="info.nics.length == 0">
+  <div class="row">
+    <div class="s12 col attributes-name">
+      None
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="s12 col"><h5>Subnets</h5></div>
+</div>
+<div ng-show="info.subnets.length > 0">
+  <div ng-repeat="subnet in info.subnets track by $index">
+    <div class="row">
+      <div class="s12 col attributes-name" style="margin-bottom: 8px">
+        <a ng-show="subnet" ng-click="selectResource(subnet)">{{subnet.name}}</a>
+      </div>
+    </div>
+  </div>
+</div>
+<div ng-show="info.subnets.length == 0">
+  <div class="row">
+    <div class="s12 col attributes-name">
+      None
+    </div>
+  </div>
+</div>

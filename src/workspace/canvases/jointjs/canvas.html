@@ -1,0 +1,13 @@
+<div id="paper" class="designer-paper">
+  <div class="paper-controls" ng-if="Designer.show_controls">
+    <button class="button btn waves-effect waves-light" ng-click="JointCanvas.zoom_handler.zoomIn()" title="Zoom In"><span class="octicon octicon-plus"></span></button>
+    <button class="button btn waves-effect waves-light" ng-click="JointCanvas.zoom_handler.zoomOut()" title="Zoom Out"><span class="octicon octicon-dash"></span></button>
+    <button ng-if="Designer.environment.current_view.type === 'Views::Infrastructure' || Designer.environment.current_view.type === 'Views::Infrastructure::Extended'" class="button btn waves-effect waves-light" ng-show="enable3DView" ng-click="switchToThreeJSCanvas()" title="Switch to 3D view"><span class="octicon octicon-package"></span></button>
+    <button class="button btn waves-effect waves-light" ng-click="_switchSkewIsometric()" title="Skew"><span class="octicon octicon-mirror"></span></button>
+    <button class="button btn waves-effect waves-light" ng-click="_autoCenterAndZoom()" title="Fit to Screen"><span class="octicon octicon-diff-modified"></span></button>
+  </div>
+  <div class="paper-loading text-center" ng-show="rendering">
+    <div><h1>Loading ...</h1></div>
+  </div>
+  <a id="svgDownloadLink" style="display: none" href="#">download svg</a>
+</div>

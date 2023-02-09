@@ -1,0 +1,13 @@
+<div class="search-header text-center">
+  <span class="designer-stuff-title left">Resources</span>
+  <span ng-show="SearchHeader.loading" class="search-loading">
+    Loading ...
+    <span loader></span>
+  </span>
+  <span ng-bind="SearchHeader.error" ng-show="SearchHeader.error"></span>
+  <button class="button btn waves-effect waves-light right"
+          ng-click="SearchHeader.saveEnvironment()"
+          ng-disabled="!SearchHeader.search_state.query || SearchHeader.search_state.error">
+    Save as Environment
+  </button>
+</div>

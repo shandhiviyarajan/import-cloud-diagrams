@@ -1,0 +1,243 @@
+<div class="row" ng-show="resource.account_endpoint">
+    <div class="s12 col">
+      <strong>Account Endpoint</strong>
+    </div>
+  
+    <div class="s12 col" ng-bind="resource.account_endpoint">
+    </div>
+  </div>
+  
+  <div class="row" ng-show="resource.provisioning_state">
+    <div class="s12 col">
+      <strong>Provisioning State</strong>
+    </div>
+  
+    <div class="s12 col" ng-bind="resource.provisioning_state">
+    </div>
+  </div>
+  
+  <div class="row" ng-show="resource.pool_allocation_mode">
+    <div class="s12 col">
+      <strong>Pool Allocation Mode</strong>
+    </div>
+  
+    <div class="s12 col" ng-bind="resource.pool_allocation_mode">
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="s12 col">
+      <h5>Key Vault Reference</h5>
+    </div>
+  </div>
+  
+  <div class="row" ng-hide=
+  "(resource.key_vault_reference | json) != '{}'">
+    <div class="s12 col">
+      -
+    </div>
+  </div>
+  
+  <div class="row" ng-show="(resource.key_vault_reference | json) != '{}'">
+    <div class="row" ng-show="resource.key_vault_reference.url">
+      <div class="s5 col">
+        <strong>Url</strong>
+      </div>
+  
+      <div class="s7 col" ng-bind="resource.key_vault_reference.url">
+      </div>
+    </div>
+  </div>
+  
+  <div class="row">
+    <div class="s12 col">
+      <h5>Auto Storage</h5>
+    </div>
+  </div>
+  
+  <div class="row" ng-hide="(resource.auto_storage | json) != '{}'">
+    <div class="s12 col">
+      -
+    </div>
+  </div>
+  
+  <div class="row" ng-show="(resource.auto_storage | json) != '{}'">
+    <div class="row" ng-show="resource.auto_storage.last_key_sync">
+      <div class="s12 col">
+        <strong>Last Sync</strong>
+      </div>
+  
+      <div class="s12 col" ng-bind="resource.auto_storage.last_key_sync | date:'yyyy-MM-dd HH:mm:ss'">
+      </div>
+    </div>
+  
+    <div class="row" ng-show="resource.auto_storage.storage_account_id">
+      <div class="s12 col">
+        <strong>Storage Account</strong>
+      </div>
+  
+      <div class="s12 col">
+        <svg><use xlink:href="{{info.storage[resource.auto_storage.storage_account_id].image}}"/></svg>
+        <a ng-click="selectResource(info.storage[resource.auto_storage.storage_account_id])">{{info.storage[resource.auto_storage.storage_account_id].name}}</a>
+      </div>
+    </div>
+  </div>
+  
+  <div class="row" ng-show="resource.dedicated_core_quota">
+    <div class="s12 col">
+      <h5>Dedicated Core Quota</h5>
+    </div>
+  
+    <div class="s12 col" ng-bind="resource.dedicated_core_quota">
+    </div>
+  </div>
+  
+  <div class="row" ng-show="resource.low_priority_core_quota">
+    <div class="s12 col">
+      <h5>Low Priority Core Quota</h5>
+    </div>
+  
+    <div class="s12 col" ng-bind="resource.low_priority_core_quota">
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="s12 col">
+      <h5>Dedicated Core Quota Per Vm Family</h5>
+    </div>
+  </div>
+  <div class="row" ng-show="resource.dedicated_core_quota_per_vm_family.length === 0">
+    <div class="s12 col">
+      -
+    </div>
+  </div>
+  <div class="row" ng-repeat="dedicated_core_quota_per_vm_family in resource.dedicated_core_quota_per_vm_family track by $index">
+    <div class="row" ng-show="dedicated_core_quota_per_vm_family.name">
+      <div class="s5 col">
+        <strong>Name</strong>
+      </div>
+  
+      <div class="s7 col" ng-bind=
+      "dedicated_core_quota_per_vm_family.name">
+      </div>
+    </div>
+  
+    <div class="row" ng-show="dedicated_core_quota_per_vm_family.core_quota">
+      <div class="s5 col">
+        <strong>Core Quota</strong>
+      </div>
+  
+      <div class="s7 col" ng-bind=
+      "dedicated_core_quota_per_vm_family.core_quota">
+      </div>
+    </div>
+  </div>
+  
+  <div class="row" ng-show=
+  "resource.dedicated_core_quota_per_vm_family_enforced">
+    <div class="s7 col">
+      <strong>Dedicated Core Quota Per Vm Family Enforced</strong>
+    </div>
+  
+    <div class="s5 octicon octicon-check good" ng-show="resource.dedicated_core_quota_per_vm_family_enforced">
+    </div>
+  
+    <div class="s5 octicon octicon-x bad" ng-show="!resource.dedicated_core_quota_per_vm_family_enforced">
+    </div>
+  </div>
+  
+  <div class="row" ng-show="resource.pool_quota">
+    <div class="s5 col">
+      <strong>Pool Quota</strong>
+    </div>
+  
+    <div class="s7 col" ng-bind="resource.pool_quota">
+    </div>
+  </div>
+  
+  <div class="row" ng-show=
+  "resource.active_job_and_job_schedule_quota">
+    <div class="s12 col">
+      <strong>Active Job And Job Schedule Quota</strong>
+    </div>
+  
+    <div class="s12 col" ng-bind=
+    "resource.active_job_and_job_schedule_quota">
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="s12 col"><h5>Applications</h5></div>
+  </div>
+  <div ng-show="info.applications.length > 0">
+    <div ng-repeat="app in info.applications track by $index">
+      <div class="row" style="margin-bottom: 8px">
+        <div class="s12 col attributes-name">
+          <strong>{{app.name}}</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <small>({{app.default_version}})</small></strong><br />
+        </div>
+        <div class="s12 col" ng-show="app.packages.length > 0">
+          <small>
+          <div class="row">
+            <div class="s3 col"><strong><small>Version</small></strong></div>
+            <div class="s3 col text-left"><strong><small>State</small></strong></div>
+            <div class="s2 col text-left"><strong><small>Format</small></strong></div>
+            <div class="s4 col text-left"><strong><small>Last Activation</small></strong></div>
+          </div>
+          <div class="row" ng-repeat="pkg in app.packages">
+            <div class="s3 col text-left" ng-bind="pkg.name"></div>
+            <div class="s3 col text-left" ng-bind="pkg.azure_state"></div>
+            <div class="s2 col text-left" ng-bind="pkg.format"></div>
+            <div class="s4 col text-left" ng-bind="pkg.last_activation_time | date:'yyyy-MM-dd'"></div>
+          </div>
+          </small>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div ng-show="info.applications.length == 0">
+    <div class="row">
+      <div class="s12 col attributes-name">
+        None
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="s12 col"><h5>Pools</h5></div>
+  </div>
+  <div ng-show="info.pools.length > 0">
+    <div ng-repeat="pool in info.pools track by $index">
+      <div class="row">
+        <div class="s12 col attributes-name" style="margin-top: 8px">
+          <a ng-show="pool" ng-click="selectResource(pool)">{{pool.name}}</a>&nbsp;&nbsp;<small>(<strong>VM size:</strong> {{pool.vm_size}})</small>
+        </div>
+        <div class="s12 col" ng-show="pool.subnet">
+          <small>
+            ∟ Subnet:
+            <a ng-click="selectResource(pool.subnet)">{{pool.subnet.name}}</a>
+          </small>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div ng-show="info.pools.length == 0">
+    <div class="row">
+      <div class="s12 col attributes-name">
+        None
+      </div>
+    </div>
+  </div>
+  
+  <div class="row" g-show="info.resource_group">
+    <div class="s12 col"><h5>Resource Group</h5></div>
+  </div>
+  <div class="row" ng-show="!info.resource_group">
+    <div class="s12 col">None</div>
+  </div>
+  <div class="row" ng-show="info.resource_group">
+    <div class="s12 col end attributes-name">
+      <svg><use xlink:href="{{info.resource_group.image}}" /></svg>
+      <a ng-click="selectResource(info.resource_group)">{{info.resource_group.name}}</a>
+    </div>
+  </div>
+  

@@ -1,0 +1,83 @@
+<div class="row" ng-show="resource.is_default">
+  <div class="s12 col">
+    <span class="label radius">DEFAULT</span>
+  </div>
+</div>
+
+<div ng-show="info.entries">
+  <div class="row">
+    <div class="s12 col">
+      <h5>Entries</h5>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="s12 col"><strong>Inbound</strong></div>
+  </div>
+  <div class="row" ng-show="info.entries.inbound.length === 0">
+    <div class="s12 col"><em>No inbound rules</em></div>
+  </div>
+  <div ng-repeat="entry in info.entries.inbound | orderBy:'rule_number'">
+    <div class="row collapse" style="margin-bottom: 4px">
+      <div class="s2 col" style="padding-left: 1rem"><strong ng-bind="entry.rule_number"></strong></div>
+      <div class="s3 col" style="padding-left: 1rem" ng-bind="entry.rule_action" ng-class="{ 'good': entry.rule_action === 'allow', bad: entry.rule_action !== 'allow' }"></div>
+      <div class="s7 col">
+        <strong ng-bind="entry.protocol | uppercase"></strong>
+        <span ng-bind="entry.port_range"></span>
+      </div>
+      <div class="s7 offset-s5 col">
+        ∟
+        <em>
+          <span ng-bind="entry.cidr_block" ng-if="entry.cidr_block"></span>
+          <span ng-bind="entry.ipv_6_cidr_block" ng-if="entry.ipv_6_cidr_block"></span>
+        </em>
+      </div>
+    </div>
+  </div>
+
+  <div class="row" style="margin-top: 1rem">
+    <div class="s12 col"><strong>Outbound</strong></div>
+  </div>
+  <div class="row" ng-show="info.entries.outbound.length === 0">
+    <div class="s12 col"><em>No outbound rules</em></div>
+  </div>
+  <div ng-repeat="entry in info.entries.outbound | orderBy:'rule_number'">
+    <div class="row collapse" style="margin-bottom: 4px">
+      <div class="s2 col" style="padding-left: 1rem"><strong ng-bind="entry.rule_number"></strong></div>
+      <div class="s3 col" style="padding-left: 1rem" ng-bind="entry.rule_action" ng-class="{ 'good': entry.rule_action === 'allow', bad: entry.rule_action !== 'allow' }"></div>
+      <div class="s7 col">
+        <strong ng-bind="entry.protocol | uppercase"></strong>
+        <span ng-bind="entry.port_range"></span>
+      </div>
+      <div class="s7 offset-s5 col">
+        ∟
+        <em>
+          <span ng-bind="entry.cidr_block" ng-if="entry.cidr_block"></span>
+          <span ng-bind="entry.ipv_6_cidr_block" ng-if="entry.ipv_6_cidr_block"></span>
+        </em>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row" ng-show="!info.entries">
+  <div class="s12 col">
+    <strong>No Entries</strong>
+  </div>
+</div>
+
+<div class="row">
+  <div class="s12 col">
+    <h5>Subnets</h5>
+  </div>
+</div>
+<div class="row" ng-repeat="subnet in info.subnets track by $index">
+  <div class="s12 col attributes-name">
+    <svg><use xlink:href="{{subnet.image}}" /></svg>
+    <a ng-click="selectResource(subnet)">{{subnet.name}}</a>
+  </div>
+</div>
+<div class="row" ng-show="info.subnets.length === 0">
+  <div class="s12 col"><em>No subnets</em></div>
+</div>
+

@@ -1,0 +1,105 @@
+<!-- ATTRIBUTES -->
+<div class="row">
+  <div class="s12 col"><strong>Directory Type</strong></div>
+  <div class="s12 col">
+    <span ng-if="resource.directory_type === 'SIMPLE_AD'">Simple AD</span>
+    <span ng-if="resource.directory_type === 'AD_CONNECTOR'">AD Connector</span>
+  </div>
+</div>
+<div class="row">
+  <div class="s12 col"><strong>Organization Name</strong></div>
+  <div class="s12 col" ng-bind="resource.alias"></div>
+</div>
+<div class="row">
+  <div class="s12 col"><strong>DNS IPs</strong></div>
+  <div class="s12 col" ng-bind="resource.dns_ip_addresses.join(',')"></div>
+</div>
+<div class="row">
+  <div class="s12 col"><strong>State</strong></div>
+  <div class="s12 col" ng-bind="resource.status"></div>
+</div>
+
+<hr />
+
+<div class="row">
+  <div class="s8 col"><strong>WorkDocs</strong></div>
+  <div class="s4 col">
+    <span ng-if="resource.creation_property_enable_work_docs">Enabled</span>
+    <span ng-if="!resource.creation_property_enable_work_docs">Disabled</span>
+  </div>
+</div>
+<div class="row">
+  <div class="s8 col"><strong>Internet Access</strong></div>
+  <div class="s4 col">
+    <span ng-if="resource.creation_property_enable_internet_access">Enabled</span>
+    <span ng-if="!resource.creation_property_enable_internet_access">Disabled</span>
+  </div>
+</div>
+<div class="row">
+  <div class="s8 col"><strong>Local Administrator</strong></div>
+  <div class="s4 col">
+    <span ng-if="resource.creation_property_user_enabled_as_local_administrator">Enabled</span>
+    <span ng-if="!resource.creation_property_user_enabled_as_local_administrator">Disabled</span>
+  </div>
+</div>
+<div class="row">
+  <div class="s12 col"><strong>Security Groups</strong></div>
+  <div class="s12 col" ng-repeat="sg in info.security_groups">
+    <a ng-click="selectResource(sg)">{{sg.name}}</a>
+  </div>
+  <div class="s12 col" ng-if="!info.security_groups.length">
+    None
+  </div>
+</div>
+
+<hr />
+
+<div ng-show="info.workspaces.length > 0">
+  <div class="row">
+    <div class="s12 col"><h5>WorkSpaces</h5></div>
+  </div>
+  <div ng-repeat="workspace in info.workspaces">
+    <div class="row">
+      <div class="s12 col attributes-name"><strong><a ng-click="selectResource(workspace)">{{workspace.name}}</a></strong></div>
+      <div class="s6 col">
+        <small>
+          ∟ {{workspace.user_name}}
+        </small>
+      </div>
+      <div class="s6 col">
+        <small><span ng-bind="workspace.status"></span></small>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div ng-show="info.subnets.length > 0">
+  <div class="row">
+    <div class="s12 col"><h5>Subnets</h5></div>
+  </div>
+  <div ng-repeat="subnet in info.subnets">
+    <div class="row">
+      <div class="s12 col attributes-name"><strong><a ng-click="selectResource(subnet)">{{subnet.name}}</a></strong></div>
+    </div>
+  </div>
+</div>
+
+<div ng-show="info.ip_groups.length > 0">
+  <div class="row">
+    <div class="s12 col"><h5>IP Access Controls</h5></div>
+  </div>
+  <div ng-repeat="ip_group in info.ip_groups">
+    <div class="row">
+      <div class="s12 col attributes-name"><strong ng-bind="ip_group.name"></strong></div>
+      <div class="s12 col" ng-bind="ip_group.description"></div>
+      <div class="s12 col">
+        <ul>
+          <li ng-repeat="rule in ip_group.user_rules">
+            {{rule.ip_rule}} <small ng-if="rule.description">({{rule.description}})</small>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+

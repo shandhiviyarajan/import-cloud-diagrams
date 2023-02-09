@@ -1,0 +1,28 @@
+<!-- Attribizzle -->
+<div class="row">
+  <div class="s5 col"><strong>Availability Zone</strong></div>
+  <div class="s7 col" ng-bind="resource.availability_zone"></div>
+</div>
+<div class="row">
+  <div class="s5 col"><strong>Available IPs</strong></div>
+  <div class="s7 col" ng-bind="resource.available_ip_address_count"></div>
+</div>
+<div class="row" ng-show="info.vpc">
+  <div class="s5 col"><strong>VPC</strong></div>
+  <div class="s7 col attributes-name"><a ng-click="selectResource(info.vpc)">{{info.vpc.name}}</a></div>
+</div>
+<div class="row" ng-show="resource.map_public_ip_on_launch">
+  <div class="s12 col"><strong>Map Public IP on Launch</strong> <span class="octicon octicon-check good"></span></div>
+</div>
+<div class="row" ng-show="resource.default_for_az">
+  <div class="s12 col"><strong>Default for AZ</strong> <span class="octicon octicon-check good"></span></div>
+</div>
+
+<div class="row" ng-show="info.children.length > 0">
+  <div class="s10 col end"><h4>Connected Resources</h4></div>
+  <div class="s10 col end attributes-name" ng-repeat="child in info.children | orderBy:['type','name'] track by $index" ng-hide="child.hidden">
+    <svg><use xlink:href="{{child.image}}" /></svg>
+    <a ng-click="selectResource(child)">{{child.name}}</a>
+  </div>
+</div>
+

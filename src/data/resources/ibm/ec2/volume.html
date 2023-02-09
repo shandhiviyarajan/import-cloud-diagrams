@@ -1,0 +1,57 @@
+<!-- ATTRIBUTES!!! -->
+<div class="row">
+  <div class="s5 col"><strong>Volume Type</strong></div>
+  <div class="s7 col" ng-bind="resource.volume_type"></div>
+</div>
+<div class="row">
+  <div class="s5 col"><strong>Size</strong></div>
+  <div class="s7 col" ng-bind="resource.size + 'gb'" ng-show="resource.size"></div>
+</div>
+<div class="row">
+  <div class="s5 col"><strong>IOPS</strong></div>
+  <div class="s7 col" ng-bind="resource.iops"></div>
+</div>
+<div class="row">
+  <div class="s5 col"><strong>Snapshot ID</strong></div>
+  <div class="s7 col" ng-bind="resource.snapshot_id"></div>
+</div>
+<div class="row">
+  <div class="s5 col"><strong>Availability Zone</strong></div>
+  <div class="s7 col" ng-bind="resource.availability_zone"></div>
+</div>
+<div class="row">
+  <div class="s5 col"><strong>State</strong></div>
+  <div class="s7 col" ng-bind="resource.status"></div>
+</div>
+<div class="row">
+  <div class="s12 col"><strong>Create Time</strong></div>
+  <div class="s12 col" ng-bind="resource.create_time"></div>
+</div>
+<div class="row" ng-show="resource.encrypted">
+  <div class="s12 col"><strong>Encrypted</strong> <span class="octicon octicon-check good"></span></div>
+</div>
+
+<div ng-show="info.attachments.length > 0">
+  <div class="row">
+    <div class="s12 col">
+      <h5><span class="octicon octicon-tag"></span> Attachments</h5>
+    </div>
+  </div>
+  <div class="row" ng-repeat="a in info.attachments track by $index">
+    <div class="s12 col">
+      <div class="row">
+        <div class="s12 col attributes-name">
+          <svg><use xlink:href="{{a.attached_to.image}}" /></svg>
+          <a ng-click="selectResource(a.attached_to)">{{a.attached_to.name}}</a>
+        </div>
+      </div>
+      <div class="row">
+        <div class="s11 offset-s1 col">
+          <div class="subinfo"><strong ng-bind="a.device"></strong> <span ng-if="a.status">({{a.status}})</span></div>
+          <div class="subinfo" ng-show="a.delete_on_termination"><small><strong>Delete on terminate</strong></small></div>
+          <div class="subinfo" ng-show="a.attach_time"><em><small ng-bind="'Attached ' + a.attach_time"></small></em></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

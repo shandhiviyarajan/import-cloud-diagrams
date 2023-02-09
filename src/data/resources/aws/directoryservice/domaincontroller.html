@@ -1,0 +1,43 @@
+<!-- ATTRIBUTES -->
+<div class="row">
+  <div class="s7 col"><strong>DNS IP Address</strong></div>
+  <div class="s5 col" ng-bind="resource.dns_ip_addr"></div>
+</div>
+<div class="row" ng-show="resource.availability_zone">
+  <div class="s7 col"><strong>Availability Zone</strong></div>
+  <div class="s5 col" ng-bind="resource.availability_zone"></div>
+</div>
+<div class="row" ng-show="resource.status">
+  <div class="s7 col"><strong>Status</strong></div>
+  <div class="s5 col" ng-bind="resource.status"></div>
+</div>
+<div class="row" ng-show="resource.status_reason">
+  <div class="s7 col"><strong>Status Reason</strong></div>
+  <div class="s5 col" ng-bind="resource.status_reason"></div>
+</div>
+<div class="row" ng-show="resource.status_last_updated_date_time">
+  <div class="s12 col"><strong>Status last updated date time</strong></div>
+  <div class="s12 col" ng-bind="resource.status_last_updated_date_time"></div>
+</div>
+
+<hr />
+<div class="row">
+  <div class="s12 col"><h5>Directory</h5></div>
+</div>
+<div class="row">
+  <div class="s12 col"><a ng-click="selectResource(info.directory)">{{info.directory.name}}</a></div>
+</div>
+
+<div class="row">
+  <div class="s12 col"><h5>VPC Associations</h5></div>
+</div>
+<div class="row">
+  <div class="s12 col"><a ng-click="selectResource(info.vpc)">{{info.vpc.name}}</a></div>
+</div>
+
+<div class="row">
+  <div class="s12 col"><h5>Subnet Associations</h5></div>
+</div>
+<div class="row">
+  <div class="s12 col"><a ng-click="selectResource(info.subnet)">{{info.subnet.name}}</a></div>
+</div>

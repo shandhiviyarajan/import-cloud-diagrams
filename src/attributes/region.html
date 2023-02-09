@@ -1,0 +1,31 @@
+<div class="row region-info">
+  <div ng-if="responsive">
+    <div class="s12 col">
+      <table class="center-table">
+        <thead class="text-left">
+        <tr>
+          <th>Region</th>
+          <th>Location</th>
+          <th>In Use</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="(region, details) in region_location track by $index">
+          <td>{{region}}</td>
+          <td>{{details.location}}</td>
+          <td>
+            <span class="print-check" ng-show="details.in_use">&check;</span>
+            <span class="print-x" ng-show="!details.in_use">	&#10005;</span>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div ng-if="!responsive">
+    <div class="s12 col"><strong>Regions</strong></div>
+    <div class="s12 col attributes-name">
+      <div class="region" ng-repeat="region in regions | orderBy">{{region}}</div>
+    </div>
+  </div>
+</div>

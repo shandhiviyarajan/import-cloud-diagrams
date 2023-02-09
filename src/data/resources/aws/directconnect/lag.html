@@ -1,0 +1,71 @@
+<div class="row" ng-if="resource.status">
+  <div class="s5 col"><strong>Status</strong></div>
+  <div class="s7 col" ng-bind="resource.status"></div>
+</div>
+<div class="row" ng-if="resource.owner_account">
+  <div class="s5 col"><strong>Owner Account</strong></div>
+  <div class="s7 col" ng-bind="resource.owner_account"></div>
+</div>
+<div class="row" ng-if="resource.location">
+  <div class="s5 col"><strong>Location</strong></div>
+  <div class="s7 col" ng-bind="resource.location"></div>
+</div>
+<div class="row" ng-if="resource.minimum_links">
+  <div class="s5 col"><strong>Minimum Links</strong></div>
+  <div class="s7 col" ng-bind="resource.minimum_links"></div>
+</div>
+<div class="row" ng-if="resource.connections_bandwidth">
+  <div class="s5 col"><strong>Connections Bandwidth</strong></div>
+  <div class="s7 col" ng-bind="resource.connections_bandwidth"></div>
+</div>
+<div class="row" ng-if="resource.number_of_connections">
+  <div class="s5 col"><strong>Number of Connections</strong></div>
+  <div class="s7 col" ng-bind="resource.number_of_connections"></div>
+</div>
+<div class="row" ng-if="resource.aws_device">
+  <div class="s5 col"><strong>AWS Device</strong></div>
+  <div class="s7 col" ng-bind="resource.aws_device"></div>
+</div>
+<div class="row" ng-if="resource.aws_device_v2">
+  <div class="s5 col"><strong>AWS Device V2</strong></div>
+  <div class="s7 col" ng-bind="resource.aws_device_v2"></div>
+</div>
+<div class="row">
+  <div class="s7 col"><strong>Allows Hosted Connections</strong></div>
+  <div class="s5 col">
+    <span ng-show="resource.allows_hosted_connections" class="octicon octicon-check good"></span>
+    <span ng-hide="resource.allows_hosted_connections" class="octicon octicon-x bad"></span>
+  </div>
+</div>
+<div class="row">
+  <div class="s7 col"><strong>Has Logical Redundancy</strong></div>
+  <div class="s5 col">
+    <span ng-show="resource.has_logical_redundancy" class="octicon octicon-check good"></span>
+    <span ng-hide="resource.has_logical_redundancy" class="octicon octicon-x bad"></span>
+  </div>
+</div>
+
+<div ng-show="info.connections.length">
+  <div class="row">
+    <div class="s12 col"><h5>Connections</h5></div>
+  </div>
+  <div class="row" ng-repeat="connection in info.connections track by $index">
+    <div class="s12 col end attributes-name">
+      <svg><use xlink:href="{{connection.image}}" /></svg>
+      <a ng-click="selectResource(connection)">{{connection.name}}</a>
+    </div>
+  </div>
+</div>
+
+<div ng-show="info.virtual_interfaces.length">
+  <div class="row">
+    <div class="s12 col"><h5>Virtual Interfaces</h5></div>
+  </div>
+  <div class="row" ng-repeat="vi in info.virtual_interfaces track by $index">
+    <div class="s12 col end attributes-name">
+      <svg><use xlink:href="{{vi.image}}" /></svg>
+      <a ng-click="selectResource(vi)">{{vi.name}}</a>
+    </div>
+  </div>
+</div>
+

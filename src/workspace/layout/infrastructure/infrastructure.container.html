@@ -1,0 +1,80 @@
+<table>
+  <tr class="top-row">
+    <td width="50%">
+      <div class="service right positionable" ng-attr-id="{{ id }}" ng-repeat="id in container.top.left" ng-style="view.styles.service"></div>
+    </td>
+    <td width="50%">
+      <div class="service left positionable" ng-attr-id="{{ id }}" ng-repeat="id in container.top.right" ng-style="view.styles.service"></div>
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2">
+      <table>
+        <tr>
+          <td class="group-left" ng-style="view.styles.left_column(container)">
+            <div class="service right positionable" ng-attr-id="{{id}}" ng-repeat="id in container.left" ng-style="view.styles.service"></div>
+          </td>
+          <td>
+            <!-- VPC -->
+            <table class="layout-container positionable" ng-attr-id="{{container.id}}">
+              <tr ng-repeat="row in container.center">
+
+                <td ng-if="row.type === 'load_balancer'" ng-attr-colspan="{{view.dimensions[container.id].colspan}}">
+                  <div class="load-balancer-row">
+                    <div class="service elb positionable" ng-attr-id="{{id}}" ng-repeat="id in row.resources" ng-style="view.styles.load_balancer">ELB</div>
+                  </div>
+                </td>
+
+                <td ng-if="row.type === 'subnet'" ng-repeat="col in row.columns track by $index" class="subnet-cell" ng-attr-colspan="{{col.colspan || 1}}">
+                  <!-- Empty Column -->
+                  <div ng-if="!col" class="subnet" ng-style="view.styles.subnet(container.id)"></div>
+
+                  <!-- Multi-span Column -->
+                  <div class="positionable" ng-attr-id="{{col.id}}" ng-if="col.colspan > 1">
+                    <div ng-repeat="zone_col in col.zone_columns" ng-style="view.styles.subnet(container.id)" ng-attr-class="{{'subnet subnet-section ' + col.custom_class}}">
+                      <div class="service subnet-resource left positionable" ng-attr-id="{{id}}" ng-repeat="id in zone_col.resources" ng-style="view.styles.subnet_service"></div>
+                      <div class="clearfix"></div>
+
+                      <div class="subnet-group-info" ng-repeat="subnet_group in zone_col.subnet_groups">
+                        <span ng-bind="subnet_group"></span>
+                      </div>
+
+                      <div class="network-info">
+                        <span ng-bind="zone_col.name"></span>
+                      </div>
+                    </div>
+                    <div class="clearfix" style="border-spacing:0;"></div>
+                  </div>
+
+                  <!-- Normal subnet column -->
+                  <div ng-if="col && ((col['colspan'] || 1) === 1)" ng-style="view.styles.subnet(container.id)" ng-attr-class="{{'subnet positionable ' + col.custom_class}}" ng-attr-id="{{ col.id }}">
+                    <div class="service subnet-resource left positionable" ng-attr-id="{{id}}" ng-repeat="id in col.resources" ng-style="view.styles.subnet_service"></div>
+                    <div class="clearfix"></div>
+
+                    <div class="subnet-group-info" ng-repeat="subnet_group in col.subnet_groups">
+                      <span ng-bind="subnet_group"></span>
+                    </div>
+
+                    <div class="network-info">
+                      <span ng-bind="col.name"></span>
+                    </div>
+                  </div>
+                </td>
+
+                <td ng-if="row.type === 'additional'" ng-repeat="zone_col in row.zone_columns">
+                  <div class="additional-row">
+                    <div class="service positionable" ng-attr-id="{{id}}" ng-repeat="id in zone_col.resources" ng-style="view.styles.subnet_service"></div>
+                  </div>
+                </td>
+              </tr>
+
+            </table>
+          </td>
+          <td class="group-right"  ng-style="view.styles.right_column(container)">
+            <div class="service left positionable" ng-attr-id="{{id}}" ng-repeat="id in container.right" ng-style="view.styles.service"></div>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>

@@ -1,0 +1,25 @@
+<!-- CONNECTION -->
+<div ng-show="info.methods.length">
+  <div class="row">
+    <div class="s12 col"><h5>Methods</h5></div>
+  </div>
+  <div ng-repeat="method in info.methods track by $index">
+    <div class="row">
+      <div class="s12 col attributes-name"><svg><use xlink:href="{{method.image}}" /></svg><a ng-click="selectResource(method)">{{method.name}}</a></div>
+    </div>
+  </div>
+</div>
+
+<div>
+  <div class="row">
+    <div class="s12 col"><h5>REST API</h5></div>
+    <div class="s12 col attributes-name"><svg><use xlink:href="{{info.rest_api.image}}" /></svg><a ng-click="selectResource(info.rest_api)">{{info.rest_api.name}}</a></div>
+  </div>
+</div>
+
+<div ng-show="info.resource_tree">
+  <div class="row">
+    <div class="s12 col"><h5>Related Resources</h5></div>
+  </div>
+  <div api-resource-tree resource="info.resource_tree" parent="resource"></div>
+</div>

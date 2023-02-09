@@ -1,0 +1,27 @@
+<!-- Attributes -->
+<div class="row">
+  <div class="s12 col"><strong>Transit Gateway</strong></div>
+  <div class="s12 col"><a ng-click="selectResource(info.transit_gateway)">{{info.transit_gateway.name}}</a></div>
+</div>
+<div class="row">
+  <div class="s12 col"><strong>State</strong></div>
+  <div class="s12 col" ng-bind="resource.status" ng-class="resource.status_list[resource.status]"></div>
+</div>
+<div class="row">
+  <div class="s12 col"><strong>Creation Time</strong></div>
+  <div class="s12 col" ng-bind="resource.creation_time"></div>
+</div>
+<div class="row">
+  <div class="s10 col"><strong>Default Association Route Table</strong></div>
+  <div class="s2 col">
+    <span class="octicon octicon-check good" ng-show="resource.default_association_route_table"></span>
+    <span class="octicon octicon-x bad" ng-show="!resource.default_association_route_table"></span>
+  </div>
+</div>
+<div class="row">
+  <div class="s10 col"><strong>Default Propagation Route Table</strong></div>
+  <div class="s2 col">
+    <span class="octicon octicon-check good" ng-show="resource.default_propagation_route_table"></span>
+    <span class="octicon octicon-x bad" ng-show="!resource.default_propagation_route_table"></span>
+  </div>
+</div>

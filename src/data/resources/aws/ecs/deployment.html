@@ -1,0 +1,21 @@
+<!-- ATTRIBUTES!!! -->
+<div class="row" ng-if="info.service">
+  <div class="s12 col"><strong>Service</strong></div>
+  <div class="s12 col"><a ng-click="selectResource(info.service)">{{info.service.name}}</a></div>
+</div>
+<div class="row">
+  <div class="s5 col"><strong>Status</strong></div>
+  <div class="s7 col" ng-bind="resource.status"></div>
+</div>
+<div class="row">
+  <div class="s5 col"><strong>Desired Count</strong></div>
+  <div class="s7 col" ng-bind="resource.desired_count"></div>
+</div>
+<div class="row">
+  <div class="s5 col"><strong>Pending Count</strong></div>
+  <div class="s7 col" ng-bind="resource.pending_count"></div>
+</div>
+<div class="row">
+  <div class="s5 col"><strong>Running Count</strong></div>
+  <div class="s7 col" ng-bind="resource.running_count"></div>
+</div>

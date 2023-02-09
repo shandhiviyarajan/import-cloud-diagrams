@@ -1,0 +1,78 @@
+.designer,
+.designer-mobile, .report-sheet {
+  font-family: $font-family-nunito;
+}
+
+//Variables
+$default-font-size: rem-calc(14px);
+$breadcrumb-font-size: $default-font-size;
+$capitalized-button-font-size: rem-calc(10px);
+$materialize-icons-font-size: rem-calc(20px);
+
+.btn,
+.btn:focus,
+.btn:hover {
+  font-size: $capitalized-button-font-size;
+  background-color: $primary-button-color;
+  border-color: $primary-button-border-color;
+  margin: auto 0;
+  text-transform: uppercase;
+  color: $white;
+  white-space: nowrap;
+}
+
+.breadcrumb,
+.breadcrumb::before {
+  font-size: $breadcrumb-font-size;
+}
+
+nav {
+  ul {
+
+    a,
+    a:hover,
+    a:focus {
+      font-size: $default-font-size;
+      color: $white;
+    }
+  }
+}
+
+.material-icons {
+  font-size: $materialize-icons-font-size;
+  cursor: pointer;
+}
+
+table {
+  a {
+    text-transform: capitalize;
+  }
+}
+
+.tabs .tab a:hover,
+.tabs .tab a.active,
+.tabs .tab a {
+  color: $jet;
+  font-size: $default-font-size;
+  cursor: pointer;
+}
+
+.tabs .indicator {
+  background-color: transparent;
+}
+
+.source_name {
+  font-size: $default-font-size;
+}
+
+td,
+th {
+  font-size: rem-calc(13.5px);
+  color: $jet;
+  font-weight: 400;
+}
+
+a {
+  //   /* display: flex; */
+  // /* align-items: center;
+}

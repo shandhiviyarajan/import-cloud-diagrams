@@ -1,0 +1,68 @@
+<!-- ATTRIBUTES!!! -->
+<div class="row">
+  <div class="s12 col"><strong>Provisioning State</strong></div>
+  <div class="s12 col" ng-bind="resource.provisioning_state"></div>
+</div>
+<div class="row">
+  <div class="s12 col"><strong>Gateway Manager etag</strong></div>
+  <div class="s12 col" ng-bind="resource.gateway_manager_etag"></div>
+</div>
+<div class="row">
+  <div class="s12 col"><strong>Type</strong></div>
+  <div class="s12 col" ng-bind="resource.azure_type"></div>
+</div>
+<div class="row">
+  <div class="s12 col"><strong>Circuit Provisioning State</strong></div>
+  <div class="s12 col" ng-bind="resource.circuit_provisioning_state"></div>
+</div>
+<div class="row">
+  <div class="s12 col"><strong>Service Provider Provisioning State</strong></div>
+  <div class="s12 col" ng-bind="resource.circuit_provisioning_state"></div>
+</div>
+
+<div class="row">
+  <div class="s12 col">
+    <strong>Allow Classic Operations</strong></div>
+  <div class="s12 col">
+    <span ng-show="resource.allow_classic_operations" class="octicon octicon-check good"></span>
+    <span ng-hide="resource.allow_classic_operations" class="octicon octicon-x bad"></span>
+  </div>
+</div>
+
+<div class="row">
+  <div class="s12 col"><strong>Service Provider Provisioning State</strong></div>
+  <div class="s12 col" ng-bind="resource.circuit_provisioning_state"></div>
+</div>
+<div class="row">
+  <div class="s12 col"><h5>Service Provider</h5></div>
+</div>
+<div class="row" ng-show="!info.service_provider_properties.length">
+  <div class="s12 col">None</div>
+</div>
+<div class="row" ng-show="info.service_provider_properties.length">
+  <div class="row">
+    <div class="s5 offset-s1 col"><strong>Service Provider Name</strong></div>
+    <div class="s6 col" ng-bind="peering.service_provider_properties.service_provider_name"></div>
+  </div>
+  <div class="row">
+    <div class="s5 offset-s1 col"><strong>Peering Location</strong></div>
+    <div class="s6 col" ng-bind="peering.service_provider_properties.peering_location"></div>
+  </div>
+  <div class="row">
+    <div class="s5 offset-s1 col"><strong>Bandwidth (mbps)</strong></div>
+    <div class="s6 col" ng-bind="peering.service_provider_properties.bandwidth_in_mbps"></div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="s12 col"><h5>Peerings</h5></div>
+</div>
+<div class="row" ng-show="!info.peerings.length">
+  <div class="s12 col">None</div>
+</div>
+<div class="row" ng-repeat="peering in info.peerings">
+  <div class="s12 col end attributes-name">
+    <svg><use xlink:href="{{peering.image}}" /></svg>
+    <a ng-click="selectResource(peering)" highlight-connected-resources="peering">{{peering.name}}</a>
+  </div>
+</div>

@@ -1,0 +1,44 @@
+<table class="parent-container positionable" ng-attr-id="{{ container.id }}">
+
+  <tr ng-if="container.top.length">
+    <td colspan="3" class="group-top" ng-class="{ 'group-top-max-size': !container.center.length }">
+      <div class="service positionable" ng-attr-id="{{ id }}" ng-repeat="id in container.top" ng-style="view.styles.service"></div>
+    </td>
+  </tr>
+
+  <tr>
+    <td ng-class="{ 'group-left': !container.left.length }">
+      <div class="service right positionable" ng-attr-id="{{ id }}" ng-repeat="id in container.left" ng-style="view.styles.service"></div>
+    </td>
+    <td>
+      <table>
+        <tr>
+          <td ng-style="{ 'padding-right': (container.center.length > 1 ? '35px' : '' ) }" ng-repeat="vn in container.center">
+            <div infrastructure-container container="vn" view="view"></div>
+          </td>
+        </tr>
+      </table>
+    </td>
+    <td ng-class="{ 'group-right': !container.right.length }">
+      <div class="service left positionable" ng-attr-id="{{ id }}" ng-repeat="id in container.right" ng-style="view.styles.service"></div>
+    </td>
+  </tr>
+  <tr>
+    <td colspan="3" class="group-bottom">
+      <div
+        class="service positionable" ng-attr-id="{{ id }}"
+        ng-repeat="id in container.bottom | filter: regular"
+        ng-style="view.styles.service">
+      </div>
+    </td>
+  </tr>
+  <tr>
+    <td colspan="3" class="group-bottom">
+      <div
+        class="service positionable" ng-attr-id="{{ id }}"
+        ng-repeat="id in container.bottom | filter: generic"
+        ng-style="view.styles.service">
+      </div>
+    </td>
+  </tr>
+</table>

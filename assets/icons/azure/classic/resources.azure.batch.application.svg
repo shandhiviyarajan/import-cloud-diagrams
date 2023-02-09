@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="90px" height="90px" viewBox="0 0 90 90" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 43.2 (39069) - http://www.bohemiancoding.com/sketch -->
+    <title>vm</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <linearGradient x1="49.9927007%" y1="99.9876467%" x2="49.9927007%" y2="0%" id="linearGradient-1">
+            <stop stop-color="#0078D4" offset="0%"></stop>
+            <stop stop-color="#4093E6" offset="50.2%"></stop>
+            <stop stop-color="#5EA0EF" offset="77.5%"></stop>
+        </linearGradient>
+        <linearGradient x1="50.0072993%" y1="99.9382335%" x2="50.0072993%" y2="-0.0617665225%" id="linearGradient-2">
+            <stop stop-color="#32BEDD" offset="0%"></stop>
+            <stop stop-color="#32CAEA" offset="17.5%"></stop>
+            <stop stop-color="#32D2F2" offset="41%"></stop>
+            <stop stop-color="#32D4F5" offset="77.5%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="vm" fill-rule="nonzero">
+            <g id="Layer_1" fill="#0078D7">
+                <circle id="Oval-1" cx="45" cy="45" r="45"></circle>
+            </g>
+            <g id="10845-icon-service-Versions" transform="translate(18.000000, 19.000000)">
+                <path d="M3.74700271e-16,9.897875 L46.2375,9.897875 L46.2375,35.67275 C46.2375,36.5264442 45.5454442,37.2185 44.69175,37.2185 L1.54575,37.2185 C0.692055848,37.2185 0,36.5264442 0,35.67275 L0,9.897875 L3.74700271e-16,9.897875 Z" id="Shape" fill="url(#linearGradient-1)"></path>
+                <path d="M1.5525,0.04625 L44.674875,0.04625 C45.5285692,0.04625 46.220625,0.738305848 46.220625,1.592 L46.220625,9.897875 L0,9.897875 L0,1.592 C-3.91995342e-06,1.18086941 0.163777671,0.786675443 0.455123567,0.496596268 C0.746469463,0.206517094 1.14137333,0.0444546699 1.5525,0.04625 L1.5525,0.04625 Z" id="Shape" fill="#0078D4"></path>
+                <path d="M7.7625,24.65 L54,24.65 L54,50.424875 C54,51.2785692 53.3079442,51.970625 52.45425,51.970625 L9.315,51.970625 C8.46130585,51.970625 7.76925,51.2785692 7.76925,50.424875 L7.76925,24.65 L7.7625,24.65 Z" id="Shape" fill="url(#linearGradient-2)"></path>
+                <path d="M9.325125,14.784875 L52.4475,14.784875 C52.8580425,14.7830813 53.252434,14.9446811 53.5436823,15.23403 C53.8349306,15.5233788 53.9991075,15.9167046 54,16.32725 L54,24.65 L7.7625,24.65 L7.7625,16.32725 C7.76337567,15.9149364 7.92894203,15.5200605 8.22238763,15.2304176 C8.51583322,14.9407748 8.91283502,14.7803728 9.325125,14.784875 L9.325125,14.784875 Z" id="Shape" fill="#198AB3"></path>
+            </g>
+        </g>
+    </g>
+</svg>

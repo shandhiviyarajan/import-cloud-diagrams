@@ -1,0 +1,32 @@
+<!-- ATTRIBUTES -->
+<div class="row">
+  <div class="s5 col"><strong>REST API</strong></div>
+  <div class="s7 col">
+    <a ng-click="selectResource(info.rest_api)">{{info.rest_api.name}}</a>
+  </div>
+</div>
+<div class="row">
+  <div class="s5 col"><strong>AWS Type</strong></div>
+  <div class="s7 col" ng-bind="resource.aws_type"></div>
+</div>
+<div class="row" ng-show="resource.auth_type">
+  <div class="s5 col"><strong>Auth Type</strong></div>
+  <div class="s7 col" ng-bind="resource.auth_type"></div>
+</div>
+<div class="row" ng-show="resource.authorizer_result_ttl_in_seconds">
+  <div class="s12 col"><strong>Authorizer Result TTL (seconds)</strong></div>
+  <div class="s12 col" ng-bind="resource.authorizer_result_ttl_in_seconds"></div>
+</div>
+<div class="row" ng-show="resource.identity_validation_expression">
+  <div class="s12 col"><strong>Identity Validation Expression</strong></div>
+  <div class="s12 col" ng-bind="resource.identity_validation_expression"></div>
+</div>
+<div class="row" ng-show="resource.identity_source">
+  <div class="s12 col"><strong>Identity Source</strong></div>
+  <div class="s12 col" ng-bind="resource.identity_source"></div>
+</div>
+<div class="row" ng-show="resource.authorizer_uri">
+  <div class="s12 col"><strong>Authorizer URI</strong></div>
+  <div class="s12 col" ng-bind="resource.authorizer_uri"></div>
+</div>
+

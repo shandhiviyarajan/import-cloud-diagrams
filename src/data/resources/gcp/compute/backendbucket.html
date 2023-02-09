@@ -1,0 +1,57 @@
+<div class="row sub-title">
+  <div class="s12 col">
+    <small ng-if="resource.project">
+      <strong>Project</strong><br />
+      <span ng-bind="resource.project"></span>
+    </small>
+  </div>
+</div>
+
+<div class="row" ng-show="resource.cdn_policy">
+  <div class="s5 col">
+    <strong>Cdn Policy</strong>
+  </div>
+
+  <div class="s7 col" ng-bind="resource.cdn_policy"></div>
+</div>
+
+<div class="row" ng-show="resource.enable_cdn">
+  <div class="s7 col">
+    <strong>Enable CDN</strong>
+  </div>
+
+  <div class="s5 octicon octicon-check good" ng-show=
+  "resource.enable_cdn"></div>
+
+  <div class="s5 octicon octicon-x bad" ng-show=
+  "!resource.enable_cdn"></div>
+</div>
+
+<div class="row" ng-show="resource.creation_timestamp">
+  <div class="s12 col">
+    <strong>Creation Timestamp</strong>
+  </div>
+
+  <div class="s12 col" ng-bind=
+  "resource.creation_timestamp | date:'yyyy-MM-dd HH:mm:ss'"></div>
+</div>
+
+<div class="row" ng-show="resource.description">
+  <div class="s12 col">
+    <strong>Description</strong>
+  </div>
+
+  <div class="s12 col" ng-bind="resource.description">
+  </div>
+</div>
+
+<div class="row" ng-show="info.bucket">
+  <div class="s12 col">
+    <h5>Bucket</h5>
+  </div>
+
+  <div class="s12 col attributes-name">
+    <svg><use xlink:href="{{info.bucket.image}}" /></svg><a ng-click=
+    "selectResource(info.bucket)">{{info.bucket.name}}</a>
+  </div>
+</div>

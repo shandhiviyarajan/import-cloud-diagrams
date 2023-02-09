@@ -1,0 +1,25 @@
+<div class="content">
+  <div class="row status">
+    <div class="s12 col"><div class="status-display available"></div>
+      <strong ng-show="Designer.environment.environment_type == 'imported'">ENVIRONMENT</strong>
+      <strong ng-show="Designer.environment.environment_type == 'cloudformation'">CLOUDFORMATION</strong>
+      <strong ng-show="Designer.environment.environment_type == 'search' && !Designer.environment.searching">SEARCH</strong>
+      <strong ng-show="Designer.environment.searching">CREATING ENVIRONMENT</strong>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="s12 col attributes-name" ng-click="full_title = !full_title" style="cursor: pointer;">
+      <small ng-if="Designer.environment.environment_type != 'cloudformation' && Designer.environment.sources.length"><strong>Sources: </strong> <div ng-repeat="source in Designer.environment.sources">{{source.display_name}}</div></small>
+      <small ng-if="Designer.environment.environment_type == 'search'"><strong>Parameters:</strong> {{Designer.environment.query}}</small>
+      <h3 ng-bind="display_name" ng-show="!full_title"></h3>
+      <h3 ng-bind="Designer.environment.name" ng-show="full_title"></h3>
+    </div>
+  </div>
+
+  <div map regions="regions" responsive="responsive"></div>
+  <div region-info regions="regions" responsive="responsive"></div>
+
+  <div price-estimate></div>
+  <div class="row"><div class="s12 col">&nbsp;</div></div>
+</div>

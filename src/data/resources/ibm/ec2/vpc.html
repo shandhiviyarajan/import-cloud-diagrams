@@ -1,0 +1,139 @@
+<div class="row sub-title">
+  <div class="s6 col">
+    <small ng-bind="resource.provider_id"></small>
+    <small ng-show="resource.is_default">(default)</small><br />
+    <strong ng-bind="resource.cidr_block"></strong>
+  </div>
+  <div class="s6 col text-right attribute">
+    <div ng-bind="resource.instance_tenancy | uppercase"></div>
+    <div>TENANCY</div>
+  </div>
+</div>
+
+<!-- DHCP options display -->
+<div ng-if="info.dhcp_options">
+  <div ng-repeat="option in info.dhcp_options.dhcp_configurations">
+    <div class="row" ng-show="option.key === 'domain-name'">
+      <div class="s12 col">
+        <div ng-repeat="val in option.value"><a ng-href="http://{{val}}" ng-bind="val" target="_blank"></a></div>
+        <div>&nbsp;</div>
+      </div>
+    </div>
+
+    <div class="row" ng-show="option.key === 'domain-name-servers'">
+      <div class="s12 col"><strong>Domain Name Servers</strong></div>
+      <div class="s12 col">
+        <div ng-repeat="val in option.value" ng-bind="val"></div>
+      </div>
+    </div>
+
+    <div class="row" ng-show="option.key === 'ntp-servers'">
+      <div class="s12 col"><strong>NTP Servers</strong></div>
+      <div class="s12 col">
+        <div ng-repeat="val in option.value" ng-bind="val"></div>
+      </div>
+    </div>
+
+    <div class="row" ng-show="option.key === 'netbios-name-servers'">
+      <div class="s12 col"><strong>NetBIOS Name Servers</strong></div>
+      <div class="s12 col">
+        <div ng-repeat="val in option.value" ng-bind="val"></div>
+      </div>
+    </div>
+
+    <div class="row" ng-show="option.key === 'netbios-node-type'">
+      <div class="s12 col"><strong>NetBIOS Node Type</strong></div>
+      <div class="s12 col">
+        <div ng-repeat="val in option.value" ng-bind="val"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div ng-show="info.security_groups.length > 0">
+  <div class="row">
+    <div class="s10 col"><h5 class="clickable" ng-click="extended.sg = !extended.sg">Security Groups</h5></div>
+    <div class="s2 col">
+      <a ng-click="extended.sg = !extended.sg" ng-show="!extended.sg"><span class="mega-octicon octicon-chevron-down"></span></a>
+      <a ng-click="extended.sg = !extended.sg" ng-show="extended.sg"><span class="mega-octicon octicon-chevron-up"></span></a>
+    </div>
+  </div>
+  <div class="row" ng-show="!extended.sg">
+    <div class="s12 col"><small ng-bind="info.security_groups.length + ' security group(s)'"></small></div>
+  </div>
+  <div ng-show="extended.sg">
+    <div ng-repeat="sg in info.security_groups| orderBy:'name' track by $index">
+      <div class="row">
+        <div class="s12 col attributes-name">
+          <a ng-click="selectResource(sg)" highlight-connected-resources="sg">{{sg.name}}</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div ng-show="info.route_tables.length > 0">
+  <div class="row">
+    <div class="s10 col"><h5 class="clickable" ng-click="extended.rt = !extended.rt">Route Tables</h5></div>
+    <div class="s2 col">
+      <a ng-click="extended.rt = !extended.rt" ng-show="!extended.rt"><span class="mega-octicon octicon-chevron-down"></span></a>
+      <a ng-click="extended.rt = !extended.rt" ng-show="extended.rt"><span class="mega-octicon octicon-chevron-up"></span></a>
+    </div>
+  </div>
+  <div class="row" ng-show="!extended.rt">
+    <div class="s12 col"><small ng-bind="info.route_tables.length + ' route table(s)'"></small></div>
+  </div>
+  <div ng-show="extended.rt">
+    <div ng-repeat="rt in info.route_tables | orderBy:'name' track by $index">
+      <div class="row">
+        <div class="s12 col attributes-name">
+          <a ng-click="selectResource(rt)" highlight-connected-resources="rt">{{rt.name}}</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div ng-show="info.network_acls.length > 0">
+  <div class="row">
+    <div class="s10 col"><h5 class="clickable" ng-click="extended.acl = !extended.acl">Network ACLs</h5></div>
+    <div class="s2 col">
+      <a ng-click="extended.acl = !extended.acl" ng-show="!extended.acl"><span class="mega-octicon octicon-chevron-down"></span></a>
+      <a ng-click="extended.acl = !extended.acl" ng-show="extended.acl"><span class="mega-octicon octicon-chevron-up"></span></a>
+    </div>
+  </div>
+  <div class="row" ng-show="!extended.acl">
+    <div class="s12 col"><small ng-bind="info.network_acls.length + ' network ACL(s)'"></small></div>
+  </div>
+  <div ng-show="extended.acl">
+    <div ng-repeat="acl in info.network_acls | orderBy:'name' track by $index">
+      <div class="row">
+        <div class="s12 col attributes-name">
+          <a ng-click="selectResource(acl)" highlight-connected-resources="acl">{{acl.name}}</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div ng-show="info.s3_buckets.length > 0">
+  <div class="row">
+    <div class="s10 col"><h5 class="clickable" ng-click="extended.bck = !extended.bck">Object Stores</h5></div>
+    <div class="s2 col">
+      <a ng-click="extended.bck = !extended.bck" ng-show="!extended.bck"><span class="mega-octicon octicon-chevron-down"></span></a>
+      <a ng-click="extended.bck = !extended.bck" ng-show="extended.bck"><span class="mega-octicon octicon-chevron-up"></span></a>
+    </div>
+  </div>
+  <div class="row" ng-show="!extended.bck">
+    <div class="s12 col"><small ng-bind="info.s3_buckets.length + ' S3 Bucket(s)'"></small></div>
+  </div>
+  <div ng-show="extended.bck">
+    <div ng-repeat="s3_bucket in info.s3_buckets track by $index">
+      <div class="row">
+        <div class="s12 col attributes-name">
+          <a ng-click="selectResource(s3_bucket)">{{s3_bucket.name}}</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

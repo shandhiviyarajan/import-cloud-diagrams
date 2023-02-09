@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="92px" height="92px" viewBox="0 0 92 92" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 43.2 (39069) - http://www.bohemiancoding.com/sketch -->
+    <title>efs</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="efs" transform="translate(1.000000, 1.000000)">
+            <g id="Page-1" fill="#FFFFFF" stroke="#979797">
+                <g id="blank">
+                    <g id="Page-1">
+                        <g id="Compute-&amp;-Networking-copy_Amazon-EC2-Instance">
+                            <g id="Layer_1">
+                                <circle id="Oval-1" cx="45" cy="45" r="45"></circle>
+                            </g>
+                        </g>
+                    </g>
+                </g>
+            </g>
+            <g id="Storage_AmazonEFS" transform="translate(14.000000, 9.000000)" fill-rule="nonzero">
+                <polygon id="Shape" fill="#8C3123" points="8.11314286 26.1482927 14.9154286 24.7960976 23.0108571 32.5668293 14.9154286 38.6868293 8.11314286 38.3619512"></polygon>
+                <polygon id="Shape" fill="#F2B0A9" points="37.634 42.3482927 52.7531429 61.2263415 61.1674286 42.3043902 47.0491429 41.4439024"></polygon>
+                <polygon id="Shape" fill="#F2B0A9" points="24.366 42.3482927 9.24685714 61.2263415 0.832571429 42.3043902 14.9508571 41.4439024"></polygon>
+                <polygon id="Shape" fill="#E05243" points="61.1674286 42.3043902 52.7531429 43.542439 52.7531429 61.2263415 61.1674286 57.0556098"></polygon>
+                <polygon id="Shape" fill="#E05243" points="25.5262857 26.1834146 14.9154286 24.7960976 14.9154286 38.6868293 25.5262857 38.3707317"></polygon>
+                <polygon id="Shape" fill="#8C3123" points="36.3674286 26.1834146 46.9782857 24.7785366 52.7531429 32.2331707 46.9782857 38.6956098 36.3674286 38.3707317"></polygon>
+                <polygon id="Shape" fill="#E05243" points="53.7805714 26.1307317 46.9782857 24.7785366 46.9782857 38.6956098 53.7805714 38.3707317"></polygon>
+                <polygon id="Shape" fill="#8C3123" points="20.1145714 23.76 31 21.6 38.9891429 31.7326829 31 39.4595122 20.1145714 38.9326829"></polygon>
+                <polygon id="Shape" fill="#5E1F18" points="39.9457143 17.0780488 30.9468571 19.1590244 21.948 17.0780488 31 0"></polygon>
+                <polygon id="Shape" fill="#8C3123" points="37.634 42.3482927 52.7531429 43.542439 52.7531429 61.2263415 37.634 57.1873171"></polygon>
+                <polygon id="Shape" fill="#8C3123" points="0.832571429 42.3043902 9.24685714 43.542439 9.24685714 61.2263415 0.832571429 57.0556098"></polygon>
+                <polygon id="Shape" fill="#E05243" points="24.366 42.3482927 9.24685714 43.542439 9.24685714 61.2263415 24.366 57.1873171"></polygon>
+                <polygon id="Shape" fill="#F2B0A9" points="46.9782857 44.3941463 31 42.8926829 15.0217143 44.3941463 31 72"></polygon>
+                <polygon id="Shape" fill="#E05243" points="46.9782857 44.3941463 31 46.7560976 31 72 46.9782857 64.0887805"></polygon>
+                <polygon id="Shape" fill="#8C3123" points="15.0217143 44.3941463 31 46.7560976 31 72 15.0217143 64.0887805"></polygon>
+                <polygon id="Shape" fill="#E05243" points="41.7791429 23.7512195 31 21.6 31 39.4595122 41.7791429 38.9414634"></polygon>
+                <polygon id="Shape" fill="#E05243" points="39.9457143 4.4604878 31 0 31 14.4 39.9457143 17.0780488"></polygon>
+                <polygon id="Shape" fill="#8C3123" points="21.948 4.4604878 31 0 31 14.4 21.948 17.0780488"></polygon>
+            </g>
+        </g>
+    </g>
+</svg>

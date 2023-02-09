@@ -1,0 +1,628 @@
+<div class="row sub-title">
+  <div class="s12 col">
+    <small ng-if="resource.project">
+      <strong>Project</strong><br />
+      <span ng-bind="resource.project"></span>
+    </small>
+  </div>
+
+</div>
+
+<div class="row" ng-show="resource.region">
+  <div class="s5 col">
+    <strong>Region</strong>
+  </div>
+
+  <div class="s7 col" ng-bind="resource.region">
+  </div>
+</div>
+
+<div class="row" ng-show="resource.header_action">
+  <div class="s5 col">
+    <strong>Header Action</strong>
+  </div>
+
+  <div class="s7 col" ng-bind="resource.header_action">
+  </div>
+</div>
+
+<div class="row" ng-show="resource.creation_timestamp">
+  <div class="s12 col">
+    <strong>Creation Timestamp</strong>
+  </div>
+
+  <div class="s12 col" ng-bind=
+  "resource.creation_timestamp | date:'yyyy-MM-dd HH:mm:ss'">
+  </div>
+</div>
+
+<div class="row" ng-show="resource.default_url_redirect">
+  <div class="s12 col">
+    <strong>Default Url Redirect</strong>
+  </div>
+
+  <div class="s12 col" ng-bind=
+  "resource.default_url_redirect">
+  </div>
+</div>
+
+<div class="row" ng-show="resource.default_route_action">
+  <div class="s12 col">
+    <strong>Default Route Action</strong>
+  </div>
+
+  <div class="s12 col" ng-bind=
+  "resource.default_route_action">
+  </div>
+</div>
+
+<div class="row" ng-show="resource.description">
+  <div class="s12 col">
+    <strong>Description</strong>
+  </div>
+
+  <div class="s12 col" ng-bind="resource.description">
+  </div>
+</div>
+
+<div class="row">
+  <div class="s12 col">
+    <h5>Frontends</h5>
+  </div>
+</div>
+<div class="row" ng-show="info.frontends.length === 0">
+  <div class="s12 col">
+    None.
+  </div>
+</div>
+<div class="row" ng-repeat="frontend in info.frontends">
+  <div class="s12 col word-wrap">
+    <a ng-click="selectResource(frontend.forwarding_rule)">{{frontend.forwarding_rule.name}}</a>
+  </div>
+  <div class="s12 col">
+    <strong ng-bind="frontend.protocol"></strong> <span ng-bind="frontend.forwarding_rule.ip_address"></span>
+  </div>
+  <div class="s12 col">
+    <span ng-bind="frontend.forwarding_rule.port_range"></span> <small ng-bind="frontend.forwarding_rule.ip_protocol"></small>
+  </div>
+</div>
+
+<div ng-show="info.backend_bucket">
+  <div class="row">
+    <div class="s12 col">
+      <h5>Backend Bucket</h5>
+    </div>
+    <div class="s12 col word-wrap">
+      <a ng-click="selectResource(info.backend_bucket)">{{info.backend_bucket.name}}</a>
+    </div>
+  </div>
+</div>
+
+<div ng-show="info.backend_service">
+  <div class="row">
+    <div class="s12 col">
+      <h5>Backend Service</h5>
+    </div>
+    <div class="s12 col word-wrap">
+      <a ng-click="selectResource(info.backend_service)">{{info.backend_service.name}}</a>
+    </div>
+  </div>
+</div>
+
+
+<div ng-show="resource.path_matchers.length">
+  <div class="row">
+    <div class="s12 col">
+      <h5>Path Matchers</h5>
+    </div>
+  </div>
+
+  <div ng-repeat="path_matchers in resource.path_matchers">
+    <div class="row" ng-show="path_matchers.name">
+      <div class="s5 col">
+        <strong>Name</strong>
+      </div>
+
+      <div class="s7 col" ng-bind="path_matchers.name">
+      </div>
+    </div>
+
+    <div class="row" ng-show="path_matchers.default_service">
+      <div class="s5 col">
+        <strong>Default Service</strong>
+      </div>
+
+      <div class="s7 col"><a ng-click="selectResource(info.service_map[resource.default_service])">{{info.service_map[resource.default_service].name}}</a></div>
+    </div>
+
+    <div class="row" ng-show="path_matchers.description">
+      <div class="s12 col">
+        <strong>Description</strong>
+      </div>
+
+      <div class="s12 col" ng-bind=
+      "path_matchers.description">
+      </div>
+    </div>
+
+    <div class="row" ng-show="path_matchers.default_url_redirect">
+      <div class="s12 col">
+        <strong>Default Url Redirect</strong>
+      </div>
+
+      <div class="s12 col" ng-bind=
+      "path_matchers.default_url_redirect">
+      </div>
+    </div>
+
+    <div class="row" ng-show="path_matchers.header_action">
+      <div class="s5 col">
+        <strong>Header Action</strong>
+      </div>
+
+      <div class="s7 col" ng-bind=
+      "path_matchers.header_action">
+      </div>
+    </div>
+
+    <div class="row" ng-show="path_matchers.default_route_action">
+      <div class="s12 col">
+        <strong>Default Route Action</strong>
+      </div>
+
+      <div class="s12 col" ng-bind=
+      "path_matchers.default_route_action">
+      </div>
+    </div>
+
+    <div ng-show="path_matchers.route_rules.length">
+      <div class="row">
+        <div class="s12 col">
+          <h5>Route Rules</h5>
+        </div>
+      </div>
+
+      <div ng-repeat="route_rules in path_matchers.route_rules">
+        <div class="row" ng-show="route_rules.service">
+          <div class="s5 col">
+            <strong>Service</strong>
+          </div>
+
+          <div class="s7 col" ng-bind=
+          "route_rules.service">
+          </div>
+        </div>
+
+        <div class="row" ng-show="route_rules.url_redirect">
+          <div class="s5 col">
+            <strong>Url Redirect</strong>
+          </div>
+
+          <div class="s7 col" ng-bind=
+          "route_rules.url_redirect">
+          </div>
+        </div>
+
+        <div class="row" ng-show="route_rules.route_action">
+          <div class="s5 col">
+            <strong>Route Action</strong>
+          </div>
+
+          <div class="s7 col" ng-bind=
+          "route_rules.route_action">
+          </div>
+        </div>
+
+        <div class="row" ng-show="route_rules.header_action">
+          <div class="s5 col">
+            <strong>Header Action</strong>
+          </div>
+
+          <div class="s7 col" ng-bind=
+          "route_rules.header_action">
+          </div>
+        </div>
+
+        <div ng-show="route_rules.match_rules.length">
+          <div class="row">
+            <div class="s12 col">
+              <h5>Match Rules</h5>
+            </div>
+          </div>
+
+          <div ng-repeat="match_rules in route_rules.match_rules">
+            <div class="row" ng-show="match_rules.regex_match">
+              <div class="s5 col">
+                <strong>Regex Match</strong>
+              </div>
+
+              <div class="s7 col" ng-bind=
+              "match_rules.regex_match">
+              </div>
+            </div>
+
+            <div class="row" ng-show="match_rules.prefix_match">
+              <div class="s5 col">
+                <strong>Prefix Match</strong>
+              </div>
+
+              <div class="s7 col" ng-bind=
+              "match_rules.prefix_match">
+              </div>
+            </div>
+
+            <div class="row" ng-show="match_rules.full_path_match">
+              <div class="s12 col">
+                <strong>Full Path Match</strong>
+              </div>
+
+              <div class="s12 col" ng-bind=
+              "match_rules.full_path_match">
+              </div>
+            </div>
+
+            <div class="row" ng-show="match_rules.ignore_case">
+              <div class="s7 col">
+                <strong>Ignore Case</strong>
+              </div>
+
+              <div class="s5 octicon octicon-check good"
+              ng-show="match_rules.ignore_case">
+              </div>
+
+              <div class="s5 octicon octicon-x bad" ng-show=
+              "!match_rules.ignore_case">
+              </div>
+            </div>
+
+            <div ng-show=
+            "match_rules.query_parameter_matches.length">
+              <div class="row">
+                <div class="s12 col">
+                  <h5>Query Parameter Matches</h5>
+                </div>
+              </div>
+
+              <div ng-repeat=
+              "query_parameter_matches in match_rules.query_parameter_matches">
+                <div class="row" ng-show=
+                "query_parameter_matches.regex_match">
+                  <div class="s5 col">
+                    <strong>Regex Match</strong>
+                  </div>
+
+                  <div class="s7 col" ng-bind=
+                  "query_parameter_matches.regex_match">
+                  </div>
+                </div>
+
+                <div class="row" ng-show=
+                "query_parameter_matches.name">
+                  <div class="s5 col">
+                    <strong>Name</strong>
+                  </div>
+
+                  <div class="s7 col" ng-bind=
+                  "query_parameter_matches.name">
+                  </div>
+                </div>
+
+                <div class="row" ng-show=
+                "query_parameter_matches.exact_match">
+                  <div class="s5 col">
+                    <strong>Exact Match</strong>
+                  </div>
+
+                  <div class="s7 col" ng-bind=
+                  "query_parameter_matches.exact_match">
+                  </div>
+                </div>
+
+                <div class="row" ng-show=
+                "query_parameter_matches.present_match">
+                  <div class="s7 col">
+                    <strong>Present Match</strong>
+                  </div>
+
+                  <div class="s5 octicon octicon-check good"
+                  ng-show="query_parameter_matches.present_match">
+                  </div>
+
+                  <div class="s5 octicon octicon-x bad"
+                  ng-show="!query_parameter_matches.present_match">
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div ng-show="match_rules.metadata_filters.length">
+              <div class="row">
+                <div class="s12 col">
+                  <h5>Metadata Filters</h5>
+                </div>
+              </div>
+
+              <div ng-repeat=
+              "metadata_filters in match_rules.metadata_filters">
+                <div class="row" ng-show=
+                "metadata_filters.filter_match_criteria">
+                  <div class="s12 col">
+                    <strong>Filter Match Criteria</strong>
+                  </div>
+
+                  <div class="s12 col" ng-bind=
+                  "metadata_filters.filter_match_criteria">
+                  </div>
+                </div>
+
+                <div ng-show=
+                "metadata_filters.filter_labels.length">
+                  <div class="row">
+                    <div class="s12 col">
+                      <h5>Filter Labels</h5>
+                    </div>
+                  </div>
+
+                  <div ng-repeat=
+                  "filter_labels in metadata_filters.filter_labels">
+                    <div class="row" ng-show="filter_labels.value">
+                      <div class="s5 col">
+                        <strong>Value</strong>
+                      </div>
+
+                      <div class="s7 col" ng-bind=
+                      "filter_labels.value">
+                      </div>
+                    </div>
+
+                    <div class="row" ng-show="filter_labels.name">
+                      <div class="s5 col">
+                        <strong>Name</strong>
+                      </div>
+
+                      <div class="s7 col" ng-bind=
+                      "filter_labels.name">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div ng-show="match_rules.header_matches.length">
+              <div class="row">
+                <div class="s12 col">
+                  <h5>Header Matches</h5>
+                </div>
+              </div>
+
+              <div ng-repeat=
+              "header_matches in match_rules.header_matches">
+                <div class="row" ng-show=
+                "header_matches.prefix_match">
+                  <div class="s5 col">
+                    <strong>Prefix Match</strong>
+                  </div>
+
+                  <div class="s7 col" ng-bind=
+                  "header_matches.prefix_match">
+                  </div>
+                </div>
+
+                <div class="row" ng-show=
+                "header_matches.header_name">
+                  <div class="s5 col">
+                    <strong>Header Name</strong>
+                  </div>
+
+                  <div class="s7 col" ng-bind=
+                  "header_matches.header_name">
+                  </div>
+                </div>
+
+                <div class="row" ng-show=
+                "header_matches.suffix_match">
+                  <div class="s5 col">
+                    <strong>Suffix Match</strong>
+                  </div>
+
+                  <div class="s7 col" ng-bind=
+                  "header_matches.suffix_match">
+                  </div>
+                </div>
+
+                <div class="row" ng-show=
+                "header_matches.exact_match">
+                  <div class="s5 col">
+                    <strong>Exact Match</strong>
+                  </div>
+
+                  <div class="s7 col" ng-bind=
+                  "header_matches.exact_match">
+                  </div>
+                </div>
+
+                <div class="row" ng-show=
+                "header_matches.regex_match">
+                  <div class="s5 col">
+                    <strong>Regex Match</strong>
+                  </div>
+
+                  <div class="s7 col" ng-bind=
+                  "header_matches.regex_match">
+                  </div>
+                </div>
+
+                <div class="row" ng-show=
+                "header_matches.range_match">
+                  <div class="s5 col">
+                    <strong>Range Match</strong>
+                  </div>
+
+                  <div class="s7 col" ng-bind=
+                  "header_matches.range_match">
+                  </div>
+                </div>
+
+                <div class="row" ng-show=
+                "header_matches.present_match">
+                  <div class="s7 col">
+                    <strong>Present Match</strong>
+                  </div>
+
+                  <div class="s5 octicon octicon-check good"
+                  ng-show="header_matches.present_match">
+                  </div>
+
+                  <div class="s5 octicon octicon-x bad"
+                  ng-show="!header_matches.present_match">
+                  </div>
+                </div>
+
+                <div class="row" ng-show=
+                "header_matches.invert_match">
+                  <div class="s7 col">
+                    <strong>Invert Match</strong>
+                  </div>
+
+                  <div class="s5 octicon octicon-check good"
+                  ng-show="header_matches.invert_match">
+                  </div>
+
+                  <div class="s5 octicon octicon-x bad"
+                  ng-show="!header_matches.invert_match">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div ng-show="path_matchers.path_rules.length">
+      <div class="row">
+        <div class="s12 col">
+          <h5>Path Rules</h5>
+        </div>
+      </div>
+
+      <div ng-repeat="path_rules in path_matchers.path_rules">
+        <div class="row" ng-show="path_rules.service">
+          <div class="s5 col">
+            <strong>Service</strong>
+          </div>
+
+          <div class="s7 col"><a ng-click="selectResource(info.service_map[path_rules.service])">{{info.service_map[path_rules.service].name}}</a></div>
+        </div>
+
+        <div class="row" ng-show="path_rules.url_redirect">
+          <div class="s5 col">
+            <strong>Url Redirect</strong>
+          </div>
+
+          <div class="s7 col" ng-bind=
+          "path_rules.url_redirect">
+          </div>
+        </div>
+
+        <div class="row" ng-show="path_rules.route_action">
+          <div class="s5 col">
+            <strong>Route Action</strong>
+          </div>
+
+          <div class="s7 col" ng-bind=
+          "path_rules.route_action">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div ng-show="resource.host_rules.length">
+  <div class="row">
+    <div class="s12 col">
+      <h5>Host Rules</h5>
+    </div>
+  </div>
+
+  <div ng-repeat="host_rules in resource.host_rules">
+    <div class="row" ng-show="host_rules.path_matcher">
+      <div class="s5 col">
+        <strong>Path Matcher</strong>
+      </div>
+
+      <div class="s7 col" ng-bind=
+      "host_rules.path_matcher">
+      </div>
+    </div>
+
+    <div class="row" ng-show="host_rules.description">
+      <div class="s12 col">
+        <strong>Description</strong>
+      </div>
+
+      <div class="s12 col" ng-bind=
+      "host_rules.description">
+      </div>
+    </div>
+
+    <div class="row" ng-show="host_rules.hosts.length">
+      <div class="s12 col">
+        <strong>Hosts</strong>
+      </div>
+      <div class="s12 col">
+        <ul>
+          <li ng-repeat="host in host_rules.hosts">{{host}}</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div ng-show="resource.tests.length">
+  <div class="row">
+    <div class="s12 col">
+      <h5>Tests</h5>
+    </div>
+  </div>
+
+  <div ng-repeat="tests in resource.tests">
+    <div class="row" ng-show="tests.service">
+      <div class="s5 col">
+        <strong>Service</strong>
+      </div>
+
+      <div class="s7 col" ng-bind="tests.service">
+      </div>
+    </div>
+
+    <div class="row" ng-show="tests.path">
+      <div class="s5 col">
+        <strong>Path</strong>
+      </div>
+
+      <div class="s7 col" ng-bind="tests.path">
+      </div>
+    </div>
+
+    <div class="row" ng-show="tests.host">
+      <div class="s5 col">
+        <strong>Host</strong>
+      </div>
+
+      <div class="s7 col" ng-bind="tests.host">
+      </div>
+    </div>
+
+    <div class="row" ng-show="tests.description">
+      <div class="s12 col">
+        <strong>Description</strong>
+      </div>
+
+      <div class="s12 col" ng-bind="tests.description">
+      </div>
+    </div>
+  </div>
+</div>

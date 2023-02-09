@@ -1,0 +1,19 @@
+<table id="{{container.id}}" class="container-cell positionable" style="display:table" ng-style="container.style">
+  <tr ng-if="container.top">
+    <td colspan="{{container.columns.length}}" class="container-cell-row">
+      <div id="{{r.id}}" class="container-service positionable" ng-repeat="r in container.top" style="display: inline-block;"></div>
+    </td>
+  </tr>
+
+  <tr ng-repeat="row in container.rows" ng-if="container.type !== 'hex'">
+    <td ng-repeat="col in container.columns" style="border:1px solid black; vertical-align: top;">
+      <div container-cell container="container.cells[(row*container.columns.length)+col]" ng-if="container.cells[(row*container.columns.length)+col]"></div>
+    </td>
+  </tr>
+
+  <tr ng-if="container.type === 'hex'">
+    <td colspan="{{container.columns.length}}">
+      <div container-hexgrid container="container"></div>
+    </td>
+  </tr>
+</table>

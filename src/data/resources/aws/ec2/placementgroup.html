@@ -1,0 +1,22 @@
+<div class="row">
+  <div class="s5 col"><strong>Strategy</strong></div>
+  <div class="s7 col" ng-bind="resource.strategy"></div>
+</div>
+<div class="row">
+  <div class="s5 col"><strong>State</strong></div>
+  <div class="s7 col" ng-bind="resource.status" ng-class="resource.status_list[resource.status]"></div>
+</div>
+
+<div ng-show="info.instances.length > 0">
+  <div class="row">
+    <div class="s12 col"><h5>Instances</h5></div>
+  </div>
+  <div ng-repeat="instance in info.instances track by $index">
+    <div class="row">
+      <div class="s12 col attributes-name">
+        <svg><use xlink:href="{{instance.image}}" /></svg>
+        <a ng-click="selectResource(instance)">{{instance.name}}</a>
+      </div>
+    </div>
+  </div>
+</div>

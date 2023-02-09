@@ -1,0 +1,8 @@
+<table>
+  <tr>
+    <td ng-repeat="container in view.containers" ng-style="{ 'padding-right': (view.containers.length > 1 ? '35px' : '' ) }">
+      <div infrastructure-parent ng-if="container.parent" container="container" view="view"></div>
+      <div infrastructure-container ng-if="!container.parent" container="container" view="view"></div>
+    </td>
+  </tr>
+</table>

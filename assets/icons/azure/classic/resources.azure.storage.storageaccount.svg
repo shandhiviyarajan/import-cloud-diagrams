@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="90px" height="90px" viewBox="0 0 90 90" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 41.2 (35397) - http://www.bohemiancoding.com/sketch -->
+    <title>Compute-&amp;-Networking-copy_Amazon-EC2-Instance</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="blank">
+            <g id="Page-1">
+                <g id="blank">
+                    <g id="Page-1">
+                        <g id="Compute-&amp;-Networking-copy_Amazon-EC2-Instance">
+                            <g id="Layer_1" fill="#0078D7">
+                                <circle id="Oval-1" cx="45" cy="45" r="45"></circle>
+                            </g>
+                            <g id="Storage" transform="translate(19.000000, 23.000000)">
+                                <g id="Layer_1">
+                                    <path d="M0,42.744 C0,43.784 0.832,44.72 1.872,44.72 L50.024,44.72 C51.064,44.72 52,43.888 52,42.744 L52,8.32 L0,8.32 L0,42.744 Z" id="Shape" fill="#A0A1A2"></path>
+                                    <path d="M50.024,0.104 L1.872,0.104 C0.832,0.104 0,1.04 0,2.08 L0,8.32 L52,8.32 L52,2.08 C52,1.04 51.168,0.416 50.024,0.416" id="Shape" fill="#7A7A7A"></path>
+                                    <rect id="Rectangle-path" fill="#B8D432" x="4.16" y="22.36" width="43.68" height="7.28"></rect>
+                                    <rect id="Rectangle-path" fill="#FFFFFF" x="4.16" y="11.44" width="43.68" height="7.28"></rect>
+                                    <rect id="Rectangle-path" fill="#B8D432" x="4.16" y="33.28" width="43.68" height="7.28"></rect>
+                                    <path d="M2.08,0 C0.936,0 0,0.936 0,2.08 L0,9.672 L0,13.104 L0,42.224 C0,43.368 0.936,44.304 2.08,44.304 L4.368,44.304 L45.344,0 L2.08,0 Z" id="Shape" fill="#FFFFFF" opacity="0.2"></path>
+                                </g>
+                            </g>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

@@ -1,0 +1,31 @@
+<div class="row sub-title">
+  <div class="s12 col">
+    <input class="small" ng-value="resource.provider_id" disabled />
+  </div>
+</div>
+
+<div class="row">
+  <div class="s12 col"><h4>Resources</h4></div>
+</div>
+<div class="row" ng-show="!info.all.length">
+  <div class="s12 col">None</div>
+</div>
+<div ng-repeat="group in info.all | orderBy:'name' track by $index">
+  <div class="row">
+    <div class="s10 col"><h5 class="clickable" ng-click="gr[$index].sg = !gr[$index].sg" ng-bind="group.name + ' (' + group.resources.length +')'"></h5></div>
+    <div class="s2 col">
+      <a ng-click="gr[$index].sg = !gr[$index].sg" ng-show="!gr[$index].sg"><span class="mega-octicon octicon-chevron-down"></span></a>
+      <a ng-click="gr[$index].sg = !gr[$index].sg" ng-show="gr[$index].sg"><span class="mega-octicon octicon-chevron-up"></span></a>
+    </div>
+  </div>
+  <div ng-show="gr[$index].sg">
+    <div ng-repeat="resource in group.resources | orderBy:'name' track by $index">
+      <div class="row">
+        <div class="s12 col attributes-name">
+          <svg><use xlink:href="{{resource.image}}" /></svg>
+          <a ng-click="selectResource(resource)" highlight-connected-resources="resource">{{resource.name}}</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

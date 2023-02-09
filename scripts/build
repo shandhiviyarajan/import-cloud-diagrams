@@ -1,0 +1,9 @@
+#!/bin/bash
+set -eo pipefail
+
+echo "--- :webpack: :sparkles: Building hava-viewer"
+NODE_ENV=prod yarn gulp build
+
+if [[ ! -z $CI ]]; then
+  buildkite-agent artifact upload "dist/*"
+fi

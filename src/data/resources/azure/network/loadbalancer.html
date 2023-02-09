@@ -1,0 +1,129 @@
+<!-- ATTRIBUTES!!! -->
+<div class="row">
+  <div class="s12 col"><h5>Health Probe</h5></div>
+</div>
+<div class="row" ng-show="!info.probes.length">
+  <div class="s12 col">None</div>
+</div>
+<div ng-repeat="probe in info.probes" class="attributes-sublist">
+  <div class="row">
+    <div class="s12 col"><strong ng-bind="probe.name"></strong></div>
+  </div>
+  <div class="row">
+    <div class="s12 col">{{probe.protocol}}:{{probe.port}}</div>
+  </div>
+  <div class="row">
+    <div class="s12 col">
+      <small>
+        ∟ <strong>Interval:</strong>
+        <span ng-bind="probe.interval_in_seconds + ' seconds'"></span>
+      </small>
+    </div>
+  </div>
+  <div class="row">
+    <div class="s12 col">
+      <small>
+        ∟ <strong>Number of Probes:</strong>
+        <span ng-bind="probe.number_of_probes"></span>
+      </small>
+    </div>
+  </div>
+  <div class="row">
+    <div class="s12 col">
+      <small>
+        ∟ <strong>Request Path:</strong>
+        <span ng-bind="probe.request_path || 'none'"></span>
+      </small>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="s12 col"><h5>Rules</h5></div>
+</div>
+<div class="row" ng-show="!info.rules.length">
+  <div class="s12 col">None</div>
+</div>
+<div ng-repeat="rule in info.rules">
+  <div class="row">
+    <div class="s12 col"><strong ng-bind="rule.name"></strong></div>
+  </div>
+  <div class="row">
+    <div class="s12 col">{{rule.name}} ({{rule.protocol}}/{{rule.frontend_port}})</div>
+  </div>
+  <div class="row">
+    <div class="s12 col">
+      <small>
+        ∟ <strong>Load Distribution:</strong>
+        <span ng-bind="rule.load_distribution"></span>
+      </small>
+    </div>
+  </div>
+  <div class="row">
+    <div class="s12 col">
+      <small>
+        ∟ <strong>Ports:</strong>
+        {{rule.frontend_port}} to {{rule.backend_port}}
+      </small>
+    </div>
+  </div>
+  <div class="row">
+    <div class="s12 col">
+      <small>
+        ∟ <strong>Idle Timeout:</strong>
+        <span ng-bind="rule.idle_timeout_in_minutes + ' mins'"></span>
+      </small>
+    </div>
+  </div>
+  <div class="row">
+    <div class="s12 col">
+      <small>
+        ∟ <strong>Floating IP:</strong>
+        <span ng-bind="rule.enable_floating_ip ? 'Enabled' : 'Disabled'"></span>
+      </small>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="s12 col"><h5>Backend Pool</h5></div>
+</div>
+<div class="row" ng-show="!info.backend_address_pools.length">
+  <div class="s12 col">None</div>
+</div>
+<div class="row" ng-repeat="bap in info.backend_address_pools">
+  <div class="s12 col end attributes-name"><strong>{{bap.name}}</strong></div>
+</div>
+
+<div class="row">
+  <div class="s12 col"><h5>Frontend IP Pool</h5></div>
+</div>
+<div class="row" ng-show="!info.frontend_ip_addresses.length">
+  <div class="s12 col">None</div>
+</div>
+<div class="row" ng-repeat="fia in info.frontend_ip_addresses">
+  <div class="s12 col end attributes-name" ng-show="!fia.public_ip_address.length">
+    {{fia.name}} ({{fia.private_ipaddress}})
+  </div>
+  <div ng-repeat="pia in fia.public_ip_address">
+    <div class="s12 col end attributes-name">
+      {{fia.name}} - {{pia.ip_address}} ({{pia.name}})
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="s12 col"><h5>Virtual Machines</h5></div>
+</div>
+<div class="row" ng-show="!info.virtual_machines.length">
+  <div class="s12 col">None</div>
+</div>
+<div class="row" ng-repeat="vm in info.virtual_machines track by $index">
+  <div class="s12 col end attributes-name">
+    <svg><use xlink:href="{{vm.image}}" /></svg>
+    <a ng-click="selectResource(vm)" highlight-connected-resources="sg">{{vm.name}}</a>
+  </div>
+</div>
+
+
+

@@ -1,0 +1,72 @@
+<!-- ATTRIBUTES -->
+<div class="row">
+    <div class="s10 col end"><h5>Description</h5></div>
+</div>
+<div class="row">
+    <div class="s6 col"><strong>Deregistration delay</strong></div>
+    <div class="s6 col">{{resource.deregistration_delay_timeout}} sec</div>
+</div>
+<div class="row" ng-show="resource.stickiness_enabled === 'false'">
+    <div class="s6 col"><strong>Stickiness </strong></div>
+    <div class="s6 col"><span class="octicon octicon-check good"></span></div>
+</div>
+
+<div class="row">
+    <div class="s10 col end"><h5>Health Checks</h5></div>
+</div>
+<div class="row">
+    <div class="s3 col"><strong>Protocol</strong></div>
+    <div class="s3 col"><strong>Path</strong></div>
+    <div class="s6 col"><strong>Port</strong></div>
+</div>
+<div class="row">
+    <div class="s3 col">{{resource.health_check_protocol}}</div>
+    <div class="s3 col">{{resource.health_check_path}}</div>
+    <div class="s6 col">{{resource.health_check_port}}</div>
+</div>
+<div class="row">
+    <div class="s3 col"><strong>Timeout</strong></div>
+    <div class="s3 col"><strong>Interval</strong></div>
+    <div class="s6 col"><strong>Healthy/Unhealthy</strong></div>
+</div>
+<div class="row">
+    <div class="s3 col">{{resource.health_check_timeout_seconds}}</div>
+    <div class="s3 col">{{resource.health_check_interval_seconds}}(s)</div>
+    <div class="s6 col">{{resource.healthy_threshold_count}}/{{resource.unhealthy_threshold_count}}</div>
+</div>
+
+<div ng-show="info.instances.length > 0">
+    <div class="row">
+        <div class="s10 col end"><h5>Instances</h5></div>
+    </div>
+    <div class="row">
+        <div class="s10 col end attributes-name" ng-repeat="instance in info.instances | orderBy: 'name' track by $index">
+            <svg><use xlink:href="{{instance.image}}" /></svg>
+            <a ng-click="selectResource(instance)">{{instance.name}}</a>
+        </div>
+    </div>
+</div>
+
+<div ng-show="info.services.length > 0">
+    <div class="row">
+        <div class="s10 col end"><h5>ECS Services</h5></div>
+    </div>
+    <div class="row">
+        <div class="s10 col end attributes-name" ng-repeat="service in info.services | orderBy: 'name' track by $index">
+            <svg><use xlink:href="{{service.image}}" /></svg>
+            <a ng-click="selectResource(service)">{{service.name}}</a>
+        </div>
+    </div>
+</div>
+
+<div ng-show="info.load_balancers.length > 0">
+    <div class="row">
+        <div class="s10 col end"><h5>Load Balancers</h5></div>
+    </div>
+    <div class="row">
+        <div class="s10 col end attributes-name" ng-repeat="lb in info.load_balancers | orderBy: 'name'">
+            <svg><use xlink:href="{{lb.image}}" /></svg>
+            <a ng-click="selectResource(lb)">{{lb.name}}</a>
+        </div>
+    </div>
+</div>

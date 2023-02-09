@@ -1,0 +1,21 @@
+<div class="view-controls" ng-hide="views.length == 1">
+  <a class="dropdown left view-select" dropdown-toggle="#view-dropdown" style="width: 100%; height: 100%">
+    <div style="font-size:10px">Select your view</div>
+    <span ng-show="Designer.environment.current_view.type == 'Views::Infrastructure'" class="octicon octicon-file-media"></span>
+    <span ng-show="Designer.environment.current_view.type == 'Views::Security'" class="octicon octicon-shield"></span>
+    <span ng-show="Designer.environment.current_view.type == 'Views::List'" class="octicon octicon-list-unordered"></span>
+    <span ng-show="Designer.environment.current_view.type == 'Views::Infrastructure::Extended'" class="octicon octicon-file-media"></span>
+    <span ng-show="Designer.environment.current_view.type == 'Views::Container'" class="octicon octicon-file-media"></span>
+    {{Designer.environment.current_view.name}}
+    <span style="float:right" class="octicon octicon-triangle-down"></span>
+  </a>
+  <ul id="view-dropdown" class="f-dropdown">
+    <li ng-repeat="view in views | orderBy:'name'">
+      <a ng-click="selectView(view)">
+        <img ng-src="{{view.image_url}}" height="48" width="48" onerror='this.style.display = "none"' />
+          <span class="octicon octicon-check right" ng-show="Designer.environment.current_view.id === view.id"></span>
+          {{view.name}}
+      </a>
+    </li>
+  </ul>
+</div>

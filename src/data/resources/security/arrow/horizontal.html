@@ -1,0 +1,26 @@
+<div class="row" ng-show="resource.access">
+  <div class="s5 col"><strong>Access</strong></div>
+  <div class="s7 col" ng-bind="resource.access"></div>
+</div>
+<div class="row">
+  <div class="s12 col">
+    <h5>Ports</h5>
+  </div>
+</div>
+<div class="row" ng-repeat="port in resource.ports track by $index">
+  <div class="s12 col"><strong>Protocol: {{port.protocol}}</strong></div>
+  <div class="s12 col">From: {{port.from_port}} [{{port.from_proto? port.from_proto : 'unknown'}}]</div>
+  <div class="s12 col">To: {{port.to_port}} [{{port.to_proto ? port.to_proto : 'unknown'}}]</div>
+  <div class="s12 col">Priority: {{port.priority}}</div>
+</div>
+
+<div ng-show="resource.nsg">
+  <div class="row">
+    <div ng-show="resource.source && resource.destination" class="s12 col">
+      <br>
+      <div>NSG Associated: <a ng-click="selectResource(resource.nsg)">{{resource.nsg.name}}</a></div>
+      <div>Source: <a ng-click="resource.source.resource ? selectResource(resource.source): angular.noop()">{{resource.source.name}}</a></div>
+      <div>Destination: <a ng-click="resource.destination.resource ? selectResource(resource.destination): angular.noop()">{{resource.destination.name}}</a></div>
+    </div>
+  </div>
+</div>

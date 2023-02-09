@@ -1,0 +1,50 @@
+<div class="row" ng-if="resource.status">
+  <div class="s5 col"><strong>Status</strong></div>
+  <div class="s7 col" ng-bind="resource.status"></div>
+</div>
+<div class="row" ng-if="resource.owner_account">
+  <div class="s5 col"><strong>Owner Account</strong></div>
+  <div class="s7 col" ng-bind="resource.owner_account"></div>
+</div>
+<div class="row" ng-if="resource.amazon_side_asn">
+  <div class="s5 col"><strong>Amazon side ASN</strong></div>
+  <div class="s7 col" ng-bind="resource.amazon_side_asn"></div>
+</div>
+<div class="row" ng-if="resource.state_change_error">
+  <div class="s12 col"><strong>State Change Error</strong></div>
+  <div class="s12 col" ng-bind="resource.state_change_error"></div>
+</div>
+
+<div ng-show="info.virtual_interface">
+  <div class="row">
+    <div class="s12 col"><h5>Virtual Interface</h5></div>
+  </div>
+  <div class="row">
+    <div class="s12 col end attributes-name">
+      <svg><use xlink:href="{{info.virtual_interface.image}}" /></svg>
+      <a ng-click="selectResource(info.virtual_interface)">{{info.virtual_interface.name}}</a>
+    </div>
+  </div>
+</div>
+
+<div ng-show="info.gateway_associations.length">
+  <div class="row">
+    <div class="s12 col"><h5>Gateway Associations</h5></div>
+  </div>
+  <div ng-repeat="association in info.gateway_associations track by $index">
+    <div class="row">
+      <div class="s12 col end attributes-name">
+        <a ng-click="selectResource(association)">{{association.name}}</a>
+      </div>
+    </div>
+    <div class="row" ng-if="association.associated_resource">
+      <div class="s12 col">
+        <small>
+          ∟
+          <svg><use xlink:href="{{association.associated_resource.image}}" /></svg>
+          <a ng-click="selectResource(association.associated_resource)">{{association.associated_resource.name}}</a>
+        </small>
+      </div>
+    </div>
+  </div>
+</div>

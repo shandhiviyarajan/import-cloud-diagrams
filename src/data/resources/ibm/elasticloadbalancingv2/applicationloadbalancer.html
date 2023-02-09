@@ -1,0 +1,165 @@
+<!-- ATTRIBUTES -->
+<div class="row">
+  <div class="s12 col"><strong>Availability Zones</strong></div>
+  <div class="s12 col">
+    <ul>
+      <li ng-repeat="az in resource.availability_zones">{{az}}</li>
+    </ul>
+  </div>
+</div>
+<div class="row" ng-show="resource.dns_name">
+  <div class="s12 col"><strong>DNS Name</strong></div>
+  <div class="s12 col"><a ng-href="http://{{resource.dns_name}}" ng-bind="resource.dns_name" target="_blank"></a></div>
+</div>
+<div class="row">
+  <div class="s12 col"><strong>Created Time</strong></div>
+  <div class="s12 col" ng-bind="resource.created_time"></div>
+</div>
+<div class="row">
+  <div class="s12 col"><strong>Hosted Zone</strong></div>
+  <div class="s12 col" ng-bind="resource.canonical_hosted_zone_id"></div>
+</div>
+<div class="row" ng-show="resource.idle_timeout_seconds">
+  <div class="s12 col"><strong>Idle Timeout</strong></div>
+  <div class="s12 col">{{resource.idle_timeout_seconds}} seconds</div>
+</div>
+<div class="row" ng-show="resource.ip_address_type">
+  <div class="s12 col"><strong>IP Address Type</strong></div>
+  <div class="s12 col" ng-bind="resource.ip_address_type"></div>
+</div>
+<hr />
+<div class="row">
+  <div class="s4 col"><strong>Scheme</strong></div>
+  <div class="s8 col" ng-bind="resource.scheme"></div>
+</div>
+<div class="row">
+  <div class="s4 col"><strong>State</strong></div>
+  <div class="s8 col" ng-bind="resource.state_code"></div>
+</div>
+<div class="row" ng-show="resource.access_logs_s3_enabled === 'true'">
+  <div class="s12 col"><strong>S3 Access Logs</strong></div>
+  <div class="s4 col"><strong>Prefix</strong></div>
+  <div class="s8 col" ng-bind="resource.access_logs_s3_prefix"></div>
+  <div class="s4 col"><strong>Bucket</strong></div>
+  <div class="s8 col" ng-bind="resource.access_logs_s3_bucket"></div>
+</div>
+<div class="row">
+  <div class="s10 col"><strong>Deletion Protection</strong></div>
+  <div class="s2 col">
+    <span class="octicon octicon-check good" ng-show="resource.deletion_protection"></span>
+    <span class="octicon octicon-x bad" ng-show="!resource.deletion_protection"></span>
+  </div>
+</div>
+
+<div ng-show="info.listeners.length > 0">
+  <div class="row">
+    <div class="s10 col end"><h5>Listeners</h5></div>
+  </div>
+  <div ng-repeat="listener in info.listeners | orderBy: ['protocol', 'port']">
+    <div class="row">
+      <div class="s12 col"><a ng-click="selectResource(listener)">{{listener.protocol}}: {{listener.port}} </a></div>
+      <div class="attributes-list" ng-repeat="rule in listener.rules | orderBy:priority track by $index">
+        <div ng-repeat="action in rule.actions track by $index">
+          <div class="s12 col" ng-show="action.type=='forward'"><strong>{{action.type}}:</strong> <a ng-click="selectResource(rule.target_group)">{{rule.target_group.name}}</a></div>
+          <div class="s12 col" ng-show="action.type!='forward'"><strong>{{action.type}}:</strong> {{action.description}}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Autoscaling Group -->
+<div ng-show="info.autoscaling_groups.length > 0">
+  <div class="row">
+    <div class="s10 col end"><h5>Auto Scaling Group</h5></div>
+  </div>
+  <div ng-repeat="autoscaling_group in info.autoscaling_groups | orderBy: 'name' track by $index">
+    <div class="s12 col end">
+      <svg><use xlink:href="{{autoscaling_group.image}}" /></svg>
+      <a ng-click="selectResource(autoscaling_group)">{{autoscaling_group.name}}</a> <br />
+
+      <div class="row" ng-repeat="instance in autoscaling_group.instances track by $index">
+        <div class="s12 col end">
+          <small>∟ </small><svg><use xlink:href="{{instance.image}}" /></svg><a ng-click="selectResource(instance)">{{instance.name}}</a>
+          <small>({{instance.provider_id}})</small>
+        </div>
+      </div>
+
+      <small>
+        <span ng-bind="autoscaling_group.target_groups.length"></span> Target Groups
+        <a ng-click="info.expanded[autoscaling_group.id] = !info.expanded[autoscaling_group.id]">
+          <span ng-if="info.expanded[autoscaling_group.id]">[–]</span>
+          <span ng-if="!info.expanded[autoscaling_group.id]">[+]</span>
+        </a>
+      </small>
+      <div class="row" ng-repeat="target_group in autoscaling_group.target_groups | orderBy:'name' track by $index" ng-show="info.expanded[autoscaling_group.id]">
+        <div class="s12 col end">
+          <small>∟ </small><a ng-click="selectResource(target_group)">{{target_group.name}}</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- INSTANCES -->
+<div ng-show="info.instances.length > 0">
+  <div class="row">
+    <div class="s10 col end"><h5>Instances</h5></div>
+  </div>
+  <div ng-repeat="instance in info.instances | orderBy: 'name' track by $index" class="row">
+    <div class="s12 col end">
+      <svg><use xlink:href="{{instance.image}}" /></svg>
+      <a ng-click="selectResource(instance)">{{instance.name}}</a> <br />
+      <small>
+        <span ng-bind="instance.target_groups.length"></span> Target Groups
+        <a ng-click="info.expanded[instance.id] = !info.expanded[instance.id]">
+          <span ng-if="info.expanded[instance.id]">[–]</span>
+          <span ng-if="!info.expanded[instance.id]">[+]</span>
+        </a>
+      </small>
+      <div class="row" ng-repeat="target_group in instance.target_groups | orderBy:'name' track by $index" ng-show="info.expanded[instance.id]">
+        <div class="s12 col end">
+          <small>∟ </small><a ng-click="selectResource(target_group)">{{target_group.name}}</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ACLs -->
+<div ng-show="info.web_acls.length > 0">
+  <div class="row">
+    <div class="s10 col end"><h5>Web ACLs</h5></div>
+  </div>
+  <div class="row" ng-repeat="acl in info.web_acls | orderBy: 'name' track by $index">
+    <div class="s12 col attributes-name"><svg><use xlink:href="{{acl.image}}" /></svg><a ng-click="selectResource(acl)">{{acl.name}}</a></div>
+  </div>
+</div>
+
+<!-- APIGateway -->
+<div ng-show="info.vpc_link.length > 0">
+  <div class="row">
+    <div class="s10 col end"><h5>VPC Link</h5></div>
+  </div>
+  <div class="row" ng-repeat="link in info.vpc_link track by $index">
+    <div class="s12 col attributes-name"><svg><use xlink:href="{{link.image}}" /></svg><a ng-click="selectResource(link)">{{link.name}}</a></div>
+  </div>
+</div>
+
+<div class="row" ng-show="info.beanstalk_environment">
+  <div class="s12 col"><h5>ElasticBeanstalk Environment</h5></div>
+  <div class="s12 col attributes-name">
+    <a ng-click="selectResource(info.beanstalk_environment)">{{info.beanstalk_environment.name}}</a>
+  </div>
+</div>
+
+<div ng-show="info.cloudfront_distributions.length">
+  <div class="row">
+    <div class="s12 col"><h5>CloudFront Distributions</h5></div>
+  </div>
+  <div ng-repeat="cloudfront_distribution in info.cloudfront_distributions track by $index">
+    <div class="row">
+      <div class="s12 col attributes-name"><svg><use xlink:href="{{cloudfront_distribution.image}}" /></svg><a ng-click="selectResource(cloudfront_distribution)">{{cloudfront_distribution.name}}</a></div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,93 @@
+<!-- ATTRIBUTES!!! -->
+<div class="row">
+  <div class="s5 col"><strong>Status</strong></div>
+  <div class="s7 col" ng-bind="resource.status"></div>
+</div>  
+<div class="row">
+  <div class="s5 col"><strong>Peer ASN</strong></div>
+  <div class="s7 col" ng-bind="resource.peer_asn"></div>
+</div>
+<div class="row">
+  <div class="s5 col"><strong>Azure ASN</strong></div>
+  <div class="s7 col" ng-bind="resource.azure_asn"></div>
+</div>
+<div class="row">
+  <div class="s5 col"><strong>VLAN ID</strong></div>
+  <div class="s7 col" ng-bind="resource.vlan_id"></div>
+</div>
+<div class="row">
+  <div class="s12 col"><strong>Primary Azure Port</strong></div>
+  <div class="s12 col" ng-bind="resource.primary_azure_port"></div>
+</div>
+<div class="row">
+    <div class="s12 col"><strong>Secondary Azure Port</strong></div>
+    <div class="s12 col" ng-bind="resource.secondary_azure_port"></div>
+  </div>
+<div class="row">
+  <div class="s12 col"><strong>Provisioning State</strong></div>
+  <div class="s12 col" ng-bind="resource.provisioning_state"></div>
+</div>
+<div class="row">
+  <div class="s12 col"><strong>Gateway Manager etag</strong></div>
+  <div class="s12 col" ng-bind="resource.gateway_manager_etag"></div>
+</div>
+<div class="row">
+  <div class="s12 col"><strong>Provisioning State</strong></div>
+  <div class="s12 col" ng-bind="resource.provisioning_state"></div>
+</div>
+
+<div class="row">
+  <div class="s12 col"><h5>Microsoft Peering Config</h5></div>
+</div>
+<div class="row" ng-show="!resource.microsoft_peering_config.advertised_public_prefixes.length">
+  <div class="s12 col">None</div>
+</div>
+<div class="row" ng-show="info.microsoft_peering_config.length">
+  <div class="row">
+    <div class="s5 offset-s1 col"><strong>Legacy Mode</strong></div>
+    <div class="s6 col" ng-bind="resource.microsoft_peering_config.legacy_mode"></div>
+  </div>
+  <div class="row">
+    <div class="s5 offset-s1 col"><strong>Customer ASN</strong></div>
+    <div class="s6 col" ng-bind="resource.microsoft_peering_config.customer_asn"></div>
+  </div>
+  <div class="row">
+    <div class="s5 offset-s1 col"><strong>Routing Registry Name</strong></div>
+    <div class="s6 col" ng-bind="resource.microsoft_peering_config.routing_registry_name"></div>
+  </div>
+  <div class="row">
+    <div class="s5 offset-s1 col"><strong>Advertised Public Prefixes State</strong></div>
+    <div class="s6 col" ng-bind="resource.microsoft_peering_config.advertised_public_prefixes_state"></div>
+  </div>
+  <div class="row">
+    <div class="s5 offset-s1 col"><strong>Advertised Communities</strong></div>
+    <div class="row" ng-show="!resource.microsoft_peering_config.advertised_communities.length">
+      <div class="s12 col">None</div>
+    </div>
+    <div class="row" ng-repeat="community in resource.microsoft_peering_config.advertised_communities">
+      <div class="s6 col" ng-bind="community"></div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="s5 offset-s1 col"><strong>Advertised Public Prefixes</strong></div>
+    <div class="row" ng-show="!resource.microsoft_peering_config.advertised_public_prefixes.length">
+      <div class="s12 col">None</div>
+    </div>
+    <div class="row" ng-repeat="community in resource.microsoft_peering_config.advertised_public_prefixes">
+      <div class="s6 col" ng-bind="community"></div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="s12 col"><h5>Express Route</h5></div>
+</div>
+<div class="row" ng-show="!info.express_route">
+  <div class="s12 col">None</div>
+</div>
+<div class="row" ng-show="info.express_route">
+  <div class="s12 col end attributes-name">
+    <svg><use xlink:href="{{info.express_route.image}}" /></svg>
+    <a ng-click="selectResource(info.express_route)" highlight-connected-resources="info.express_route">{{info.express_route.name}}</a>
+  </div>
+</div>

@@ -1,0 +1,150 @@
+<!-- ATTRIBUTES!!! -->
+<div class="row">
+  <div class="s5 col"><strong>Status</strong></div>
+  <div class="s7 col" ng-bind="resource.status"></div>
+</div>
+
+<div class="row" ng-if="resource.expiration_time">
+  <div class="s12 col"><strong>Expiration Time</strong></div>
+  <div class="s12 col" ng-bind="resource.expiration_time"></div>
+</div>
+
+<div ng-if="resource.accepter_vpc">
+  <div class="row">
+    <div class="s12 col"><h5>Accepter VPC</h5></div>
+  </div>
+  <div class="row">
+    <div class="s12 col"><strong>VPC</strong></div>
+    <div class="s12 col" ng-if="info.vpc_map[resource.accepter_vpc.vpc_id]">
+      <svg><use xlink:href="{{info.vpc_map[resource.accepter_vpc.vpc_id].image}}" /></svg>
+      <a ng-click="selectResource(info.vpc_map[resource.accepter_vpc.vpc_id])">{{info.vpc_map[resource.accepter_vpc.vpc_id].name}}</a>
+    </div>
+    <div class="s12 col" ng-if="!info.vpc_map[resource.accepter_vpc.vpc_id]">
+      <span ng-bind="resource.accepter_vpc.vpc_id"></span>
+    </div>
+  </div>
+  <div class="row">
+    <div class="s12 col"><strong>Owner ID</strong></div>
+    <div class="s12 col" ng-bind="resource.accepter_vpc.owner_id"></div>
+  </div>
+  <div class="row">
+    <div class="s12 col"><strong>Region</strong></div>
+    <div class="s12 col" ng-bind="resource.accepter_vpc.region"></div>
+  </div>
+
+  <div class="row" ng-if="resource.accepter_vpc.cidr_block_set.length || resource.accepter_vpc.ipv_6_cidr_block_set.length">
+    <div class="s12 col"><strong>CIDRs</strong></div>
+    <div class="s12 col" ng-repeat="cidr in resource.accepter_vpc.cidr_block_set">
+      ∟ <span ng-bind="cidr"></span>
+    </div>
+    <div class="s12 col" ng-repeat="cidr in resource.accepter_vpc.ipv_6_cidr_block_set">
+      ∟ <span ng-bind="cidr"></span>
+    </div>
+  </div>
+
+  <br />
+
+  <div ng-if="resource.accepter_vpc.peering_options">
+    <div class="row">
+      <div class="s12 col">
+        <strong>Peering Options</strong>
+      </div>
+    </div>
+    <div class="attributes-list">
+      <div class="row">
+        <div class="s12 col">
+          <span>DNS Resolution from Remote VPC</span>&nbsp;&nbsp;&nbsp;
+
+          <span class="octicon octicon-check good" ng-show="resource.accepter_vpc.peering_options.allow_dns_resolution_from_remote_vpc"></span>
+          <span class="octicon octicon-x bad" ng-show="!resource.accepter_vpc.peering_options.allow_dns_resolution_from_remote_vpc"></span>
+        </div>
+      </div>
+      <div class="row">
+        <div class="s12 col">
+          <span>Egress from Local Classic Link to Remote VPC</span>&nbsp;&nbsp;&nbsp;
+
+          <span class="octicon octicon-check good" ng-show="resource.accepter_vpc.peering_options.allow_egress_from_local_classic_link_to_remote_vpc"></span>
+          <span class="octicon octicon-x bad" ng-show="!resource.accepter_vpc.peering_options.allow_egress_from_local_classic_link_to_remote_vpc"></span>
+        </div>
+      </div>
+      <div class="row">
+        <div class="s12 col">
+          <span>Egress from Local VPC to Remote Classic Link</span>&nbsp;&nbsp;&nbsp;
+
+          <span class="octicon octicon-check good" ng-show="resource.accepter_vpc.peering_options.allow_egress_from_local_vpc_to_remote_classic_link"></span>
+          <span class="octicon octicon-x bad" ng-show="!resource.accepter_vpc.peering_options.allow_egress_from_local_vpc_to_remote_classic_link"></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div ng-if="resource.requester_vpc">
+  <div class="row">
+    <div class="s12 col"><h5>Requester VPC</h5></div>
+  </div>
+  <div class="row">
+    <div class="s12 col"><strong>VPC</strong></div>
+    <div class="s12 col" ng-if="info.vpc_map[resource.requester_vpc.vpc_id]">
+      <svg><use xlink:href="{{info.vpc_map[resource.requester_vpc.vpc_id].image}}" /></svg>
+      <a ng-click="selectResource(info.vpc_map[resource.requester_vpc.vpc_id])">{{info.vpc_map[resource.requester_vpc.vpc_id].name}}</a>
+    </div>
+    <div class="s12 col" ng-if="!info.vpc_map[resource.requester_vpc.vpc_id]">
+      <span ng-bind="resource.requester_vpc.vpc_id"></span>
+    </div>
+  </div>
+  <div class="row">
+    <div class="s12 col"><strong>Owner ID</strong></div>
+    <div class="s12 col" ng-bind="resource.requester_vpc.owner_id"></div>
+  </div>
+  <div class="row">
+    <div class="s12 col"><strong>Region</strong></div>
+    <div class="s12 col" ng-bind="resource.requester_vpc.region"></div>
+  </div>
+
+  <div class="row" ng-if="resource.requester_vpc.cidr_block_set.length || resource.requester_vpc.ipv_6_cidr_block_set.length">
+    <div class="s12 col"><strong>CIDRs</strong></div>
+    <div class="s12 col" ng-repeat="cidr in resource.requester_vpc.cidr_block_set">
+      ∟ <span ng-bind="cidr"></span>
+    </div>
+    <div class="s12 col" ng-repeat="cidr in resource.requester_vpc.ipv_6_cidr_block_set">
+      ∟ <span ng-bind="cidr"></span>
+    </div>
+  </div>
+
+  <br />
+
+  <div ng-if="resource.requester_vpc.peering_options">
+    <div class="row">
+      <div class="s12 col">
+        <strong>Peering Options</strong>
+      </div>
+    </div>
+    <div class="attributes-list">
+      <div class="row">
+        <div class="s12 col">
+          <span>DNS Resolution from Remote VPC</span>&nbsp;&nbsp;&nbsp;
+
+          <span class="octicon octicon-check good" ng-show="resource.requester_vpc.peering_options.allow_dns_resolution_from_remote_vpc"></span>
+          <span class="octicon octicon-x bad" ng-show="!resource.requester_vpc.peering_options.allow_dns_resolution_from_remote_vpc"></span>
+        </div>
+      </div>
+      <div class="row">
+        <div class="s12 col">
+          <span>Egress from Local Classic Link to Remote VPC</span>&nbsp;&nbsp;&nbsp;
+
+          <span class="octicon octicon-check good" ng-show="resource.requester_vpc.peering_options.allow_egress_from_local_classic_link_to_remote_vpc"></span>
+          <span class="octicon octicon-x bad" ng-show="!resource.requester_vpc.peering_options.allow_egress_from_local_classic_link_to_remote_vpc"></span>
+        </div>
+      </div>
+      <div class="row">
+        <div class="s12 col">
+          <span>Egress from Local VPC to Remote Classic Link</span>&nbsp;&nbsp;&nbsp;
+
+          <span class="octicon octicon-check good" ng-show="resource.requester_vpc.peering_options.allow_egress_from_local_vpc_to_remote_classic_link"></span>
+          <span class="octicon octicon-x bad" ng-show="!resource.requester_vpc.peering_options.allow_egress_from_local_vpc_to_remote_classic_link"></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

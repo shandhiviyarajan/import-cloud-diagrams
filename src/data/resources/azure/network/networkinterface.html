@@ -1,0 +1,90 @@
+<div class="row">
+  <div class="s12 col"><strong>Private IP addresses</strong></div>
+</div>
+<div class="row" ng-show="!info.ip_configurations.length">
+  <div class="s12 col">None</div>
+</div>
+<div class="row" ng-repeat="ip in info.ip_configurations">
+  <div class="s12 col end attributes-name">
+    {{ip.private_ipaddress}} ({{ip.private_ipallocation_method}})
+  </div>
+</div>
+
+<div class="row">
+  <div class="s12 col"><strong>Public IP addresses</strong></div>
+</div>
+<div class="row" ng-show="!info.public_ip_addresses.length">
+  <div class="s12 col">None</div>
+</div>
+<div class="row" ng-repeat="public_ip in info.public_ip_addresses">
+  <div class="s12 col end attributes-name">
+    {{public_ip.ip_address}} ({{public_ip.name}})
+  </div>
+</div>
+
+<div class="row">
+  <div class="s12 col"><h5>Subnets</h5></div>
+</div>
+<div class="row" ng-show="!info.subnets.length">
+  <div class="s12 col">None</div>
+</div>
+<div class="row" ng-repeat="subnet in info.subnets">
+  <div class="s12 col end attributes-name">
+    <svg><use xlink:href="{{subnet.image}}" /></svg>
+    <a ng-click="selectResource(subnet)">{{subnet.name}}</a> ({{subnet.address_prefix}})
+  </div>
+</div>
+
+<div class="row">
+  <div class="s12 col"><h5>Network Security Groups</h5></div>
+</div>
+<div class="row" ng-show="!info.security_groups.length">
+  <div class="s12 col">None</div>
+</div>
+<div class="row" ng-repeat="security_group in info.security_groups track by $index">
+  <div class="s12 col end attributes-name">
+    <svg><use xlink:href="{{security_group.image}}" /></svg>
+    <a ng-click="selectResource(security_group)">{{security_group.name}}</a>
+  </div>
+</div>
+
+<div class="row">
+  <div class="s12 col"><h5>Private Endpoints</h5></div>
+</div>
+<div class="row" ng-show="!info.private_endpoints.length">
+  <div class="s12 col">None</div>
+</div>
+<div class="row" ng-repeat="endpoint in info.private_endpoints track by $index">
+  <div class="s12 col end attributes-name">
+    <svg><use xlink:href="{{endpoint.image}}" /></svg>
+    <a ng-click="selectResource(endpoint)">{{endpoint.name}}</a>
+  </div>
+</div>
+
+<div class="row">
+  <div class="s12 col"><h5>Application Security Groups</h5></div>
+</div>
+<div class="row" ng-show="!info.app_security_groups.length">
+  <div class="s12 col">None</div>
+</div>
+<div class="row" ng-repeat="app_security_group in info.app_security_groups">
+  <div class="s12 col end attributes-name">
+    <svg><use xlink:href="{{app_security_group.image}}" /></svg>
+    <a ng-click="selectResource(app_security_group)">{{app_security_group.name}}</a>
+  </div>
+</div>
+
+<div class="row">
+  <div class="s12 col"><h5>Virtual Machines</h5></div>
+</div>
+<div class="row" ng-show="!info.virtual_machine">
+  <div class="s12 col">None</div>
+</div>
+<div class="row" ng-show="info.virtual_machine">
+  <div class="s12 col end attributes-name">
+    <svg><use xlink:href="{{info.virtual_machine.image}}" /></svg>
+    <a ng-click="selectResource(info.virtual_machine)">{{info.virtual_machine.name}}</a>
+  </div>
+</div>
+
+

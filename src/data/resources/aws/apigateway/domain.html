@@ -1,0 +1,38 @@
+<!-- ATTRIBUTES -->
+<div class="row" ng-show="resource.certificate_name">
+  <div class="s12 col"><strong>Certificate Name</strong></div>
+  <div class="s12 col" ng-bind="resource.certificate_name"></div>
+</div>
+<div class="row" ng-show="resource.certificate_arn">
+  <div class="s12 col"><strong>Certificate Arn</strong></div>
+  <div class="s12 col" ng-bind="resource.certificate_arn"></div>
+</div>
+<div class="row" ng-show="resource.certificate_upload_date">
+  <div class="s12 col"><strong>Certificate Upload Date</strong></div>
+  <div class="s12 col" ng-bind="resource.certificate_upload_date"></div>
+</div>
+<div class="row" ng-show="resource.regional_domain_name">
+  <div class="s12 col"><strong>Regional Domain Name</strong></div>
+  <div class="s12 col" ng-bind="resource.regional_domain_name"></div>
+</div>
+<div class="row" ng-show="resource.distribution_domain_name">
+  <div class="s12 col"><strong>Distribution Domain Name</strong></div>
+  <div class="s12 col" ng-bind="resource.distribution_domain_name"></div>
+</div>
+<div class="row" ng-show="resource.endpoint_configuration">
+  <div class="s12 col"><strong>Endpoint Configuration</strong></div>
+  <div class="s12 col" ng-bind="resource.endpoint_configuration"></div>
+</div>
+
+<!-- CONNECTION -->
+<div>
+  <div class="row">
+    <div class="s12 col"><h5>REST APIs</h5></div>
+  </div>
+  <div ng-repeat="rest_api in info.rest_apis track by $index">
+    <div class="row">
+      <div class="s12 col attributes-name"><svg><use xlink:href="{{rest_api.image}}" /></svg><a ng-click="selectResource(rest_api)">{{rest_api.name}}</a></div>
+    </div>
+  </div>
+</div>
+

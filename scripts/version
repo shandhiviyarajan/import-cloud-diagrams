@@ -1,0 +1,72 @@
+#!/bin/bash
+set -eo pipefail
+
+echo "+++ git status"
+echo "$(git status)"
+
+echo "+++ :package: :gear: Getting version"
+dev="false"
+version=$(jq -r .version < package.json | cut -d '.' -f 1,2)
+build_string=$(git describe --long --tags --dirty --always)
+build_no=$(echo $build_string | cut -d '-' -f 2)
+build_revision=$(echo $build_string | cut -d '-' -f 3)
+version_string="$version-$build_no"
+
+dirty_string=$(echo $build_string | cut -d '-' -f 4)
+if [[ "$dirty_string" == "dirty" ]] && [[ -z $IGNORE_DIRTY ]]; then
+  echo "dirty repo, setting dev flag"
+  dev="true"
+fi
+
+# # untracked=$(git ls-files --exclude-standard --others)
+# if [[ $(git ls-files --exclude-standard --others) ]] && [[ -z $IGNORE_DIRTY ]]; then
+#   echo "untracked files, setting dev flag"
+#   dev="true"
+# fi
+
+timestamp=$(date -u +%Y%m%d%H%M%S)
+branch=$(git rev-parse --abbrev-ref HEAD)
+revision=${build_revision:1:7}
+
+version=$version
+if [[ ! -z $CI ]]; then
+  branch=$BUILDKITE_BRANCH
+fi
+
+echo "Info:"
+echo "$(git describe --long --tags --dirty --always)"
+echo "$(git rev-parse --abbrev-ref HEAD)"
+echo "$(git branch --remote --verbose --no-abbrev --contains)"
+
+if [[ "$dev" == "true" ]]; then
+  echo "development build"
+  if [[ "$branch" == "master" ]]; then
+    echo "on master"
+    version="${version}.${build_no}-dev.${timestamp}"
+  else
+    echo "on a branch"
+    version="${version}.${build_no}-dev.${timestamp}"
+  fi
+else
+  echo "non-development build"
+  if [[ "$branch" == "master" ]]; then
+    echo "on master"
+    version="${version}.${build_no}"
+  else
+    echo "on a branch"
+    version="${version}.${build_no}-${revision}"
+  fi
+fi
+
+# echo "Image ID: ${image_id}"
+echo "Build Revision: ${build_revision}"
+echo "Build No: ${build_no}"
+echo "Dev: ${dev}"
+echo "Timestamp: ${timestamp}"
+echo "Branch: ${branch}"
+echo "Revision: ${revision}"
+echo "Version: ${version}"
+
+export VERSION=$version
+export BRANCH=$branch
+export REVISION=$revision

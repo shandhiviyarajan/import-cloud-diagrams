@@ -1,0 +1,302 @@
+<div class="row" ng-if="resource.endpoint">
+  <div class="s12 col attributes-name">{{resource.endpoint}}</div>
+  <div class="s12 col">&nbsp;</div>
+</div>
+
+<!-- Capacity -->
+<div ng-if="resource.engine_mode === 'serverless'">
+  <div class="row text-center">
+    <div class="s4 col"><strong>Capacity</strong></div>
+    <div class="s4 col"><strong>Max</strong></div>
+    <div class="s4 col"><strong>Min</strong></div>
+  </div>
+  <div class="row text-center">
+    <div class="s4 col price" ng-bind="resource.capacity"><h5></h5></div>
+    <div class="s4 col price" ng-bind="resource.scaling_configuration_info.max_capacity"><h5></h5></div>
+    <div class="s4 col price" ng-bind="resource.scaling_configuration_info.min_capacity"><h5></h5></div>
+  </div>
+  <div class="row">
+    <div class="s12 col"><strong>Pause compute capacity after consecutive minutes of inactivity</strong></div>
+    <div class="s12 col attributes-name">
+      {{resource.scaling_configuration_info.auto_pause ? (resource.scaling_configuration_info.seconds_until_auto_pause/60) : "-"}}
+    </div>
+  </div>
+  <div class="row">
+    <div class="s12 col"><strong>Timeout Action</strong></div>
+    <div class="s12 col attributes-name">{{resource.scaling_configuration_info.timeout_action}}</div>
+  </div>
+
+  <hr />
+</div>
+
+<!-- Cluster Details -->
+<div class="row">
+  <div class="s5 col"><strong>Status</strong></div>
+  <div class="s7 col" ng-bind="resource.status" ng-class="resource.status_list[resource.status]"></div>
+</div>
+<div class="row">
+  <div class="s5 col"><strong>Role</strong></div>
+  <div class="s7 col attributes-name">{{resource.engine_mode}}</div>
+</div>
+<div class="row">
+  <div class="s5 col"><strong>Engine</strong></div>
+  <div class="s7 col attributes-name">{{resource.engine}}</div>
+</div>
+<div class="row">
+  <div class="s5 col"><strong>Engine Version</strong></div>
+  <div class="s7 col attributes-name">{{resource.engine_version}}</div>
+</div>
+<div class="row">
+  <div class="s5 col"><strong>Port</strong></div>
+  <div class="s7 col attributes-name">{{resource.port}}</div>
+</div>
+<div class="row">
+  <div class="s12 col"><strong>Allocated Storage</strong></div>
+  <div class="s12 col attributes-name">{{resource.allocated_storage}} GB</div>
+</div>
+<div class="row">
+  <div class="s12 col"><strong>Database Name</strong></div>
+  <div class="s12 col attributes-name">{{resource.database_name || "-"}}</div>
+</div>
+<div class="row">
+  <div class="s12 col"><strong>Cluster Identifier</strong></div>
+  <div class="s12 col attributes-name">{{resource.db_cluster_identifier}}</div>
+</div>
+<div class="row">
+  <div class="s12 col"><strong>Cluster Parameter Group</strong></div>
+  <div class="s12 col attributes-name">{{resource.db_cluster_parameter_group}}</div>
+</div>
+<div class="row">
+  <div class="s12 col"><strong>Cluster Resource ID</strong></div>
+  <div class="s12 col attributes-name">{{resource.db_cluster_resource_id}}</div>
+</div>
+<div class="row">
+  <div class="s12 col"><strong>Create Time</strong></div>
+  <div class="s12 col attributes-name">{{resource.cluster_create_time}}</div>
+</div>
+
+<hr />
+
+<!-- Location -->
+<div class="row">
+  <div class="s12 col"><strong>Availability Zones</strong></div>
+  <div class="s12 col">
+    <ul>
+      <li ng-repeat="az in resource.availability_zones">{{az}}</li>
+    </ul>
+  </div>
+</div>
+<div class="row">
+  <div class="s7 col"><strong>Multi AZ</strong></div>
+  <span class="s5 octicon octicon-check good" ng-show="resource.multi_az"></span>
+  <span class="s5 octicon octicon-x bad" ng-show="!resource.multi_az"></span>
+</div>
+
+<hr />
+
+<!-- Backups -->
+<div class="row">
+  <div class="s12 col"><strong>Preferred Backup Window</strong></div>
+  <div class="s12 col attributes-name">{{resource.preferred_backup_window || "-"}}</div>
+</div>
+<div class="row">
+  <div class="s12 col"><strong>Preferred Maintenance Window</strong></div>
+  <div class="s12 col attributes-name">{{resource.preferred_maintenance_window || "-"}}</div>
+</div>
+<div class="row">
+  <div class="s12 col"><strong>Backup Retention Period</strong></div>
+  <div class="s12 col attributes-name">{{resource.backup_retention_period ? (resource.backup_retention_period + ' days') : "-"}}</div>
+</div>
+<div class="row">
+  <div class="s12 col"><strong>Earliest Restorable Time</strong></div>
+  <div class="s12 col attributes-name">{{resource.earliest_restorable_time || "None"}}</div>
+</div>
+<div class="row">
+  <div class="s12 col"><strong>Latest Restorable Time</strong></div>
+  <div class="s12 col attributes-name">{{resource.latest_restorable_time || "None"}}</div>
+</div>
+
+<!-- Backtrack -->
+<div ng-if="resource.backtrack_window">
+  <hr />
+
+  <div class="row">
+    <div class="s12 col"><strong>Backtrack Window</strong></div>
+    <div class="s12 col attributes-name">{{resource.backtrack_window}}</div>
+  </div>
+  <div class="row">
+    <div class="s12 col"><strong>Earliest Backtrack Time</strong></div>
+    <div class="s12 col attributes-name">{{resource.earliest_backtrack_time}}</div>
+  </div>
+  <div class="row">
+    <div class="s12 col"><strong>Backtrack Consumed Change Records</strong></div>
+    <div class="s12 col attributes-name">{{resource.backtrack_consumed_change_records}}</div>
+  </div>
+</div>
+
+<hr />
+
+<!-- Database details -->
+<div class="row" ng-if="resource.character_set_name">
+  <div class="s12 col"><strong>Character Set Name</strong></div>
+  <div class="s12 col attributes-name">{{resource.character_set_name}}</div>
+</div>
+<div class="row" ng-if="resource.clone_group_id">
+  <div class="s12 col"><strong>Clone Group ID</strong></div>
+  <div class="s12 col attributes-name">{{resource.clone_group_id}}</div>
+</div>
+<div class="row" ng-if="resource.kms_key_id">
+  <div class="s12 col"><strong>KMS Key ID</strong></div>
+  <div class="s12 col attributes-name">{{resource.kms_key_id}}</div>
+</div>
+<div class="row" ng-if="resource.reader_endpoint">
+  <div class="s12 col"><strong>Reader Endpoint</strong></div>
+  <div class="s12 col attributes-name">{{resource.reader_endpoint}}</div>
+</div>
+<div class="row" ng-if="resource.replication_source_identifier">
+  <div class="s12 col"><strong>Replication Source Identifier</strong></div>
+  <div class="s12 col attributes-name">{{resource.replication_source_identifier}}</div>
+</div>
+<div class="row">
+  <div class="s7 col"><strong>Storage Encrypted</strong></div>
+  <span class="s5 octicon octicon-check good" ng-show="resource.storage_encrypted"></span>
+  <span class="s5 octicon octicon-x bad" ng-show="!resource.storage_encrypted"></span>
+</div>
+<div class="row">
+  <div class="s7 col"><strong>IAM Database Authentication Enabled</strong></div>
+  <span class="s5 octicon octicon-check good" ng-show="resource.iam_database_authentication_enabled"></span>
+  <span class="s5 octicon octicon-x bad" ng-show="!resource.iam_database_authentication_enabled"></span>
+</div>
+<div class="row">
+  <div class="s7 col"><strong>HTTP Endpoint Enabled</strong></div>
+  <span class="s5 octicon octicon-check good" ng-show="resource.http_endpoint_enabled"></span>
+  <span class="s5 octicon octicon-x bad" ng-show="!resource.http_endpoint_enabled"></span>
+</div>
+<div class="row">
+  <div class="s7 col"><strong>Deletion Protection</strong></div>
+  <span class="s5 octicon octicon-check good" ng-show="resource.deletion_protection"></span>
+  <span class="s5 octicon octicon-x bad" ng-show="!resource.deletion_protection"></span>
+</div>
+<div class="row">
+  <div class="s7 col"><strong>Copy Tags To Snapshot</strong></div>
+  <span class="s5 octicon octicon-check good" ng-show="resource.copy_tags_to_snapshot"></span>
+  <span class="s5 octicon octicon-x bad" ng-show="!resource.copy_tags_to_snapshot"></span>
+</div>
+<div class="row">
+  <div class="s7 col"><strong>Cross Account Clone</strong></div>
+  <span class="s5 octicon octicon-check good" ng-show="resource.cross_account_clone"></span>
+  <span class="s5 octicon octicon-x bad" ng-show="!resource.cross_account_clone"></span>
+</div>
+
+<div class="row" ng-if="resource.associated_roles.length > 0">
+  <div class="s12 col"><strong>Associated Roles</strong></div>
+  <div class="s12 col">
+    <ul>
+      <li ng-repeat="x in resource.associated_roles">{{x}}</li>
+    </ul>
+  </div>
+</div>
+<div class="row" ng-if="resource.custom_endpoints.length > 0">
+  <div class="s12 col"><strong>Custom Endpoints</strong></div>
+  <div class="s12 col">
+    <ul>
+      <li ng-repeat="x in resource.custom_endpoints">{{x}}</li>
+    </ul>
+  </div>
+</div>
+<div class="row" ng-if="resource.db_cluster_option_group_memberships.length > 0">
+  <div class="s12 col"><strong>Option Group Memberships</strong></div>
+  <div class="s12 col">
+    <ul>
+      <li ng-repeat="x in resource.db_cluster_option_group_memberships">{{x}}</li>
+    </ul>
+  </div>
+</div>
+<div class="row" ng-if="resource.domain_memberships.length > 0">
+  <div class="s12 col"><strong>Domain Memberships</strong></div>
+  <div class="s12 col">
+    <ul>
+      <li ng-repeat="x in resource.domain_memberships">{{x}}</li>
+    </ul>
+  </div>
+</div>
+<div class="row" ng-if="resource.enabled_cloudwatch_logs_exports.length > 0">
+  <div class="s12 col"><strong>Enabled Cloudwatch Logs Exports</strong></div>
+  <div class="s12 col">
+    <ul>
+      <li ng-repeat="x in resource.enabled_cloudwatch_logs_exports">{{x}}</li>
+    </ul>
+  </div>
+</div>
+<div class="row" ng-if="resource.read_replica_identifiers.length > 0">
+  <div class="s12 col"><strong>Read Replica Identifiers</strong></div>
+  <div class="s12 col">
+    <ul>
+      <li ng-repeat="x in resource.read_replica_identifiers">{{x}}</li>
+    </ul>
+  </div>
+</div>
+
+<hr />
+
+<div ng-if="resource.activity_stream_kinesis_stream_name">
+  <div class="row">
+    <div class="s12 col"><h5>Activity Stream</h5></div>
+  </div>
+  <div class="row">
+    <div class="s12 col"><strong>Kinesis Stream Name</strong></div>
+    <div class="s12 col attributes-name">{{resource.activity_stream_kinesis_stream_name}}</div>
+  </div>
+  <div class="row">
+    <div class="s12 col"><strong>KMS Key ID</strong></div>
+    <div class="s12 col attributes-name">{{resource.activity_stream_kms_key_id}}</div>
+  </div>
+  <div class="row">
+    <div class="s12 col"><strong>Mode</strong></div>
+    <div class="s12 col attributes-name">{{resource.activity_stream_mode}}</div>
+  </div>
+  <div class="row">
+    <div class="s12 col"><strong>Status</strong></div>
+    <div class="s12 col attributes-name">{{resource.activity_stream_status}}</div>
+  </div>
+</div>
+
+<div ng-show="info.subnet_group">
+  <div class="row">
+    <div class="s12 col"><h5>Subnet Group</h5></div>
+  </div>
+  <div class="row">
+    <div class="s12 col attributes-name"><a ng-click="selectResource(info.subnet_group)">{{info.subnet_group.name}}</a></div>
+  </div>
+</div>
+
+<div ng-show="info.db_cluster_members.length > 0">
+  <div class="row">
+    <div class="s12 col"><h5>Cluster Members</h5></div>
+  </div>
+  <div ng-repeat="db in info.db_cluster_members track by $index">
+    <div class="row">
+      <div class="s12 col attributes-name"><a ng-click="selectResource(db)">{{db.name}}</a></div>
+    </div>
+  </div>
+</div>
+
+<div ng-show="info.security_groups.length > 0">
+  <div class="row">
+    <div class="s12 col"><h5>Security Groups</h5></div>
+  </div>
+  <div ng-repeat="sg in info.security_groups track by $index">
+    <div class="row">
+      <div class="s12 col attributes-name"><a ng-click="selectResource(sg)">{{sg.name}}</a></div>
+    </div>
+  </div>
+</div>
+
+<div ng-show="info.hosted_zone">
+  <div class="row">
+    <div class="s12 col"><h5>Hosted Zone</h5></div>
+  </div>
+  <div class="row">
+    <div class="s12 col attributes-name"><a ng-click="selectResource(info.hosted_zone)">{{info.hosted_zone.name}}</a></div>
+  </div>
+</div>

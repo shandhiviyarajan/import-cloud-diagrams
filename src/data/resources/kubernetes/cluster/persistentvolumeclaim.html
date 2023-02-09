@@ -1,0 +1,47 @@
+<div class="row">
+  <div class="s12 col"><strong>Namespace</strong></div>
+  <div class="s12 col"><a ng-click="selectResource(info.namespace)">{{info.namespace.name}}</a></div>
+</div>
+<div class="row">
+  <div class="s12 col"><strong>Storage Class</strong></div>
+  <div class="s12 col" ng-bind="resource.storage_class_name"></div>
+</div>
+<div class="row">
+  <div class="s12 col"><strong>Access Modes</strong></div>
+  <div class="s12 col" ng-bind="resource.access_modes.join(', ')"></div>
+</div>
+<div class="row">
+  <div class="s12 col"><strong>Start Time</strong></div>
+  <div class="s12 col" ng-bind="resource.start_time"></div>
+</div>
+
+<div class="row">
+  <div class="s12 col"><h5>Status</h5></div>
+</div>
+<div class="row">
+  <div class="s5 col"><strong>Phase</strong></div>
+  <div class="s7 col" ng-bind="resource.status.phase"></div>
+</div>
+<div class="row" ng-if="resource.status.capacity.storage">
+  <div class="s5 col"><strong>Capacity</strong></div>
+  <div class="s7 col" ng-bind="resource.status.capacity.storage"></div>
+</div>
+<div class="row" ng-if="resource.status.access_modes">
+  <div class="s12 col"><strong>Access Modes</strong></div>
+  <div class="s12 col" ng-bind="resource.status.access_modes.join(', ')"></div>
+</div>
+
+<div ng-show="info.volume">
+  <div class="row">
+    <div class="s12 col"><h5>Persistent Volume</h5></div>
+  </div>
+  <div class="row">
+    <div class="s12 col attributes-name"><strong><a ng-click="selectResource(info.volume)">{{info.volume.name}}</a></strong></div>
+    <div class="s12 col">
+      ∟ <strong>Mode</strong>: <span ng-bind="resource.volume_mode"></span>
+    </div>
+    <div class="s12 col" ng-if="info.pod">
+      ∟ <strong>Pod</strong>: <a ng-click="selectResource(info.pod)">{{info.pod.name}}</a>
+    </div>
+  </div>
+</div>

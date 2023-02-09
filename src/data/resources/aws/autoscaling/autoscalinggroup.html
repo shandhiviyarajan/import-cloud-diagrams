@@ -1,0 +1,82 @@
+<div class="row text-center">
+  <div class="s4 col" ng-if="resource.min_size"><strong>Min</strong></div>
+  <div class="s4 col" ng-if="resource.max_size"><strong>Max</strong></div>
+  <div class="s4 col" ng-if="resource.desired_capacity"><strong>Default</strong></div>
+</div>
+<div class="row text-center">
+  <div class="s4 col price" ng-bind="resource.min_size"><h5></h5></div>
+  <div class="s4 col price" ng-bind="resource.max_size"><h5></h5></div>
+  <div class="s4 col price" ng-bind="resource.desired_capacity"><h5></h5></div>
+</div>
+
+<!-- LINKS -->
+<div class="row" ng-if="info.scaling_policy">
+  <div class="s12 col"><strong>Scaling Policy</strong></div>
+  <div class="s12 col attributes-name"><a ng-click="selectResource(info.scaling_policy)">{{info.scaling_policy.name}}</a></div>
+</div>
+<div class="row" ng-if="info.launch_config">
+  <div class="s12 col"><strong>Launch Configuration</strong></div>
+  <div class="s12 col attributes-name"><a ng-click="selectResource(info.launch_config)">{{info.launch_config.name}}</a></div>
+</div>
+
+<!-- ATTRIBUTES!!! -->
+<div class="row" ng-if="resource.availability_zones">
+  <div class="s12 col"><strong>Availability Zones</strong></div>
+  <div class="s12 col">
+    <ul>
+      <li ng-repeat="az in resource.availability_zones">{{az}}</li>
+    </ul>
+  </div>
+</div>
+<div class="row" ng-if="resource.vpc_zone_identifier">
+  <div class="s12 col"><strong>VPC Zone Identifier</strong></div>
+  <div class="s12 col" ng-bind="resource.vpc_zone_identifier"></div>
+</div>
+<div class="row" ng-if="resource.placement_group">
+  <div class="s6 col"><strong>Placement Group</strong></div>
+  <div class="s6 col" ng-bind="resource.placement_group"></div>
+</div>
+<div class="row" ng-if="resource.status">
+  <div class="s6 col"><strong>Status</strong></div>
+  <div class="s6 col" ng-bind="resource.status"></div>
+</div>
+<div class="row" ng-if="resource.default_cooldown">
+  <div class="s6 col"><strong>Default Cooldown</strong></div>
+  <div class="s6 col" ng-bind="resource.default_cooldown"></div>
+</div>
+<div class="row" ng-if="resource.health_check_type">
+  <div class="s6 col"><strong>Health Check Type</strong></div>
+  <div class="s6 col" ng-bind="resource.health_check_type"></div>
+</div>
+<div class="row" ng-if="resource.created_time">
+  <div class="s12 col"><strong>Created Time</strong></div>
+  <div class="s12 col" ng-bind="resource.created_time"></div>
+</div>
+<div class="row" ng-if="resource.health_check_grace_period">
+  <div class="s12 col"><strong>Health Check Grace Period</strong></div>
+  <div class="s12 col" ng-bind="resource.health_check_grace_period"></div>
+</div>
+<div class="row" ng-if="resource.arn">
+  <div class="s12 col"><strong>ARN</strong></div>
+  <div class="s12 col" ng-bind="resource.arn"></div>
+</div>
+
+<!-- INSTANCES!! -->
+<div ng-show="info.instances.length > 0">
+  <div class="row">
+    <div class="s10 col end"><h5>Instances</h5></div>
+  </div>
+  <div class="row">
+    <div class="s10 col end attributes-name" ng-repeat="instance in info.instances track by $index">
+      <svg><use xlink:href="{{instance.image}}" /></svg>
+      <a ng-click="selectResource(instance)">{{instance.name}}</a>
+    </div>
+  </div>
+</div>
+
+<div class="row" ng-show="info.beanstalk_environment">
+  <div class="s12 col"><h5>ElasticBeanstalk Environment</h5></div>
+  <div class="s12 col attributes-name">
+    <a ng-click="selectResource(info.beanstalk_environment)">{{info.beanstalk_environment.name}}</a>
+  </div>
+</div>

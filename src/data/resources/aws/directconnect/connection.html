@@ -1,0 +1,77 @@
+<div class="row" ng-if="resource.virtual_interface_type">
+  <div class="s5 col"><strong>Type</strong></div>
+  <div class="s7 col" ng-bind="resource.virtual_interface_type"></div>
+</div>
+<div class="row" ng-if="resource.virtual_interface_state">
+  <div class="s5 col"><strong>State</strong></div>
+  <div class="s7 col" ng-bind="resource.virtual_interface_state"></div>
+</div>
+<div class="row" ng-if="resource.location">
+  <div class="s5 col"><strong>Location</strong></div>
+  <div class="s7 col" ng-bind="resource.location"></div>
+</div>
+<div class="row" ng-if="resource.bandwidth">
+  <div class="s5 col"><strong>Bandwidth</strong></div>
+  <div class="s7 col" ng-bind="resource.bandwidth"></div>
+</div>
+
+<div class="row" ng-if="resource.aws_device">
+  <div class="s5 col"><strong>AWS Device</strong></div>
+  <div class="s7 col" ng-bind="resource.aws_device"></div>
+</div>
+<div class="row" ng-if="resource.aws_device_v2">
+  <div class="s5 col"><strong>AWS Device V2</strong></div>
+  <div class="s7 col" ng-bind="resource.aws_device_v2"></div>
+</div>
+<div class="row" ng-if="resource.owner_account">
+  <div class="s5 col"><strong>Owner Account</strong></div>
+  <div class="s7 col" ng-bind="resource.owner_account"></div>
+</div>
+<div class="row" ng-if="resource.vlan">
+  <div class="s5 col"><strong>VLAN</strong></div>
+  <div class="s7 col" ng-bind="resource.vlan"></div>
+</div>
+<div class="row">
+  <div class="s7 col"><strong>Jumbo Frame Capable</strong></div>
+  <div class="s5 col">
+    <span ng-show="resource.jumbo_frame_capable" class="octicon octicon-check good"></span>
+    <span ng-hide="resource.jumbo_frame_capable" class="octicon octicon-x bad"></span>
+  </div>
+</div>
+
+<div class="row" ng-if="resource.amazon_address">
+  <div class="s12 col"><strong>Amazon Address</strong></div>
+  <div class="s12 col" ng-bind="resource.amazon_address"></div>
+</div>
+<div class="row" ng-if="resource.customer_address">
+  <div class="s12 col"><strong>Customer Address</strong></div>
+  <div class="s12 col" ng-bind="resource.customer_address"></div>
+</div>
+<div class="row" ng-if="resource.address_family">
+  <div class="s12 col"><strong>Address Family</strong></div>
+  <div class="s12 col" ng-bind="resource.address_family"></div>
+</div>
+
+<div ng-show="info.lag">
+  <div class="row">
+    <div class="s12 col"><h5>Link Aggregation Group</h5></div>
+  </div>
+  <div class="row">
+    <div class="s12 col end attributes-name">
+      <svg><use xlink:href="{{info.lag.image}}" /></svg>
+      <a ng-click="selectResource(info.lag)">{{info.lag.name}}</a>
+    </div>
+  </div>
+</div>
+
+<div ng-show="info.virtual_interface">
+  <div class="row">
+    <div class="s12 col"><h5>Virtual Interface</h5></div>
+  </div>
+  <div class="row">
+    <div class="s12 col end attributes-name">
+      <svg><use xlink:href="{{info.virtual_interface.image}}" /></svg>
+      <a ng-click="selectResource(info.virtual_interface)">{{info.virtual_interface.name}}</a>
+    </div>
+  </div>
+</div>

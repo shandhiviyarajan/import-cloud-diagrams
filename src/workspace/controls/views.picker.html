@@ -1,0 +1,34 @@
+<div class="views-container">
+  <p ng-click="toggle()">Select Your View
+    <span ng-show="!$root.expandedPicker" class="material-icons">expand_less</span>
+    <span ng-show="$root.expandedPicker" class="material-icons">expand_more</span>
+  </p>
+  <ng-template ng-if="Designer.environment.current_view.canvas !== '3d'">
+    <ul class="views-list" ng-show="$root.expandedPicker">
+      <li ng-repeat="view in views | orderBy:'name'">
+        <a ng-click="selectView(view)" ng-class="{active: Designer.environment.current_view.id === view.id}">
+          <i class="material-icons">{{viewIcons[view.name]}}</i>
+          <span>{{view.name}}</span>
+        </a>
+      </li>
+      <li style="opacity: 0">
+
+      </li>
+    </ul>
+  </ng-template>
+
+  <ng-template ng-if="Designer.environment.current_view.canvas === '3d'">
+    <ul class="views-list" ng-show="$root.expandedPicker">
+      <li ng-repeat="view in views | orderBy:'name'">
+        <a ng-if="view.name === 'Infrastructure' || view.name === 'Extended Infrastructure'" ng-click="selectView(view)"
+          ng-class="{active: Designer.environment.current_view.id === view.id}">
+          <i class="material-icons">{{viewIcons[view.name]}}</i>
+          <span>{{view.name}}</span>
+        </a>
+      </li>
+      <li style="opacity: 0">
+
+      </li>
+    </ul>
+  </ng-template>
+</div>

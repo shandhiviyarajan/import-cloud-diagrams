@@ -1,0 +1,30 @@
+<div ng-show="resource" class="header">
+  <div class="row status" ng-show="resource.status">
+    <div class="s9 col">
+      <svg><use xlink:href="{{resource.image}}" /></svg> <strong>{{resource.type_name}}</strong>
+    </div>
+    <div class="s3 col">
+      <div class="status-display" ng-class="status_color" ng-attr-title="{{display_status}}"></div>
+    </div>
+  </div>
+  <div class="row status" ng-hide="resource.status">
+    <div class="header-image s12 col">
+      <svg><use xlink:href="{{resource.image}}" /></svg> <strong>{{resource.type_name}}</strong>
+    </div>
+  </div>
+
+  <div class="row title">
+    <div class="s12 col attributes-name"><h4 ng-bind="resource.name"></h4></div>
+  </div>
+
+  <div class="row sub-title ng-scope" ng-show="resource.provider_id">
+    <div class="s8 col">
+      <div class="attributes-name" ng-show="resource.provider_type !== 'azure'"><small ng-bind="resource.provider_id"></small></div>
+      <div class="attributes-name" ng-show="resource.provider_type === 'azure'"><small ng-bind="resource.azure_type"></small></div>
+      <div><strong><small ng-bind="resource.region"></small></strong></div>
+    </div>
+    <div class="s4 col text-right">
+      <span class="price" ng-bind="(resource.price || 0) | currency:'$':0"></span>/m
+    </div>
+  </div>
+</div>

@@ -1,0 +1,1510 @@
+<div class="row" ng-show="resource.display_name">
+  <div class="s12 col">
+    <strong>Display Name</strong>
+  </div>
+
+  <div class="s12 col" ng-bind="resource.display_name">
+  </div>
+</div>
+
+<div class="row" ng-show="resource.last_modified">
+  <div class="s12 col">
+    <strong>Last Modified</strong>
+  </div>
+
+  <div class="s12 col" ng-bind="resource.last_modified | date:'yyyy-MM-dd HH:mm:ss'">
+  </div>
+</div>
+
+<div class="row" ng-show="resource.creation_time">
+  <div class="s12 col">
+    <strong>Creation Time</strong>
+  </div>
+
+  <div class="s12 col" ng-bind="resource.creation_time | date:'yyyy-MM-dd HH:mm:ss'">
+  </div>
+</div>
+
+<div class="row" ng-show="resource.provisioning_state">
+  <div class="s12 col">
+    <strong>Provisioning State</strong>
+  </div>
+
+  <div class="s12 col" ng-bind="resource.provisioning_state">
+  </div>
+</div>
+
+<div class="row" ng-show=
+"resource.provisioning_state_transition_time">
+  <div class="s12 col">
+    <strong>Provisioning State Transition Time</strong>
+  </div>
+
+  <div class="s12 col" ng-bind= "resource.provisioning_state_transition_time | date:'yyyy-MM-dd HH:mm:ss'">
+
+  </div>
+</div>
+
+<div class="row" ng-show="resource.allocation_state">
+  <div class="s12 col">
+    <strong>Allocation State</strong>
+  </div>
+
+  <div class="s12 col" ng-bind="resource.allocation_state">
+  </div>
+</div>
+
+<div class="row" ng-show=
+"resource.allocation_state_transition_time">
+  <div class="s12 col">
+    <strong>Allocation State Transition Time</strong>
+  </div>
+
+  <div class="s12 col" ng-bind= "resource.allocation_state_transition_time | date:'yyyy-MM-dd HH:mm:ss'">
+
+  </div>
+</div>
+
+<div class="row" ng-show="resource.vm_size">
+  <div class="s12 col">
+    <strong>VM Size</strong>
+  </div>
+
+  <div class="s12 col" ng-bind="resource.vm_size">
+  </div>
+</div>
+
+<div class="row" ng-show="resource.current_dedicated_nodes">
+  <div class="s12 col">
+    <h5>Current Dedicated Nodes</h5>
+  </div>
+
+  <div class="s12 col" ng-bind="resource.current_dedicated_nodes">
+  </div>
+</div>
+
+<div class="row">
+  <div class="s12 col">
+    <h5>Application Packages</h5>
+  </div>
+</div>
+
+<div class="row" ng-show="resource.application_packages.length === 0">
+  <div class="s12 col">
+    -
+  </div>
+</div>
+
+<div class="row" ng-repeat="application_packages in resource.application_packages track by $index">
+  <div class="row" ng-show="application_packages.id">
+    <div class="s7 col">
+      <strong>{{info.application_packages[application_packages.id].name}}</strong>
+    </div>
+
+    <div class="s5 col">
+      version: {{application_packages.version}}
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="s12 col">
+    <h5>Network Configuration</h5>
+  </div>
+</div>
+
+<div class="row" ng-hide="(resource.network_configuration | json) != '{}'">
+  <div class="s12 col">
+    -
+  </div>
+</div>
+
+<div class="row" ng-show="(resource.network_configuration | json) != '{}'">
+  <div class="row">
+    <div class="s12 col">
+      <strong>Endpoint Configuration</strong>
+    </div>
+  </div>
+
+  <div class="row" ng-hide="(resource.network_configuration.endpoint_configuration | json) != '{}'">
+    <div class="s12 col">
+      -
+    </div>
+  </div>
+
+  <div class="row" ng-show= "(resource.network_configuration.endpoint_configuration | json) != '{}'">
+    <div class="row">
+      <div class="s12 col">
+        <strong>Inbound Nat Pools</strong>
+      </div>
+    </div>
+
+    <div class="row" ng-show="resource.network_configuration.endpoint_configuration.inbound_nat_pools.length === 0">
+      <div class="s12 col">
+        -
+      </div>
+    </div>
+
+    <div class="attributes-list" ng-repeat="inbound_nat_pools in resource.network_configuration.endpoint_configuration.inbound_nat_pools track by $index">
+      <div class="row" ng-show="inbound_nat_pools.name">
+        <div class="s5 col">
+          <strong>Name</strong>
+        </div>
+
+        <div class="s7 col" ng-bind="inbound_nat_pools.name">
+        </div>
+      </div>
+
+      <div class="row" ng-show="inbound_nat_pools.protocol">
+        <div class="s5 col">
+          <strong>Protocol</strong>
+        </div>
+
+        <div class="s7 col" ng-bind="inbound_nat_pools.protocol">
+        </div>
+      </div>
+
+      <div class="row" ng-show="inbound_nat_pools.backend_port">
+        <div class="s5 col">
+          <strong>Backend Port</strong>
+        </div>
+
+        <div class="s7 col" ng-bind=  "inbound_nat_pools.backend_port">
+        </div>
+      </div>
+
+      <div class="row" ng-show="inbound_nat_pools.frontend_port_range_start">
+        <div class="s12 col">
+          <strong>Frontend Port Range Start</strong>
+        </div>
+
+        <div class="s12 col" ng-bind="inbound_nat_pools.frontend_port_range_start">
+        </div>
+      </div>
+
+      <div class="row" ng-show="inbound_nat_pools.frontend_port_range_end">
+        <div class="s12 col">
+          <strong>Frontend Port Range End</strong>
+        </div>
+
+        <div class="s12 col" ng-bind="inbound_nat_pools.frontend_port_range_end">
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="s12 col">
+          <strong>Network Security Group Rules</strong>
+        </div>
+      </div>
+
+      <div class="row" ng-show="inbound_nat_pools.network_security_group_rules.length === 0">
+        <div class="s12 col">
+          -
+        </div>
+      </div>
+
+      <div class="attributes-list"" ng-repeat="network_security_group_rules in inbound_nat_pools.network_security_group_rules track by $index">
+        <div class="row" ng-show=  "network_security_group_rules.priority">
+          <div class="s5 col">
+            <strong>Priority</strong>
+          </div>
+
+          <div class="s7 col" ng-bind="network_security_group_rules.priority">
+          </div>
+        </div>
+
+        <div class="row" ng-show="network_security_group_rules.access">
+          <div class="s5 col">
+            <strong>Access</strong>
+          </div>
+
+          <div class="s7 col" ng-bind="network_security_group_rules.access">
+          </div>
+        </div>
+
+        <div class="row" ng-show="network_security_group_rules.source_address_prefix">
+          <div class="s12 col">
+            <strong>Source Address Prefix</strong>
+          </div>
+
+          <div class="s12 col" ng-bind="network_security_group_rules.source_address_prefix">
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="s12 col">
+            <strong>Source Port Ranges</strong>
+          </div>
+        </div>
+
+        <div class="row" ng-show="network_security_group_rules.source_port_ranges.length === 0">
+          <div class="s12 col">
+            -
+          </div>
+        </div>
+
+        <div class="row" ng-repeat="source_port_ranges in network_security_group_rules.source_port_ranges track by $index">
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="s12 col">
+      <strong>Public IPs</strong>
+    </div>
+  </div>
+
+  <div class="row" ng-show="resource.network_configuration.public_ips.length === 0">
+    <div class="s12 col">
+      -
+    </div>
+  </div>
+
+  <div class="row" ng-repeat="public_ips in resource.network_configuration.public_ips track by $index">
+  </div>
+
+  <div ng-show="resource.network_configuration.subnet_id">
+    <div class="s12 col"><strong>Subnet</strong></div>
+    <div class="s12 col" ng-hide="info.subnet">None</div>
+    <div class="s12 col end attributes-name" ng-show="info.subnet">
+      <svg><use xlink:href="{{info.subnet.image}}" /></svg>
+      <a ng-click="selectResource(info.subnet)">{{info.subnet.name}}</a>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="s12 col">
+    <h5>Deployment Configuration</h5>
+  </div>
+</div>
+
+<div class="row" ng-hide="(resource.deployment_configuration | json) != '{}'">
+  <div class="s12 col">
+    -
+  </div>
+</div>
+
+<div class="row" ng-show="(resource.deployment_configuration | json) != '{}'">
+  <div class="row">
+    <div class="s12 col">
+      <strong>Cloud Service Configuration</strong>
+    </div>
+  </div>
+
+  <div class="row" ng-hide="(resource.deployment_configuration.cloud_service_configuration | json) != '{}'">
+    <div class="s12 col">
+      -
+    </div>
+  </div>
+
+  <div class="row" ng-show="(resource.deployment_configuration.cloud_service_configuration | json) != '{}'">
+    <div class="row" ng-show="resource.deployment_configuration.cloud_service_configuration.os_family">
+      <div class="s5 offset-s1 col">
+        <strong>Os Family</strong>
+      </div>
+
+      <div class="s7 offset-s1 col" ng-bind="resource.deployment_configuration.cloud_service_configuration.os_family">
+
+      </div>
+    </div>
+
+    <div class="row" ng-show="resource.deployment_configuration.cloud_service_configuration.os_version">
+      <div class="s5 offset-s1 col">
+        <strong>Os Version</strong>
+      </div>
+
+      <div class="s7 offset-s1 col" ng-bind="resource.deployment_configuration.cloud_service_configuration.os_version">
+
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="s12 col">
+      <strong>Virtual Machine Configuration</strong>
+    </div>
+  </div>
+
+  <div class="row" ng-hide="(resource.deployment_configuration.virtual_machine_configuration | json) != '{}'">
+    <div class="s12 col">
+      -
+    </div>
+  </div>
+
+  <div class="attributes-list" ng-show="(resource.deployment_configuration.virtual_machine_configuration | json) != '{}'">
+    <div class="row">
+      <div class="s12 col">
+        <strong>Image Reference</strong>
+      </div>
+    </div>
+
+    <div class="row" ng-hide="(resource.deployment_configuration.virtual_machine_configuration.image_reference | json) != '{}'">
+      <div class="s12 col">
+        -
+      </div>
+    </div>
+
+    <div ng-show="(resource.deployment_configuration.virtual_machine_configuration.image_reference | json) != '{}'">
+      <div class="row" ng-show="resource.deployment_configuration.virtual_machine_configuration.image_reference.publisher">
+        <div class="s5 col">
+          Publisher
+        </div>
+        <div class="s7 col" ng-bind="resource.deployment_configuration.virtual_machine_configuration.image_reference.publisher">
+        </div>
+      </div>
+      
+      <div class="row" ng-show="resource.deployment_configuration.virtual_machine_configuration.image_reference.sku">
+        <div class="s5 col">
+          Sku
+        </div>
+
+        <div class="s7 col" ng-bind=  "resource.deployment_configuration.virtual_machine_configuration.image_reference.sku">
+        </div>
+      </div>
+
+      <div class="row" ng-show="resource.deployment_configuration.virtual_machine_configuration.image_reference.version">
+        <div class="s5 col">
+          Version
+        </div>
+
+        <div class="s7 col" ng-bind=  "resource.deployment_configuration.virtual_machine_configuration.image_reference.version">
+
+        </div>
+      </div>
+      <div class="row" ng-show="resource.deployment_configuration.virtual_machine_configuration.image_reference.offer">
+        <div class="s12 col">
+          Offer
+        </div>
+
+        <div class="s12 col" ng-bind="resource.deployment_configuration.virtual_machine_configuration.image_reference.offer">
+        </div>
+      </div>
+    </div>
+
+    <div class="row" ng-show="resource.deployment_configuration.virtual_machine_configuration.node_agent_sku_id">
+      <div class="s12 col">
+        <strong>Node Agent Sku</strong>
+      </div>
+
+      <div class="s12 col" ng-bind="resource.deployment_configuration.virtual_machine_configuration.node_agent_sku_id">
+
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="s12 col">
+        <strong>Windows Configuration</strong>
+      </div>
+    </div>
+
+    <div class="row" ng-show="resource.deployment_configuration.virtual_machine_configuration.windows_configuration.length === 0">
+      <div class="s12 col">
+        -
+      </div>
+    </div>
+
+    <div class="row" ng-repeat="windows in resource.deployment_configuration.virtual_machine_configuration.windows_configuration track by $index">
+      <div class="row" ng-show="windows.enable_automatic_updates">
+        <div class="s7 offset-s1 col">
+          <strong>Enable Automatic Updates</strong>
+        </div>
+        <div class="s5 offset-s1 octicon octicon-check good" ng-show=  "windows.enable_automatic_updates"></div>
+        <div class="s5 offset-s1 octicon octicon-x bad" ng-show=  "!windows.enable_automatic_updates"></div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="s12 col">
+        <strong>Data Disks</strong>
+      </div>
+    </div>
+
+    <div class="row" ng-show="resource.deployment_configuration.virtual_machine_configuration.data_disks.length === 0">
+      <div class="s12 col">
+        -
+      </div>
+    </div>
+
+    <div class="row" ng-repeat="data_disks in resource.deployment_configuration.virtual_machine_configuration.data_disks track by $index">
+      <div class="row" ng-show="data_disks.lun">
+        <div class="s5 col">
+          <strong>Lun</strong>
+        </div>
+
+        <div class="s7 col" ng-bind="data_disks.lun">
+        </div>
+      </div>
+
+      <div class="row" ng-show="data_disks.caching">
+        <div class="s5 col">
+          <strong>Caching</strong>
+        </div>
+
+        <div class="s7 col" ng-bind="data_disks.caching">
+        </div>
+      </div>
+
+      <div class="row" ng-show="data_disks.disk_size_gb">
+        <div class="s5 col">
+          <strong>Disk Size Gb</strong>
+        </div>
+
+        <div class="s7 col" ng-bind="data_disks.disk_size_gb">
+        </div>
+      </div>
+
+      <div class="row" ng-show="data_disks.storage_account_type">
+        <div class="s12 col">
+          <strong>Storage Account Type</strong>
+        </div>
+
+        <div class="s12 col" ng-bind=  "data_disks.storage_account_type">
+        </div>
+      </div>
+    </div>
+
+    <div class="row" ng-show="resource.deployment_configuration.virtual_machine_configuration.license_type">
+      <div class="s5 col">
+        <strong>License Type</strong>
+      </div>
+
+      <div class="s7 col" ng-bind="resource.deployment_configuration.virtual_machine_configuration.license_type"></div>
+    </div>
+
+    <div class="row">
+      <div class="s12 col">
+        <strong>Container Configuration</strong>
+      </div>
+    </div>
+
+    <div ng-show="resource.deployment_configuration.virtual_machine_configuration.container_configuration.length === 0">
+      <div class="s12 col">
+        -
+      </div>
+    </div>
+    <div ng-repeat="container in resource.deployment_configuration.virtual_machine_configuration.container_configuration track by $index">
+      <div class="row" ng-show="container.type">
+        <div class="s5 col">
+          Type
+        </div>
+
+        <div class="s7 col" ng-bind="container.type"></div>
+      </div>
+
+      <div class="row">
+        <div class="s7 col">
+          Container Image Names
+        </div>
+      </div>
+
+      <div class="row" ng-show="container.container_image_names.length === 0">
+        <div class="s5 col">
+          -
+        </div>
+      </div>
+
+      <div class="row" ng-repeat="container_image_names in container.container_image_names track by $index"></div>
+
+      <div class="row attributes-list">
+        <div class="s7 col">
+          Container Registries
+        </div>
+      </div>
+
+      <div class="row attributes-list" ng-show="container.container_registries.length === 0">
+        <div class="s5 col">
+          -
+        </div>
+      </div>
+
+      <div class="attributes-list" ng-repeat="container_registries in container.container_registries track by $index">
+        <div class="row" ng-show=  "container_registries.registry_server">
+          <div class="s5 col">
+            Registry Server
+          </div>
+
+          <div class="s7 col" ng-bind=    "container_registries.registry_server">
+          </div>
+        </div>
+
+        <div class="row" ng-show="container_registries.username">
+          <div class="s5 col">
+            Username
+          </div>
+
+          <div class="s7 col" ng-bind=    "container_registries.username">
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row" ng-show="resource.current_low_priority_nodes">
+  <div class="s12 col">
+    <h5>Current Low Priority Nodes</h5>
+  </div>
+
+  <div class="s12 col" ng-bind= "resource.current_low_priority_nodes">
+  </div>
+</div>
+
+<div class="row">
+  <div class="s12 col">
+    <h5>Scale Settings</h5>
+  </div>
+</div>
+
+<div class="row" ng-hide="(resource.scale_settings | json) != '{}'">
+  <div class="s12 col">
+    -
+  </div>
+</div>
+
+<div class="row" ng-show="(resource.scale_settings | json) != '{}'">
+  <div class="row">
+    <div class="s12 col">
+      <strong>Fixed Scale</strong>
+    </div>
+  </div>
+
+  <div class="row" ng-hide= "(resource.scale_settings.fixed_scale | json) != '{}'">
+    <div class="s12 col">
+      -
+    </div>
+  </div>
+
+  <div ng-show="(resource.scale_settings.fixed_scale | json) != '{}'">
+    <div class="row" ng-show="resource.scale_settings.fixed_scale.resize_timeout">
+      <div class="s7 col">
+        Resize Timeout
+      </div>
+
+      <div class="s5 col" ng-bind="resource.scale_settings.fixed_scale.resize_timeout | date:'yyyy-MM-dd HH:mm:ss'">
+
+      </div>
+    </div>
+
+    <div class="row" ng-show="resource.scale_settings.fixed_scale.target_dedicated_nodes">
+      <div class="s7 col">
+        Target Dedicated Nodes
+      </div>
+
+      <div class="s5 col" ng-bind="resource.scale_settings.fixed_scale.target_dedicated_nodes">
+      </div>
+    </div>
+
+    <div class="row" ng-show="resource.scale_settings.fixed_scale.target_low_priority_nodes">
+      <div class="s7 col">
+        Target Low Priority Nodes
+      </div>
+
+      <div class="s5 col" ng-bind="resource.scale_settings.fixed_scale.target_low_priority_nodes">
+
+      </div>
+    </div>
+
+    <div class="row" ng-show="resource.scale_settings.fixed_scale.node_deallocation_option">
+      <div class="s7 col">
+        Node Deallocation Option
+      </div>
+
+      <div class="s5 col" ng-bind="resource.scale_settings.fixed_scale.node_deallocation_option">
+
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="s12 col">
+      <strong>Auto Scale</strong>
+    </div>
+  </div>
+
+  <div class="row" ng-hide="(resource.scale_settings.auto_scale | json) != '{}'">
+    <div class="s12 col">
+      -
+    </div>
+  </div>
+
+  <div class="row" ng-show= "(resource.scale_settings.auto_scale | json) != '{}'">
+    <div class="row" ng-show="resource.scale_settings.auto_scale.formula">
+      <div class="s5 col">
+        <strong>Formula</strong>
+      </div>
+
+      <div class="s7 col" ng-bind="resource.scale_settings.auto_scale.formula">
+      </div>
+    </div>
+
+    <div class="row" ng-show="resource.scale_settings.auto_scale.evaluation_interval">
+      <div class="s12 col">
+        <strong>Evaluation Interval</strong>
+      </div>
+
+      <div class="s12 col" ng-bind="resource.scale_settings.auto_scale.evaluation_interval">
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="s12 col">
+    <h5>Auto Scale Run</h5>
+  </div>
+</div>
+
+<div class="row" ng-hide=
+"(resource.auto_scale_run | json) != '{}'">
+  <div class="s12 col">
+    -
+  </div>
+</div>
+
+<div class="row" ng-show=
+"(resource.auto_scale_run | json) != '{}'">
+  <div class="row" ng-show= "resource.auto_scale_run.evaluation_time">
+    <div class="s12 col">
+      <strong>Evaluation Time</strong>
+    </div>
+
+    <div class="s12 col" ng-bind="resource.auto_scale_run.evaluation_time | date:'yyyy-MM-dd HH:mm:ss'">
+
+    </div>
+  </div>
+
+  <div class="row" ng-show="resource.auto_scale_run.results">
+    <div class="s5 col">
+      <strong>Results</strong>
+    </div>
+
+    <div class="s7 col" ng-bind="resource.auto_scale_run.results">
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="s12 col">
+      <h5>Error</h5>
+    </div>
+  </div>
+
+  <div class="row" ng-hide= "(resource.auto_scale_run.error | json) != '{}'">
+    <div class="s12 col">
+      -
+    </div>
+  </div>
+
+  <div class="row" ng-show= "(resource.auto_scale_run.error | json) != '{}'">
+    <div class="row" ng-show="resource.auto_scale_run.error.code">
+      <div class="s5 col">
+        <strong>Code</strong>
+      </div>
+
+      <div class="s7 col" ng-bind="resource.auto_scale_run.error.code">
+      </div>
+    </div>
+
+    <div class="row" ng-show="resource.auto_scale_run.error.message">
+      <div class="s5 col">
+        <strong>Message</strong>
+      </div>
+
+      <div class="s7 col" ng-bind="resource.auto_scale_run.error.message">
+      </div>
+    </div>
+
+    <p>OTHER ATTRIBUTE TYPE</p>
+
+    <div class="row" ng-show="resource.auto_scale_run.error.details">
+      <div class="s5 col">
+        <strong>Details</strong>
+      </div>
+
+      <div class="s7 col" ng-bind="resource.auto_scale_run.error.details">
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row" ng-show="resource.inter_node_communication">
+  <div class="s12 col">
+    <h5>Inter Node Communication</h5>
+  </div>
+
+  <div class="s12 col" ng-bind="resource.inter_node_communication">
+  </div>
+</div>
+
+<div class="row" ng-show="resource.max_tasks_per_node">
+  <div class="s12 col">
+    <h5>Max Tasks Per Node</h5>
+  </div>
+
+  <div class="s12 col" ng-bind="resource.max_tasks_per_node">
+  </div>
+</div>
+
+<div class="row">
+  <div class="s12 col">
+    <h5>Task Scheduling Policy</h5>
+  </div>
+</div>
+
+<div class="row" ng-hide="(resource.task_scheduling_policy | json) != '{}'">
+  <div class="s12 col">
+    -
+  </div>
+</div>
+
+<div class="row" ng-show=
+"(resource.task_scheduling_policy | json) != '{}'">
+  <div class="row" ng-show= "resource.task_scheduling_policy.node_fill_type">
+    <div class="s5 col">
+      <strong>Node Fill Type</strong>
+    </div>
+
+    <div class="s7 col" ng-bind="resource.task_scheduling_policy.node_fill_type">
+    </div>
+  </div>
+</div>
+
+
+<div class="row">
+  <div class="s12 col">
+    <h5>Resize Operation Status</h5>
+  </div>
+</div>
+
+<div class="row" ng-hide="(resource.resize_operation_status | json) != '{}'">
+  <div class="s12 col">
+    -
+  </div>
+</div>
+
+<div class="row" ng-show="(resource.resize_operation_status | json) != '{}'">
+  <div class="row" ng-show= "resource.resize_operation_status.target_dedicated_nodes">
+    <div class="s7 col">
+      <strong>Target Dedicated Nodes</strong>
+    </div>
+
+    <div class="s5 col" ng-bind="resource.resize_operation_status.target_dedicated_nodes">
+    </div>
+  </div>
+
+  <div class="row" ng-show= "resource.resize_operation_status.target_low_priority_nodes">
+    <div class="s7 col">
+      <strong>Target Low Priority Nodes</strong>
+    </div>
+
+    <div class="s5 col" ng-bind="resource.resize_operation_status.target_low_priority_nodes">
+    </div>
+  </div>
+
+  <div class="row" ng-show= "resource.resize_operation_status.resize_timeout">
+    <div class="s7 col">
+      <strong>Resize Timeout</strong>
+    </div>
+
+    <div class="s5 col" ng-bind="resource.resize_operation_status.resize_timeout | date:'yyyy-MM-dd HH:mm:ss'">
+
+    </div>
+  </div>
+
+  <div class="row" ng-show= "resource.resize_operation_status.node_deallocation_option">
+    <div class="s12 col">
+      <strong>Node Deallocation Option</strong>
+    </div>
+
+    <div class="s12 col" ng-bind="resource.resize_operation_status.node_deallocation_option">
+    </div>
+  </div>
+
+  <div class="row" ng-show= "resource.resize_operation_status.start_time">
+    <div class="s5 col">
+      <strong>Start Time</strong>
+    </div>
+
+    <div class="s7 col" ng-bind="resource.resize_operation_status.start_time | date:'yyyy-MM-dd HH:mm:ss'">
+
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="s12 col">
+      <h5>Errors</h5>
+    </div>
+  </div>
+
+  <div class="row" ng-show= "resource.resize_operation_status.errors.length === 0">
+    <div class="s12 col">
+      -
+    </div>
+  </div>
+
+  <div class="row" ng-repeat= "errors in resource.resize_operation_status.errors track by $index">
+    <div class="row" ng-show="errors.code">
+      <div class="s5 col">
+        <strong>Code</strong>
+      </div>
+
+      <div class="s7 col" ng-bind="errors.code">
+      </div>
+    </div>
+
+    <div class="row" ng-show="errors.message">
+      <div class="s5 col">
+        <strong>Message</strong>
+      </div>
+
+      <div class="s7 col" ng-bind="errors.message">
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="s12 col">
+    <h5>User Accounts</h5>
+  </div>
+</div>
+
+<div class="row" ng-show="resource.user_accounts.length === 0">
+  <div class="s12 col">
+    -
+  </div>
+</div>
+
+<div class="row" ng-repeat="user_accounts in resource.user_accounts track by $index">
+  <div class="row">
+    <div class="s12 col">
+      <h5>Linux User Configuration</h5>
+    </div>
+  </div>
+
+  <div class="row" ng-hide="(user_accounts.linux_user_configuration | json) != '{}'">
+    <div class="s12 col">
+      -
+    </div>
+  </div>
+
+  <div class="row" ng-show="(user_accounts.linux_user_configuration | json) != '{}'">
+    <div class="row" ng-show="user_accounts.linux_user_configuration.uid">
+      <div class="s5 col">
+        <strong>Uid</strong>
+      </div>
+
+      <div class="s7 col" ng-bind="user_accounts.linux_user_configuration.uid">
+      </div>
+    </div>
+
+    <div class="row" ng-show="user_accounts.linux_user_configuration.gid">
+      <div class="s5 col">
+        <strong>Gid</strong>
+      </div>
+
+      <div class="s7 col" ng-bind="user_accounts.linux_user_configuration.gid">
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="s12 col">
+      <h5>Windows User Configuration</h5>
+    </div>
+  </div>
+
+  <div class="row" ng-hide="(user_accounts.windows_user_configuration | json) != '{}'">
+    <div class="s12 col">
+      -
+    </div>
+  </div>
+
+  <div class="row" ng-show="(user_accounts.windows_user_configuration | json) != '{}'">
+    <div class="row" ng-show="user_accounts.windows_user_configuration.login_mode">
+      <div class="s5 col">
+        <strong>Login Mode</strong>
+      </div>
+
+      <div class="s7 col" ng-bind="user_accounts.windows_user_configuration.login_mode">
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="s12 col">
+    <h5>Start Task</h5>
+  </div>
+</div>
+
+<div class="row" ng-hide="(resource.start_task | json) != '{}'">
+  <div class="s12 col">
+    -
+  </div>
+</div>
+
+<div class="row" ng-show="(resource.start_task | json) != '{}'">
+  <div class="row" ng-show="resource.start_task.command_line">
+    <div class="s5 col">
+      <strong>Command Line</strong>
+    </div>
+
+    <div class="s7 col" ng-bind="resource.start_task.command_line">
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="s12 col">
+      <h5>Resource Files</h5>
+    </div>
+  </div>
+
+  <div class="row" ng-show= "resource.start_task.resource_files.length === 0">
+    <div class="s12 col">
+      -
+    </div>
+  </div>
+
+  <div class="row" ng-repeat= "resource_files in resource.start_task.resource_files track by $index">
+    <div class="row" ng-show="resource_files.auto_storage_container_name">
+      <div class="s12 col">
+        <strong>Auto Storage Container Name</strong>
+      </div>
+
+      <div class="s12 col" ng-bind="resource_files.auto_storage_container_name">
+      </div>
+    </div>
+
+    <div class="row" ng-show="resource_files.storage_container_url">
+      <div class="s12 col">
+        <strong>Storage Container Url</strong>
+      </div>
+
+      <div class="s12 col" ng-bind="resource_files.storage_container_url">
+      </div>
+    </div>
+
+    <div class="row" ng-show="resource_files.http_url">
+      <div class="s5 col">
+        <strong>Http Url</strong>
+      </div>
+
+      <div class="s7 col" ng-bind="resource_files.http_url">
+      </div>
+    </div>
+
+    <div class="row" ng-show="resource_files.blob_prefix">
+      <div class="s5 col">
+        <strong>Blob Prefix</strong>
+      </div>
+
+      <div class="s7 col" ng-bind="resource_files.blob_prefix">
+      </div>
+    </div>
+
+    <div class="row" ng-show="resource_files.file_path">
+      <div class="s5 col">
+        <strong>File Path</strong>
+      </div>
+
+      <div class="s7 col" ng-bind="resource_files.file_path">
+      </div>
+    </div>
+
+    <div class="row" ng-show="resource_files.file_mode">
+      <div class="s5 col">
+        <strong>File Mode</strong>
+      </div>
+
+      <div class="s7 col" ng-bind="resource_files.file_mode">
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="s12 col">
+      <h5>Environment Settings</h5>
+    </div>
+  </div>
+
+  <div class="row" ng-show= "resource.start_task.environment_settings.length === 0">
+    <div class="s12 col">
+      -
+    </div>
+  </div>
+
+  <div class="row" ng-repeat= "environment_settings in resource.start_task.environment_settings track by $index">
+    <div class="row" ng-show="environment_settings.name">
+      <div class="s5 col">
+        <strong>Name</strong>
+      </div>
+
+      <div class="s7 col" ng-bind="environment_settings.name">
+      </div>
+    </div>
+
+    <div class="row" ng-show="environment_settings.value">
+      <div class="s5 col">
+        <strong>Value</strong>
+      </div>
+
+      <div class="s7 col" ng-bind="environment_settings.value">
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="s12 col">
+      <h5>User Identity</h5>
+    </div>
+  </div>
+
+  <div class="row" ng-hide= "(resource.start_task.user_identity | json) != '{}'">
+    <div class="s12 col">
+      -
+    </div>
+  </div>
+
+  <div class="row" ng-show="resource.start_task.user_identity">
+    <div class="s12 col" ng-bind="resource.start_task.user_identity">
+    </div>
+  </div>
+
+  <div class="row" ng-show= "(resource.start_task.user_identity | json) != '{}'">
+    <div class="row" ng-show="resource.start_task.user_identity.user_name">
+      <div class="s5 col">
+        <strong>User Name</strong>
+      </div>
+
+      <div class="s7 col" ng-bind="resource.start_task.user_identity.user_name">
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="s12 col">
+        <h5>Auto User</h5>
+      </div>
+    </div>
+
+    <div class="row" ng-hide="(resource.start_task.user_identity.auto_user | json) != '{}'">
+      <div class="s12 col">
+        -
+      </div>
+    </div>
+
+    <div class="row" ng-show="(resource.start_task.user_identity.auto_user | json) != '{}'">
+      <div class="row" ng-show="resource.start_task.user_identity.auto_user.scope">
+        <div class="s5 col">
+          <strong>Scope</strong>
+        </div>
+
+        <div class="s7 col" ng-bind=  "resource.start_task.user_identity.auto_user.scope">
+        </div>
+      </div>
+
+      <div class="row" ng-show="resource.start_task.user_identity.auto_user.elevation_level">
+        <div class="s12 col">
+          <strong>Elevation Level</strong>
+        </div>
+
+        <div class="s12 col" ng-bind=  "resource.start_task.user_identity.auto_user.elevation_level">
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row" ng-show= "resource.start_task.max_task_retry_count">
+    <div class="s12 col">
+      <strong>Max Task Retry Count</strong>
+    </div>
+
+    <div class="s12 col" ng-bind="resource.start_task.max_task_retry_count">
+    </div>
+  </div>
+
+  <div class="row" ng-show="resource.start_task.wait_for_success">
+    <div class="s7 col">
+      <strong>Wait For Success</strong>
+    </div>
+
+    <div class="s5 octicon octicon-check good" ng-show="resource.start_task.wait_for_success">
+    </div>
+
+    <div class="s5 octicon octicon-x bad" ng-show="!resource.start_task.wait_for_success">
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="s12 col">
+      <h5>Container Settings</h5>
+    </div>
+  </div>
+
+  <div class="row" ng-hide= "(resource.start_task.container_settings | json) != '{}'">
+    <div class="s12 col">
+      -
+    </div>
+  </div>
+
+  <div class="row" ng-show= "(resource.start_task.container_settings | json) != '{}'">
+    <div class="row" ng-show="resource.start_task.container_settings.container_run_options">
+      <div class="s12 col">
+        <strong>Container Run Options</strong>
+      </div>
+
+      <div class="s12 col" ng-bind="resource.start_task.container_settings.container_run_options">
+
+      </div>
+    </div>
+
+    <div class="row" ng-show="resource.start_task.container_settings.image_name">
+      <div class="s5 col">
+        <strong>Image Name</strong>
+      </div>
+
+      <div class="s7 col" ng-bind="resource.start_task.container_settings.image_name">
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="s12 col">
+        <h5>Registry</h5>
+      </div>
+    </div>
+
+    <div class="row" ng-hide="(resource.start_task.container_settings.registry | json) != '{}'">
+      <div class="s12 col">
+        -
+      </div>
+    </div>
+
+    <div class="row" ng-show="(resource.start_task.container_settings.registry | json) != '{}'">
+      <div class="row" ng-show="resource.start_task.container_settings.registry.registry_server">
+        <div class="s12 col">
+          <strong>Registry Server</strong>
+        </div>
+
+        <div class="s12 col" ng-bind=  "resource.start_task.container_settings.registry.registry_server">
+
+        </div>
+      </div>
+
+      <div class="row" ng-show="resource.start_task.container_settings.registry.username">
+        <div class="s5 col">
+          <strong>Username</strong>
+        </div>
+
+        <div class="s7 col" ng-bind=  "resource.start_task.container_settings.registry.username">
+        </div>
+      </div>
+
+      <div class="row" ng-show="resource.start_task.container_settings.registry.password">
+        <div class="s5 col">
+          <strong>Password</strong>
+        </div>
+
+        <div class="s7 col" ng-bind=  "resource.start_task.container_settings.registry.password">
+        </div>
+      </div>
+    </div>
+
+    <div class="row" ng-show="resource.start_task.container_settings.working_directory">
+      <div class="s12 col">
+        <strong>Working Directory</strong>
+      </div>
+
+      <div class="s12 col" ng-bind="resource.start_task.container_settings.working_directory">
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="s12 col">
+    <h5>Certificates</h5>
+  </div>
+</div>
+
+<div class="row" ng-show="resource.certificates.length === 0">
+  <div class="s12 col">
+    -
+  </div>
+</div>
+
+<div class="row">
+  <div class="s12 col">
+    <h5>Application Licenses</h5>
+  </div>
+</div>
+
+<div class="row" ng-show=
+"resource.application_licenses.length === 0">
+  <div class="s12 col">
+    -
+  </div>
+</div>
+
+<div class="row" ng-repeat="application_licenses in resource.application_licenses track by $index">
+</div>
+
+<div class="row">
+  <div class="s12 col">
+    <h5>Mount Configuration</h5>
+  </div>
+</div>
+
+<div class="row" ng-show="resource.mount_configuration.length === 0">
+  <div class="s12 col">
+    -
+  </div>
+</div>
+
+<div class="row" ng-repeat="mount_configuration in resource.mount_configuration track by $index">
+  <div class="row">
+    <div class="s12 col">
+      <strong>Azure Blob File System Configuration</strong>
+    </div>
+  </div>
+
+  <div class="row" ng-hide="(mount_configuration.azure_blob_file_system_configuration | json) != '{}'">
+    <div class="s12 col">
+      -
+    </div>
+  </div>
+
+  <div class="attributes-list" ng-show="(mount_configuration.azure_blob_file_system_configuration | json) != '{}'">
+    <div class="row" ng-show="mount_configuration.azure_blob_file_system_configuration.account_name">
+      <div class="s5 col">
+        <strong>Account Name</strong>
+      </div>
+
+      <div class="s7 col" ng-bind="mount_configuration.azure_blob_file_system_configuration.account_name">
+
+      </div>
+    </div>
+
+    <div class="row" ng-show="mount_configuration.azure_blob_file_system_configuration.container_name">
+      <div class="s5 col">
+        <strong>Container Name</strong>
+      </div>
+
+      <div class="s7 col" ng-bind="mount_configuration.azure_blob_file_system_configuration.container_name">
+
+      </div>
+    </div>
+
+    <div class="row" ng-show="mount_configuration.azure_blob_file_system_configuration.blobfuse_options">
+      <div class="s12 col">
+        <strong>Blobfuse Options</strong>
+      </div>
+
+      <div class="s12 col" ng-bind="mount_configuration.azure_blob_file_system_configuration.blobfuse_options">
+
+      </div>
+    </div>
+
+    <div class="row" ng-show="mount_configuration.azure_blob_file_system_configuration.relative_mount_path">
+      <div class="s12 col">
+        <strong>Relative Mount Path</strong>
+      </div>
+
+      <div class="s12 col" ng-bind="mount_configuration.azure_blob_file_system_configuration.relative_mount_path">
+
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="s12 col">
+      <strong>Nfs Mount Configuration</hstrong5>
+    </div>
+  </div>
+
+  <div class="row" ng-hide="(mount_configuration.nfs_mount_configuration | json) != '{}'">
+    <div class="s12 col">
+      -
+    </div>
+  </div>
+
+  <div class="attributes-list" ng-show="(mount_configuration.nfs_mount_configuration | json) != '{}'">
+    <div class="row" ng-show="mount_configuration.nfs_mount_configuration.source">
+      <div class="s5 col">
+        <strong>Source</strong>
+      </div>
+
+      <div class="s7 col" ng-bind="mount_configuration.nfs_mount_configuration.source">
+      </div>
+    </div>
+
+    <div class="row" ng-show="mount_configuration.nfs_mount_configuration.relative_mount_path">
+      <div class="s12 col">
+        <strong>Relative Mount Path</strong>
+      </div>
+
+      <div class="s12 col" ng-bind="mount_configuration.nfs_mount_configuration.relative_mount_path">
+
+      </div>
+    </div>
+
+    <div class="row" ng-show="mount_configuration.nfs_mount_configuration.mount_options">
+      <div class="s5 col">
+        <strong>Mount Options</strong>
+      </div>
+
+      <div class="s7 col" ng-bind="mount_configuration.nfs_mount_configuration.mount_options">
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="s12 col">
+      <strong>Cifs Mount Configuration</strong>
+    </div>
+  </div>
+
+  <div class="row" ng-hide="(mount_configuration.cifs_mount_configuration | json) != '{}'">
+    <div class="s12 col">
+      -
+    </div>
+  </div>
+
+  <div class="attributes-list" ng-show="(mount_configuration.cifs_mount_configuration | json) != '{}'">
+    <div class="row" ng-show="mount_configuration.cifs_mount_configuration.username">
+      <div class="s5 col">
+        <strong>Username</strong>
+      </div>
+
+      <div class="s7 col" ng-bind="mount_configuration.cifs_mount_configuration.username">
+      </div>
+    </div>
+
+    <div class="row" ng-show="mount_configuration.cifs_mount_configuration.source">
+      <div class="s5 col">
+        <strong>Source</strong>
+      </div>
+
+      <div class="s7 col" ng-bind="mount_configuration.cifs_mount_configuration.source">
+      </div>
+    </div>
+
+    <div class="row" ng-show="mount_configuration.cifs_mount_configuration.relative_mount_path">
+      <div class="s12 col">
+        <strong>Relative Mount Path</strong>
+      </div>
+
+      <div class="s12 col" ng-bind="mount_configuration.cifs_mount_configuration.relative_mount_path">
+
+      </div>
+    </div>
+
+    <div class="row" ng-show="mount_configuration.cifs_mount_configuration.mount_options">
+      <div class="s5 col">
+        <strong>Mount Options</strong>
+      </div>
+
+      <div class="s7 col" ng-bind="mount_configuration.cifs_mount_configuration.mount_options">
+      </div>
+    </div>
+
+    <div class="row" ng-show="mount_configuration.cifs_mount_configuration.password">
+      <div class="s5 col">
+        <strong>Password</strong>
+      </div>
+
+      <div class="s7 col" ng-bind="mount_configuration.cifs_mount_configuration.password">
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="s12 col">
+      <strong>Azure File Share Configuration</strong>
+    </div>
+  </div>
+
+  <div class="row" ng-hide="(mount_configuration.azure_file_share_configuration | json) != '{}'">
+    <div class="s12 col">
+      -
+    </div>
+  </div>
+
+  <div class="attributes-list" ng-show="(mount_configuration.azure_file_share_configuration | json) != '{}'">
+    <div class="row" ng-show="mount_configuration.azure_file_share_configuration.account_name">
+      <div class="s5 col">
+        <strong>Account Name</strong>
+      </div>
+
+      <div class="s7 col" ng-bind="mount_configuration.azure_file_share_configuration.account_name">
+
+      </div>
+    </div>
+
+    <div class="row" ng-show="mount_configuration.azure_file_share_configuration.azure_file_url">
+      <div class="s5 col">
+        <strong>Azure File Url</strong>
+      </div>
+
+      <div class="s7 col" ng-bind="mount_configuration.azure_file_share_configuration.azure_file_url">
+
+      </div>
+    </div>
+
+    <div class="row" ng-show="mount_configuration.azure_file_share_configuration.account_key">
+      <div class="s5 col">
+        <strong>Account Key</strong>
+      </div>
+
+      <div class="s7 col" ng-bind="mount_configuration.azure_file_share_configuration.account_key">
+
+      </div>
+    </div>
+
+    <div class="row" ng-show="mount_configuration.azure_file_share_configuration.relative_mount_path">
+      <div class="s12 col">
+        <strong>Relative Mount Path</strong>
+      </div>
+
+      <div class="s12 col" ng-bind="mount_configuration.azure_file_share_configuration.relative_mount_path">
+
+      </div>
+    </div>
+
+    <div class="row" ng-show="mount_configuration.azure_file_share_configuration.mount_options">
+      <div class="s5 col">
+        <strong>Mount Options</strong>
+      </div>
+
+      <div class="s7 col" ng-bind="mount_configuration.azure_file_share_configuration.mount_options">
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row" ng-show="resource.etag">
+  <div class="s5 col">
+    <strong>Etag</strong>
+  </div>
+
+  <div class="s7 col" ng-bind="resource.etag">
+  </div>
+</div>
+
+<div class="row" g-show="info.resource_group">
+  <div class="s12 col"><h5>Resource Group</h5></div>
+</div>
+<div class="row" ng-show="!info.resource_group">
+  <div class="s12 col">None</div>
+</div>
+<div class="row" ng-show="info.resource_group">
+  <div class="s12 col end attributes-name">
+    <svg><use xlink:href="{{info.resource_group.image}}" /></svg>
+    <a ng-click="selectResource(info.resource_group)">{{info.resource_group.name}}</a>
+  </div>
+</div>
+

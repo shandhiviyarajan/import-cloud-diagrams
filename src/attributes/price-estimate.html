@@ -1,0 +1,24 @@
+<div class="price-estimate" ng-show="price > 0">
+  <div class="row">
+    <div class="s10 col">
+      <h5 class="clickable" ng-click="extended = !extended">Monthly Estimate</h5>
+    </div>
+    <div class="s2 col">
+      <a ng-click="extended = !extended" ng-show="!extended"><span class="mega-octicon octicon-chevron-down"></span></a>
+      <a ng-click="extended = !extended" ng-show="extended"><span class="mega-octicon octicon-chevron-up"></span></a>
+    </div>
+  </div>
+  <div class="extended" ng-show="extended">
+    <div class="row" ng-repeat="(category, total) in extended_info" ng-show="total > 0">
+      <div class="s6 col">
+        <strong>{{category}}</strong>
+      </div>
+      <div class="s6 col">{{total | currency:"$":0}}</div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="s12 col">
+      <span ng-bind="price | currency:'$':0"></span>
+    </div>
+  </div>
+</div>

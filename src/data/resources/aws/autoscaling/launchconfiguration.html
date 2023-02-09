@@ -1,0 +1,58 @@
+<div class="row" ng-if="resource.image_id">
+  <div class="s5 col"><strong>Image ID</strong></div>
+  <div class="s7 col" ng-bind="resource.image_id"></div>
+</div>
+<div class="row" ng-if="resource.key_name">
+  <div class="s5 col"><strong>Key Name</strong></div>
+  <div class="s7 col" ng-bind="resource.key_name"></div>
+</div>
+<div class="row" ng-if="resource.classic_link_vpc_id">
+  <div class="s5 col"><strong>Classic Link VPC ID</strong></div>
+  <div class="s7 col" ng-bind="resource.classic_link_vpc_id"></div>
+</div>
+<div class="row" ng-if="resource.instance_type">
+  <div class="s5 col"><strong>Instance Type</strong></div>
+  <div class="s7 col" ng-bind="resource.instance_type"></div>
+</div>
+<div class="row" ng-if="resource.kernel_id">
+  <div class="s5 col"><strong>Kernel ID</strong></div>
+  <div class="s7 col" ng-bind="resource.kernel_id"></div>
+</div>
+<div class="row" ng-if="resource.ramdisk_id">
+  <div class="s5 col"><strong>Ramdisk ID</strong></div>
+  <div class="s7 col" ng-bind="resource.ramdisk_id"></div>
+</div>
+<div class="row" ng-if="resource.spot_price">
+  <div class="s5 col"><strong>Spot Price</strong></div>
+  <div class="s7 col" ng-bind="resource.spot_price"></div>
+</div>
+<div class="row" ng-if="resource.iam_instance_profile">
+  <div class="s5 col"><strong>IAM Instance Profile</strong></div>
+  <div class="s7 col" ng-bind="resource.iam_instance_profile"></div>
+</div>
+<div class="row" ng-if="resource.created_time">
+  <div class="s12 col"><strong>Created Time</strong></div>
+  <div class="s12 col" ng-bind="resource.created_time"></div>
+</div>
+<div class="row" ng-if="resource.placement_tenancy">
+  <div class="s5 col"><strong>Placement Tenancy</strong></div>
+  <div class="s7 col" ng-bind="resource.placement_tenancy"></div>
+</div>
+<div class="row" ng-if="resource.instance_monitoring.enabled">
+  <div class="s12 col"><strong>Instance Monitoring</strong> <span class="octicon octicon-check good"></span></div>
+</div>
+<div class="row" ng-if="resource.ebs_optimized">
+  <div class="s12 col"><strong>EBS Optimized</strong> <span class="octicon octicon-check good"></span></div>
+</div>
+<div class="row" ng-show="resource.associate_public_ip_address">
+  <div class="s12 col"><strong>Associate Public IP</strong> <span class="octicon octicon-check good"></span></div>
+</div>
+<div class="row" ng-if="resource.arn">
+  <div class="s12 col"><strong>ARN</strong></div>
+  <div class="s12 col" ng-bind="resource.arn"></div>
+</div>
+
+<div class="row" ng-show="info.autoscaling_group">
+  <div class="s12 col"><h5>Autoscaling Group</h5></div>
+  <div class="s12 col attributes-name"><a ng-click="selectResource(info.autoscaling_group)">{{info.autoscaling_group.name}}</a></div>
+</div>

@@ -1,0 +1,46 @@
+<!-- Attributes -->
+<div class="row">
+  <div class="s12 col"><strong>Transit Gateway</strong></div>
+  <div class="s12 col" ng-if="info.transit_gateway"><a ng-click="selectResource(info.transit_gateway)">{{info.transit_gateway.name}}</a></div>
+  <div class="s12 col" ng-if="!info.transit_gateway" ng-bind="resource.transit_gateway_id"></div>
+</div>
+<div class="row">
+  <div class="s12 col"><strong>Transit Gateway Owner ID</strong></div>
+  <div class="s12 col" ng-bind="resource.transit_gateway_owner_id"></div>
+</div>
+<div class="row">
+  <div class="s12 col"><strong>State</strong></div>
+  <div class="s12 col" ng-bind="resource.status" ng-class="resource.status_list[resource.status]"></div>
+</div>
+<div class="row">
+  <div class="s12 col"><strong>Creation Time</strong></div>
+  <div class="s12 col" ng-bind="resource.creation_time"></div>
+</div>
+<div class="row" ng-if="info.associated_route_table">
+  <div class="s12 col"><strong>Associated Route Table</strong></div>
+  <div class="s12 col"><a ng-click="selectResource(info.associated_route_table)">{{info.associated_route_table.name}}</a></div>
+</div>
+<div class="row" ng-if="resource.tgw_association.state">
+  <div class="s12 col"><strong>Associated State</strong></div>
+  <div class="s12 col" ng-bind="resource.tgw_association.state" ng-class="resource.tgw_association_status_list[resource.tgw_association.state]"></div>
+</div>
+
+<div class="row">
+  <div class="s12 col"><h5>Attached Resource</h5></div>
+</div>
+<div class="row" ng-if="info.attached_to">
+  <div class="s12 col">
+    <svg><use xlink:href="{{info.attached_to.image}}" /></svg>
+    <a ng-click="selectResource(info.attached_to)">{{info.attached_to.name}}</a>
+  </div>
+</div>
+<div class="row" ng-if="!info.attached_to">
+  <div class="s5 col"><strong>Resource ID</strong></div>
+  <div class="s7 col" ng-bind="resource.resource_id"></div>
+  <div class="s5 col"><strong>Resource Type</strong></div>
+  <div class="s7 col" ng-bind="resource.resource_type"></div>
+</div>
+<div class="row">
+  <div class="s12 col"><strong>Resource Owner ID</strong></div>
+  <div class="s12 col" ng-bind="resource.resource_owner_id"></div>
+</div>

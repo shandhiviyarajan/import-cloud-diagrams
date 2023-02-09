@@ -1,0 +1,488 @@
+<div class="row sub-title">
+  <div class="s12 col">
+    <small ng-if="resource.project">
+      <strong>Project</strong><br />
+      <span ng-bind="resource.project"></span>
+    </small>
+  </div>
+
+</div>
+
+<div class="row" ng-show="resource.status">
+  <div class="s5 col">
+    <strong>Status</strong>
+  </div>
+
+  <div class="s7 col" ng-bind="resource.status">
+  </div>
+</div>
+
+<div class="row" ng-show="resource.display_device">
+  <div class="s5 col">
+    <strong>Display Device</strong>
+  </div>
+
+  <div class="s7 col" ng-bind="resource.display_device">
+  </div>
+</div>
+
+<div class="row" ng-show="resource.metadata">
+  <div class="s5 col">
+    <strong>Metadata</strong>
+  </div>
+
+  <div class="s7 col" ng-bind="resource.metadata">
+  </div>
+</div>
+
+<div class="row" ng-show="resource.labels">
+  <div class="s5 col">
+    <strong>Labels</strong>
+  </div>
+
+  <div class="s7 col" ng-bind="resource.labels">
+  </div>
+</div>
+
+<div class="row" ng-show="resource.cpu_platform">
+  <div class="s5 col">
+    <strong>CPU Platform</strong>
+  </div>
+
+  <div class="s7 col" ng-bind="resource.cpu_platform"></div>
+</div>
+
+<div class="row" ng-show="resource.can_ip_forward">
+  <div class="s12 col">
+    <strong>Can IP Forward</strong>&nbsp;&nbsp;&nbsp;
+
+    <span class="octicon octicon-check good" ng-show="resource.can_ip_forward"></span>
+    <span class="octicon octicon-x bad" ng-show="!resource.can_ip_forward"></span>
+  </div>
+</div>
+
+<div class="row" ng-show="resource.zone">
+  <div class="s5 col">
+    <strong>Zone</strong>
+  </div>
+
+  <div class="s7 col" ng-bind="resource.zone">
+  </div>
+</div>
+
+<div class="row" ng-show="resource.hostname">
+  <div class="s5 col">
+    <strong>Hostname</strong>
+  </div>
+
+  <div class="s7 col" ng-bind="resource.hostname">
+  </div>
+</div>
+
+<div class="row" ng-show="info.machine_type">
+  <div class="s5 col">
+    <strong>Machine Type</strong>
+  </div>
+
+  <div class="s7 col" ng-bind='info.machine_type'>
+  </div>
+</div>
+
+<div class="row" ng-show="resource.status_message">
+  <div class="s5 col">
+    <strong>Status Message</strong>
+  </div>
+
+  <div class="s7 col" ng-bind="resource.status_message">
+  </div>
+</div>
+
+</br>
+<div class="row" ng-show="resource.reservation_affinity">
+  <div class="s12 col">
+    <strong>Reservation Affinity</strong>
+  </div>
+
+  <div class="s12 col" ng-bind=
+  'resource.reservation_affinity["consume_reservation_type"]'>
+  </div>
+</div>
+
+
+<div class="row" ng-show="resource.min_cpu_platform">
+  <div class="s12 col">
+    <strong>Min Cpu Platform</strong>
+  </div>
+
+  <div class="s12 col" ng-bind=
+  "resource.min_cpu_platform">
+  </div>
+</div>
+
+<div class="row" ng-show="resource.label_fingerprint">
+  <div class="s12 col">
+    <strong>Label Fingerprint</strong>
+  </div>
+
+  <div class="s12 col" ng-bind=
+  "resource.label_fingerprint">
+  </div>
+</div>
+
+<div class="row" ng-show="resource.creation_timestamp">
+  <div class="s12 col">
+    <strong>Creation Timestamp</strong>
+  </div>
+
+  <div class="s12 col" ng-bind=
+  "resource.creation_timestamp | date:'yyyy-MM-dd HH:mm:ss'">
+  </div>
+</div>
+
+<div class="row" ng-show="resource.description">
+  <div class="s12 col">
+    <strong>Description</strong>
+  </div>
+
+  <div class="s12 col" ng-bind="resource.description">
+  </div>
+</div>
+
+<div class="row" ng-show="resource.shielded_instance_integrity_policy">
+  <div class="s12 col">
+    <strong>Shielded Instance Integrity Policy</strong>
+  </div>
+
+  <div class="s12 col">
+    ∟ Update Auto Learn Policy:
+    <span class="octicon octicon-check good" ng-show="resource.shielded_instance_integrity_policy.update_auto_learn_policy"></span>
+    <span class="octicon octicon-x bad" ng-show="!resource.shielded_instance_integrity_policy.update_auto_learn_policy"></span>
+  </div>
+</div>
+
+<div class="row" ng-show="resource.shielded_instance_config">
+  <div class="s12 col">
+    <strong>Shielded Instance Config</strong>
+  </div>
+
+  <div class="s12 col">
+    ∟ VTPM:
+    <span class="octicon octicon-check good" ng-show="resource.shielded_instance_config.enable_vtmp"></span>
+    <span class="octicon octicon-x bad" ng-show="!resource.shielded_instance_config.enable_vtmp"></span>
+  </div>
+  <div class="s12 col">
+    ∟ Secure Boot:
+    <span class="octicon octicon-check good" ng-show="resource.shielded_instance_config.enable_secure_boot"></span>
+    <span class="octicon octicon-x bad" ng-show="!resource.shielded_instance_config.enable_secure_boot"></span>
+  </div>
+  <div class="s12 col">
+    ∟ Integrity Monitoring:
+    <span class="octicon octicon-check good" ng-show="resource.shielded_instance_config.enable_integrity_monitoring"></span>
+    <span class="octicon octicon-x bad" ng-show="!resource.shielded_instance_config.enable_integrity_monitoring"></span>
+  </div>
+</div>
+
+<div class="row" ng-show="resource.scheduling">
+  <div class="s12 col">
+    <strong>Scheduling</strong>
+  </div>
+  <div class="attributes-list">
+    <div class="s12 col" ng-show='resource.scheduling["on_host_maintenance"]'>
+      ∟ Host Maintenance: {{resource.scheduling["on_host_maintenance"]}}
+    </div>
+
+    <div class="s12 col" ng-show='resource.scheduling["preemptible"]'>
+      ∟ Preemptible: {{resource.scheduling["preemptible"]}}
+    </div>
+    <div class="s12 col" ng-show='resource.scheduling["automatic_restart"]'>
+      ∟ Automatic Restart: {{resource.scheduling["automatic_restart"]}}
+    </div>
+    <div class="s12 col" ng-show='resource.scheduling["node_affinities"].length'>
+      ∟ Affinities:
+      <div ng-repeat='affinity in resource.scheduling["node_affinities"] track by $index'>
+        <div class="row attributes-sublist">
+          <div class="s12 col sub attributes-name">∟ Key:</div>
+          <div class="s12 col attributes-name"> {{ affinity["key"] }} </div>
+
+          <div class="s5 col sub attributes-name">∟ Values:</div>
+          <div class="s7 col attributes-name"> {{ affinity["values"].join(",") }} </div>
+          <div class="s5 col sub attributes-name">∟ Operator:</div>
+          <div class="s7 col attributes-name"> {{ affinity["operator"] }} </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row" ng-show="resource.deletion_protection">
+  <div class="s7 col">
+    <strong>Deletion Protection</strong>
+  </div>
+
+  <div class="s5 attributes-list octicon octicon-check good" ng-show="resource.deletion_protection"></div>
+  <div class="s5 attributes-list octicon octicon-x bad" ng-show="!resource.deletion_protection"></div>
+</div>
+
+<div class="row" ng-show="resource.start_restricted">
+  <div class="s7 col">
+    <strong>Start Restricted</strong>
+  </div>
+
+  <div class="s5 attributes-list octicon octicon-check good" ng-show=
+  "resource.start_restricted">
+  </div>
+
+  <div class="s5 attributes-list octicon octicon-x bad" ng-show=
+  "!resource.start_restricted">
+  </div>
+</div>
+
+<div>
+  <div class="row" >
+    <div class="s12 col"><h5>Network Tags</h5></div>
+  </div>
+  <div ng-repeat="tag in resource.network_tags" ng-if="resource.network_tags.length">
+    <div class="row">
+      <div class="s12 col attributes-name">
+        <span ng-bind="tag"></span>
+      </div>
+    </div>
+  </div>
+  <div ng-if="resource.network_tags.length === 0">
+    <div class="row">
+      <div class="s12 col attributes-name">
+        None
+      </div>
+    </div>
+  </div>
+</div>
+
+<div ng-show="resource.network_interfaces.length">
+  <div class="row">
+    <div class="s12 col">
+      <h5>Network Interfaces</h5>
+    </div>
+  </div>
+
+  <div class="attributes-list" ng-repeat="network_interface in resource.network_interfaces">
+    <div class="row" ng-show="network_interface.name">
+      <div class="s5 col"><strong>Name</strong></div>
+      <div class="s7 col" ng-bind="network_interface.name"></div>
+    </div>
+
+    <div class="row" ng-show="network_interface.network_ip">
+      <div class="s5 col"><strong>Network IP</strong></div>
+      <div class="s7 col" ng-bind="network_interface.network_ip"></div>
+    </div>
+
+    <div class="row" ng-show="network_interface.subnetwork">
+      <div class="s12 col"><strong>Subnetwork</strong></div>
+      <div class="s12 col"><a ng-click="selectResource(info.subnetwork_map[network_interface.subnetwork])">{{info.subnetwork_map[network_interface.subnetwork].name}}</a></div>
+    </div>
+
+    <div class="row" ng-show="network_interface.network">
+      <div class="s12 col"><strong>Network</strong></div>
+      <div class="s12 col"><a ng-click="selectResource(info.network_map[network_interface.network])">{{info.network_map[network_interface.network].name}}</a></div>
+    </div>
+
+    <div ng-show="network_interface.access_configs.length">
+      <div class="row">
+        <div class="s12 col">
+          <strong>Access Configs</strong>
+        </div>
+      </div>
+
+      <div ng-repeat="access_configs in network_interface.access_configs">
+        <div class="row attributes-sublist" ng-show="access_configs.name">
+          <div class="s5 col">
+            ∟ Name
+          </div>
+
+          <div class="s7 col" ng-bind="access_configs.name">
+          </div>
+        </div>
+
+        <div class="row" ng-show="access_configs.type">
+          <div class="s5 col">
+            ∟ Type
+          </div>
+
+          <div class="s7 col" ng-bind="access_configs.type">
+          </div>
+        </div>
+
+        <div class="row" ng-show="access_configs.public_ptr_domain_name">
+          <div class="s12 col">
+            ∟ Public Ptr Domain Name
+          </div>
+
+          <div class="s12 col" ng-bind="access_configs.public_ptr_domain_name">
+          </div>
+        </div>
+
+        <div class="row" ng-show="access_configs.network_tier">
+          <div class="s5 col">
+            ∟ Tier
+          </div>
+
+          <div class="s7 col" ng-bind="access_configs.network_tier">
+          </div>
+        </div>
+
+        <div class="row" ng-show="access_configs.nat_ip">
+          <div class="s5 col">
+            ∟ Nat IP
+          </div>
+
+          <div class="s7 col" ng-bind="access_configs.nat_ip">
+          </div>
+        </div>
+
+        <div class="row" ng-show="access_configs.set_public_ptr">
+          <div class="s7 col">
+            ∟ Set Public Ptr
+          </div>
+
+          <div class="s5 octicon octicon-check good" ng-show="access_configs.set_public_ptr"></div>
+          <div class="s5 octicon octicon-x bad" ng-show="!access_configs.set_public_ptr"></div>
+        </div>
+      </div>
+    </div>
+
+    <div ng-show="network_interface.alias_ip_ranges.length">
+      <div class="row">
+        <div class="s12 col">
+          <strong>Alias IP Ranges</strong>
+        </div>
+      </div>
+
+      <div ng-repeat="alias_ip_ranges in network_interface.alias_ip_ranges">
+        <div class="row" ng-show="alias_ip_ranges.subnetwork_range_name">
+          <div class="s12 col">
+            ∟ Subnetwork Range Name
+          </div>
+
+          <div class="s12 col" ng-bind="alias_ip_ranges.subnetwork_range_name"></div>
+        </div>
+
+        <div class="row" ng-show="alias_ip_ranges.ip_cidr_range">
+          <div class="s5 col">
+            ∟ IP CIDR Range
+          </div>
+
+          <div class="s7 col" ng-bind="alias_ip_ranges.ip_cidr_range"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div ng-show="resource.service_accounts.length">
+  <div class="row">
+    <div class="s12 col">
+      <h5>Service Accounts</h5>
+    </div>
+    <div class="attributes-list" ng-repeat="service_accounts in resource.service_accounts">
+      <div class="s12 col" ng-bind="service_accounts.email"></div>
+    </div>
+  </div>
+</div>
+
+<div ng-show="resource.guest_accelerators.length">
+  <div class="row">
+    <div class="s12 col">
+      <h5>Guest Accelerators</h5>
+    </div>
+  </div>
+
+  <div ng-repeat="guest_accelerators in resource.guest_accelerators">
+    <div class="row" ng-show="guest_accelerators.accelerator_type">
+      <div class="s12 col">
+        <strong>Accelerator Type</strong>
+      </div>
+      <div class="s12 col" ng-bind="guest_accelerators.accelerator_type"></div>
+    </div>
+
+    <div class="row" ng-show="guest_accelerators.accelerator_count">
+      <div class="s12 col">
+        <strong>Accelerator Count</strong>
+      </div>
+      <div class="s12 col" ng-bind="guest_accelerators.accelerator_count"></div>
+    </div>
+  </div>
+</div>
+
+<div class="row" ng-show="info.instance_group">
+  <div class="s12 col">
+    <h5>Instance Group</h5>
+  </div>
+
+  <div class="s12 col attributes-name">
+    <svg><use xlink:href="{{info.instance_group.image}}" /></svg><a ng-click="selectResource(info.instance_group)">{{info.instance_group.name}}</a>
+  </div>
+</div>
+
+<div class="row" ng-show="info.node_group">
+  <div class="s12 col">
+    <h5>Node Group</h5>
+  </div>
+
+  <div class="s12 col attributes-name">
+    <svg><use xlink:href="{{info.node_group.image}}" /></svg><a ng-click="selectResource(info.node_group)">{{info.node_group.name}}</a>
+  </div>
+</div>
+
+<div ng-show="info.addresses.length">
+  <div class="row">
+    <div class="s12 col">
+      <h5>Addresses</h5>
+    </div>
+  </div>
+
+  <div ng-repeat="address in info.addresses track by $index">
+    <div class="row">
+      <div class="s12 col attributes-name">
+        <svg><use xlink:href="{{address.image}}" /></svg><a ng-click="selectResource(address)">{{address.name}}</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div ng-show="info.disks.length">
+  <div class="row">
+    <div class="s12 col">
+      <h5>Disks</h5>
+    </div>
+  </div>
+
+  <div ng-repeat="disk in info.disks track by $index">
+    <div class="row">
+      <div class="s12 col attributes-name">
+        <svg><use xlink:href="{{disk.image}}" /></svg><a ng-click=
+        "selectResource(disk)">{{disk.name}}</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div ng-show="info.firewalls.length > 0">
+  <div class="row">
+    <div class="s10 col"><h5 class="clickable" ng-click="extended.fr = !extended.fr">Firewalls</h5></div>
+    <div class="s2 col">
+      <a ng-click="extended.fr = !extended.fr" ng-show="!extended.fr"><span class="mega-octicon octicon-chevron-down"></span></a>
+      <a ng-click="extended.fr = !extended.fr" ng-show="extended.fr"><span class="mega-octicon octicon-chevron-up"></span></a>
+    </div>
+  </div>
+  <div class="row" ng-show="!extended.fr">
+    <div class="s12 col"><small ng-bind="info.firewalls.length + ' firewall(s)'"></small></div>
+  </div>
+  <div ng-show="extended.fr">
+    <div ng-repeat="fr in info.firewalls | orderBy:'name' track by $index">
+      <div class="row">
+        <div class="s12 col attributes-name">
+          <a ng-click="selectResource(fr)" highlight-connected-resources="fr">{{fr.name}}</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,17 @@
+<div class="content" ng-show="selected_resource">
+  <resource-header></resource-header>
+  
+  <info-display></info-display>
+
+  <div ng-show="Designer.environment.state == 'custom'">
+    <div class="row">
+      <div class="s12 col"><h5>Source</h5></div>
+    </div>
+    <div class="row">
+      <!-- TODO: we don't have this anymore, do we want it? -->
+      <div class="s12 col">{{selected_resource.source_data.display_name}}</div>
+    </div>
+  </div>
+
+  <div resource-tags></div>
+</div>

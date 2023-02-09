@@ -1,0 +1,169 @@
+<div ng-show="info.nodes.length > 0">
+  <div class="row">
+    <div class="s10 col"><h5 class="clickable" ng-click="extended.nodes = !extended.nodes">Nodes</h5></div>
+    <div class="s2 col">
+      <a ng-click="extended.nodes = !extended.nodes" ng-show="!extended.nodes"><span class="mega-octicon octicon-chevron-down"></span></a>
+      <a ng-click="extended.nodes = !extended.nodes" ng-show="extended.nodes"><span class="mega-octicon octicon-chevron-up"></span></a>
+    </div>
+  </div>
+  <div class="row" ng-show="!extended.nodes">
+    <div class="s12 col"><small ng-bind="info.nodes.length + ' node(s)'"></small></div>
+  </div>
+  <div ng-show="extended.nodes">
+    <div ng-repeat="node in info.nodes | orderBy:'name' track by $index">
+      <div class="row">
+        <div class="s12 col attributes-name">
+          <a ng-click="selectResource(node)" highlight-connected-resources="node">{{node.name}}</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div ng-show="info.daemon_sets_length > 0">
+  <div class="row">
+    <div class="s10 col"><h5 class="clickable" ng-click="extended.daemon_set = !extended.daemon_set">Daemon Sets</h5></div>
+    <div class="s2 col">
+      <a ng-click="extended.daemon_set = !extended.daemon_set" ng-show="!extended.daemon_set"><span class="mega-octicon octicon-chevron-down"></span></a>
+      <a ng-click="extended.daemon_set = !extended.daemon_set" ng-show="extended.daemon_set"><span class="mega-octicon octicon-chevron-up"></span></a>
+    </div>
+  </div>
+  <div class="row" ng-show="!extended.daemon_set">
+    <div class="s12 col"><small ng-bind="info.daemon_sets_length + ' daemon set(s)'"></small></div>
+  </div>
+  <div ng-show="extended.daemon_set">
+    <div ng-repeat="(namespace, items) in info.daemon_sets track by $index">
+      <div class="row">
+        <div class="s7 col"><strong>{{namespace}}</strong></div>
+        <div ng-repeat="item in items| orderBy:'name' track by $index">
+          <div class="s12 col attributes-name">
+            <a ng-click="selectResource(item)" highlight-resources="item">{{item.name}}</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div ng-show="info.stateful_sets_length > 0">
+  <div class="row">
+    <div class="s10 col"><h5 class="clickable" ng-click="extended.stateful_set = !extended.stateful_set">Stateful Set</h5></div>
+    <div class="s2 col">
+      <a ng-click="extended.stateful_set = !extended.stateful_set" ng-show="!extended.stateful_set"><span class="mega-octicon octicon-chevron-down"></span></a>
+      <a ng-click="extended.stateful_set = !extended.stateful_set" ng-show="extended.stateful_set"><span class="mega-octicon octicon-chevron-up"></span></a>
+    </div>
+  </div>
+  <div class="row" ng-show="!extended.stateful_set">
+    <div class="s12 col"><small ng-bind="info.stateful_sets_length + ' stateful set(s)'"></small></div>
+  </div>
+  <div ng-show="extended.stateful_set">
+    <div ng-repeat="(namespace, items) in info.stateful_sets track by $index">
+      <div class="row">
+        <div class="s7 col"><strong>{{namespace}}</strong></div>
+        <div ng-repeat="item in items| orderBy:'name' track by $index">
+          <div class="s12 col attributes-name">
+            <a ng-click="selectResource(item)" highlight-resources="item">{{item.name}}</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div ng-show="info.replica_sets_length > 0">
+  <div class="row">
+    <div class="s10 col"><h5 class="clickable" ng-click="extended.replica_set = !extended.replica_set">Replica Set</h5></div>
+    <div class="s2 col">
+      <a ng-click="extended.replica_set = !extended.replica_set" ng-show="!extended.replica_set"><span class="mega-octicon octicon-chevron-down"></span></a>
+      <a ng-click="extended.replica_set = !extended.replica_set" ng-show="extended.replica_set"><span class="mega-octicon octicon-chevron-up"></span></a>
+    </div>
+  </div>
+  <div class="row" ng-show="!extended.replica_set">
+    <div class="s12 col"><small ng-bind="info.replica_sets_length + ' replica set(s)'"></small></div>
+  </div>
+  <div ng-show="extended.replica_set">
+    <div ng-repeat="(namespace, items) in info.replica_sets track by $index">
+      <div class="row">
+        <div class="s7 col"><strong>{{namespace}}</strong></div>
+        <div ng-repeat="item in items| orderBy:'name' track by $index">
+          <div class="s12 col attributes-name">
+            <a ng-click="selectResource(item)" highlight-connected-resources="item">{{item.name}}</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div ng-show="info.deployments_length > 0">
+  <div class="row">
+    <div class="s10 col"><h5 class="clickable" ng-click="extended.deployment = !extended.deployment">Deployments</h5></div>
+    <div class="s2 col">
+      <a ng-click="extended.deployment = !extended.deployment" ng-show="!extended.deployment"><span class="mega-octicon octicon-chevron-down"></span></a>
+      <a ng-click="extended.deployment = !extended.deployment" ng-show="extended.deployment"><span class="mega-octicon octicon-chevron-up"></span></a>
+    </div>
+  </div>
+  <div class="row" ng-show="!extended.deployment">
+    <div class="s12 col"><small ng-bind="info.deployments_length + ' deployment(s)'"></small></div>
+  </div>
+  <div ng-show="extended.deployment">
+    <div ng-repeat="(namespace, items) in info.deployments track by $index">
+      <div class="row">
+        <div class="s7 col"><strong>{{namespace}}</strong></div>
+        <div ng-repeat="item in items| orderBy:'name' track by $index">
+          <div class="s12 col attributes-name">
+            <a ng-click="selectResource(item)" highlight-resources="item">{{item.name}}</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div ng-show="info.pods_length > 0">
+  <div class="row">
+    <div class="s10 col"><h5 class="clickable" ng-click="extended.pod = !extended.pod">Pods</h5></div>
+    <div class="s2 col">
+      <a ng-click="extended.pod = !extended.pod" ng-show="!extended.pod"><span class="mega-octicon octicon-chevron-down"></span></a>
+      <a ng-click="extended.pod = !extended.pod" ng-show="extended.pod"><span class="mega-octicon octicon-chevron-up"></span></a>
+    </div>
+  </div>
+  <div class="row" ng-show="!extended.pod">
+    <div class="s12 col"><small ng-bind="info.pods_length + ' pod(s)'"></small></div>
+  </div>
+  <div ng-show="extended.pod">
+    <div ng-repeat="(namespace, items) in info.pods track by $index">
+        <div class="row">
+          <div class="s7 col"><strong>{{namespace}}</strong></div>
+          <div ng-repeat="item in items| orderBy:'name' track by $index">
+            <div class="s12 col attributes-name">
+              <a ng-click="selectResource(item)" highlight-resources="item">{{item.name}}</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div ng-show="info.persistent_volumes.length > 0">
+  <div class="row">
+    <div class="s10 col"><h5 class="clickable" ng-click="extended.pv = !extended.pv">Persistent Volumes</h5></div>
+    <div class="s2 col">
+      <a ng-click="extended.pv = !extended.pv" ng-show="!extended.pv"><span class="mega-octicon octicon-chevron-down"></span></a>
+      <a ng-click="extended.pv = !extended.pv" ng-show="extended.pv"><span class="mega-octicon octicon-chevron-up"></span></a>
+    </div>
+  </div>
+  <div class="row" ng-show="!extended.pv">
+    <div class="s12 col"><small ng-bind="info.persistent_volumes.length + ' persistent volume(s)'"></small></div>
+  </div>
+  <div ng-show="extended.pv">
+    <div ng-repeat="pv in info.persistent_volumes| orderBy:'name' track by $index">
+      <div class="row">
+        <div class="s12 col attributes-name">
+          <a ng-click="selectResource(pv)" highlight-connected-resources="pv">{{pv.name}}</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

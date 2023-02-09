@@ -1,0 +1,71 @@
+<div class="row sub-title">
+    <div class="s12 col">
+    <small ng-if="resource.project">
+      <strong>Project</strong><br />
+      <span ng-bind="resource.project"></span>
+    </small>
+  </div>
+</div>
+
+<!-- ATTRIBUTES!!! -->
+<div class="row">
+  <div class="s5 col"><strong>Tier</strong></div>
+  <div class="s7 col"><span ng-bind="resource.tier"></span></div>
+</div>
+<div class="row">
+  <div class="s5 col"><strong>Memory</strong></div>
+  <div class="s7 col"><span ng-bind="resource.memory_size_gb"></span>Gb</div>
+</div>
+<div class="row">
+  <div class="s5 col"><strong>Redis Version</strong></div>
+  <div class="s7 col"><span ng-bind="resource.redis_version"></span></div>
+</div>
+<div class="row">
+  <div class="s5 col"><strong>Region</strong></div>
+  <div class="s7 col" ng-bind="resource.region"></div>
+</div>
+<div class="row">
+  <div class="s5 col"><strong>Current Zone</strong></div>
+  <div class="s7 col" ng-bind="resource.zone"></div>
+</div>
+<div class="row" ng-show="resource.location_id">
+  <div class="s5 col"><strong>Default Zone</strong></div>
+  <div class="s7 col" ng-bind="resource.location_id"></div>
+</div>
+<div class="row" ng-show="resource.alternative_location_id">
+  <div class="s5 col"><strong>Alternative Zone</strong></div>
+  <div class="s7 col" ng-bind="resource.alternative_location_id"></div>
+</div>
+<div class="row">
+  <div class="s5 col"><strong>Host</strong></div>
+  <div class="s7 col" ng-bind="resource.host"></div>
+</div>
+<div class="row">
+  <div class="s5 col"><strong>Port</strong></div>
+  <div class="s7 col" ng-bind="resource.port"></div>
+</div>
+<div class="row" ng-if="info.network">
+  <div class="s5 col"><strong>Network</strong></div>
+  <div class="s7 col"><a ng-click="selectResource(info.network)">{{info.network.name}}</a></div>
+</div>
+<div class="row">
+  <div class="s12 col"><strong>Reserved IP Range</strong></div>
+  <div class="s12 col" ng-bind="resource.reserved_ip_range"></div>
+</div>
+<div class="row">
+  <div class="s12 col"><strong>State</strong></div>
+  <div class="s12 col" ng-bind="resource.status" ng-class="resource.status_list[resource.status.toLowerCase()]"></div>
+</div>
+<div class="row" ng-if="resource.status_message">
+  <div class="s12 col"><strong>State Message</strong></div>
+  <div class="s12 col" ng-bind="resource.status_message"></div>
+</div>
+<div class="row">
+  <div class="s12 col"><strong>Persistance IAM Identity</strong></div>
+  <div class="s12 col" ng-bind="resource.persistence_iam_identity"></div>
+</div>
+<div class="row">
+  <div class="s12 col"><strong>Create Timestamp</strong></div>
+  <div class="s12 col" ng-bind="resource.create_time | date:'yyyy-MM-dd HH:mm:ss'"></div>
+</div>
+

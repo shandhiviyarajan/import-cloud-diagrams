@@ -1,0 +1,26 @@
+<div ng-show="info.address">
+  <div class="row">
+    <div class="s12 col"><h5>Elastic IP</h5></div>
+  </div>
+  <div class="row" ng-show="info.address.public_ip">
+    <div class="s5 col"><strong>Public IP</strong></div>
+    <div class="s7 col" ng-bind="info.address.public_ip"></div>
+  </div>
+  <div class="row" ng-show="info.address.private_ip_address">
+    <div class="s5 col"><strong>Private IP</strong></div>
+    <div class="s7 col" ng-bind="info.address.private_ip_address"></div>
+  </div>
+  <div class="breaker"></div>
+</div>
+
+<div ng-show="info.network_interfaces.length > 0">
+  <div class="row">
+    <div class="s12 col"><h5>Network Interfaces</h5></div>
+  </div>
+  <div ng-repeat="nic in info.network_interfaces track by $index">
+    <div class="row">
+      <div class="s12 col attributes-name"><strong><a ng-click="selectResource(nic)">{{nic.name}}</a></strong></div>
+      <!-- TODO: show instances -->
+    </div>
+  </div>
+</div>

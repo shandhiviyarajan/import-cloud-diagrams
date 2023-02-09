@@ -1,0 +1,29 @@
+<!-- ATTRIBUTES -->
+<div class="row" ng-show="resource.status">
+  <div class="s7 col"><strong>Status</strong></div>
+  <div class="s5 col" ng-bind="resource.status"></div>
+</div>
+<div class="row">
+  <div class="s7 col"><strong>Batch Size</strong></div>
+  <div class="s5 col" ng-bind="resource.batch_size"></div>
+</div>
+<div class="row" ng-show="resource.state_transition_reason">
+  <div class="s7 col"><strong>State Transition Reason</strong></div>
+  <div class="s5 col" ng-bind="resource.state_transition_reason"></div>
+</div>
+<div class="row" ng-show="resource.last_processing_result">
+  <div class="s7 col"><strong>Last Processing Result</strong></div>
+  <div class="s5 col" ng-bind="resource.last_processing_result"></div>
+</div>
+<div class="row">
+  <div class="s12 col"><strong>last_modified</strong></div>
+  <div class="s12 col" ng-bind="resource.last_modified"></div>
+</div>
+
+<div ng-show="info.function">
+  <div class="row">
+    <div class="s12 col"><h5>Function</h5></div>
+    <div class="s12 col attributes-name"><svg><use xlink:href="{{info.function.image}}" /></svg><a ng-click="selectResource(info.function)">{{info.function.name}}</a></div>
+  </div>
+</div>
+

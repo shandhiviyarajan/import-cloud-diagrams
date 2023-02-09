@@ -1,0 +1,26 @@
+<!-- ATTRIBUTES!!! -->
+<div class="row">
+  <div class="s5 col"><strong>State</strong></div>
+  <div class="s7 col" ng-bind="resource.status"></div>
+</div>
+<div class="row">
+  <div class="s5 col"><strong>Type</strong></div>
+  <div class="s7 col" ng-bind="resource.gateway_type"></div>
+</div>
+<div class="row">
+  <div class="s5 col"><strong>IP Address</strong></div>
+  <div class="s7 col" ng-bind="resource.ip_address"></div>
+</div>
+<div class="row">
+  <div class="s5 col"><strong>BGP ASN</strong></div>
+  <div class="s7 col" ng-bind="resource.bgp_asn"></div>
+</div>
+
+<div ng-show="info.vpn_connection">
+  <div class="row">
+    <div class="s12 col"><h5>VPN Connection</h5></div>
+  </div>
+  <div class="row">
+    <div class="s12 col attributes-name"><a ng-click="selectResource(info.vpn_connection)">{{info.vpn_connection.name}}</a></div>
+  </div>
+</div>

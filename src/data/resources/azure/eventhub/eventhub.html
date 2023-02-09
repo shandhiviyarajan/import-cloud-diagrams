@@ -1,0 +1,52 @@
+<div class="row">
+  <div class="s5 col"><strong>Status</strong></div>
+  <div class="s7 col" ng-bind="resource.status"></div>
+</div>
+<div class="row">
+  <div class="s12 col"><strong>Created</strong></div>
+  <div class="s12 col" ng-bind="resource.created_at"></div>
+</div>
+<div class="row">
+  <div class="s12 col"><strong>Updated</strong></div>
+  <div class="s12 col" ng-bind="resource.updated_at"></div>
+</div>
+<div class="row">
+  <div class="s12 col"><strong>Message Retention</strong></div>
+  <div class="s12 col word-wrap">{{resource.message_retention_in_days}} days</div>
+</div>
+
+<div class="row">
+  <div class="s12 col"><h5>Namespace</h5></div>
+</div>
+<div class="row">
+  <div class="s12 col">
+    <svg><use xlink:href="{{info.namespace.image}}" /></svg>
+    <a ng-click="selectResource(info.namespace)">{{info.namespace.name}}</a>
+  </div>
+</div>
+
+<div ng-if="resource.capture_description.name">
+  <div class="row">
+    <div class="s12 col"><h5>Capture</h5></div>
+  </div>
+  <div class="row">
+    <div class="s12 col"><strong>Name</strong></div>
+    <div class="s12 col" ng-bind="resource.capture_description.name"></div>
+  </div>
+  <div class="row">
+    <div class="s12 col"><strong>Storage Account</strong></div>
+    <div class="s12 col" ng-bind="resource.capture_description.storage_account_resource_id" ng-if="!info.storage_account"></div>
+    <div class="s12 col" ng-if="info.storage_account">
+      <svg><use xlink:href="{{info.storage_account.image}}" /></svg>
+      <a ng-click="selectResource(info.storage_account)">{{info.storage_account.name}}</a>
+    </div>
+  </div>
+  <div class="row">
+    <div class="s12 col"><strong>Blob Container</strong></div>
+    <div class="s12 col" ng-bind="resource.capture_description.blob_container"></div>
+  </div>
+  <div class="row">
+    <div class="s12 col"><strong>Archive Name Format</strong></div>
+    <div class="s12 col" ng-bind="resource.capture_description.archive_name_format"></div>
+  </div>
+</div>

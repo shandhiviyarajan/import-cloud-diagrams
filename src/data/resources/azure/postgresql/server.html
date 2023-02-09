@@ -1,0 +1,94 @@
+<div class="row">
+  <div class="s12 col">
+    <span ng-if="resource.sku.capacity">{{resource.sku.capacity}} vCore</span><br />
+    <h4><strong>{{resource.sku.tier}}</strong> {{resource.sku.family}}</h4>
+  </div>
+</div>
+<div class="row">
+  <div class="s7 col"><strong>Version</strong></div>
+  <div class="s5 col" ng-bind="resource.version"></div>
+</div>
+<div class="row">
+  <div class="s7 col"><strong>SSL Enforcement</strong></div>
+  <div class="s5 col" ng-bind="resource.ssl_enforcement"></div>
+</div>
+<div class="row">
+  <div class="s7 col"><strong>State</strong></div>
+  <div class="s5 col" ng-bind="resource.user_visible_state"></div>
+</div>
+<div class="row">
+  <div class="s12 col"><strong>Earliest Restore Date</strong></div>
+  <div class="s12 col" ng-bind="resource.earliest_restore_date"></div>
+</div>
+<div class="row">
+  <div class="s12 col"><strong>Domain</strong></div>
+  <div class="s12 col word-wrap" ng-bind="resource.fully_qualified_domain_name"></div>
+</div>
+
+<div ng-if="info.master_server">
+  <div class="row">
+    <div class="s12 col"><h5>Master Server</h5></div>
+  </div>
+  <div class="row">
+    <div class="s12 col end attributes-name">
+      <svg><use xlink:href="{{info.master_server.image}}" /></svg>
+      <a ng-click="selectResource(info.master_server)">{{info.master_server.name}}</a>
+    </div>
+  </div>
+  <div class="row">
+    <div class="s12 col"><strong>Replication Role</strong></div>
+    <div class="s12 col word-wrap" ng-bind="resource.replication_role"></div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="s12 col"><h5>Storage</h5></div>
+</div>
+<div class="row">
+  <div class="s12 col">{{resource.storage_profile.storage_mb/1024}} GB</div>
+</div>
+<div class="row">
+  <div class="s12 col"><strong>Autogrow</strong></div>
+  <div class="s12 col word-wrap" ng-bind="resource.storage_profile.storage_autogrow"></div>
+</div>
+<div class="row">
+  <div class="s12 col"><strong>Geo Redundant Backup</strong></div>
+  <div class="s12 col word-wrap" ng-bind="resource.storage_profile.geo_redundant_backup"></div>
+</div>
+<div class="row">
+  <div class="s12 col"><strong>Backup Retention</strong></div>
+  <div class="s12 col word-wrap">{{resource.storage_profile.backup_retention_days}} days</div>
+</div>
+
+<div class="row">
+  <div class="s10 col"><h5 class="clickable" ng-click="extended.databases = !extended.databases">Databases</h5></div>
+  <div class="s2 col" ng-if="info.databases.length">
+    <a ng-click="extended.databases = !extended.databases" ng-show="!extended.databases"><span class="mega-octicon octicon-chevron-down"></span></a>
+    <a ng-click="extended.databases = !extended.databases" ng-show="extended.databases"><span class="mega-octicon octicon-chevron-up"></span></a>
+  </div>
+</div>
+<div class="row" ng-show="info.databases.length === 0">
+  <div class="s12 col">None</div>
+</div>
+<div class="row" ng-show="!extended.databases && info.databases.length">
+  <div class="s12 col"><small ng-bind="info.databases.length + ' database(s)'"></small></div>
+</div>
+<div class="row" ng-repeat="database in info.databases | orderBy:'name' track by $index" ng-show="extended.databases && info.databases.length">
+  <div class="s12 col" ng-bind="database.name"></div>
+</div>
+
+<div ng-if="info.firewall_rules.length > 0">
+  <div class="row">
+    <div class="s12 col"><h5>Firewall Rules</h5></div>
+  </div>
+  <div class="row">
+    <div class="s6 col"><strong>Start IP</strong></div>
+    <div class="s6 col"><strong>End IP</strong></div>
+  </div>
+  <div class="row" ng-repeat="rule in info.firewall_rules">
+    <div class="s6 col" ng-bind="rule.start_ip_address"></div>
+    <div class="s6 col" ng-bind="rule.end_ip_address"></div>
+  </div>
+</div>
+
+<!-- Configuration, eventually? -->

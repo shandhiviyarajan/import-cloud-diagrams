@@ -1,0 +1,18 @@
+#!/bin/bash
+set -eo pipefail
+
+echo "--- :buildkite: :arrow_down: Downloading hava-viewer artifact"
+if [[ ! -z $CI ]]; then
+  buildkite-agent artifact download "*.tgz" .
+fi
+
+echo "--- :javascript: :boom: Publishing hava-viewer artifact"
+FILE=$(ls *.tgz)
+echo $FILE
+
+if [[ ! -z $CI ]]; then
+  curl -F package=@$FILE https://rZVBsv8yYMT_oUtmyzpt@push.fury.io/hava/
+else
+  echo "Not publishing since I'm not running via CI"
+  exit 1
+fi

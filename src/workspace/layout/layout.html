@@ -1,0 +1,6 @@
+<div>
+  <div infrastructure-layout environment="DesignerLayout.environment"
+       ng-if="DesignerLayout.environment.current_view.type === 'Views::Infrastructure' || DesignerLayout.environment.current_view.type === 'Views::Infrastructure::Extended'"></div>
+  <div security-layout environment="DesignerLayout.environment" ng-if="DesignerLayout.environment.current_view.type === 'Views::Security'"></div>
+  <div container-layout environment="DesignerLayout.environment" ng-if="DesignerLayout.environment.current_view.type === 'Views::Container'"></div>
+</div>

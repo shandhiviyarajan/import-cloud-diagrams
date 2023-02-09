@@ -1,0 +1,93 @@
+<!-- ATTRIBUTES!!! -->
+<div class="row">
+  <div class="s12 col"><strong>Cluster</strong></div>
+  <div class="s12 col"><a ng-click="selectResource(info.cluster)">{{info.cluster.name}}</a></div>
+</div>
+<div class="row">
+  <div class="s12 col"><strong>Task Definition</strong></div>
+  <div class="s12 col word-wrap"><a ng-click="selectResource(info.task_definition)">{{info.task_definition.name}}</a></div>
+</div>
+<div class="row">
+  <div class="s5 col"><strong>Launch Type</strong></div>
+  <div class="s7 col" ng-bind="resource.launch_type"></div>
+</div>
+<div class="row">
+  <div class="s5 col"><strong>Status</strong></div>
+  <div class="s7 col" ng-bind="resource.status" ng-class="resource.status_list[resource.status.toLowerCase()]"></div>
+</div>
+<div class="row">
+  <div class="s5 col"><strong>Desired Count</strong></div>
+  <div class="s7 col" ng-bind="resource.desired_count"></div>
+</div>
+<div class="row">
+  <div class="s5 col"><strong>Pending Count</strong></div>
+  <div class="s7 col" ng-bind="resource.pending_count"></div>
+</div>
+<div class="row">
+  <div class="s5 col"><strong>Running Count</strong></div>
+  <div class="s7 col" ng-bind="resource.running_count"></div>
+</div>
+
+<div class="row">
+  <div class="s12 col"><h5>Placement Strategy</h5></div>
+</div>
+<div class="row">
+  <div class="s12 col" ng-repeat="strategy in resource.placement_strategy">
+    {{strategy.type}}({{strategy.field}})
+  </div>
+</div>
+
+<div class="row">
+  <div class="s12 col"><h5>Deployment Configuration</h5></div>
+</div>
+<div class="row">
+  <div class="s8 col"><strong>Minimum Healthy Percent</strong></div>
+  <div class="s4 col" ng-bind="resource.deployment_configuration.minimum_healthy_percent"></div>
+</div>
+<div class="row">
+  <div class="s8 col"><strong>Maximum Percent</strong></div>
+  <div class="s4 col" ng-bind="resource.deployment_configuration.maximum_percent"></div>
+</div>
+
+<div class="row">
+  <div class="s12 col"><h5>Load Balancing</h5></div>
+</div>
+<div ng-if="info.load_balancer_info">
+  <div class="row">
+    <div class="s12 col attributes-name" ng-if="info.load_balancer">
+      <svg><use xlink:href="{{info.load_balancer.image}}" /></svg>
+      <a ng-click="selectResource(info.load_balancer)">{{info.load_balancer.name}}</a>
+    </div>
+    <div class="s12 col attributes-name" ng-if="info.target_group">
+      <svg><use xlink:href="{{info.target_group.image}}" /></svg>
+      <a ng-click="selectResource(info.target_group)">{{info.target_group.name}}</a>
+    </div>
+  </div>
+  <div class="row">
+    <div class="s5 col"><strong>Container</strong></div>
+    <div class="s7 col"><strong>Port</strong></div>
+  </div>
+  <div class="row">
+    <div class="s5 col" ng-bind="info.load_balancer_info.container_name"></div>
+    <div class="s7 col" ng-bind="info.load_balancer_info.container_port"></div>
+  </div>
+</div>
+<div class="row" ng-if="!info.load_balancer_info">
+  <div class="s12 col">None.</div>
+</div>
+
+<div ng-show="info.tasks.length > 0">
+  <div class="row">
+    <div class="s12 col"><h5>Tasks</h5></div>
+  </div>
+  <div ng-repeat="task in info.tasks | orderBy:'task_definition'">
+    <div class="row">
+      <div class="s4 col attributes-name truncate"><strong><a ng-click="selectResource(task)">{{task.name}}</a></strong></div>
+      <div class="s8 col attributes-name truncate" ng-bind="task.task_definition"></div>
+      <div class="s12 col">
+        ∟ <span class="label" ng-bind="task.last_status" ng-class="task.label_status_list[task.status]"></span>
+      </div>
+    </div>
+  </div>
+</div>
+

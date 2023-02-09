@@ -1,0 +1,76 @@
+<div class="row">
+  <div class="s7 col"><strong>Type</strong></div>
+  <div class="s5 col" ng-bind="resource.zone_type"></div>
+</div>
+<div class="row">
+  <div class="s7 col"><strong>Max Record Sets</strong></div>
+  <div class="s5 col" ng-bind="resource.max_number_of_record_sets"></div>
+</div>
+<div class="row">
+  <div class="s12 col"><strong>Name Servers</strong></div>
+  <div class="s12 col">
+    <ul>
+      <li ng-repeat="ns in resource.name_servers | orderBy">{{ns}}</li>
+    </ul>
+  </div>
+</div>
+
+<div class="row" ng-show="info.registration_virtual_networks.length">
+  <div class="s12 col"><h5>Registration VNets</h5></div>
+</div>
+<div class="row" ng-repeat="vnet in info.registration_virtual_networks">
+  <div class="s12 col end attributes-name" ng-if="vnet.type !== 'not_found'">
+    <svg><use xlink:href="{{vnet.image}}" /></svg>
+    <a ng-click="selectResource(vnet)">{{vnet.name}}</a>
+  </div>
+  <div class="s12 col end attributes-name" ng-if="vnet.type === 'not_found'">
+    {{vnet.name}}
+  </div>
+</div>
+
+<div class="row" ng-show="info.resolution_virtual_networks.length">
+  <div class="s12 col"><h5>Resolution VNets</h5></div>
+</div>
+<div class="row" ng-repeat="vnet in info.resolution_virtual_networks">
+  <div class="s12 col end attributes-name" ng-if="vnet.type !== 'not_found'">
+    <svg><use xlink:href="{{vnet.image}}" /></svg>
+    <a ng-click="selectResource(vnet)">{{vnet.name}}</a>
+  </div>
+  <div class="s12 col end attributes-name" ng-if="vnet.type === 'not_found'">
+    {{vnet.name}}
+  </div>
+</div>
+
+<div class="row">
+  <div class="s10 col"><h5 class="clickable" ng-click="extended.rs = !extended.rs">Record Sets</h5></div>
+  <div class="s2 col">
+    <a ng-click="extended.rs = !extended.rs" ng-show="!extended.rs"><span class="mega-octicon octicon-chevron-down"></span></a>
+    <a ng-click="extended.rs = !extended.rs" ng-show="extended.rs"><span class="mega-octicon octicon-chevron-up"></span></a>
+  </div>
+</div>
+<div class="row" ng-show="!extended.rs">
+  <div class="s12 col"><small ng-bind="info.record_sets.length + ' record set(s)'"></small></div>
+</div>
+<div ng-show="extended.rs">
+  <div ng-repeat="rs in info.record_sets | orderBy:'fqdn' track by $index">
+    <div class="row">
+      <div class="s2 col"><small ng-bind="rs.formatted_type"></small></div>
+      <div class="s10 col attributes-name">
+        <a ng-click="selectResource(rs)">{{rs.fqdn}}</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="s12 col"><h5>Resource Group</h5></div>
+</div>
+<div class="row" ng-show="!info.resource_group">
+  <div class="s12 col">None</div>
+</div>
+<div class="row" ng-show="info.resource_group">
+  <div class="s12 col end attributes-name">
+    <svg><use xlink:href="{{info.resource_group.image}}" /></svg>
+    <a ng-click="selectResource(info.resource_group)">{{info.resource_group.name}}</a>
+  </div>
+</div>

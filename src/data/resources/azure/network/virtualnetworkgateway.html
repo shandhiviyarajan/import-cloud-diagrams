@@ -1,0 +1,62 @@
+<div class="row">
+  <div class="s5 col"><strong>Tier</strong></div>
+  <div class="s7 col" ng-bind="(resource.sku.tier || '-')"></div>
+</div>
+<div class="row">
+  <div class="s5 col"><strong>Capacity</strong></div>
+  <div class="s7 col" ng-bind="(resource.sku.capacity || '-')"></div>
+</div>
+<div class="row">
+  <div class="s5 col"><strong>Gateway Type</strong></div>
+  <div class="s7 col" ng-bind="(resource.gateway_type || '-')"></div>
+</div>
+
+<div class="row">
+  <div class="s5 col"><strong>VPN Type</strong></div>
+  <div class="s7 col" ng-bind="(resource.vpn_type || '-')"></div>
+</div>
+
+<div class="row">
+  <div class="s12 col"><strong>Public IP address</strong></div>
+</div>
+<div class="row" ng-show="!info.vn_gateway_ipconf.length">
+  <div class="s12 col">None</div>
+</div>
+<div class="row" ng-repeat="vng_iconf in info.vn_gateway_ipconf">
+  <div ng-repeat="pia in vng_iconf.public_ip_address">
+    <div class="s12 col end attributes-name">
+      {{pia.name}} - ({{pia.ip_address}})
+    </div>
+  </div>
+</div>
+
+<div ng-if="resource.enable_bgp">
+  <div class="row">
+    <div class="s12 col"><h5>BGP Settings</h5></div>
+  </div>
+  <div class="row">
+    <div class="s5 col"><strong>ASN</strong></div>
+    <div class="s7 col" ng-bind="(resource.bgp_settings.asn)"></div>
+  </div>
+  <div class="row">
+    <div class="s5 col"><strong>Peer Weight</strong></div>
+    <div class="s7 col" ng-bind="(resource.bgp_settings.peer_weight)"></div>
+  </div>
+  <div class="row">
+    <div class="s12 col"><strong>Peering Address</strong></div>
+    <div class="s12 col" ng-bind="(resource.bgp_settings.bgp_peering_address)"></div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="s12 col"><h5>Connections</h5></div>
+</div>
+<div class="row" ng-show="!info.vng_connections.length">
+  <div class="s12 col">None</div>
+</div>
+<div class="row" ng-repeat="vng_connect in info.vng_connections">
+  <div class="s12 col end attributes-name">
+    <svg><use xlink:href="{{vng_connect.image}}" /></svg>
+    <a ng-click="selectResource(vng_connect)">{{vng_connect.name}}</a>
+  </div>
+</div>

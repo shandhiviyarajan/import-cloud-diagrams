@@ -1,0 +1,14 @@
+{
+    "presets": [
+        [
+            "@babel/preset-env",
+            {
+                "useBuiltIns": "usage",
+                "corejs": "3.4.0"
+            }
+        ]
+    ],
+    "plugins": ["@babel/plugin-proposal-class-properties", "@babel/plugin-transform-block-scoping"],
+    "sourceMaps": true,
+    "compact": true
+}

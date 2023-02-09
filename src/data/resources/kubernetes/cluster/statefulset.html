@@ -1,0 +1,33 @@
+<div class="row">
+  <div class="s5 col"><strong>Namespace</strong></div>
+  <div class="s7 col" ng-bind="resource.namespace"></div>
+</div>
+<div class="row">
+  <div class="s5 col"><strong>Creation Time</strong></div>
+  <div class="s7 col" ng-bind="resource.start_time"></div>
+</div>
+<div class="row">
+  <div class="s5 col"><strong>Generation</strong></div>
+  <div class="s7 col" ng-bind="resource.generation"></div>
+</div>
+<div class="row">
+  <div class="s12 col"><strong>Resource Version</strong></div>
+  <div class="s12 col" ng-bind="resource.resource_version"></div>
+</div>
+<div class="row">
+  <div class="s12 col"><h5>Cluster</h5></div>
+  <div class="s12 col"><a ng-click="selectResource(info.cluster)">{{info.cluster.name}}</a></div>
+</div>
+<div ng-show="info.pods.length > 0">
+  <div class="row">
+    <div class="s12 col"><h5>Pods</h5></div>
+  </div>
+  <div class="row" ng-show="!info.pods.length">
+    <div class="s12 col">None</div>
+  </div>
+  <div ng-repeat="pod in info.pods | orderBy:'name' track by $index">
+    <div class="row">
+      <div class="s12 col attributes-name"><strong><a ng-click="selectResource(pod)">{{pod.name}}</a></strong></div>
+    </div>
+  </div>
+</div>

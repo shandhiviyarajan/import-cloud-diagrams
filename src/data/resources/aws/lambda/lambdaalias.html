@@ -1,0 +1,20 @@
+<!-- ATTRIBUTES!!! -->
+<div class="row">
+  <div class="s5 col"><strong>Description</strong></div>
+  <div class="s7 col" ng-bind="resource.description"></div>
+</div>
+
+<div ng-show="info.function">
+  <div class="row">
+    <div class="s12 col"><h5>Function</h5></div>
+    <div class="s12 col attributes-name"><svg><use xlink:href="{{info.function.image}}" /></svg><a ng-click="selectResource(info.function)">{{info.function.name}}</a></div>
+  </div>
+  <div class="row" ng-if="info.function_version.length>0">
+    <div class="s12 col">
+      <small>
+        ∟
+        Version: <a ng-click="selectResource(info.function_version)">{{info.function_version.version}}</a>
+      </small>
+    </div>
+  </div>
+</div>

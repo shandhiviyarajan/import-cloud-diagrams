@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="92px" height="92px" viewBox="0 0 92 92" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 43.2 (39069) - http://www.bohemiancoding.com/sketch -->
+    <title>Group</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Group" transform="translate(1.000000, 1.000000)" fill-rule="nonzero">
+            <circle id="Oval-1" stroke="#979797" fill="#FFFFFF" cx="45" cy="45" r="45"></circle>
+            <g id="Compute_AWSElasticBeanstalk_application" transform="translate(29.000000, 16.000000)">
+                <path d="M5.3,27 C13.2652672,23.9999884 20.4140863,19.1701681 26.17,12.9 C27.63,11.3 31.3,3.62 31.3,3.62 L31.3,6.1 C30.7,12.1 29.4,20.6 26.5,23.4 C23.8,26 16.8,27.5 9.2,28.1 L9.2,57.4 L0.7,57.4 L0.7,28.18 C1.3,21.48 1.8,16.08 7.6,10.88 C11.1,7.72 29.9,0.5 29.9,0.5 L29.9,3 C21.1,17.2 4.5,23.2 4.3,23.3 C3.8,23.5 3.3,25.4 3.5,25.9 C3.78462874,26.4733001 4.28991316,26.906401 4.9,27.1 C5.0215714,27.0304449 5.15999931,26.9958379 5.3,27 L5.3,27 Z" id="Shape" fill="#6B3A19"></path>
+                <path d="M5.3,24.5 C6,24.3 22,18.7 31.3,3.6 C30.7,9.6 29.4,18.1 26.5,20.9 C23.8,23.5 16.8,25 9.2,25.6 L9.2,54.9 L0.7,54.9 L0.7,25.7 C1.3,19 1.8,13.6 7.6,8.4 C11.7,4.7 22.9,1.4 29.9,0.5 C21.1,14.7 4.5,20.7 4.3,20.8 C3.8,21 3.3,22.9 3.5,23.4 C3.78462874,23.9733001 4.28991316,24.406401 4.9,24.6 C5.0215714,24.5304449 5.15999931,24.4958379 5.3,24.5 Z" id="Shape" fill="#F58536"></path>
+            </g>
+        </g>
+    </g>
+</svg>

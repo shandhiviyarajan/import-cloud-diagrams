@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="92px" height="92px" viewBox="0 0 92 92" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 47.1 (45422) - http://www.bohemiancoding.com/sketch -->
+    <title>blank</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="blank" transform="translate(1.000000, 1.000000)" fill-rule="nonzero">
+            <circle id="Oval-1" stroke="#979797" fill="#FFFFFF" cx="45" cy="45" r="45"></circle>
+            <g id="Compute_AmazonEC2_ElasticIPaddress" transform="translate(11.000000, 35.000000)">
+                <path d="M45.61,2.93 L61.86,8.93 L62.11,9.02 L68,8.74 L68,11.22 L62.36,13.3 L62.09,13.42 L61.86,13.5 L45.61,19.5 L45.61,13.5 L14.79,13.5 C13.6924302,17.0939325 10.1217504,19.3361591 6.40782821,18.7636275 C2.69390603,18.1910959 -0.0357329685,14.9776234 -8.8817842e-16,11.22 L-8.8817842e-16,8.74 L14.79,9 L45.61,9 L45.61,2.93 Z" id="Shape" fill="#9D5025"></path>
+                <path d="M45.61,0.45 L61.86,6.45 L62.11,6.54 L62.36,6.63 L68,8.74 L62.41,10.81 L62.14,10.93 L61.91,11.01 L45.66,17.01 L45.66,11 L14.79,11 C13.6727015,14.5269188 10.1504573,16.7122221 6.4942348,16.1469353 C2.83801235,15.5816485 0.140190562,12.4346637 0.140190562,8.735 C0.140190562,5.03533626 2.83801235,1.88835146 6.4942348,1.32306467 C10.1504573,0.757777869 13.6727015,2.94308123 14.79,6.47 L45.61,6.47 L45.61,0.45 Z" id="Shape" fill="#F58536"></path>
+            </g>
+        </g>
+    </g>
+</svg>

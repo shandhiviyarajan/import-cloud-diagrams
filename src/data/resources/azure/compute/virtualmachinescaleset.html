@@ -1,0 +1,29 @@
+<!-- ATTRIBUTES!!! -->
+<div class="row">
+  <div class="s12 col"><h5>Virtual Machines Service Settings</h5></div>
+</div>
+<div class="row">
+  <div class="s5 col"><strong>Upgrade Policy</strong></div>
+  <div class="s7 col" ng-bind="resource.upgrade_policy"></div>
+</div>
+<div class="row">
+  <div class="s5 col"><strong>Size</strong></div>
+  <div class="s7 col">{{resource.sku.name}} ({{resource.sku.capacity}} instance)</div>
+</div>
+<div class="row">
+  <div class="s5 col"><strong>Image Reference</strong></div>
+  <div class="s7 col">{{resource.virtual_machine_profile.storage_profile.image_reference.offer}}</div>
+</div>
+
+<div class="row">
+  <div class="s12 col"><h5>Virtual Machines</h5></div>
+</div>
+<div class="row" ng-show="!info.virtual_machines.length">
+  <div class="s12 col">None</div>
+</div>
+<div class="row" ng-repeat="vm in info.virtual_machines track by $index">
+  <div class="s12 col end attributes-name">
+    <svg><use xlink:href="{{vm.image}}" /></svg>
+    <a ng-click="selectResource(vm)" highlight-connected-resources="sg">{{vm.name}}</a>
+  </div>
+</div>

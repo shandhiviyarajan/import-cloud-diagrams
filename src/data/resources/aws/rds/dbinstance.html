@@ -1,0 +1,91 @@
+<!-- Attributes -->
+<div class="row" ng-show="resource.endpoint.address">
+  <div class="s12 col" ng-bind="resource.endpoint.address"></div>
+  <div class="s12 col">&nbsp;</div>
+</div>
+
+<div class="row">
+  <div class="s5 col"><strong>Engine</strong></div>
+  <div class="s7 col" ng-bind="resource.engine"></div>
+</div>
+<div class="row">
+  <div class="s5 col"><strong>Engine Version</strong></div>
+  <div class="s7 col" ng-bind="resource.engine_version"></div>
+</div>
+<div class="row">
+  <div class="s5 col"><strong>Identifier</strong></div>
+  <div class="s7 col" ng-bind="resource.identifier"></div>
+</div>
+<div class="row">
+  <div class="s5 col"><strong>Instance Class</strong></div>
+  <div class="s7 col" ng-bind="resource.instance_class"></div>
+</div>
+<div class="row" ng-show="resource.final_snapshot_identifier">
+  <div class="s5 col"><strong>Final Snapshot Identifier</strong></div>
+  <div class="s7 col" ng-bind="resource.final_snapshot_identifier"></div>
+</div>
+<div class="row">
+  <div class="s5 col"><strong>Username</strong></div>
+  <div class="s7 col" ng-bind="resource.username"></div>
+</div>
+<div class="row">
+  <div class="s5 col"><strong>Port</strong></div>
+  <div class="s7 col" ng-bind="resource.endpoint.port"></div>
+</div>
+<div class="row" ng-show="resource.iops">
+  <div class="s5 col"><strong>IOPS</strong></div>
+  <div class="s7 col" ng-bind="resource.iops"></div>
+</div>
+<div class="row" ng-show="resource.status">
+  <div class="s5 col"><strong>Status</strong></div>
+  <div class="s7 col" ng-bind="resource.status"></div>
+</div>
+<div class="row">
+  <div class="s12 col"><strong>Availability Zone</strong></div>
+  <div class="s12 col" ng-bind="resource.availability_zone"></div>
+</div>
+<div class="row">
+  <div class="s12 col"><strong>Allocated Storage</strong></div>
+  <div class="s12 col" ng-bind="resource.allocated_storage + ' GB'" ng-if="resource.allocated_storage"></div>
+</div>
+<div class="row">
+  <div class="s12 col"><strong>Backup Window</strong></div>
+  <div class="s12 col" ng-bind="resource.backup_window"></div>
+</div>
+<div class="row">
+  <div class="s12 col"><strong>Backup Retention Period</strong></div>
+  <div class="s12 col" ng-bind="resource.backup_retention_period + ' days'" ng-if="resource.backup_retention_period"></div>
+</div>
+<div class="row">
+  <div class="s12 col"><strong>Maintenance Window</strong></div>
+  <div class="s12 col" ng-bind="resource.maintenance_window"></div>
+</div>
+<div class="row" ng-show="resource.multi_az">
+  <div class="s12 col"><strong>Multi AZ</strong> <span class="octicon octicon-check good"></span></div>
+</div>
+<div class="row" ng-show="resource.publicly_accessible">
+  <div class="s12 col"><strong>Publicly Accessible</strong> <span class="octicon octicon-check good"></span></div>
+</div>
+<div class="row" ng-show="resource.skip_final_snapshot">
+  <div class="s12 col"><strong>Skip Final Snapshot</strong> <span class="octicon octicon-check good"></span></div>
+</div>
+
+<div ng-show="info.security_groups.length > 0">
+  <div class="row">
+    <div class="s12 col"><h5>Security Groups</h5></div>
+  </div>
+  <div ng-repeat="sg in info.security_groups track by $index">
+    <div class="row">
+      <div class="s12 col attributes-name"><a ng-click="selectResource(sg)">{{sg.name}}</a></div>
+    </div>
+  </div>
+</div>
+
+<div ng-show="info.cluster">
+  <div class="row">
+    <div class="s12 col"><h5>DB Cluster</h5></div>
+  </div>
+  <div class="row">
+    <div class="s12 col attributes-name"><a ng-click="selectResource(info.cluster)">{{info.cluster.name}}</a></div>
+  </div>
+</div>

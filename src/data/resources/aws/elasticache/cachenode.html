@@ -1,0 +1,25 @@
+<!-- Attributes -->
+<div class="row">
+  <div class="s5 col"><strong>Cluster</strong></div>
+  <div class="s7 col attributes-name"><a ng-click="selectResource(info.cache_cluster)">{{info.cache_cluster.name}}</a></div>
+</div>
+<div class="row" ng-if="resource.cache_node_status">
+  <div class="s5 col"><strong>Status</strong></div>
+  <div class="s7 col" ng-bind="resource.cache_node_status"></div>
+</div>
+<div class="row" ng-if="resource.source_cache_node_id">
+  <div class="s5 col"><strong>Source Cache Node</strong></div>
+  <div class="s7 col" ng-bind="resource.source_cache_node_id"></div>
+</div>
+<div class="row" ng-if="resource.customer_availability_zone">
+  <div class="s12 col"><strong>Availability Zone</strong></div>
+  <div class="s12 col" ng-bind="resource.customer_availability_zone"></div>
+</div>
+<div class="row" ng-if="resource.cache_node_create_time">
+  <div class="s12 col"><strong>Create Time</strong></div>
+  <div class="s12 col" ng-bind="resource.cache_node_create_time"></div>
+</div>
+<div class="row">
+  <div class="s12 col"><strong>Endpoint</strong></div>
+  <div class="s12 col superlong" ng-bind="resource.endpoint_address + ':' + resource.endpoint_port"></div>
+</div>

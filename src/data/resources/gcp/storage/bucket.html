@@ -1,0 +1,511 @@
+<div class="row sub-title">
+  <div class="s12 col">
+    <small ng-if="resource.project">
+      <strong>Project</strong><br />
+      <span ng-bind="resource.project"></span>
+    </small>
+  </div>
+
+</div>
+
+
+
+<div class="row" ng-show="resource.location">
+  <div class="s5 col">
+    <strong>Location</strong>
+  </div>
+
+  <div class="s7 col" ng-bind="resource.location">
+  </div>
+</div>
+
+<div class="row" ng-show="resource.storage_class">
+  <div class="s5 col">
+    <strong>Storage Class</strong>
+  </div>
+
+  <div class="s7 col" ng-bind="resource.storage_class">
+  </div>
+</div>
+
+<div class="row" ng-show="resource.etag">
+  <div class="s5 col">
+    <strong>Etag</strong>
+  </div>
+
+  <div class="s7 col" ng-bind="resource.etag">
+  </div>
+</div>
+
+<div class="row" ng-show="resource.project_number">
+  <div class="s5 col">
+    <strong>Project Number</strong>
+  </div>
+
+  <div class="s7 col" ng-bind="resource.project_number">
+  </div>
+</div>
+
+<div class="row" ng-show="resource.metageneration">
+  <div class="s5 col">
+    <strong>Metageneration</strong>
+  </div>
+
+  <div class="s7 col" ng-bind="resource.metageneration">
+  </div>
+</div>
+
+<div class="row" ng-show="resource.location_type">
+  <div class="s5 col">
+    <strong>Location Type</strong>
+  </div>
+
+  <div class="s7 col" ng-bind="resource.location_type">
+  </div>
+</div>
+
+<div class="row" ng-show="resource.versioning">
+  <div class="s5 col">
+    <strong>Versioning</strong>
+  </div>
+
+  <div class="s7 col" ng-bind="resource.versioning">
+  </div>
+</div>
+
+<div class="row" ng-show="resource.logging && resource.logging.logging.length">
+  <div class="s5 col">
+    <strong>Logging</strong>
+  </div>
+
+  <div class="s7 col" ng-bind="resource.logging.logging">
+  </div>
+</div>
+
+<div class="row" ng-show="resource.lifecycle">
+  <div class="s5 col">
+    <strong>Lifecycle</strong>
+  </div>
+
+  <div class="s7 col" ng-bind="resource.lifecycle">
+  </div>
+</div>
+
+<div class="row" ng-show="resource.billing">
+  <div class="s5 col">
+    <strong>Billing</strong>
+  </div>
+
+  <div class="s7 col" ng-bind="resource.billing">
+  </div>
+</div>
+
+<div class="row" ng-show="resource.website && resource.website.website.length">
+  <div class="s5 col">
+    <strong>Website</strong>
+  </div>
+
+  <div class="s7 col" ng-bind="resource.website.website">
+  </div>
+</div>
+
+<div class="row" ng-show="resource.labels">
+  <div class="s5 col">
+    <strong>Labels</strong>
+  </div>
+
+  <div class="s7 col" ng-bind="resource.labels">
+  </div>
+</div>
+
+<div class="row" ng-show="resource.owner">
+  <div class="s5 col">
+    <strong>Owner</strong>
+  </div>
+
+  <div class="s7 col" ng-bind="resource.owner">
+  </div>
+</div>
+
+<div class="row" ng-show="resource.time_created">
+  <div class="s12 col">
+    <strong>Time Created</strong>
+  </div>
+
+  <div class="s12 col" ng-bind="resource.time_created | date:'yyyy-MM-dd HH:mm:ss'">
+  </div>
+</div>
+
+<div class="row" ng-show="resource.updated">
+  <div class="s12 col">
+    <strong>Updated</strong>
+  </div>
+
+  <div class="s12 col" ng-bind="resource.updated | date:'yyyy-MM-dd HH:mm:ss'">
+  </div>
+</div>
+
+<div class="row" ng-show="resource.retention_policy">
+  <div class="s12 col">
+    <strong>Retention Policy</strong>
+  </div>
+
+  <div class="s12 col" ng-bind=
+  "resource.retention_policy">
+  </div>
+</div>
+
+<div ng-show="resource.iam_configuration">
+  <div class="row">
+    <div class="s12 col">
+      <h5>Iam Configuration</h5>
+    </div>
+  </div>
+  <div class="attributes-list">
+    <div class="row" ng-show="resource.iam_configuration.bucket_policy_only">
+      <div class="s8 col"><strong>Bucket Policy Only Enabled</strong></div>
+      <span class="s4 octicon octicon-check good" ng-show="resource.iam_configuration.bucket_policy_only.enabled"></span>
+      <span class="s4 octicon octicon-x bad" ng-show="!resource.iam_configuration.bucket_policy_only.enabled"></span>
+    </div>
+
+    <div class="row" ng-show="resource.iam_configuration.uniform_bucket_level_access">
+      <div class="s8 col"><strong>Uniform Bucket Level Access Enabled</strong></div>
+      <span class="s4 octicon octicon-check good" ng-show="resource.iam_configuration.uniform_bucket_level_access.enabled"></span>
+      <span class="s4 octicon octicon-x bad" ng-show="!resource.iam_configuration.uniform_bucket_level_access.enabled"></span>
+    </div>
+  </div>
+</div>
+
+<div class="row" ng-show="resource.default_event_based_hold">
+  <div class="s7 col">
+    <strong>Default Event Based Hold</strong>
+  </div>
+
+  <div class="s5 octicon octicon-check good" ng-show=
+  "resource.default_event_based_hold">
+  </div>
+
+  <div class="s5 octicon octicon-x bad" ng-show=
+  "!resource.default_event_based_hold">
+  </div>
+</div>
+
+<div ng-show="resource.default_object_acl.length">
+  <div class="row">
+    <div class="s12 col">
+      <h5>Default Object Acl</h5>
+    </div>
+  </div>
+
+  <div ng-repeat=
+  "default_object_acl in resource.default_object_acl">
+    <div class="row" ng-show="default_object_acl.self_link">
+      <div class="s5 col">
+        <strong>Self Link</strong>
+      </div>
+
+      <div class="s7 col" ng-bind=
+      "default_object_acl.self_link">
+      </div>
+    </div>
+
+    <div class="row" ng-show="default_object_acl.bucket">
+      <div class="s5 col">
+        <strong>Bucket</strong>
+      </div>
+
+      <div class="s7 col" ng-bind=
+      "default_object_acl.bucket">
+      </div>
+    </div>
+
+    <div class="row" ng-show="default_object_acl.role">
+      <div class="s5 col">
+        <strong>Role</strong>
+      </div>
+
+      <div class="s7 col" ng-bind=
+      "default_object_acl.role">
+      </div>
+    </div>
+
+    <div class="row" ng-show="default_object_acl.object">
+      <div class="s5 col">
+        <strong>Object</strong>
+      </div>
+
+      <div class="s7 col" ng-bind=
+      "default_object_acl.object">
+      </div>
+    </div>
+
+    <div class="row" ng-show="default_object_acl.kind">
+      <div class="s5 col">
+        <strong>Kind</strong>
+      </div>
+
+      <div class="s7 col" ng-bind=
+      "default_object_acl.kind">
+      </div>
+    </div>
+
+    <div class="row" ng-show="default_object_acl.id">
+      <div class="s5 col">
+        <strong>Id</strong>
+      </div>
+
+      <div class="s7 col" ng-bind="default_object_acl.id">
+      </div>
+    </div>
+
+    <div class="row" ng-show="default_object_acl.generation">
+      <div class="s5 col">
+        <strong>Generation</strong>
+      </div>
+
+      <div class="s7 col" ng-bind=
+      "default_object_acl.generation">
+      </div>
+    </div>
+
+    <div class="row" ng-show="default_object_acl.etag">
+      <div class="s5 col">
+        <strong>Etag</strong>
+      </div>
+
+      <div class="s7 col" ng-bind=
+      "default_object_acl.etag">
+      </div>
+    </div>
+
+    <div class="row" ng-show="default_object_acl.entity_id">
+      <div class="s5 col">
+        <strong>Entity ID</strong>
+      </div>
+
+      <div class="s7 col" ng-bind=
+      "default_object_acl.entity_id">
+      </div>
+    </div>
+
+    <div class="row" ng-show="default_object_acl.entity">
+      <div class="s5 col">
+        <strong>Entity</strong>
+      </div>
+
+      <div class="s7 col" ng-bind=
+      "default_object_acl.entity">
+      </div>
+    </div>
+
+    <div class="row" ng-show="default_object_acl.email">
+      <div class="s5 col">
+        <strong>Email</strong>
+      </div>
+
+      <div class="s7 col" ng-bind=
+      "default_object_acl.email">
+      </div>
+    </div>
+
+    <div class="row" ng-show="default_object_acl.domain">
+      <div class="s5 col">
+        <strong>Domain</strong>
+      </div>
+
+      <div class="s7 col" ng-bind=
+      "default_object_acl.domain">
+      </div>
+    </div>
+
+    <div class="row" ng-show="default_object_acl.project_team">
+      <div class="s5 col">
+        <strong>Project Team</strong>
+      </div>
+
+      <div class="s7 col" ng-bind=
+      "default_object_acl.project_team">
+      </div>
+    </div>
+  </div>
+</div>
+
+<div ng-show="resource.acl.length">
+  <div class="row">
+    <div class="s12 col">
+      <h5>Acl</h5>
+    </div>
+  </div>
+
+  <div ng-repeat="acl in resource.acl">
+    <div class="row" ng-show="acl.self_link">
+      <div class="s5 col">
+        <strong>Self Link</strong>
+      </div>
+
+      <div class="s7 col" ng-bind="acl.self_link">
+      </div>
+    </div>
+
+    <div class="row" ng-show="acl.bucket">
+      <div class="s5 col">
+        <strong>Bucket</strong>
+      </div>
+
+      <div class="s7 col" ng-bind="acl.bucket">
+      </div>
+    </div>
+
+    <div class="row" ng-show="acl.role">
+      <div class="s5 col">
+        <strong>Role</strong>
+      </div>
+
+      <div class="s7 col" ng-bind="acl.role">
+      </div>
+    </div>
+
+    <div class="row" ng-show="acl.kind">
+      <div class="s5 col">
+        <strong>Kind</strong>
+      </div>
+
+      <div class="s7 col" ng-bind="acl.kind">
+      </div>
+    </div>
+
+    <div class="row" ng-show="acl.id">
+      <div class="s5 col">
+        <strong>Id</strong>
+      </div>
+
+      <div class="s7 col" ng-bind="acl.id">
+      </div>
+    </div>
+
+    <div class="row" ng-show="acl.etag">
+      <div class="s5 col">
+        <strong>Etag</strong>
+      </div>
+
+      <div class="s7 col" ng-bind="acl.etag">
+      </div>
+    </div>
+
+    <div class="row" ng-show="acl.entity_id">
+      <div class="s5 col">
+        <strong>Entity</strong>
+      </div>
+
+      <div class="s7 col" ng-bind="acl.entity_id">
+      </div>
+    </div>
+
+    <div class="row" ng-show="acl.entity">
+      <div class="s5 col">
+        <strong>Entity</strong>
+      </div>
+
+      <div class="s7 col" ng-bind="acl.entity">
+      </div>
+    </div>
+
+    <div class="row" ng-show="acl.email">
+      <div class="s5 col">
+        <strong>Email</strong>
+      </div>
+
+      <div class="s7 col" ng-bind="acl.email">
+      </div>
+    </div>
+
+    <div class="row" ng-show="acl.domain">
+      <div class="s5 col">
+        <strong>Domain</strong>
+      </div>
+
+      <div class="s7 col" ng-bind="acl.domain">
+      </div>
+    </div>
+
+    <div class="row" ng-show="acl.project_team">
+      <div class="s5 col">
+        <strong>Project Team</strong>
+      </div>
+
+      <div class="s7 col" ng-bind="acl.project_team">
+      </div>
+    </div>
+  </div>
+</div>
+
+<div ng-show="resource.cors.length">
+  <div class="row">
+    <div class="s12 col">
+      <h5>Cors</h5>
+    </div>
+  </div>
+
+  <div ng-repeat="cors in resource.cors">
+    <div class="row" ng-show="cors.max_age_seconds">
+      <div class="s12 col">
+        <strong>Max Age Seconds</strong>
+      </div>
+
+      <div class="s12 col" ng-bind="cors.max_age_seconds">
+      </div>
+    </div>
+
+    <div ng-show="cors.response_header.length">
+      <div class="row">
+        <div class="s12 col">
+          <h5>Response Header</h5>
+        </div>
+         <div class="s12 col">
+          <ul>
+            <li ng-repeat="response_header in resource.response_header">{{response_header}}</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div ng-show="cors.origin.length">
+      <div class="row">
+        <div class="s12 col">
+          <h5>Origin</h5>
+        </div>
+        <div class="s12 col">
+          <ul>
+            <li ng-repeat="origin in resource.origin">{{origin}}</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div ng-show="cors.method.length">
+      <div class="row">
+        <div class="s12 col">
+          <h5>Method</h5>
+        </div>
+        <div class="s12 col">
+          <ul>
+            <li ng-repeat="method in resource.method">{{method}}</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div ng-show="info.backend_bucket.length">
+  <div class="row" >
+    <div class="s12 col"><h5>Backend Bucket</h5></div>
+  </div>
+  <div ng-repeat="backend_bucket in info.backend_bucket track by $index">
+    <div class="row">
+      <div class="s12 col attributes-name">
+        <svg><use xlink:href="{{backend_bucket.image}}" /></svg><a ng-click="selectResource(backend_bucket)">{{backend_bucket.name}}</a>
+      </div>
+    </div>
+  </div>
+</div>

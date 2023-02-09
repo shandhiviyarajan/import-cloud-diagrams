@@ -1,0 +1,846 @@
+
+<div class="row" ng-show="resource.provisioning_state">
+  <div class="s12 col">
+    <strong>Provisioning State</strong>
+  </div>
+
+  <div class="s12 col" ng-bind="resource.provisioning_state">
+  </div>
+</div>
+
+<div class="row" ng-show="resource.threat_intel_mode">
+  <div class="s12 col">
+    <strong>Threat Intel Mode</strong>
+  </div>
+
+  <div class="s12 col" ng-bind="resource.threat_intel_mode">
+  </div>
+</div>
+
+<div class="row">
+  <div class="s12 col">
+    <h5>Application Rule Collections</h5>
+  </div>
+</div>
+
+<div class="row" ng-show="resource.application_rule_collections.length === 0">
+  <div class="s12 col">
+    -
+  </div>
+</div>
+
+<div class="row" ng-repeat="application_rule_collections in resource.application_rule_collections track by $index">
+  <div class="row" ng-show="application_rule_collections.name">
+    <div class="s12 col"><strong ng-bind="application_rule_collections.name" style="text-decoration: underline"></strong> &nbsp;&nbsp;&nbsp; ({{application_rule_collections.action["type"]}})</div>
+  </div>
+  
+  <div class="row" ng-show="application_rule_collections.priority">
+    <div class="s4 col">
+      <strong>Priority</strong>
+    </div>
+
+    <div class="s8 col" ng-bind="application_rule_collections.priority">
+    </div>
+  </div>
+
+  <div class="row" ng-show="application_rule_collections.provisioning_state">
+    <div class="s12 col">
+      <strong>Provisioning State</strong>
+    </div>
+
+    <div class="s12 col" ng-bind="application_rule_collections.provisioning_state">
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="s12 col">
+      <strong>Rules</strong>
+    </div>
+  </div>
+
+  <div class="row" ng-show="application_rule_collections.rules.length === 0">
+    <div class="s12 col">
+      -
+    </div>
+  </div>
+
+  <div class="row" ng-repeat="rules in application_rule_collections.rules track by $index">
+    <div class="row" ng-show="rules.name">
+      <div class="s12 offset-s1 col"><strong ng-bind="rules.name" style="text-decoration: underline"></strong></div>
+    </div>
+
+    <div class="row" ng-show="rules.description">
+      <div class="s12 offset-s1 col">
+        <strong>Description</strong>
+      </div>
+
+      <div class="s12 offset-s1 col" ng-bind="rules.description">
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="s12 offset-s1 col">
+        <strong>Source Addresses</strong>
+      </div>
+    </div>
+
+    <div class="row" ng-show="rules.source_addresses.length === 0">
+      <div class="s12 offset-s1 col">
+        -
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="s12 offset-s1 col">
+        <div ng-repeat="source_addresses in rules.source_addresses track by $index" ng-bind="source_addresses">
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="s12 offset-s1 col">
+        <strong>Protocols</strong>
+      </div>
+    </div>
+
+    <div class="row" ng-show="rules.protocols.length === 0">
+      <div class="s12 offset-s1 col">
+        -
+      </div>
+    </div>
+
+    <div class="row" ng-repeat="protocol in rules.protocols track by $index">
+      <div class="s12 offset-s1 col">
+        {{protocol.protocol_type}}: {{protocol.port}}
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="s12 offset-s1 col">
+        <strong>Target Fqdns</strong>
+      </div>
+    </div>
+
+    <div class="row" ng-show="rules.target_fqdns.length === 0">
+      <div class="s12 offset-s1 col">
+        -
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="s12 offset-s1 col">
+        <div ng-repeat="target_fqdns in rules.target_fqdns track by $index" ng-bind="target_fqdns">
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="s12 offset-s1 col">
+        <strong>Fqdn Tags</strong>
+      </div>
+    </div>
+
+    <div class="row" ng-show="rules.fqdn_tags.length === 0">
+      <div class="s12 offset-s1 col">
+        -
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="s12 offset-s1 col">
+        <div ng-repeat="fqdn_tags in rules.fqdn_tags" ng-bind="fqdn_tags">
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="s12 offset-s1 col">
+        <strong>Source Ip Groups</strong>
+      </div>
+    </div>
+
+    <div class="row" ng-show="rules.source_ip_groups.length === 0">
+      <div class="s12 offset-s1 col">
+        -
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="s12 offset-s1 col">
+        <div ng-repeat="source_ip_groups in rules.source_ip_groups track by $index"
+        ng-bind="source_ip_groups">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <br/>
+</div>
+
+<div class="row">
+  <div class="s12 col">
+    <h5>Nat Rule Collections</h5>
+  </div>
+</div>
+
+<div class="row" ng-show="resource.nat_rule_collections.length === 0">
+  <div class="s12 col">
+    -
+  </div>
+</div>
+
+<div class="row" ng-repeat="nat_rule_collections in resource.nat_rule_collections track by $index">
+  <div class="row" ng-show="nat_rule_collections.name">
+    <div class="s12 col"><strong ng-bind="nat_rule_collections.name" style="text-decoration: underline"></strong> &nbsp;&nbsp;&nbsp; ({{nat_rule_collections.action["type"]}})</div>
+  </div>
+
+  <div class="row" ng-show="nat_rule_collections.priority">
+    <div class="s5 col">
+      <strong>Priority</strong>
+    </div>
+
+    <div class="s7 col" ng-bind="nat_rule_collections.priority">
+    </div>
+  </div>
+
+  <div class="row" ng-show="nat_rule_collections.provisioning_state">
+    <div class="s12 col">
+      <strong>Provisioning State</strong>
+    </div>
+
+    <div class="s12 col" ng-bind="nat_rule_collections.provisioning_state">
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="s12 col">
+      <stron>Rules</stron>
+    </div>
+  </div>
+
+  <div class="row" ng-show="nat_rule_collections.rules.length === 0">
+    <div class="s12 col">
+      -
+    </div>
+  </div>
+
+  <div class="row" ng-repeat="rules in nat_rule_collections.rules track by $index">
+    <div class="row" ng-show="rules.name">
+      <div class="s12 offset-s1 col">
+        <strong ng-bind="rules.name" style="text-decoration: underline"></strong>
+      </div>
+    </div>
+
+    <div class="row" ng-show="rules.description">
+      <div class="s12 offset-s1 col">
+        <strong>Description</strong>
+      </div>
+
+      <div class="s12 offset-s1 col" ng-bind="rules.description">
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="s12 offset-s1 col">
+        <strong>Source Addresses</strong>
+      </div>
+    </div>
+
+    <div class="row" ng-show="rules.source_addresses.length === 0">
+      <div class="s12 offset-s1 col">
+        -
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="s12 offset-s1 col">
+        <div ng-repeat="source_addresses in rules.source_addresses track by $index" ng-bind="source_addresses">
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="s12 offset-s1 col">
+        <strong>Destination Addresses</strong>
+      </div>
+    </div>
+
+    <div class="row" ng-show="rules.destination_addresses.length === 0">
+      <div class="s12 offset-s1 col">
+        -
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="s12 offset-s1 col">
+        <div ng-repeat="destination_addresses in rules.destination_addresses track by $index"
+        ng-bind="destination_addresses">
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="s12 offset-s1 col">
+        <strong>Destination Ports</strong>
+      </div>
+    </div>
+
+    <div class="row" ng-show="rules.destination_ports.length === 0">
+      <div class="s12 offset-s1 col">
+        -
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="s12 offset-s1 col">
+        <div ng-repeat="destination_ports in rules.destination_ports track by $index" ng-bind="destination_ports">
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="s12 offset-s1 col">
+        <strong>Protocols</strong>
+      </div>
+    </div>
+
+    <div class="row" ng-show="rules.protocols.length === 0">
+      <div class="s12 offset-s1 col">
+        -
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="s12 offset-s1 col">
+        <div ng-repeat="protocol in rules.protocols track by $index">
+          {{protocol.protocol_type}}: {{protocol.port}}
+        </div>
+      </div>
+    </div>
+
+    <div class="row" ng-show="rules.translated_address">
+      <div class="s12 offset-s1 col">
+        <strong>Translated Address</strong>
+      </div>
+
+      <div class="s12 offset-s1 col" ng-bind="rules.translated_address">
+      </div>
+    </div>
+
+    <div class="row" ng-show="rules.translated_port">
+      <div class="s12 offset-s1 col">
+        <strong>Translated Port</strong>
+      </div>
+
+      <div class="s12 offset-s1 col" ng-bind="rules.translated_port">
+      </div>
+    </div>
+
+    <div class="row" ng-show="rules.translated_fqdn">
+      <div class="s12 offset-s1 col">
+        <strong>Translated Fqdn</strong>
+      </div>
+
+      <div class="s12 offset-s1 col" ng-bind="rules.translated_fqdn">
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="s12 offset-s1 col">
+        <strong>Source Ip Groups</strong>
+      </div>
+    </div>
+
+    <div class="row" ng-show="rules.source_ip_groups.length === 0">
+      <div class="s12 offset-s1 col">
+        -
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="s12 offset-s1 col">
+        <div ng-repeat="source_ip_groups in rules.source_ip_groups track by $index" ng-bind="source_ip_groups">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <br/>
+</div>
+
+<div class="row">
+  <div class="s12 col">
+    <h5>Network Rule Collections</h5>
+  </div>
+</div>
+
+<div class="row" ng-show="resource.network_rule_collections.length === 0">
+  <div class="s12 col">
+    -
+  </div>
+</div>
+
+<div class="row" ng-repeat="network_rule_collections in resource.network_rule_collections track by $index">
+  <div class="row" ng-show="network_rule_collections.name">
+    <div class="s12 col"><strong ng-bind="network_rule_collections.name" style="text-decoration: underline"></strong> &nbsp;&nbsp;&nbsp; ({{network_rule_collections.action["type"]}})</div>
+  </div>
+  <div class="row" ng-show="network_rule_collections.priority">
+    <div class="s4 col">
+      <strong>Priority</strong>
+    </div>
+
+    <div class="s8 col" ng-bind="network_rule_collections.priority">
+    </div>
+  </div>
+
+  <div class="row" ng-show="network_rule_collections.provisioning_state">
+    <div class="s12 col">
+      <strong>Provisioning State</strong>
+    </div>
+
+    <div class="s12 col" ng-bind="network_rule_collections.provisioning_state">
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="s12 col">
+      <strong>Rules</strong>
+    </div>
+  </div>
+
+  <div class="row" ng-show="network_rule_collections.rules.length === 0">
+    <div class="s12 col">
+      -
+    </div>
+  </div>
+
+  <div class="row" ng-repeat="rules in network_rule_collections.rules track by $index">
+    <div class="row" ng-show="rules.name">
+      <div class="s12 offset-s1 col"><strong ng-bind="rules.name" style="text-decoration: underline"></strong></div>
+    </div>
+
+    <div class="row" ng-show="rules.description">
+      <div class="s12 offset-s1 col">
+        <strong>Description</strong>
+      </div>
+
+      <div class="s12 offset-s1 col" ng-bind="rules.description">
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="s12 offset-s1 col">
+        <strong>Source Addresses</strong>
+      </div>
+    </div>
+
+    <div class="row" ng-show="rules.source_addresses.length === 0">
+      <div class="s12 offset-s1 col">
+        -
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="s12 offset-s1 col">
+        <div ng-repeat="source_addresses in rules.source_addresses track by $index" ng-bind="source_addresses">
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="s12 offset-s1 col">
+        <strong>Destination Addresses</strong>
+      </div>
+    </div>
+
+    <div class="row" ng-show="rules.destination_addresses.length === 0">
+      <div class="s12 offset-s1 col">-</div>
+    </div>
+
+    <div class="row">
+      <div class="s12 offset-s1 col">
+        <div ng-repeat="destination_addresses in rules.destination_addresses track by $index" ng-bind="destination_addresses">
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="s12 offset-s1 col">
+        <strong>Destination Ports</strong>
+      </div>
+    </div>
+
+    <div class="row" ng-show="rules.destination_ports.length === 0">
+      <div class="s12 offset-s1 col">
+        -
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="s12 offset-s1 col">
+        <div ng-repeat="destination_ports in rules.destination_ports track by $index" ng-bind="destination_ports">
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="s12 offset-s1 col">
+        <strong>Destination Fqdns</strong>
+      </div>
+    </div>
+
+    <div class="row" ng-show="rules.destination_fqdns.length === 0">
+      <div class="s12 offset-s1 col">
+        -
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="s12 offset-s1 col">
+        <div ng-repeat="destination_fqdns in rules.destination_fqdns track by $index" ng-bind="destination_fqdns">
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="s12 offset-s1 col">
+        <strong>Source Ip Groups</strong>
+      </div>
+    </div>
+
+    <div class="row" ng-show="rules.source_ip_groups.length === 0">
+      <div class="s12 offset-s1 col">
+        -
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="s12 offset-s1 col">
+        <div ng-repeat="source_ip_groups in rules.source_ip_groups track by $index"
+        ng-bind="source_ip_groups">
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="s12 offset-s1 col">
+        <strong>Destination Ip Groups</strong>
+      </div>
+    </div>
+
+    <div class="row" ng-show="rules.destination_ip_groups.length === 0">
+      <div class="s12 offset-s1 col">
+        -
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="s12 offset-s1 col">
+        <div ng-repeat="destination_ip_groups in rules.destination_ip_groups track by $index"
+        ng-bind="destination_ip_groups">
+        </div>
+      </div>
+    </div>
+  </div>
+  <br/>
+</div>
+
+<div class="row">
+  <div class="s12 col">
+    <h5>Ip Configurations</h5>
+  </div>
+</div>
+
+<div class="row" ng-show="resource.ip_configurations.length === 0">
+  <div class="s12 col">
+    -
+  </div>
+</div>
+
+<div class="row" ng-repeat="ip_configurations in resource.ip_configurations track by $index">
+  <div class="row" ng-show="ip_configurations.name">
+    <div class="s12 col superlong"><strong ng-bind="ip_configurations.name" style="text-decoration: underline"></strong> &nbsp;&nbsp;&nbsp; ({{ip_configurations.type}})</div>
+  </div>
+  <div class="row" ng-show="ip_configurations.private_ip_address">
+    <div class="s12 col">
+      <strong>Private Ip Address</strong>
+    </div>
+
+    <div class="s12 col" ng-bind="ip_configurations.private_ip_address">
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="s12 col">
+      <strong>Public Ip Address</strong>
+    </div>
+  </div>
+
+  <div class="row" ng-hide="info.ip_configuration_map[ip_configurations.public_ip_address_id.toLowerCase()]">
+    <div class="s12 col">
+      -
+    </div>
+  </div>
+
+  <div class="row" ng-show="info.ip_configuration_map[ip_configurations.public_ip_address_id.toLowerCase()]">
+    <div class="s12 col">
+      <a ng-click="selectResource(info.ip_configuration_map[ip_configurations.public_ip_address_id.toLowerCase()])" ng-bind="info.ip_configuration_map[ip_configurations.public_ip_address_id.toLowerCase()].name"></a>
+    </div>
+  </div>
+
+  <div class="row" ng-show="ip_configurations.provisioning_state">
+    <div class="s12 col">
+      <strong>Provisioning State</strong>
+    </div>
+
+    <div class="s12 col" ng-bind="ip_configurations.provisioning_state">
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="s12 col">
+      <strong>Subnet</strong>
+    </div>
+  </div>
+
+  <div class="row" ng-show="ip_configurations.subnet_id.length === 0">
+    <div class="s12 col">
+      -
+    </div>
+  </div>
+
+  <div class="row" ng-show="ip_configurations.subnet_id">
+    <div class="s12 col">
+      <a ng-click="selectResource(info.subnets_map[ip_configurations.subnet_id.toLowerCase()])" ng-bind="info.subnets_map[ip_configurations.subnet_id.toLowerCase()].name"></a>
+    </div>
+  </div>
+  <br/>
+</div>
+
+<div class="row">
+  <div class="s12 col">
+    <h5>Management Ip Configuration</h5>
+    {{(resource.management_ip_configuration | json) != '{}'}}
+  </div>
+</div>
+<div class="row" ng-hide="(resource.management_ip_configuration | json) != '{}'">
+  <div class="s12 col">
+    -
+  </div>
+</div>
+<div class="row" ng-show="(resource.management_ip_configuration | json) != '{}'">
+  <div class="row" ng-show="resource.management_ip_configuration.name">
+    <div class="s12 col"><strong ng-bind="resource.management_ip_configuration.name" style="text-decoration: underline"></strong> &nbsp;&nbsp;&nbsp; ({{resource.management_ip_configuration.type}})</div>
+  </div>
+  <div class="row" ng-show="resource.management_ip_configuration.private_ip_address">
+    <div class="s12 col">
+      <strong>Private Ip Address</strong>
+    </div>
+
+    <div class="s12 col" ng-bind="resource.management_ip_configuration.private_ip_address">
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="s12 col">
+      <strong>Public Ip Address</strong>
+    </div>
+  </div>
+
+  <div class="row" ng-hide="info.public_ip_map[resource.management_ip_configuration.public_ip_address_id.toLowerCase()]">
+    <div class="s12 col">
+      -
+    </div>
+  </div>
+
+  <div class="row" ng-show="info.public_ip_map[resource.management_ip_configuration.public_ip_address_id.toLowerCase()]">
+    <div class="s12 col" ng-bind="resource.management_ip_configuration.public_ip_address_id">
+    </div>
+    <div class="s12 col">
+      <a ng-click="selectResource(info.public_ip_map[resource.management_ip_configuration.public_ip_address_id.toLowerCase()])" ng-bind="info.public_ip_map[management_ip_configuration.public_ip_address_id.toLowerCase()].name"></a>
+    </div>
+  </div>
+
+  <div class="row" ng-show="resource.management_ip_configuration.provisioning_state">
+    <div class="s12 col">
+      <strong>Provisioning State</strong>
+    </div>
+
+    <div class="s12 col" ng-bind="resource.management_ip_configuration.provisioning_state">
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="s12 col">
+      <strong>Subnet</strong>
+    </div>
+  </div>
+
+  <div class="row" ng-show="resource.management_ip_configuration.subnet_id.length === 0">
+    <div class="s12 col">
+      -
+    </div>
+  </div>
+
+  <div class="row" ng-show="resource.management_ip_configuration.subnet_id">
+    <div class="s12 col">
+      <a ng-click="selectResource(info.subnets_map[resource.management_ip_configuration.subnet_id.toLowerCase()])" ng-bind="info.subnets_map[management_ip_configuration.subnet_id.toLowerCase()].name"></a>
+    </div>
+  </div>
+
+</div>
+
+<div class="row">
+  <div class="s12 col">
+    <h5>Virtual Hub</h5>
+  </div>
+</div>
+
+<div class="row" ng-hide="(resource.virtual_hub | json) != '{}'">
+  <div class="s12 col">
+    -
+  </div>
+</div>
+
+<div class="row" ng-repeat="(key, value) in resource.virtual_hub track by $index">
+  <div class="s3 col"><strong>{{key.toUpperCase()}}:</strong></div>
+  <div class="s9 col" ng-bind="value">
+  </div>
+</div>
+
+<div class="row">
+  <div class="s12 col">
+    <h5>Hub Ip Addresses</h5>
+  </div>
+</div>
+<div class="row" ng-hide="resource.hub_ip_addresses">
+  <div class="s12 col">
+    -
+  </div>
+</div>
+<div class="row" ng-hide="(resource.hub_ip_addresses | json) != '{}'">
+  <div class="s12 col">
+    -
+  </div>
+</div>
+<div class="row" ng-show="(resource.hub_ip_addresses | json) != '{}'">
+  <div class="row" ng-show="resource.hub_ip_addresses.private_ip_address">
+    <div class="s12 col">
+      <strong>Private Ip Address</strong>
+    </div>
+
+    <div class="s12 col" ng-bind="resource.hub_ip_addresses.private_ip_address">
+    </div>
+  </div>
+
+  <div class="row" ng-show="resource.hub_ip_addresses.private_ip_address">
+    <div class="s12 col">
+      <strong>Public Ip Address</strong>
+    </div>
+  </div>
+
+  <div class="row" ng-hide="(resource.hub_ip_addresses.public_ips | json) != '{}'">
+    <div class="s12 col">
+      -
+    </div>
+  </div>
+
+  <div class="row" >
+    <div class="s12 col">
+      <div ng-repeat="public_ip in resource.hub_ip_addresses.public_ips.addresses track by $index" ng-bind="public_ip"></div>
+    </div>
+  </div>
+
+  <div class="row" ng-show="resource.hub_ip_addresses.provisioning_state">
+    <div class="s12 col">
+      <strong>Provisioning State</strong>
+    </div>
+
+    <div class="s12 col" ng-bind="resource.hub_ip_addresses.provisioning_state">
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="s12 col">
+    <h5>Ip Groups</h5>
+  </div>
+</div>
+
+<div class="row" ng-hide="resource.ip_groups">
+  <div class="s12 col">
+    -
+  </div>
+</div>
+
+<div class="row">
+  <div class="s12 col">
+    <div ng-repeat="ip_groups in resource.ip_groups track by $index" ng-bind="ip_groups">
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="s12 col">
+    <h5>Sku</h5>
+  </div>
+</div>
+
+<div class="row" ng-show="resource.sku.length === 0">
+  <div class="s12 col">
+    -
+  </div>
+</div>
+
+<div class="row" ng-repeat="(key, value) in resource.sku track by $index">
+  <div class="s3 col"><strong>{{key.toUpperCase()}}:</strong></div>
+  <div class="s9 col" ng-bind="value"></div>
+</div>
+
+<div class="row" ng-show="resource.additional_properties">
+  <div class="s12 col">
+    <h5>Additional Properties</h5>
+  </div>
+</div>
+
+<div class="row" ng-repeat="(key, value) in resource.additional_properties track by $index">
+  <div class="s12 col"><strong>{{key}}:</strong></div>
+  <div class="s12 col" ng-bind="value"></div>
+</div>
+
+<div class="row">
+  <div class="s12 col">
+    <h5>Zones</h5>
+  </div>
+</div>
+
+<div class="row" ng-show="resource.zones.length === 0">
+  <div class="s12 col">
+    -
+  </div>
+</div>
+
+<div class="row">
+  <div class="s12 col">
+    <div ng-repeat="zones in resource.zones track by $index" ng-bind="zones">
+    </div>
+  </div>
+</div>
+
+<div class="row" ng-show="resource.location">
+  <div class="s4 col">
+    <strong>Location</strong>
+  </div>
+
+  <div class="s8 col" ng-bind="resource.location">
+  </div>
+</div>
+
+<div class="row" ng-show="resource.tags.length > 0">
+  <div class="s4 col">
+    <strong>Tags</strong>
+  </div>
+
+  <div class="s8 col" ng-bind="resource.tags">
+  </div>
+</div>

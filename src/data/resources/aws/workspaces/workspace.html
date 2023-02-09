@@ -1,0 +1,92 @@
+<div class="row">
+  <div class="s12 col">
+    <small ng-bind="resource.bundle.compute_type"></small><br />
+    <strong ng-bind="resource.bundle.description"></strong>
+  </div>
+</div>
+
+<hr />
+
+<!-- ATTRIBUTES -->
+<div class="row">
+  <div class="s6 col"><strong>Username</strong></div>
+  <div class="s6 col" ng-bind="resource.user_name"></div>
+</div>
+<div class="row">
+  <div class="s6 col"><strong>State</strong></div>
+  <div class="s6 col" ng-bind="resource.status"></div>
+</div>
+<div class="row">
+  <div class="s6 col"><strong>IP Address</strong></div>
+  <div class="s6 col">
+    <span ng-if="resource.ip_address" ng-bind="resource.ip_address"></span>
+    <span ng-if="!resource.ip_address">None</span>
+  </div>
+</div>
+<div class="row" ng-if="resource.property_compute_type_name">
+  <div class="s6 col"><strong>Computer Type</strong></div>
+  <div class="s6 col" ng-bind="resource.property_compute_type_name"></div>
+</div>
+<div class="row">
+  <div class="s6 col"><strong>Root Volume</strong></div>
+  <div class="s6 col">{{resource.property_root_volume_size_gib}} GB</div>
+</div>
+<div class="row">
+  <div class="s6 col"><strong>User Volume</strong></div>
+  <div class="s6 col">{{resource.property_user_volume_size_gib}} GB</div>
+</div>
+<div class="row">
+  <div class="s6 col"><strong>Computer Name</strong></div>
+  <div class="s6 col">
+    <span ng-if="resource.computer_name" ng-bind="resource.computer_name"></span>
+    <span ng-if="!resource.computer_name">None</span>
+  </div>
+</div>
+<div class="row">
+  <div class="s6 col"><strong>Running Mode</strong></div>
+  <div class="s6 col">
+    <span ng-if="resource.property_running_mode === 'AUTO_STOP'">AutoStop</span>
+    <span ng-if="resource.property_running_mode === 'ALWAYS_ON'">Always On</span>
+  </div>
+</div>
+<div class="row">
+  <div class="s6 col"><strong>AutoStop Time</strong></div>
+  <div class="s6 col">{{resource.property_running_mode_auto_stop_timeout_in_minutes}} min</div>
+</div>
+<div class="row">
+  <div class="s12 col"><strong>WorkSpace Directory</strong></div>
+  <div class="s12 col"><a ng-click="selectResource(info.directory)">{{info.directory.name}}</a></div>
+</div>
+
+<hr />
+
+<div ng-show="info.security_groups.length > 0">
+  <div class="row">
+    <div class="s12 col"><h5>Security Groups</h5></div>
+  </div>
+  <div ng-repeat="sg in info.security_groups">
+    <div class="row">
+      <div class="s12 col attributes-name"><strong><a ng-click="selectResource(sg)">{{sg.name}}</a></strong></div>
+    </div>
+  </div>
+</div>
+
+<div ng-show="info.ip_groups.length > 0">
+  <div class="row">
+    <div class="s12 col"><h5>IP Access Controls</h5></div>
+  </div>
+  <div ng-repeat="ip_group in info.ip_groups">
+    <div class="row">
+      <div class="s12 col attributes-name"><strong ng-bind="ip_group.name"></strong></div>
+      <div class="s12 col" ng-bind="ip_group.description"></div>
+      <div class="s12 col">
+        <ul>
+          <li ng-repeat="rule in ip_group.user_rules">
+            {{rule.ip_rule}} <small ng-if="rule.description">({{rule.description}})</small>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+

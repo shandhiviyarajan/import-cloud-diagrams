@@ -1,0 +1,20 @@
+<div class="designer-svg-icons">
+  <!-- inject:svg --><!-- endinject -->
+</div>
+
+<div class="designer-heading">
+  <div class="designer-stuff truncate">
+    <div class="designer-stuff-title">{{Designer.environment.name}}</div>
+  </div>
+  <div ng-if="Designer.show_export" sharer></div>
+  <div ng-if="Designer.show_export" exporter></div>
+  <div ng-if="Designer.show_controls" view-options></div>
+</div>
+<div class="designer-content" ng-class="{apogee: Designer.watermarked}">
+  <div workspace>&nbsp;</div>
+
+  <div ng-if="Designer.show_sidebar" sidebar></div>
+</div>
+<div class="designer-layout" id="designer-layout">
+  <div designer-layout></div>
+</div>

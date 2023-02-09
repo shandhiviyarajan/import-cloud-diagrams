@@ -1,0 +1,44 @@
+<!doctype html>
+<html ng-app="designerz">
+  <head>
+    <meta charset="utf-8">
+    <meta name="language" content="english">
+    <title>Hava Viewer</title>
+    <link rel="stylesheet" href="dist/hava.designer.fonts.css">
+    <link rel="stylesheet" href="dist/hava.designer.css">
+    <style>
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        font-size: 16px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="viewer-isolation">
+      <div class="designer" model="design" show-controls="false" show-attributes="false" fit-to-content="true" default-layer="Layers::Original" designer></div>
+    </div>
+    <script src="node_modules/jquery/dist/jquery.js"></script>
+    <script src="node_modules/angular/angular.js"></script>
+    <script src="node_modules/materialize-css/dist/js/materialize.min.js"></script>
+    <script src="dist/hava.designer.vendor.js"></script>
+    <script src="dist/hava.designer.js"></script>
+    <script src="dist/hava.designer.templates.js"></script>
+    <!-- <script src="http://localhost:8080/dist/terraformimporter.js"></script> -->
+    <script src="assets/environments/default.js"></script>
+
+    <script>
+      angular.module("designerz", [
+        "designer",
+        "designer.configuration"
+      ])
+      .run(["$rootScope", "DesignerConfig", function ($rootScope, DesignerConfig) {
+        DesignerConfig.set("enable3DView", false);
+        DesignerConfig.set("exportFormats", ["pdf", "png", "vsdx", "csv", "json"]);
+        $rootScope.design = defaultDesign;
+      }]);
+  </script>
+</body>
+
+</html>

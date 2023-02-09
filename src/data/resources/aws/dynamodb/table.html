@@ -1,0 +1,214 @@
+<!-- Attributes -->
+<div class="row">
+  <div class="s12 col"><strong>Primary Partition Key</strong></div>
+  <div class="s12 col" ng-bind="info.primary_partition_key.name + ' (' + info.primary_partition_key.type + ')'"></div>
+</div>
+<div class="row">
+  <div class="s12 col"><strong>Primary Sort Key</strong></div>
+  <div class="s12 col" ng-bind="info.primary_sort_key.name + ' (' + info.primary_sort_key.type + ')'" ng-if="info.primary_sort_key"></div>
+  <div class="s12 col" ng-if="!info.primary_sort_key">-</div>
+</div>
+<div class="row">
+  <div class="s12 col"><strong>Status</strong></div>
+  <div class="s12 col" ng-bind="resource.status" ng-class="resource.status_list[resource.status]"></div>
+</div>
+<div class="row">
+  <div class="s12 col"><strong>Creation Date</strong></div>
+  <div class="s12 col" ng-bind="resource.creation_date_time"></div>
+</div>
+<div class="row">
+  <div class="s12 col"><strong>Table Size</strong></div>
+  <div class="s12 col" ng-bind="resource.table_size_bytes + ' bytes'"></div>
+</div>
+<div class="row">
+  <div class="s12 col"><strong>Item Count</strong></div>
+  <div class="s12 col" ng-bind="resource.item_count"></div>
+</div>
+<div class="row">
+  <div class="s12 col"><strong>Billing Mode</strong></div>
+  <div class="s12 col" ng-if="resource.billing_mode_summary.billing_mode === 'PAY_PER_REQUEST'">On-Demand</div>
+  <div class="s12 col" ng-if="resource.billing_mode_summary.billing_mode !== 'PAY_PER_REQUEST'">Provisioned</div>
+</div>
+
+<hr />
+
+<div class="row">
+  <div class="s10 col end"><h5>Provisioned Throughput</h5></div>
+</div>
+<div class="row">
+  <div class="s8 col"><strong>Read Capacity Units</strong></div>
+  <div class="s4 col" ng-bind="resource.provisioned_throughput.read_capacity_units"></div>
+</div>
+<div class="row">
+  <div class="s8 col"><strong>Write Capacity Units</strong></div>
+  <div class="s4 col" ng-bind="resource.provisioned_throughput.write_capacity_units"></div>
+</div>
+<div class="row">
+  <div class="s12 col"><strong>Last Increase</strong></div>
+  <div class="s12 col" ng-bind="resource.provisioned_throughput.last_increase_date_time || '-'"></div>
+</div>
+<div class="row">
+  <div class="s12 col"><strong>Last Decrease</strong></div>
+  <div class="s12 col" ng-bind="resource.provisioned_throughput.last_decrease_date_time || '-'"></div>
+</div>
+
+<hr />
+
+<div class="row">
+  <div class="s10 col end"><h5>Encryption</h5></div>
+</div>
+<div class="row">
+  <div class="s6 col"><strong>Type</strong></div>
+  <div class="s6 col" ng-if="!resource.sse_description">DEFAULT</div>
+  <div class="s6 col" ng-if="resource.sse_description" ng-bind="resource.sse_description.sse_type"></div>
+</div>
+<div class="row" ng-if="resource.sse_description.status">
+  <div class="s6 col"><strong>Status</strong></div>
+  <div class="s6 col" ng-bind="resource.sse_description.status"></div>
+</div>
+<div class="row" ng-if="resource.sse_description.kms_master_key_arn">
+  <div class="s12 col"><strong>KMS Master Key</strong></div>
+  <div class="s12 col" ng-bind="resource.sse_description.kms_master_key_arn"></div>
+</div>
+
+<div ng-if="resource.stream_specification.stream_enabled">
+  <hr />
+
+  <div class="row">
+    <div class="s10 col end"><h5>Stream Details</h5></div>
+  </div>
+  <div class="row">
+    <div class="s12 col"><strong>View Type</strong></div>
+    <div class="s12 col">
+      <span ng-if="resource.stream_specification.stream_view_type === 'NEW_IMAGE'">New image</span>
+      <span ng-if="resource.stream_specification.stream_view_type === 'OLD_IMAGE'">Old image</span>
+      <span ng-if="resource.stream_specification.stream_view_type === 'NEW_AND_OLD_IMAGES'">New and old images</span>
+      <span ng-if="resource.stream_specification.stream_view_type === 'KEYS_ONLY'">Keys only</span>
+    </div>
+  </div>
+  <div class="row">
+    <div class="s12 col"><strong>Latest Stream ARN</strong></div>
+    <div class="s12 col" ng-bind="resource.latest_stream_arn"></div>
+  </div>
+</div>
+
+<div ng-if="resource.replicas.length">
+  <hr />
+
+  <div class="row">
+    <div class="s12 col end"><h5>Global Table Regions</h5></div>
+  </div>
+  <div class="row">
+    <div class="s12 col"><strong>Global Table Version</strong></div>
+    <div class="s12 col" ng-bind="resource.global_table_version"></div>
+  </div>
+  <div>
+    <div class="s12 col end"><strong>Regions</strong></div>
+  </div>
+  <div class="row" ng-repeat="replica in resource.replicas">
+    <div class="s6 col" ng-bind="replica.region_name"></div>
+    <div class="s6 col" ng-bind="replica.replica_status" ng-class="resource.replica_status_list[replica.replica_status]"></div>
+  </div>
+</div>
+
+<div ng-if="resource.local_secondary_indexes.length">
+  <hr />
+
+  <div class="row">
+    <div class="s12 col end"><h4>Local Secondary Indexes</h4></div>
+  </div>
+  <div ng-repeat="index in resource.local_secondary_indexes">
+    <div class="row">
+      <div class="s12 col"><h5 ng-bind="index.index_name"></h5></div>
+    </div>
+    <div class="row">
+      <div class="s12 col"><strong>Partition Key</strong></div>
+      <div class="s12 col" ng-bind="index.partition_key.name + ' (' + index.partition_key.type + ')'"></div>
+    </div>
+    <div class="row">
+      <div class="s12 col"><strong>Sort Key</strong></div>
+      <div class="s12 col" ng-bind="index.sort_key.name + ' (' + index.sort_key.type + ')'" ng-if="index.sort_key"></div>
+      <div class="s12 col" ng-if="!index.sort_key">-</div>
+    </div>
+    <div class="row">
+      <div class="s12 col"><strong>Projection</strong></div>
+      <div class="s12 col">
+        <span ng-if="index.projection.projection_type === 'ALL'">All</span>
+        <span ng-if="index.projection.projection_type === 'KEYS_ONLY'">Keys only</span>
+        <span ng-if="index.projection.projection_type === 'INCLUDE'">Include <span ng-bind="'(' + index.projection.non_key_attributes.join(', ')  + ')'"></span></span>
+      </div>
+    </div>
+    <div class="row">
+      <div class="s12 col"><strong>Index Size</strong></div>
+      <div class="s12 col" ng-bind="index.index_size_bytes + ' bytes'"></div>
+    </div>
+    <div class="row">
+      <div class="s12 col"><strong>Item Count</strong></div>
+      <div class="s12 col" ng-bind="index.item_count"></div>
+    </div>
+  </div>
+</div>
+
+<div ng-if="resource.global_secondary_indexes.length">
+  <hr />
+
+  <div class="row">
+    <div class="s12 col end"><h4>Global Secondary Indexes</h4></div>
+  </div>
+  <div ng-repeat="index in resource.global_secondary_indexes">
+    <div class="row">
+      <div class="s12 col"><h5 ng-bind="index.index_name"></h5></div>
+    </div>
+    <div class="row">
+      <div class="s12 col"><strong>Status</strong></div>
+      <div class="s12 col" ng-bind="index.index_status" ng-class="resource.index_status_list[index.index_status]"></div>
+    </div>
+    <div class="row">
+      <div class="s12 col"><strong>Partition Key</strong></div>
+      <div class="s12 col" ng-bind="index.partition_key.name + ' (' + index.partition_key.type + ')'"></div>
+    </div>
+    <div class="row">
+      <div class="s12 col"><strong>Sort Key</strong></div>
+      <div class="s12 col" ng-bind="index.sort_key.name + ' (' + index.sort_key.type + ')'" ng-if="index.sort_key"></div>
+      <div class="s12 col" ng-if="!index.sort_key">-</div>
+    </div>
+    <div class="row">
+      <div class="s12 col"><strong>Projection</strong></div>
+      <div class="s12 col">
+        <span ng-if="index.projection.projection_type === 'ALL'">All</span>
+        <span ng-if="index.projection.projection_type === 'KEYS_ONLY'">Keys only</span>
+        <span ng-if="index.projection.projection_type === 'INCLUDE'">Include <span ng-bind="'(' + index.projection.non_key_attributes.join(', ')  + ')'"></span></span>
+      </div>
+    </div>
+    <div class="row">
+      <div class="s12 col"><strong>Index Size</strong></div>
+      <div class="s12 col" ng-bind="index.index_size_bytes + ' bytes'"></div>
+    </div>
+    <div class="row">
+      <div class="s12 col"><strong>Item Count</strong></div>
+      <div class="s12 col" ng-bind="index.item_count"></div>
+    </div>
+    <div class="row" ng-show="index.backfilling">
+      <div class="s12 col"><strong>Backfilling</strong> <span class="octicon octicon-check good"></span></div>
+    </div>
+    <div class="row">
+      <div class="s10 col end"><h5>Provisioned Throughput</h5></div>
+    </div>
+    <div class="row">
+      <div class="s8 col"><strong>Read Capacity Units</strong></div>
+      <div class="s4 col" ng-bind="index.provisioned_throughput.read_capacity_units"></div>
+    </div>
+    <div class="row">
+      <div class="s8 col"><strong>Write Capacity Units</strong></div>
+      <div class="s4 col" ng-bind="index.provisioned_throughput.write_capacity_units"></div>
+    </div>
+    <div class="row">
+      <div class="s12 col"><strong>Last Increase</strong></div>
+      <div class="s12 col" ng-bind="index.provisioned_throughput.last_increase_date_time || '-'"></div>
+    </div>
+    <div class="row">
+      <div class="s12 col"><strong>Last Decrease</strong></div>
+      <div class="s12 col" ng-bind="index.provisioned_throughput.last_decrease_date_time || '-'"></div>
+    </div>
+  </div>
+</div>

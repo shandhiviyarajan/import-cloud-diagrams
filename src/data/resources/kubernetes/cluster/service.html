@@ -1,0 +1,143 @@
+<div class="row">
+  <div class="s12 col"><strong>Cluster</strong></div>
+  <div class="s12 col"><a ng-click="selectResource(info.cluster)">{{info.cluster.name}}</a></div>
+</div>
+<div class="row">
+  <div class="s12 col"><strong>Namespace</strong></div>
+  <div class="s12 col"><a ng-click="selectResource(info.namespace)">{{info.namespace.name}}</a></div>
+</div>
+<div class="row">
+  <div class="s12 col"><strong>Type</strong></div>
+  <div class="s12 col" ng-bind="resource.service_type"></div>
+</div>
+<div class="row" ng-if="resource.cluster_ip">
+  <div class="s12 col"><strong>Cluster IP</strong></div>
+  <div class="s12 col" ng-bind="resource.cluster_ip"></div>
+</div>
+<div class="row" ng-if="resource.cluster_ips && resource.cluster_ips.length > 0 && !(resource.cluster_ips.length === 1 && resource.cluster_ips[0] === resource.cluster_ip)">
+  <div class="s12 col"><strong>Cluster IPs</strong></div>
+  <div class="s12 col" ng-bind="resource.cluster_ips.join(',')"></div>
+</div>
+<div class="row" ng-if="resource.health_check_node_port">
+  <div class="s12 col"><strong>Health Check Node Port</strong></div>
+  <div class="s12 col" ng-bind="resource.health_check_node_port"></div>
+</div>
+<div class="row" ng-if="resource.load_balancer_ip">
+  <div class="s12 col"><strong>Load Balancer IP</strong></div>
+  <div class="s12 col" ng-bind="resource.load_balancer_ip"></div>
+</div>
+<div class="row" ng-if="resource.load_balancer_status">
+  <div class="s12 col"><strong>Load Balancer Status</strong></div>
+  <div class="s12 col">
+    Ingress: <span ng-bind="info.load_balancer_status_ips.join(',')"></span>
+  </div>
+</div>
+<div class="row" ng-if="resource.start_time">
+  <div class="s12 col"><strong>Start Time</strong></div>
+  <div class="s12 col" ng-bind="resource.start_time"></div>
+</div>
+<div class="row" ng-if="resource.ip_families && resource.ip_families.length > 0">
+  <div class="s12 col"><strong>IP Families</strong></div>
+  <div class="s12 col" ng-bind="resource.ip_families.join(',')"></div>
+</div>
+<div class="row" ng-if="resource.ip_family_policy">
+  <div class="s12 col"><strong>IP Family Policy</strong></div>
+  <div class="s12 col" ng-bind="resource.ip_family_policy"></div>
+</div>
+<div class="row" ng-if="resource.internal_traffic_policy">
+  <div class="s12 col"><strong>Internal Traffic Policy</strong></div>
+  <div class="s12 col" ng-bind="resource.internal_traffic_policy"></div>
+</div>
+<div class="row" ng-if="resource.external_name">
+  <div class="s12 col"><strong>External Name</strong></div>
+  <div class="s12 col" ng-bind="resource.external_name"></div>
+</div>
+<div class="row" ng-if="resource.external_ips && resource.external_ips.length > 0">
+  <div class="s12 col"><strong>External IPs</strong></div>
+  <div class="s12 col" ng-bind="resource.external_ips.join(',')"></div>
+</div>
+<div class="row" ng-if="resource.external_traffic_policy">
+  <div class="s12 col"><strong>External Traffic Policy</strong></div>
+  <div class="s12 col" ng-bind="resource.external_traffic_policy"></div>
+</div>
+<div class="row" ng-if="resource.load_balancer_source_ranges && resource.load_balancer_source_ranges.length > 0">
+  <div class="s12 col"><strong>Load Balancer Source Ranges</strong></div>
+  <div class="s12 col" ng-bind="resource.load_balancer_source_ranges.join(',')"></div>
+</div>
+<div class="row" ng-if="resource.publish_not_ready_addresses">
+  <div class="s12 col">
+    <strong>Publish Not Ready Addresses</strong>
+    <span class="octicon octicon-check good" ng-show="resource.publish_not_ready_addresses"></span>
+  </div>
+</div>
+<div class="row" ng-if="resource.session_affinity">
+  <div class="s12 col"><strong>Session Affinity</strong></div>
+  <div class="s12 col" ng-bind="resource.session_affinity"></div>
+</div>
+<!--"session_affinity_config"=>{"clientIP"=>{"timeoutSeconds"=>10800}}}-->
+<div class="row" ng-if="resource.session_affinity_config">
+  <div class="s12 col"><strong>Session Affinity Config</strong></div>
+  <div class="s12 col">
+    Client IP Timeout: <span ng-bind="resource.session_affinity_config.clientIP.timeoutSeconds"></span> seconds
+  </div>
+</div>
+<div class="row" ng-if="resource.topology_keys">
+  <div class="s12 col"><strong>Topology keys</strong></div>
+  <div class="s12 col" ng-repeat="key in resource.topology_keys">
+    <small>
+      ∟ <span ng-bind="key"></span>
+    </small>
+  </div>
+</div>
+<div class="row">
+  <div class="s12 col"><strong>Selector</strong></div>
+  <div class="s12 col" ng-repeat="(key, val) in resource.selector">
+    <small>
+      ∟ <strong ng-bind="key"></strong>: <span ng-bind="val"></span>
+    </small>
+  </div>
+</div>
+
+<div ng-show="resource.ports.length > 0">
+  <div class="row">
+    <div class="s12 col"><h5>Ports</h5></div>
+  </div>
+  <div class="row attributes-sublist" ng-repeat="port in resource.ports">
+    <div class="row">
+      <div class="s12 col"><strong ng-bind="port.name"></strong></div>
+    </div>
+    <div class="row">
+      <div class="s12 col">
+        <small>
+          ∟ From port <strong ng-bind="port.port"></strong> to <strong ng-bind="port.targetPort"></strong> (<small ng-bind="port.protocol"></small>)
+        </small>
+      </div>
+    </div>
+    <div class="row" ng-if="port.nodePort">
+      <div class="s12 col">
+        <small>
+          ∟ Node Port: <strong ng-bind="port.nodePort"></strong>
+        </small>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div ng-show="info.pods.length > 0">
+  <div class="row">
+    <div class="s12 col"><h5>Pods</h5></div>
+  </div>
+  <div class="row" ng-show="!info.pods.length">
+    <div class="s12 col">None</div>
+  </div>
+  <div ng-repeat="pod in info.pods | orderBy:'name' track by $index">
+    <div class="row">
+      <div class="s12 col attributes-name"><strong><a ng-click="selectResource(pod)">{{pod.name}}</a></strong></div>
+      <div class="s12 col" ng-if="pod.endpoint_ip">
+        <small>
+          ∟ Endpoint: <strong ng-bind="pod.endpoint_ip"></strong>
+        </small>
+      </div>
+    </div>
+  </div>
+</div>

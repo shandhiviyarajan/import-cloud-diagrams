@@ -1,0 +1,35 @@
+<div ng-show="info.routes.length > 0">
+  <div class="row">
+    <div class="s12 col"><h5>Routes</h5></div>
+  </div>
+  <div class="sub-title" ng-repeat="route in info.routes | orderBy:['destination_cidr_block','destination_ipv_6_cidr_block', 'destination_prefix_list_id'] track by $index">
+    <div class="row">
+      <div class="s7 col"><strong ng-bind="route.destination_cidr_block || route.destination_ipv_6_cidr_block || route.destination_prefix_list_id"></strong></div>
+      <div class="s5 col text-right" ng-bind="route.state" ng-class="resource.route_status_list[route.state]"></div>
+    </div>
+    <div class="row" ng-if="route.origin === 'EnableVgwRoutePropagation'">
+      <div class="s12 col"><small>Propagated</small></div>
+    </div>
+    <div class="row" ng-repeat="(id, value) in info.connection_ids" ng-if="route[id]">
+      <div class="s12 col" ng-show="route[value]">
+        ∟ <svg><use xlink:href="{{route[value].image}}" /></svg> <a ng-click="selectResource(route[value])">{{route[value].name}}</a>
+      </div>
+      <div class="s12 col" ng-show="!route[value]">
+        ∟ <span ng-bind="route[id]"></span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div ng-show="info.subnets.length > 0">
+  <div class="row">
+    <div class="s12 col"><h5>Subnets</h5></div>
+  </div>
+  <div ng-repeat="subnet in info.subnets track by $index">
+    <div class="row">
+      <div class="s12 col attributes-name">
+        <a ng-click="selectResource(subnet)">{{subnet.name}}</a>
+      </div>
+    </div>
+  </div>
+</div>

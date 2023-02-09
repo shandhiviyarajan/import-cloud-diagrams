@@ -1,0 +1,11 @@
+<div ng-show="has_tags">
+  <div class="row">
+    <div class="s12 col">
+      <h5><span class="octicon octicon-tag"></span> Tags</h5>
+    </div>
+  </div>
+  <div class="row" ng-repeat="(key, value) in tags">
+    <div class="s12 col"><strong ng-bind="key"></strong>:</div>
+    <div class="s12 col"><span ng-bind="value"></span></div>
+  </div>
+</div>

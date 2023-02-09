@@ -1,0 +1,50 @@
+<!-- ATTRIBUTES -->
+<div class="row" ng-show="resource.remote_domain_name">
+  <div class="s7 col"><strong>Remote Domain Name</strong></div>
+  <div class="s5 col" ng-bind="resource.remote_domain_name"></div>
+</div>
+<div class="row" ng-show="resource.trust_type">
+  <div class="s7 col"><strong>trust_type</strong></div>
+  <div class="s5 col" ng-bind="resource.trust_type"></div>
+</div>
+<div class="row" ng-show="resource.trust_type">
+  <div class="s7 col"><strong>trust_type</strong></div>
+  <div class="s5 col" ng-bind="resource.trust_type"></div>
+</div>
+<div class="row" ng-show="resource.trust_direction">
+  <div class="s7 col"><strong>Trust Direction</strong></div>
+  <div class="s5 col" ng-bind="resource.trust_direction"></div>
+</div>
+<div class="row" ng-show="resource.trust_state">
+  <div class="s7 col"><strong>Trust State</strong></div>
+  <div class="s5 col" ng-bind="resource.trust_state"></div>
+</div>
+<div class="row" ng-show="resource.trust_state_reason">
+  <div class="s7 col"><strong>Trust State Reason</strong></div>
+  <div class="s5 col" ng-bind="resource.trust_state_reason"></div>
+</div>
+<div class="row" ng-show="resource.selective_auth">
+  <div class="s7 col"><strong>Selective Auth</strong></div>
+  <div class="s5 col" ng-bind="resource.selective_auth"></div>
+</div>
+
+<div class="row" ng-show="resource.created_date_time">
+  <div class="s12 col"><strong>Created Date</strong></div>
+  <div class="s12 col" ng-bind="resource.created_date_time"></div>
+</div>
+<div class="row" ng-show="resource.created_date_time">
+  <div class="s12 col"><strong>Last Updated Date</strong></div>
+  <div class="s12 col" ng-bind="resource.last_updated_date_time"></div>
+</div>
+<div class="row" ng-show="resource.state_last_updated_date_time">
+  <div class="s12 col"><strong>State Last Updated</strong></div>
+  <div class="s12 col" ng-bind="resource.state_last_updated_date_time"></div>
+</div>
+
+<hr />
+<div class="row">
+  <div class="s12 col"><h5>Directory</h5></div>
+</div>
+<div class="row">
+  <div class="s12 col"><a ng-click="selectResource(info.directory)">{{info.directory.name}}</a></div>
+</div>

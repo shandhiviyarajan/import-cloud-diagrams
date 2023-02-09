@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="92px" height="92px" viewBox="0 0 92 92" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <!-- Generator: Sketch 3.3.2 (12043) - http://www.bohemiancoding.com/sketch -->
+    <title>Database copy_Amazon RDS</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <g id="Database-copy_Amazon-RDS" sketch:type="MSLayerGroup" transform="translate(-259.000000, -15.000000)">
+            <g id="Layer_1" transform="translate(260.000000, 16.000000)" sketch:type="MSShapeGroup">
+                <circle id="Oval-1" stroke="#979797" fill="#FFFFFF" cx="45" cy="45" r="45"></circle>
+                <g id="Group" transform="translate(13.000000, 8.000000)">
+                    <path d="M0.055,57.088 L7.535,65.854 L7.535,8.138 L0.055,16.901 L0.055,57.088 Z" id="Shape" fill="#1A476F"></path>
+                    <path d="M7.536,65.854 L21.829,73 L21.839,0.999 L7.536,8.122 L7.536,65.854 Z" id="Shape" fill="#205B98"></path>
+                    <path d="M63.945,16.901 L56.463,8.138 L56.463,65.854 L63.945,57.089 L63.945,16.901 Z" id="Shape" fill="#2D72B8"></path>
+                    <path d="M42.17,73 L56.463,65.854 L56.463,8.122 L42.16,0.999 L42.17,73 Z" id="Shape" fill="#5294CF"></path>
+                    <rect id="Rectangle-path" fill="#2D72B8" x="21.839" y="0.999" width="20.321" height="72.002"></rect>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

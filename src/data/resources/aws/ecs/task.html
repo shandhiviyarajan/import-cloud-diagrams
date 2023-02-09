@@ -1,0 +1,58 @@
+<!-- ATTRIBUTES!!! -->
+<div class="row">
+  <div class="s12 col"><strong>Cluster</strong></div>
+  <div class="s12 col"><a ng-click="selectResource(info.cluster)">{{info.cluster.name}}</a></div>
+</div>
+<div class="row">
+  <div class="s12 col"><strong>Service</strong></div>
+  <div class="s12 col" ng-if="info.service"><a ng-click="selectResource(info.service)">{{info.service.name}}</a></div>
+  <div class="s12 col" ng-if="!info.service">None</div>
+</div>
+<div class="row">
+  <div class="s12 col"><strong>Containers</strong></div>
+  <div class="s12 col" ng-repeat="container in info.containers"><a ng-click="selectResource(container)">{{container.name}}</a></div>
+</div>
+<div class="row">
+  <div class="s12 col"><strong>Container Instance</strong></div>
+  <div class="s12 col"><a ng-click="selectResource(info.container_instance)">{{info.container_instance.name}}</a></div>
+</div>
+<div class="row">
+  <div class="s12 col"><strong>Task Definition</strong></div>
+  <div class="s12 col word-wrap"><a ng-click="selectResource(info.task_definition)">{{info.task_definition.name}}</a></div>
+</div>
+<div class="row">
+  <div class="s12 col"><strong>Group</strong></div>
+  <div class="s12 col word-wrap" ng-bind="resource.group"></div>
+</div>
+<!-- TODO: color based on value -->
+<div class="row">
+  <div class="s5 col"><strong>Last Status</strong></div>
+  <div class="s7 col" ng-bind="resource.last_status" ng-class="resource.status_list[resource.status]"></div>
+</div>
+<div class="row">
+  <div class="s5 col"><strong>Desired Status</strong></div>
+  <div class="s7 col" ng-bind="resource.desired_status" ng-class="resource.status_list[resource.desired_status.toLowerCase()]"></div>
+</div>
+<div class="row">
+  <div class="s12 col"><strong>Started</strong></div>
+  <div class="s12 col" ng-bind="resource.started_at"></div>
+</div>
+<div class="row" ng-show="resource.stopped_reason">
+  <div class="s12 col"><strong>Stopped Reason</strong></div>
+  <div class="s12 col" ng-bind="resource.stopped_reason"></div>
+</div>
+
+<div ng-show="info.attachments.length > 0">
+  <div class="row">
+    <div class="s12 col"><h5>Attachments</h5></div>
+  </div>
+  <div ng-repeat="attachment in info.attachments">
+    <div class="row">
+      <div class="s12 col attributes-name truncate"><strong><a ng-click="selectResource(attachment)">{{attachment.name}}</a></strong></div>
+      <!--<div class="s8 col attributes-name truncate" ng-bind="task.task_definition"></div>-->
+      <!--<div class="s12 col">-->
+        <!--∟ <span class="label" ng-bind="task.desired_status" ng-class="{success: task.desired_status === 'RUNNING'}"></span>-->
+      <!--</div>-->
+    </div>
+  </div>
+</div>

@@ -1,0 +1,132 @@
+<div class="row sub-title">
+  <div class="s12 col">
+    <small ng-if="resource.project">
+      <strong>Project</strong><br />
+      <span ng-bind="resource.project"></span>
+    </small>
+  </div>
+
+</div>
+
+<div class="row" ng-show="resource.profile">
+  <div class="s5 col">
+    <strong>Profile</strong>
+  </div>
+
+  <div class="s7 col" ng-bind="resource.profile">
+  </div>
+</div>
+
+<div class="row" ng-show="resource.description">
+  <div class="s12 col">
+    <strong>Description</strong>
+  </div>
+
+  <div class="s12 col" ng-bind="resource.description">
+  </div>
+</div>
+
+<div class="row" ng-show="resource.min_tls_version">
+  <div class="s12 col">
+    <strong>Min TLS Version</strong>
+  </div>
+
+  <div class="s12 col" ng-bind="resource.min_tls_version">
+  </div>
+</div>
+
+<div class="row" ng-show="resource.creation_timestamp">
+  <div class="s12 col">
+    <strong>Creation Timestamp</strong>
+  </div>
+
+  <div class="s12 col" ng-bind=
+  "resource.creation_timestamp | date:'yyyy-MM-dd HH:mm:ss'">
+  </div>
+</div>
+
+<div ng-show="resource.warnings.length">
+  <div class="row">
+    <div class="s12 col">
+      <h5>Warnings</h5>
+    </div>
+  </div>
+
+  <div ng-repeat="warnings in resource.warnings">
+    <div class="row" ng-show="warnings.code">
+      <div class="s5 col">
+        <strong>Code</strong>
+      </div>
+
+      <div class="s7 col" ng-bind="warnings.code">
+      </div>
+    </div>
+
+    <div class="row" ng-show="warnings.message">
+      <div class="s12 col">
+        <strong>Message</strong>
+      </div>
+
+      <div class="s12 col" ng-bind="warnings.message">
+      </div>
+    </div>
+  </div>
+</div>
+
+<div ng-show="resource.custom_features.length">
+  <div class="row">
+    <div class="s12 col">
+      <h5>Custom Features</h5>
+    </div>
+    <div class="s12 col">
+      <ul>
+        <li ng-repeat="cf in resource.custom_features">{{cf}}</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div ng-show="resource.enabled_features.length">
+  <div class="row">
+    <div class="s12 col">
+      <h5>Enabled Features</h5>
+    </div>
+    <div class="s12 col">
+      <ul>
+        <li ng-repeat="ef in resource.enabled_features">{{ef}}</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div ng-show="info.target_https_proxies.length">
+  <div class="row">
+    <div class="s12 col">
+      <h5>Target HTTPS Proxies</h5>
+    </div>
+  </div>
+
+  <div ng-repeat="target in info.target_https_proxies track by $index">
+    <div class="row">
+      <div class="s12 col attributes-name">
+        <svg><use xlink:href="{{target.image}}" /></svg><a ng-click="selectResource(target)">{{target.name}}</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div ng-show="info.target_ssl_proxies.length">
+  <div class="row">
+    <div class="s12 col">
+      <h5>Target SSL Proxies</h5>
+    </div>
+  </div>
+
+  <div ng-repeat="target in info.target_ssl_proxies track by $index">
+    <div class="row">
+      <div class="s12 col attributes-name">
+        <svg><use xlink:href="{{target.image}}" /></svg><a ng-click="selectResource(target)">{{target.name}}</a>
+      </div>
+    </div>
+  </div>
+</div>

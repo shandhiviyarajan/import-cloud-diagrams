@@ -1,0 +1,150 @@
+<!-- ATTRIBUTES -->
+<div class="row">
+  <div class="s7 col"><strong>REST API</strong></div>
+  <div class="s5 col"><a ng-click="selectResource(info.rest_api)">{{info.rest_api.name}}</a></div>
+</div>
+
+<div class="row">
+  <div class="s7 col"><strong>Resource</strong></div>
+  <div class="s5 col"><a ng-click="selectResource(info.api_resource)">{{info.api_resource.name || '/'}}</a></div>
+</div>
+<div class="row" ng-show="resource.http_method">
+  <div class="s7 col"><strong>HTTP Method</strong></div>
+  <div class="s5 col" ng-bind="resource.http_method"></div>
+</div>
+<div class="row">
+  <div class="s7 col"><strong>API Key Required</strong></div>
+  <div class="s5 col">
+    <span class="octicon octicon-check good" ng-show="resource.api_key_required"></span>
+    <span class="octicon octicon-x bad" ng-show="!resource.api_key_required"></span>
+  </div>
+</div>
+<div class="row">
+  <div class="s7 col"><strong>Authorization Type</strong></div>
+  <div class="s5 col" ng-bind="resource.authorization_type"></div>
+</div>
+<div class="row" ng-show="resource.operation_name">
+  <div class="s7 col"><strong>Operation Name</strong></div>
+  <div class="s5 col" ng-bind="resource.operation_name"></div>
+</div>
+
+<!-- TODO: I think this is json. CHeck the output anyways, don't know if we need an h5 for this -->
+<div ng-show="resource.request_parameters">
+  <div class="row">
+    <div class="s12 col"><h5>Request Parameters</h5></div>
+    <div ng-repeat="(key, val) in resource.request_parameters track by $index">
+        <div class="s12 col" ng-show="val">{{key}}: {{val}}</div>
+    </div>
+  </div>
+</div>
+
+<div ng-show="resource.request_models">
+  <div class="row">
+    <div class="s12 col"><h5>Request Models</h5></div>
+    <div class="s12 col attributes-name" ng-bind="resource.request_models"></div>
+  </div>
+</div>
+
+<div ng-show="resource.method_responses.length">
+  <div class="row">
+    <div class="s12 col"><h5>Method Responses</h5></div>
+  </div>
+  <div ng-repeat="method_responses in resource.method_responses track by $index">
+    <div ng-repeat="(code, response) in method_responses track by $index">
+      <div class="row" ng-show="response.status_code">
+        <div class="s7 col"><strong>Status Code</strong></div>
+        <div class="s5 col attributes-name" ng-bind="response.status_code"></div>
+      </div>
+      <div class="row" ng-show="response.response_models">
+        <div class="s12 col"><strong>Response Models</strong></div>
+        <div ng-repeat="(key, val) in response.response_models track by $index">
+          <div class="s12 col">{{key}}: {{val}}</div>
+        </div>
+      </div>
+      <div class="row" ng-show="response.response_parameters">
+        <div class="s12 col"><strong>Response Parameters</strong></div>
+        <div ng-repeat="(key, val) in response.response_parameters track by $index">
+            <div class="s12 col">{{key}}: {{val}}</div>
+        </div>
+      </div>
+    </div>
+    </div>
+</div>
+
+<div ng-show="info.authorizer">
+  <div class="row">
+    <div class="s12 col"><h5>Authorizer</h5></div>
+    <div class="s12 col attributes-name">
+      <svg><use xlink:href="{{info.authorizer.image}}" /></svg><a ng-click="selectResource(info.authorizer)">{{info.authorizer.name}}</a>
+    </div>
+  </div>
+</div>
+
+<!-- TODO: there is a lot more information to display here -->
+<div ng-show="resource.method_integration">
+  <div class="row">
+    <div class="s12 col"><h5>Integration</h5></div>
+  </div>
+  <div class="row" ng-show="resource.method_integration.type">
+    <div class="s7 col"><strong>Type</strong></div>
+    <div class="s5 col" ng-bind="resource.method_integration.type"></div>
+  </div>
+  <div class="row" ng-show="resource.method_integration.http_method">
+    <div class="s7 col"><strong>HTTP Method</strong></div>
+    <div class="s5 col" ng-bind="resource.method_integration.http_method"></div>
+  </div>
+  <div class="row" ng-show="resource.method_integration.connection_type">
+    <div class="s7 col"><strong>Connection Type</strong></div>
+    <div class="s5 col" ng-bind="resource.method_integration.connection_type"></div>
+  </div>
+  <div class="row" ng-show="resource.method_integration.uri">
+    <div class="s12 col"><strong>URI</strong></div>
+    <div class="s12 col" ng-bind="resource.method_integration.uri"></div>
+  </div>
+  <div class="row" ng-show="resource.method_integration.timeout_in_millis">
+    <div class="s12 col"><strong>Timeout</strong></div>
+    <div class="s12 col" ng-bind="resource.method_integration.timeout_in_millis">
+      {{resource.method_integration.timeout_in_millis}} ms
+    </div>
+  </div>
+</div>
+
+<div ng-show="resource.integration_responses.length">
+  <div class="row">
+    <div class="s12 col"><h5>Integration Responses</h5></div>
+  </div>
+  <div ng-repeat="(code, integration_response) in resource.integration_responses">
+    <div ng-repeat="response in integration_response">
+      <div class="row">
+        <div class="s7 col"><strong>Status Code</strong></div>
+        <div class="s5 col attributes-name" ng-show="response.status_code">{{response.status_code}}</a></div>
+        <div class="s5 col attributes-name" ng-show="!response.status_code">none</a></div>
+      </div>
+      <div class="row">
+        <div class="s7 col"><strong>Selection Pattern</strong></div>
+        <div class="s5 col" ng-show="response.selection_pattern" ng-bind="response.selection_pattern"></div>
+        <div class="s5 col" ng-show="!response.selection_pattern">none</div>
+      </div>
+      <div class="row">
+        <div class="s7 col"><strong>Content Handling</strong></div>
+        <div class="s5 col" ng-show="response.content_handling" ng-bind="response.content_handling"></div>
+        <div class="s5 col" ng-show="!response.content_handling">none</div>
+      </div>
+      <div class="row">
+        <div class="s12 col"><strong>Response Parameters</strong></div>
+        <div ng-repeat="(key, val) in response.response_parameters track by $index">
+          <div class="s12 col" ng-show="val">{{key}}: {{val}}</div>
+        </div>
+        <div class="s12 col" ng-show="!response.response_parameters">none</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div ng-show="info.lambda">
+  <div class="row">
+    <div class="s12 col"><h5>Lambda</h5></div>
+    <div class="s12 col attributes-name"><svg><use xlink:href="{{info.lambda.image}}" /></svg><a ng-click="selectResource(info.lambda)">{{info.lambda.name}}</a></div>
+  </div>
+</div>
+

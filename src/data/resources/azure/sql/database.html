@@ -1,0 +1,50 @@
+<div class="row status">
+  <div class="s9 col"><svg><use xlink:href="{{resource.image}}" /></svg> <strong>SQL DATABASE</strong></div>
+  <div class="s3 col">
+    <div class="status-display"
+         ng-class="{available: resource.status === 'Online', unavailable: resource.status !== 'Online', problem: false}"></div>
+  </div>
+</div>
+
+<div class="row title">
+  <div class="s12 col attributes-name"><h4 ng-bind="resource.name"></h4></div>
+</div>
+
+<div class="row sub-title">
+  <div class="s6 col">
+    <small ng-bind="resource.azure_type"></small>
+  </div>
+  <div class="s6 col text-right" ng-if="resource.price">
+    <span class="price" ng-bind="(resource.price || 0) | currency:'$':0"></span>/m
+  </div>
+</div>
+
+<div class="row">
+  <div class="s12 col"><strong>Created</strong></div>
+  <div class="s12 col" ng-bind="resource.creation_date"></div>
+</div>
+<div class="row">
+  <div class="s12 col"><strong>Collation</strong></div>
+  <div class="s12 col" ng-bind="resource.collation"></div>
+</div>
+<div class="row">
+  <div class="s12 col"><strong>Default Secondary Location</strong></div>
+  <div class="s12 col" ng-bind="resource.default_secondary_location"></div>
+</div>
+<div class="row">
+  <div class="s12 col"><strong>Max Size</strong></div>
+  <div class="s12 col"><span ng-bind="resource.max_size_bytes/1024/1024/1024"></span> GB</div>
+</div>
+
+<div class="row">
+  <div class="s12 col"><h5>Server</h5></div>
+</div>
+<div class="row" ng-show="!info.servers.length">
+  <div class="s12 col">None</div>
+</div>
+<div class="row" ng-repeat="server in info.servers">
+  <div class="s12 col end attributes-name">
+    <svg><use xlink:href="{{server.image}}" /></svg>
+    <a ng-click="selectResource(server)">{{server.name}}</a>
+  </div>
+</div>

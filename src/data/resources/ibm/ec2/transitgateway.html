@@ -1,0 +1,68 @@
+<!-- Attributes -->
+<div class="row">
+  <div class="s12 col"><strong>Description</strong></div>
+  <div class="s12 col" ng-bind="resource.description"></div>
+</div>
+<div class="row">
+  <div class="s12 col"><strong>ARN</strong></div>
+  <div class="s12 col" ng-bind="resource.arn"></div>
+</div>
+<div class="row">
+  <div class="s12 col"><strong>Creation Time</strong></div>
+  <div class="s12 col" ng-bind="resource.creation_time"></div>
+</div>
+<div class="row">
+  <div class="s5 col"><strong>Owner ID</strong></div>
+  <div class="s7 col" ng-bind="resource.owner_id"></div>
+</div>
+<div class="row">
+  <div class="s5 col"><strong>State</strong></div>
+  <div class="s7 col" ng-bind="resource.status" ng-class="resource.status_list[resource.status]"></div>
+</div>
+
+<div class="row">
+  <div class="s12 col"><h5>Options</h5></div>
+</div>
+<div class="row" ng-if="resource.options.amazon_side_asn">
+  <div class="s12 col"><strong>Amazon Side ASN</strong></div>
+  <div class="s12 col" ng-bind="resource.options.amazon_side_asn"></div>
+</div>
+<div class="row" ng-if="resource.options.auto_accept_shared_attachments">
+  <div class="s12 col"><strong>Auto Accept Shared Attachments</strong></div>
+  <div class="s12 col" ng-bind="resource.options.auto_accept_shared_attachments"></div>
+</div>
+<div class="row" ng-if="resource.options.default_route_table_association">
+  <div class="s12 col"><strong>Default Route Table Association</strong></div>
+  <div class="s12 col" ng-bind="resource.options.default_route_table_association"></div>
+</div>
+<div class="row" ng-if="resource.options.default_route_table_propagation">
+  <div class="s12 col"><strong>Default Route Table Propagation</strong></div>
+  <div class="s12 col" ng-bind="resource.options.default_route_table_propagation"></div>
+</div>
+<div class="row" ng-if="info.route_tables[resource.options.association_default_route_table_id]">
+  <div class="s12 col"><strong>Assocation Route Table</strong></div>
+  <div class="s12 col">
+    <a ng-click="selectResource(info.route_tables[resource.options.association_default_route_table_id])">
+      {{info.route_tables[resource.options.association_default_route_table_id].name}}
+    </a>
+  </div>
+</div>
+<div class="row" ng-if="info.route_tables[resource.options.propagation_default_route_table_id]">
+  <div class="s12 col"><strong>Default Route Table</strong></div>
+  <div class="s12 col">
+    <a ng-click="selectResource(info.route_tables[resource.options.propagation_default_route_table_id])">
+      {{info.route_tables[resource.options.propagation_default_route_table_id].name}}
+    </a>
+  </div>
+</div>
+
+<div ng-if="info.attachments.length">
+  <div class="row">
+    <div class="s12 col"><h5>Attachments</h5></div>
+  </div>
+  <div ng-repeat="attachment in info.attachments">
+    <div class="row">
+      <div class="s12 col attributes-name truncate"><a ng-click="selectResource(attachment)">{{attachment.name}}</a></div>
+    </div>
+  </div>
+</div>

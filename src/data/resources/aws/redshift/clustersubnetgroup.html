@@ -1,0 +1,25 @@
+<div class="row" ng-show="resource.description">
+  <div class="s6 col"><strong>Description:</strong></div>
+  <div class="s6 col" ng-bind="resource.description"></div>
+</div>
+<div class="row" ng-show="resource.subnet_group_status">
+  <div class="s6 col"><strong>Subnet Group Status:</strong></div>
+  <div class="s6 col" ng-bind="resource.subnet_group_status"></div>
+</div>
+
+<div class="row" ng-show="info.clusters.length > 0">
+  <div class="s10 col end"><h5>Clusters</h5></div>
+  <div class="s10 col end attributes-name" ng-repeat="cluster in info.clusters track by $index" ng-hide="cluster.hidden">
+    <svg><use xlink:href="{{cluster.image}}" /></svg>
+    <a ng-click="selectResource(cluster)">{{cluster.name}}</a>
+  </div>
+</div>
+
+<div class="row" ng-show="info.subnets.length > 0">
+  <div class="s10 col end"><h5>Subnets</h5></div>
+  <div class="s10 col end attributes-name" ng-repeat="subnet in info.subnets track by $index" ng-hide="subnet.hidden">
+    <svg><use xlink:href="{{subnet.image}}" /></svg>
+    <a ng-click="selectResource(subnet)">{{subnet.name}}</a>
+  </div>
+</div>
+

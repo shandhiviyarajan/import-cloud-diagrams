@@ -1,0 +1,360 @@
+<div class="row">
+  <div class="s12 col"><strong>ARN</strong></div>
+  <div class="s12 col attributes-name">{{resource.arn}}</div>
+</div>
+
+<div class="row">
+  <div class="s12 col"><strong>Domain Name</strong></div>
+  <div class="s12 col attributes-name">{{resource.domain_name}}</div>
+</div>
+
+<div class="row">
+  <div class="s12 col"><strong>Comment</strong></div>
+  <div class="s12 col attributes-name" ng-bind="resource.comment || '-'">{{resource.comment}}</div>
+</div>
+
+<div class="row">
+  <div class="s12 col"><strong>HTTP Version</strong></div>
+  <div class="s12 col attributes-name">{{resource.http_version}}</div>
+</div>
+
+<div class="row">
+  <div class="s6 col"><strong>Status</strong></div>
+  <div class="s6 col attributes-name">{{resource.status}}</div>
+</div>
+
+<div class="row">
+  <div class="s6 col"><strong>Enabled</strong></div>
+  <div class="s6 col">
+    <span class="octicon octicon-check good" ng-if="resource.enabled"></span>
+    <span class="octicon octicon-x bad" ng-if="!resource.enabled"></span>
+  </div>
+</div>
+
+<div class="row">
+  <div class="s6 col"><strong>IPv6 Enabled</strong></div>
+  <div class="s6 col">
+    <span class="octicon octicon-check good" ng-if="resource.is_ipv6_enabled"></span>
+    <span class="octicon octicon-x bad" ng-if="!resource.is_ipv6_enabled"></span>
+  </div>
+</div>
+
+<div class="row">
+  <div class="s12 col"><strong>Price Class</strong></div>
+  <div class="s12 col attributes-name">{{resource.price_class}}</div>
+</div>
+
+<div class="row">
+  <div class="s12 col"><strong>Last Modified Time</strong></div>
+  <div class="s12 col attributes-name">{{resource.last_modified_time}}</div>
+</div>
+<div class="row">
+  <div class="s12 col"><strong>AWS WAF Web ACL</strong></div>
+  <div class="s12 col attributes-name" ng-if="info.web_acl">{{resource.web_acl_id}}</div>
+  <div class="s12 col attributes-name" ng-if="!info.web_acl" ng-bind="resource.web_acl_id.length > 0 ? resource.web_acl_id : ' - '"></div>
+</div>
+
+<div class="row">
+  <div class="s12 col"><strong>Aliases</strong></div>
+  <div class="s12 col attributes-name" ng-if="resource.aliases.items.length == 0">None</div>
+  <div class="s12 col attributes-name" ng-repeat="alias in resource.aliases.items">∟ {{alias}}</div>
+</div>
+
+<div class="row">
+  <div class="s12 col"><strong>Geo Restrictions</strong></div>
+  <div class="s12 col" ng-bind="resource.restrictions.geo_restriction.restriction_type"></div>
+  <div class="s12 col attributes-name" ng-repeat="r in resource.restrictions.geo_restriction.items">∟ {{r}}</div>
+</div>
+
+<hr />
+
+<div class="row">
+  <div class="s12 col"><h5>Viewer Certificate</h5></div>
+</div>
+<div class="row" ng-if="resource.viewer_certificate.cloud_front_default_certificate">
+  <div class="s12 col">Default CloudFront Certificate (*.cloudfront.net)</div>
+</div>
+<div ng-if="resource.viewer_certificate.certificate">
+  <div class="row">
+    <div class="s12 col word-wrap" ng-bind="resource.viewer_certificate.certificate"></div>
+  </div>
+  <div class="row">
+    <div class="s12 col"><strong>Source</strong></div>
+    <div class="s12 col" ng-bind="resource.viewer_certificate.certificate_source"></div>
+  </div>
+  <div class="row">
+    <div class="s12 col"><strong>SSL Support Method</strong></div>
+    <div class="s12 col" ng-bind="resource.viewer_certificate.ssl_support_method"></div>
+  </div>
+  <div class="row">
+    <div class="s12 col"><strong>Minimum Protocol Version</strong></div>
+    <div class="s12 col" ng-bind="resource.viewer_certificate.minimum_protocol_version"></div>
+  </div>
+</div>
+
+<hr />
+
+<div class="row">
+  <div class="s10 col"><h5 class="clickable" ng-click="extended.extend_origins = !extended.extend_origins">Origins</h5></div>
+  <div class="s2 col">
+    <a ng-click="extended.extend_origins = !extended.extend_origins" ng-show="!extended.extend_origins"><span class="mega-octicon octicon-chevron-down"></span></a>
+    <a ng-click="extended.extend_origins = !extended.extend_origins" ng-show="extended.extend_origins"><span class="mega-octicon octicon-chevron-up"></span></a>
+  </div>
+</div>
+<div class="row" ng-show="!extended.extend_origins">
+  <div class="s12 col"><small ng-bind="resource.origins.items.length + ' origin(s)'"></small></div>
+</div>
+<div ng-show="extended.extend_origins">
+  <div ng-repeat="origin in resource.origins.items | orderBy:'name' track by $index">
+    <div class="row">
+      <div class="s12 col"><strong ng-bind="origin.id"></strong></div>
+    </div>
+    <div class="attributes-list attributes-sublist">
+      <div class="row">
+        <div class="s12 col"><strong>Domain</strong></div>
+        <div class="s12 col" ng-if="origin.origin_resource">
+          <svg><use xlink:href="{{origin.origin_resource.image}}" /></svg>
+          <a ng-click="selectResource(origin.origin_resource)">{{origin.domain_name}}</a>
+        </div>
+        <div class="s12 col" ng-if="!origin.origin_resource" ng-bind="origin.domain_name"></div>
+      </div>
+      <div class="row">
+        <div class="s12 col"><strong>Path</strong></div>
+        <div class="s12 col" ng-bind="origin.origin_path || ' - '"></div>
+      </div>
+      <div class="row">
+        <div class="s12 col"><strong>Origin Type</strong></div>
+        <div class="s12 col" ng-if="origin.s3_origin_config.origin_access_identity">S3 Origin</div>
+        <div class="s12 col" ng-if="!origin.s3_origin_config.origin_access_identity">Custom Origin</div>
+      </div>
+      <div class="row">
+        <div class="s12 col"><strong>Origin Access Identity</strong></div>
+        <div class="s12 col" ng-bind="origin.s3_origin_config.origin_access_identity || ' - '"></div>
+      </div>
+      <div class="row" ng-if="origin.custom_headers.quantity > 0">
+        <div class="s12 col"><strong>Custom Headers</strong></div>
+        <div class="s12 col attributes-name" ng-repeat="header in origin.custom_headers.items">∟ {{header}}</div>
+      </div>
+      <div ng-if="origin.custom_origin_config.origin_protocol_policy">
+        <div class="row">
+          <div class="s12 col"><strong>Custom Origin Config</strong></div>
+        </div>
+        <div class="attributes-list attributes-sublist">
+          <div class="row">
+            <div class="s7 col"><strong>HTTP Port</strong></div>
+            <div class="s5 col" ng-bind="origin.custom_origin_config.http_port || ' - '"></div>
+          </div>
+          <div class="row">
+            <div class="s7 col"><strong>HTTPS Port</strong></div>
+            <div class="s5 col" ng-bind="origin.custom_origin_config.https_port || ' - '"></div>
+          </div>
+          <div class="row">
+            <div class="s7 col"><strong>Read Timeout</strong></div>
+            <div class="s5 col" ng-bind="origin.custom_origin_config.origin_read_timeout || ' - '"></div>
+          </div>
+          <div class="row">
+            <div class="s7 col"><strong>Keepalive Timeout</strong></div>
+            <div class="s5 col" ng-bind="origin.custom_origin_config.origin_keepalive_timeout || ' - '"></div>
+          </div>
+          <div class="row">
+            <div class="s7 col"><strong>Protocol Policy</strong></div>
+            <div class="s5 col" ng-bind="resource.custom_origin_protocol_policy_map[origin.custom_origin_config.origin_protocol_policy] || origin.custom_origin_config.origin_protocol_policy"></div>
+          </div>
+          <div class="row">
+            <div class="s12 col"><strong>SSL Protocols</strong></div>
+            <div class="s12 col" ng-bind="origin.custom_origin_config.origin_ssl_protocols.items.join(', ') || ' - '"></div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="s10 col"><h5 class="clickable" ng-click="extended.extend_og = !extended.extend_og">Origin Groups</h5></div>
+  <div class="s2 col" ng-if="resource.origin_groups.items.length > 0">
+    <a ng-click="extended.extend_og = !extended.extend_og" ng-show="!extended.extend_og"><span class="mega-octicon octicon-chevron-down"></span></a>
+    <a ng-click="extended.extend_og = !extended.extend_og" ng-show="extended.extend_og"><span class="mega-octicon octicon-chevron-up"></span></a>
+  </div>
+</div>
+<div class="row" ng-show="!extended.extend_og" ng-if="resource.origin_groups.items.length > 0">
+  <div class="s12 col"><small ng-bind="resource.origin_groups.items.length + ' origin(s)'"></small></div>
+</div>
+<div class="row" ng-if="resource.origin_groups.items.length == 0">
+  <div class="s12 col"><small>None</small></div>
+</div>
+<div ng-show="extended.extend_og" ng-if="resource.origin_groups.items.length > 0">
+  <div ng-repeat="origin_group in resource.origin_groups.items | orderBy:'name' track by $index">
+    <div class="row">
+      <div class="s12 col"><strong ng-bind="origin_group.id"></strong></div>
+    </div>
+    <div class="attributes-list attributes-sublist">
+      <div class="row">
+        <div class="s12 col"><strong>Origins</strong></div>
+        <div class="s12 col attributes-name" ng-repeat="origin in origin_group.members.items">∟ {{origin.origin_id}}</div>
+      </div>
+      <div class="row">
+        <div class="s12 col"><strong>Failover Criteria</strong></div>
+        <div class="s12 col attributes-name" ng-bind="origin_group.failover_criteria.status_codes.items.join(', ')"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="s10 col"><h5 class="clickable" ng-click="extended.extend_cb = !extended.extend_cb">Cache Behaviors</h5></div>
+  <div class="s2 col">
+    <a ng-click="extended.extend_cb = !extended.extend_cb" ng-show="!extended.extend_cb"><span class="mega-octicon octicon-chevron-down"></span></a>
+    <a ng-click="extended.extend_cb = !extended.extend_cb" ng-show="extended.extend_cb"><span class="mega-octicon octicon-chevron-up"></span></a>
+  </div>
+</div>
+<div class="row" ng-show="!extended.extend_cb">
+  <div class="s12 col"><small ng-bind="info.behaviors.length + ' cache behavior(s)'"></small></div>
+</div>
+<div ng-show="extended.extend_cb">
+  <div ng-repeat="behavior in info.behaviors | orderBy:'name' track by $index">
+    <div class="row">
+      <div class="s10 col"><strong ng-bind="behavior.path_pattern || 'Default (*)'"></strong></div>
+      <div class="s2 col"><span class="label radius right" ng-bind="$index"></span></div>
+    </div>
+    <div class="attributes-list attributes-sublist">
+      <div class="row">
+        <div class="s12 col"><strong>Origin or Origin Group</strong></div>
+        <div class="s12 col" ng-bind="behavior.target_origin_id"></div>
+      </div>
+      <div class="row">
+        <div class="s12 col"><strong>Viewer Protocol Policy</strong></div>
+        <div class="s12 col" ng-bind="resource.protocol_policy_map[behavior.viewer_protocol_policy] || behavior.viewer_protocol_policy"></div>
+      </div>
+      <div class="row">
+        <div class="s12 col"><strong>Field Level Encryption</strong></div>
+        <div class="s12 col" ng-bind="behavior.field_level_encryption_id.length > 0 ? behavior.field_level_encryption_id : ' - '"></div>
+      </div>
+
+      <div class="row">
+        <div class="s6 col"><strong>Minimum TTL</strong></div>
+        <div class="s6 col" ng-bind="behavior.min_ttl"></div>
+      </div>
+      <div class="row">
+        <div class="s6 col"><strong>Maximum TTL</strong></div>
+        <div class="s6 col" ng-bind="behavior.max_ttl"></div>
+      </div>
+      <div class="row">
+        <div class="s6 col"><strong>Default TTL</strong></div>
+        <div class="s6 col" ng-bind="behavior.default_ttl"></div>
+      </div>
+      <div class="row">
+        <div class="s12 col"><strong>Forward Cookies</strong></div>
+        <div class="s12 col" ng-bind="behavior.forwarded_values.cookies.forward"></div>
+        <div class="s12 col" ng-repeat="whitelist in behavior.forwarded_values.cookies.whitelisted_names.items">∟ {{whitelist}}</div>
+      </div>
+      <div class="row">
+        <div class="s12 col"><strong>Query String Forwarding and Caching</strong></div>
+        <div class="s12 col">
+          <span ng-if="!behavior.forwarded_values.query_string">None</span>
+          <span ng-if="behavior.forwarded_values.query_string">
+            <span ng-if="behavior.forwarded_values.query_string_cache_keys.quantity > 0">Forward all, cache based on whitelist</span>
+            <span ng-if="behavior.forwarded_values.query_string_cache_keys.quantity == 0">Forward all, cache based on all</span>
+          </span>
+        </div>
+        <div class="s12 col" ng-repeat="key in behavior.forwarded_values.query_string_cache_keys.items">∟ {{key}}</div>
+      </div>
+      <div class="row">
+        <div class="s12 col"><strong>Cache Selected Request Headers</strong></div>
+        <div class="s12 col" ng-if="behavior.forwarded_values.headers.quantity == 0">None</div>
+        <div class="s12 col" ng-repeat="header in behavior.forwarded_values.headers.items">∟ {{header}}</div>
+      </div>
+
+      <div class="row">
+        <div class="s12 col">
+          <strong>Compress</strong>&nbsp;&nbsp;&nbsp;&nbsp;
+          <span class="octicon octicon-check good" ng-if="behavior.compress"></span>
+          <span class="octicon octicon-x bad" ng-if="!behavior.compress"></span>
+        </div>
+      </div>
+      <div class="row">
+        <div class="s12 col">
+          <strong>Smooth Streaming</strong>&nbsp;&nbsp;&nbsp;&nbsp;
+          <span class="octicon octicon-check good" ng-if="behavior.smooth_streaming"></span>
+          <span class="octicon octicon-x bad" ng-if="!behavior.smooth_streaming"></span>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="s12 col">
+          <strong>Trusted Signers</strong>&nbsp;&nbsp;&nbsp;&nbsp;
+          <span class="octicon octicon-check good" ng-if="behavior.trusted_signers.enabled"></span>
+          <span class="octicon octicon-x bad" ng-if="!behavior.trusted_signers.enabled"></span>
+        </div>
+        <div class="s12 col attributes-name" ng-repeat="signer in behavior.trusted_signers.items">∟ {{signer}}</div>
+      </div>
+
+      <div class="row">
+        <div class="s12 col"><strong>Allowed Methods</strong></div>
+        <div class="s12 col attributes-name" ng-repeat="method in behavior.allowed_methods.items">∟ {{method}}</div>
+      </div>
+      <div class="row">
+        <div class="s12 col"><strong>Cached Methods</strong></div>
+        <div class="s12 col attributes-name" ng-repeat="method in behavior.allowed_methods.cached_methods.items">∟ {{method}}</div>
+      </div>
+
+      <div class="row" ng-if="behavior.lambda_function_associations.quantity > 0">
+        <div class="s12 col"><strong>Lambda Function Associations</strong></div>
+        <div class="s12 col attributes-name" ng-repeat="assoc in behavior.lambda_function_associations.items">
+          <div ng-if="assoc.lambda_function">
+            <svg><use xlink:href="{{assoc.lambda_function.image}}" /></svg>
+            <a ng-click="selectResource(assoc.lambda_function)">{{assoc.lambda_function.name}}</a>
+          </div>
+          <div ng-if="!assoc.lambda_function" ng-bind="assoc.lambda_function_arn"></div>
+          <div>
+            ∟ <strong>Event Type</strong>&nbsp;&nbsp;&nbsp;&nbsp;
+            <span ng-bind="assoc.event_type"></span>
+          </div>
+          <div>
+            ∟ <strong>Include Body</strong>&nbsp;&nbsp;&nbsp;&nbsp;
+            <span class="octicon octicon-check good" ng-if="assoc.include_body"></span>
+            <span class="octicon octicon-x bad" ng-if="!assoc.include_body"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="s10 col"><h5 class="clickable" ng-click="extended.extend_errors = !extended.extend_errors">Custom Error Responses</h5></div>
+  <div class="s2 col" ng-if="resource.custom_error_responses.items.length > 0">
+    <a ng-click="extended.extend_errors = !extended.extend_errors" ng-show="!extended.extend_errors"><span class="mega-octicon octicon-chevron-down"></span></a>
+    <a ng-click="extended.extend_errors = !extended.extend_errors" ng-show="extended.extend_errors"><span class="mega-octicon octicon-chevron-up"></span></a>
+  </div>
+</div>
+<div class="row" ng-show="!extended.extend_errors" ng-if="resource.custom_error_responses.items.length > 0">
+  <div class="s12 col"><small ng-bind="resource.custom_error_responses.items.length + ' custom error(s)'"></small></div>
+</div>
+<div class="row" ng-if="resource.custom_error_responses.items.length == 0">
+  <div class="s12 col">None</div>
+</div>
+<div ng-show="extended.extend_errors" ng-if="resource.custom_error_responses.items.length > 0">
+  <div ng-repeat="error in resource.custom_error_responses.items">
+    <div class="row">
+      <div class="s12 col"><strong ng-bind="error.error_code"></strong></div>
+    </div>
+    <div class="attributes-list attributes-sublist">
+      <div class="row">
+        <div class="s12 col"><strong>HTTP Response Code</strong></div>
+        <div class="s12 col" ng-bind="error.response_code.length > 0 ? error.response_code : ' - '"></div>
+      </div>
+      <div class="row">
+        <div class="s12 col"><strong>Response Page Path</strong></div>
+        <div class="s12 col" ng-bind="error.response_page_path.length > 0 ? error.response_page_path : ' - '"></div>
+      </div>
+      <div class="row">
+        <div class="s12 col"><strong>Error Caching Minimum TTL</strong></div>
+        <div class="s12 col" ng-bind="error.error_caching_min_ttl"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
